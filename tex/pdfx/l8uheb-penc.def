@@ -1,0 +1,513 @@
+%%
+%% This is file `l8uheb-penc.def'
+%% formerly known as  `l8uheb.def'
+%%
+%% l8uheb-penc.def
+%% 
+%% This is a hand-written file, based upon various hebrew packages 
+%% with extensions for more composite characters.
+%% 
+%% Copyright 2018 Ross Moore <ross.moore@mq.edu.au>
+%% 
+\ProvidesFile{l8uheb-penc.def}
+ [2018/11/15 v0.5
+         Hebrew support for UTF8 in XMP metadata]
+
+%
+% uses macro names from  ../babel-hebrew/{he8,lhe}enc.def 
+%       and  ../babel-hebrew/cp{1255,862}enc.def
+%       and  ../ucs/data/uni-5.def
+%
+%  defines command:  \LIIXUmaphebrewletters
+%  parsers:  \textLHE   LHE   transliterated ASCII   
+%            \textHEBO        for  cp862
+%            \textHEB   HE8   for  ISO 8859-8, cp1255
+%                             with \newshequel  at ^^a4
+
+\def\LIIXUmaphebrewletters{%
+  \let\sheva\textsheva
+  \let\hatafsegol\hebhatafsegol
+  \let\hatafpatah\hebhatafpatah
+  \let\hatafqamats\hebhatafqamats
+  \let\hiriq\hebhiriq
+  \let\tsere\hebtsere
+  \let\segol\hebsegol
+  \let\patah\hebpatah
+  \let\qamats\hebqamats
+  \let\holam\hebholam
+  \let\qubuts\hebqubuts
+  \let\dagesh\hebdagesh
+  \let\meteg\hebmeteg
+  \let\maqaf\hebmaqaf
+  \let\shindot\hebshindot
+  \let\sindot\hebsindot
+  \let\sofpasuq\hebsofpasuq
+  \let\nunhafukha\hebnunhafukha
+  \let\doublevav\hebdoublevav
+  \let\vavyod\hebvavyod
+  \let\doubleyod\hebdoubleyod
+  \let\geresh\hebgeresh
+  \let\gershayim\hebgershayim
+  \let\rafe\hebrafe
+  \let\newsheqel\textnewsheqel  % Ux20AA
+  \let\lefttorightmark\textLR
+  \let\righttoleftmark\textRL
+  \let\hebsin\hebshin
+%  \let\\text
+%  \let\\text
+%  \let\\text
+}
+
+%%%% Hebrew Characters + marks  Ux0590 – Ux05FF
+%
+\DeclareTextCommand{\hebsheva}{L8U}[1]{ְ#1}% U+05B0
+\DeclareTextCommand{\hebhatafsegol}{L8U}[1]{ֱ#1}
+\DeclareTextCommand{\hebhatafpatah}{L8U}[1]{ֲ#1}
+\DeclareTextCommand{\hebhatafqamats}{L8U}[1]{ֳ#1}
+\DeclareTextCommand{\hebhiriq}{L8U}[1]{ִ#1}
+\DeclareTextCommand{\hebtsere}{L8U}[1]{ֵ#1}
+\DeclareTextCommand{\hebsegol}{L8U}[1]{ֶ#1}
+\DeclareTextCommand{\hebpatah}{L8U}[1]{ַ#1}
+\DeclareTextCommand{\hebqamats}{L8U}[1]{ָ#1}
+\DeclareTextCommand{\hebholam}{L8U}[1]{ֹ#1}
+%
+\DeclareTextCommand{\hebqubuts}{L8U}[1]{ֻ#1}% U+05BB
+\DeclareTextCommand{\hebdagesh}{L8U}[1]{ּ#1}% U+05BC
+\DeclareTextCommand{\hebmeteg}{L8U}[1]{ֽ#1}%  U+05BD
+\DeclareTextCommand{\hebmaqaf}{L8U}{־}% ???  U+05BE
+\DeclareTextCommand{\hebrafe}{L8U}[1]{ֿ#1}%   U+05BF
+%
+\DeclareTextCommand{\hebpaseq}{L8U}{׀}%       U+05C0
+\DeclareTextCommand{\hebshindot}{L8U}[1]{ׁ#1}% U+05C1
+\DeclareTextCommand{\hebsindot}{L8U}[1]{ׂ#1}%  U+05C2
+\DeclareTextCommand{\hebsofpasuq}{L8U}{׃}%     U+05C3
+%\DeclareTextCommand{\hebhebupperdot}{L8U}{ׄ}%  U+05C4
+%\DeclareTextCommand{\hebheblowerdot}{L8U}{ׅ}% U+05C5
+%\DeclareTextCommand{\hebnunhafukha}{L8U}{׃}%   U+05C6
+%\DeclareTextCommand{\hebqamatsqatan}{L8U}{ׇ}% U+05C7
+%
+\DeclareTextCommand{\hebshindotdagesh}{L8U}[1]{#1ּׁ}% Ux05C1+Ux05BC
+\DeclareTextCommand{\hebsindotdagesh}{L8U}[1]{#1ּׂ}%  Ux05C2+Ux05BC
+%
+\DeclareTextCommand{\hebalef}{L8U}{א}% U+05D0
+\DeclareTextCommand{\hebbet}{L8U}{ב}% U+05D1
+\DeclareTextCommand{\hebgimel}{L8U}{ג}% U+05D2
+\DeclareTextCommand{\hebdalet}{L8U}{ד}% U+05D3
+\DeclareTextCommand{\hebhe}{L8U}{ה}% U+05D4
+\DeclareTextCommand{\hebvav}{L8U}{ו}% U+05D5
+\DeclareTextCommand{\hebzayin}{L8U}{ז}% U+05D6
+\DeclareTextCommand{\hebhet}{L8U}{ח}% U+05D7
+\DeclareTextCommand{\hebtet}{L8U}{ט}% U+05D8
+\DeclareTextCommand{\hebyod}{L8U}{י}% U+05D9
+\DeclareTextCommand{\hebfinalkaf}{L8U}{ך}% U+05DA
+\DeclareTextCommand{\hebkaf}{L8U}{כ}% U+05DB
+\DeclareTextCommand{\heblamed}{L8U}{ל}% U+05DC
+\DeclareTextCommand{\hebfinalmem}{L8U}{ם}% U+05DD
+\DeclareTextCommand{\hebmem}{L8U}{מ}% U+05DE
+\DeclareTextCommand{\hebfinalnun}{L8U}{ן}% U+05DF
+\DeclareTextCommand{\hebnun}{L8U}{נ}% U+05E0
+\DeclareTextCommand{\hebsamekh}{L8U}{ס}% U+05E1
+\DeclareTextCommand{\hebayin}{L8U}{ע}% U+05E2
+\DeclareTextCommand{\hebfinalpe}{L8U}{ף}% U+05E3
+\DeclareTextCommand{\hebpe}{L8U}{פ}% U+05E4
+\DeclareTextCommand{\hebfinaltsadi}{L8U}{ץ}% U+05E5
+\DeclareTextCommand{\hebtsadi}{L8U}{צ}% U+05E6
+\DeclareTextCommand{\hebqof}{L8U}{ק}% U+05E7
+\DeclareTextCommand{\hebresh}{L8U}{ר}% U+05E8
+\DeclareTextCommand{\hebshin}{L8U}{ש}% U+05E9
+\DeclareTextCommand{\hebtav}{L8U}{ת}% U+05EA
+%
+\DeclareTextCommand{\hebdoublevav}{L8U}{װ}% U+05F0
+\DeclareTextCommand{\hebvavyod}{L8U}{ױ}% U+05F1
+\DeclareTextCommand{\hebdoubleyod}{L8U}{ײ}% U+05F2
+%\DeclareTextCommand{\hebgeresh}{L8U}{׳}% U+05F3
+%\DeclareTextCommand{\hebgershayim}{L8U}{״}% U+05F4
+
+\DeclareTextCommand{\textnewsheqel}{L8U}{₪}% U+20AA
+
+
+\DeclareTextCompositeCommand{\hebhiriq}{L8U}{\hebyod}{יִ}%    UxFB1D
+\DeclareTextCompositeCommand{\hebshindot}{L8U}{\hebshin}{שׁ}% UxFB2A
+\DeclareTextCompositeCommand{\hebsindot}{L8U}{\hebshin}{שׂ}%  UxFB2B
+\DeclareTextCompositeCommand{\hebshindot}{L8U}{\dagesh}{\hebshindotdagesh}%
+\DeclareTextCompositeCommand{\hebshindot}{L8U}{\hebdagesh}{\hebshindotdagesh}%
+\DeclareTextCompositeCommand{\hebshindotdagesh}{L8U}{\hebshin}{שּׁ}%  UxFB2C
+\DeclareTextCompositeCommand{\hebsindot}{L8U}{\dagesh}{\hebsindotdagesh}%
+\DeclareTextCompositeCommand{\hebsindot}{L8U}{\hebdagesh}{\hebsindotdagesh}%
+\DeclareTextCompositeCommand{\hebsindotdagesh}{L8U}{\hebshin}{שּׂ}%   UxFB2D
+\DeclareTextCompositeCommand{\hebpatah}{L8U}{\hebalef}{אַ}%   UxFB2E
+\DeclareTextCompositeCommand{\hebqamats}{L8U}{\hebalef}{אָ}%  UxFB2F
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebalef}{אּ}%  UxFB30 = &#64304;
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebbet}{בּ}%   UxFB31
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebgimel}{גּ}% UxFB32
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebdalet}{דּ}% UxFB33
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebhe}{הּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebvav}{וּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebzayin}{זּ}% UxFB36
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebtet}{טּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebyod}{יּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebfinalkaf}{ךּ}% UxFB3A
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebkaf}{כּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\heblamed}{לּ}% UxFB3C
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebmem}{מּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebnun}{נּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebsamekh}{סּ}%  UxFB41
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebfinalpe}{ףּ}% UxFB43
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebpe}{פּ}%
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebtsadi}{צּ}% UxFB46
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebqof}{קּ}%   UxFB47
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebresh}{רּ}%  UxFB48
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebshin}{שּ}%  UxFB49
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{\hebtav}{תּ}%   UxFB4A
+\DeclareTextCompositeCommand{\hebholam}{L8U}{\hebvav}{וֹ}%     UxFB4B
+\DeclareTextCompositeCommand{\hebrafe}{L8U}{\hebbet}{בֿ}%     UxFB4C
+\DeclareTextCompositeCommand{\hebrafe}{L8U}{\hebkaf}{כֿ}%     UxFB4D
+\DeclareTextCompositeCommand{\hebrafe}{L8U}{\hebpe}{פֿ}%      UxFB4e
+
+
+\ifhebHEBxmp\else\expandafter\endinput\fi
+
+%  implement transliteration for LHE, HE8 encoded input
+
+\DeclareTextCommand{\texthebLHEstring}{L8U}[1]{\texthebLHE@ii#1\@empty\@empty}
+\DeclareTextCommand{\textLHE}{L8U}[1]{\texthebLHEstring{#1}}
+\DeclareTextCommand{\textLHEenc}{L8U}[1]{#1}
+
+\def\texthebLHE@i#1{\texthebLHE@ii#1}%
+\def\texthebLHE@ii#1#2\@empty{\ifx\@empty#2\@empty
+ \expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi
+ {\textLHEenc{#1}}{\textLHEenc{#1}\texthebLHE@i#2\@empty}}
+
+\DeclareTextCommand{\texthebHEBstring}{L8U}[1]{\texthebHEB@ii#1\@empty\@empty}
+\DeclareTextCommand{\textHEB}{L8U}[1]{\texthebHEBstring{#1}}
+\DeclareTextCommand{\textHEBenc}{L8U}[1]{#1}
+
+\def\texthebHEB@i#1{\texthebHEB@ii#1}%
+\def\texthebHEB@ii#1#2\@empty{\ifx\@empty#2\@empty
+ \expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi
+ {\textHEBenc{#1}}{\textHEBenc{#1}\texthebHEB@i#2\@empty}}
+
+\DeclareTextCommand{\texthebHEBOstring}{L8U}[1]{\texthebHEBO@ii#1\@empty\@empty}
+\DeclareTextCommand{\textHEBO}{L8U}[1]{\texthebHEBstring{#1}}
+\DeclareTextCommand{\textHEBOenc}{L8U}[1]{#1}
+
+\def\texthebHEBO@i#1{\texthebHEBO@ii#1}%
+\def\texthebHEBO@ii#1#2\@empty{\ifx\@empty#2\@empty
+ \expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi
+ {\textHEBOenc{#1}}{\textHEBOenc{#1}\texthebHEBO@i#2\@empty}}
+
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{\TeX}{TeX}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{\LaTeX}{LaTeX}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{\TeX}{TeX}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{\LaTeX}{LaTeX}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{\TeX}{TeX}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{\LaTeX}{LaTeX}
+
+
+% use these bindings below, for readability
+\global\let\heb@en\liixu@checkemptyornext
+\global\let\heb@nc\liixu@checknextchar
+
+
+\obeyspaces
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{\sep}{\textLR\sep }%
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{ }{\space}%
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{\sep}{\textLR\sep }%
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{ }{\space}%
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{\sep}{\textLR\sep }%
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{ }{\space}%
+\catcode`\ 10 
+
+%  LHE transliteration of ASCII codes
+%
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{`}{א}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{a}{ב}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{b}{ג}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{c}{ד}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{d}{ה}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{e}{ו}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{f}{ז}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{g}{ח}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{h}{ט}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{i}{י}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{j}{ך}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{k}{כ}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{l}{ל}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{m}{ם}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{n}{מ}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{o}{ן}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{p}{נ}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{q}{ס}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{r}{ע}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{s}{ף}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{t}{פ}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{u}{ץ}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{v}{צ}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{w}{ק}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{x}{ר}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{y}{ש}
+\DeclareTextCompositeCommand{\textLHEenc}{L8U}{z}{ת}
+
+
+%  HE8 encoding, based on ISO 8859-8 and cp1255
+%
+
+% cp1255 only 
+%
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^80}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^81}{}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^82}{\quotesinglbase}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^83}{\textflorin}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^84}{\quotedblbase}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^85}{\textellipsis}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^86}{\textdagger}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^87}{\textdaggerdbl}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^88}{\textasciicircum}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^89}{\textperthousand}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^8a}{}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^8b}{\guilsinglleft}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^8c}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^8d}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^8e}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^8f}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^90}{}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^91}{\textquoteleft}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^92}{\textquoteright}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^93}{\textquotedblleft}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^94}{\textquotedblright}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^95}{\textbullet}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^96}{\textendash}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^97}{\textemdash}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^98}{\textasciitilde}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^99}{\texttrademark}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^9a}{}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^9b}{\guilsinglright}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^9c}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^9d}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^9e}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^9f}{}
+
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a0}{\textnobreakspace}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a1}{}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a2}{\textcent}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a3}{\textsterling}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a4}{\textcurrency}% 8859-8
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a4}{\newsheqel}% cp1255
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a5}{\textyen}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a6}{\textbrokenbar}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a7}{\textsection}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a8}{\textasciidieresis} 
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^a9}{\textcopyright}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^aa}{\texttimes}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ab}{\guillemotleft}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ac}{\textlogicalnot}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ad}{­}% discretionary hyphen (invisible)
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ae}{\textregistered}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^af}{textasciimacron}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b0}{\textdegree}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b1}{\textpm}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b2}{\texttwosuperior}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b3}{\textthreesuperior}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b4}{\textasciigrave}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b5}{\textmu}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b6}{\textparagraph}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b7}{\textperiodcentred}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b8}{\textasciicedilla}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^b9}{\textonesuperior}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ba}{\textdiv}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^bb}{\guillemotright}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^bc}{\textonequarter}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^bd}{\textonehalf}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^be}{\textthreequarters}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^bf}{}
+
+% cp1255  
+%
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c0}{\hebsheva}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c1}{\hebhatafsegol}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c2}{\hebhatafpatah}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c3}{\hebhatafqamats}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c4}{\hebhiriq}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c5}{\hebtsere}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c6}{\hebsegol}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c7}{\hebpatah}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c8}{\hebqamats}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^c9}{\hebholam}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ca}{}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^cb}{\hebqubuts}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^cc}{\hebdagesh}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^cd}{\hebmeteg}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ce}{\hebmaqaf}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^cf}{\hebrafe}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d0}{\hebpaseq}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d1}{\hebshindot}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d2}{\hebsindot}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d3}{\hebsofpasuq}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d4}{\hebdoublevav}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d5}{\hebvavyod}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d6}{\hebdoubleyod}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d7}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d8}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^d9}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^da}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^db}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^dc}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^dd}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^de}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^df}{}
+
+
+% 8859-8 and cp1255
+%
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e0}{\hebalef}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e1}{\hebbet}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e2}{\hebgimel}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e3}{\hebdalet}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e4}{\hebhe}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e5}{\hebvav}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e6}{\hebzayin}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e7}{\hebhet}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e8}{\hebtet}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^e9}{\hebyod}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ea}{\hebfinalkaf}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^eb}{\hebkaf}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ec}{\heblamed}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ed}{\hebfinalmem}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ee}{\hebmem}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ef}{\hebfinalnun}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f0}{\hebnun}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f1}{\hebsamekh}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f2}{\hebayin}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f3}{\hebfinalpe}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f4}{\hebpe}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f5}{\hebfinaltsadi}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f6}{\hebtsadi}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f7}{\hebqof}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f8}{\hebresh}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^f9}{\hebshin}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^fa}{\hebtav}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^fb}{}
+%\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^fc}{}
+
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^fe}{\textLR}
+\DeclareTextCompositeCommand{\textHEBenc}{L8U}{^^ff}{\textRL}
+
+
+\DeclareTextCompositeCommand{\hebhiriq}{L8U}{^^e9}{יִ}%    UxFB1D
+\DeclareTextCompositeCommand{\hebshindot}{L8U}{^^f9}{שׁ}% UxFB2A
+\DeclareTextCompositeCommand{\hebsindot}{L8U}{^^f9}{שׂ}%  UxFB2B
+\DeclareTextCompositeCommand{\hebshindot}{L8U}{^^cc}{\hebshindotdagesh}%
+\DeclareTextCompositeCommand{\hebshindotdagesh}{L8U}{^^f9}{שּׁ}%  UxFB2C
+\DeclareTextCompositeCommand{\hebsindot}{L8U}{^^cc}{\hebsindotdagesh}%
+\DeclareTextCompositeCommand{\hebsindotdagesh}{L8U}{^^f9}{שּׂ}%   UxFB2D
+\DeclareTextCompositeCommand{\hebpatah}{L8U}{^^e0}{אַ}%   UxFB2E
+\DeclareTextCompositeCommand{\hebqamats}{L8U}{^^e0}{אָ}%  UxFB2F
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e0}{אּ}%  UxFB30 = &#64304;
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e1}{בּ}%  UxFB31
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e2}{גּ}%  UxFB32
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e3}{דּ}%  UxFB33
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e4}{הּ}%  UxFB34
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e5}{וּ}%  UxFB35
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e6}{זּ}%  UxFB36
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e8}{טּ}%  UxFB38
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^e9}{יּ}%  UxFB39
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^ea}{ךּ}%  UxFB3A
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^eb}{כּ}%  UxFB3B
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^ec}{לּ}%  UxFB3C
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^ee}{מּ}%  UxFB3E
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f0}{נּ}%  UxFB40
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f1}{סּ}%  UxFB41
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f3}{ףּ}%  UxFB43
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f4}{פּ}%  UxFB44
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f6}{צּ}%  UxFB46
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f7}{קּ}%  UxFB47
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f8}{רּ}%  UxFB48
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^f9}{שּ}%  UxFB49
+\DeclareTextCompositeCommand{\hebdagesh}{L8U}{^^fa}{תּ}%  UxFB4A
+\DeclareTextCompositeCommand{\hebholam}{L8U}{^^e5}{וֹ}%   UxFB4B
+\DeclareTextCompositeCommand{\hebrafe}{L8U}{^^e1}{בֿ}%    UxFB4C
+\DeclareTextCompositeCommand{\hebrafe}{L8U}{^^eb}{כֿ}%    UxFB4D
+\DeclareTextCompositeCommand{\hebrafe}{L8U}{^^f4}{פֿ}%    UxFB4E
+
+
+% cp862  HEBO = "old-style"
+%
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^80}{\hebalef}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^81}{\hebbet}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^82}{\hebgimel}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^83}{\hebdalet}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^84}{\hebhe}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^85}{\hebvav}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^86}{\hebzayin}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^87}{\hebhet}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^88}{\hebtet}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^89}{\hebyod}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^8a}{\hebfinalkaf}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^8b}{\hebkaf}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^8c}{\heblamed}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^8d}{\hebfinalmem}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^8e}{\hebmem}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^8f}{\hebfinalnun}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^90}{\hebnun}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^91}{\hebsamekh}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^92}{\hebayin}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^93}{\hebfinalpe}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^94}{\hebpe}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^95}{\hebfinaltsadi}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^96}{\hebtsadi}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^97}{\hebqof}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^98}{\hebresh}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^99}{\hebshin}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^9a}{\hebtav}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^9b}{\textcent}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^9c}{\textstirling}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^9d}{\textyen}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^9e}{\textpeseta}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^9f}{\textflorin}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a0}{\'{a}}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a1}{\'{\i}}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a2}{\'{o}}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a3}{\'{u}}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a4}{\~{n}}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a5}{\~{N}}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a6}{\textordfeminine}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a7}{\textordmasculine}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^a8}{\textquestiondown}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^aa}{\textlogicalnot}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ab}{\textonehalf}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ac}{\textonequarter}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ad}{\textexclamdown}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ae}{\guillemotleft}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^af}{\guillemotright}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e0}{\alpha}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e1}{\ss}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e2}{\Gamma}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e3}{\pi}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e4}{\Sigma}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e5}{\sigma}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e6}{\textmu}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e7}{\tau}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e8}{\Phi}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^e9}{\Theta}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ea}{\Omega}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^eb}{\delta}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ec}{\infty}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ed}{\phi}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ee}{\varepsilon}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ef}{\cap}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f0}{\equiv}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f1}{\textpm}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f2}{\ge}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f3}{\le}
+%\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f4}{}
+%\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f5}{}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f6}{\textdiv}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f7}{\approx}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f8}{\textdegree}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^f9}{\textperiodcentered}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^fa}{\textbullet}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^fb}{\textsurd}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^fc}{\textonesuperior}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^fd}{\texttwosuperior}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^fe}{\textblacksquare}
+\DeclareTextCompositeCommand{\textHEBOenc}{L8U}{^^ff}{\nobreakspace}

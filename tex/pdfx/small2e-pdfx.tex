@@ -1,0 +1,136 @@
+% This is a small sample LaTeX input file (Version of 10 April 1994)
+%
+% Use this file as a model for making your own LaTeX input file.
+% Everything to the right of a  %  is a remark to you and is ignored by LaTeX.
+
+% The Local Guide tells how to run LaTeX.
+
+% WARNING!  Do not type any of the following 10 characters except as directed:
+%                &   $   #   %   _   {   }   ^   ~   \   
+%
+%%
+%%  default option for pdfx.sty  if not specified on the command-line.
+\providecommand{\pdfxopt}{a-1b}
+%% 
+%%  Use  {filecontents}  for the  .xmpdata file before input encoding is specified.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{filecontents*}{\jobname.xmpdata}
+% a macro definition, used below
+\pdfxEnableCommands{% simple macro definitions can be provided everything expands to characters
+ \def\RossPete{Ross \& Pete}
+ }
+\Title{Sample LaTeX input file}%  *not* set by LaTeX's  \title
+\Author{LaTeX project team\sep River Valley Technologies\sep \RossPete}% *not* set by LaTeX's \author
+\Subject{Metadata for PDF/X, PDF/A and PDF/E conforming documents}
+\Keywords{pdfTeX\sep PDF/X-1a\sep PDF/A-1b\sep PDF/E-1} 
+\Org{TeX Users Group}
+\CreatorTool{pdfTeX + pdfx.sty with options \pdfxopt}
+\Copyright{\Thanh, \CVR, \RossPete}
+\WebStatement{http://www.tug.org/}% should be URL to copyright statement on the web
+\Volume{latest in 2015}
+\Issue{???}
+\CoverDisplayDate{Special Issue, 2016}
+\CoverDate{2016-01-01}%  must be in format  YYYY-MM-DD  or  YYYY-MM
+\Doi{0.0.0.0}%
+\Lastpage{10}
+\Firstpage{1}%
+%\PublicationType{journal}%   automatically set by  \Journaltitle{?}
+\Journaltitle{TUGboat}%
+\Journalnumber{0896-3207}%  ISSN
+%
+% some more macro definitions, used above
+\pdfxEnableCommands{\def\Thanh{H\`an Th\'{\^e} Thanh}\def\CVR{CV Radhakrishnan}}
+%
+% setting the color profile, these reproduce the defaults; use your own, if required 
+%
+% RGB is used with PDF/A (4 parameters):
+\setRGBcolorprofile{sRGB_IEC61966-2-1_black_scaled.icc}{sRGB_IEC61966-2-1_black_scaled}{sRGB IEC61966 v2.1 with black scaling}{http://www.color.org}
+%
+%  For Adobe Color Profiles, set the directory for your system
+%
+%  e.g.  on Mac OS X
+%  What is it under Windows ?
+%
+\gdef\ColorProfileDir{/Library/Application Support/Adobe/Color/Profiles/Recommended/}
+% 
+%  For available profiles, see file  AdobeColorProfiles.tex
+%  For PDF/X-4p or PDF/X-5pg   see file  AdobeExternalProfiles.tex  
+%
+%  Now you can use the macros defined in those files:
+ \FOGRAXXXIX 
+%
+% or CMYK is used with  PDF/X (4 parameters)
+% \setCMYKcolorprofile{\ColorProfileDir coated_FOGRA39L_argl.icc}{Coated FOGRA39}{FOGRA39 (ISO Coated v2 300\%\space (ECI))}{http://www.color.org}
+\end{filecontents*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}        % Your input file must contain a  \documentclass  line and a package+option:
+\usepackage[\pdfxopt]{pdfx}
+%\usepackage[x-1]{pdfx}%	for PDF/X-1a:2001
+%\usepackage[x-1a]{pdfx}%  for PDF/X-1a:2003
+%\usepackage[x-3]{pdfx}% for PDF/X-3:2002
+%\usepackage[x-302]{pdfx}% for PDF/X-3:2002
+%\usepackage[x-303]{pdfx}% for PDF/X-3:2003
+%\usepackage[x-4]{pdfx}% for PDF/X-4
+%\usepackage[x-5g]{pdfx}% for PDF/X-5g
+%\usepackage[e-1]{pdfx}% for PDF/E-1
+%\usepackage[a-1b]{pdfx}% for PDF/A-1b
+%\usepackage[a-2b]{pdfx}% for PDF/A-2b
+%\usepackage[a-2u]{pdfx}% for PDF/A-2u
+%\usepackage[a-3b]{pdfx}% for PDF/A-3b
+%\usepackage[a-3u]{pdfx}% for PDF/A-3u
+%% PDF/A-1a, -2a, -3a  requires fully tagged PDFs
+%\usepackage[a-1a]{pdfx}% for PDF/A-1a
+%\usepackage[a-2a]{pdfx}% for PDF/A-2a
+%\usepackage[a-3a]{pdfx}% for PDF/A-3a
+%%  These later versions are not fully implemented yet.
+%\usepackage[x-4p]{pdfx}
+%\usepackage[x-5n]{pdfx}
+%\usepackage[x-5pg]{pdfx}
+%% PDF/VT  requires special document structure, using DParts  
+%\usepackage[vt-1]{pdfx}
+%\usepackage[vt-2]{pdfx}
+%\usepackage[vt-2s]{pdfx}
+%\usepackage[x-2]{pdfx}%  obsolete/withdrawn
+%%%   or one of these, or similar:  in a later version
+%%\usepackage[a-3b,e-1,x-4]{pdfxmult}
+%%\usepackage[a-3b,e-1,x-3,vt-1]{pdfxmult}
+%%\usepackage[none]{pdfxmult}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[infoshow]{tracefnt}
+%\usepackage[T1]{fontenc}
+%\usepackage[hyperref,cmyk]{xcolor}
+%\hypersetup{xurlbordercolor=black,xlinkbordercolor=black,linkbordercolor=xlinkbordercolor}
+
+\begin{document}               % plus the \end{document} command at the end.
+
+\section{Simple Text}\label{sec1}%          % This command makes a section title.
+%
+Words are separated by one or more spaces.  Paragraphs are separated by
+one or more blank lines.  The output is not affected by adding extra
+spaces or extra blank lines to the input file.
+
+Double quotes are typed like this: ``quoted text''.
+Single quotes are typed like this: `single-quoted text'.
+
+Long dashes are typed as three dash characters---like this.
+
+Emphasized text is typed like this: \emph{this is emphasized}.
+Bold       text is typed like this: \textbf{this is bold}.
+
+\subsection{A Warning or Two}  % This command makes a subsection title.
+
+If you get too much space after a mid-sentence period---abbreviations
+like etc.\ are the common culprits)---then type a backslash followed by
+a space after the period, as in this sentence.
+
+Remember, don't type the 10 special characters (such as dollar sign and
+backslash) except as directed!  The following seven are printed by
+typing a backslash in front of them:  \$  \&  \#  \%  \_  \{  and  \}.  
+The manual tells how to make other symbols.
+
+\bigskip\vfil
+\rightline{\footnotesize Jump back to Section~}%\tracingall\ref{sec1}.}
+
+\end{document}                 % The input file ends with this command.

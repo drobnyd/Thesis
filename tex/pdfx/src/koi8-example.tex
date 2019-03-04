@@ -1,0 +1,36 @@
+|% $Id: texlive-ru.tex 34060 2014-05-16 19:52:41Z boris $|\\
+|% |\\
+|%\def\Status{1}|\\
+|\providecommand{\pdfxopts}{a-2u,KOIxmp}|\\
+|\providecommand{\thisyear}{2015}|\\
+|%\immediate\write18{rm \jobname.xmpdata}%  uncomment for Unix-based systems |\\
+|\begin{filecontents*}{\jobname.xmpdata}|\\
+|\Title{\textKOI{Руководство пользователя} TeX Live \textemdash \thisyear}|\\
+|\Author{\textKOI{Редактор: Карл Берри}}|\\
+|\Subject{\textKOI{В этом документе описаны основные возможности программного продукта } |\\
+| TeX Live \textKOI{--- дистрибутива }TeX\textKOI{а и других программ для} GNU/Linux |\\
+| \textKOI{и других }UNIX\textKOI{ов}, MacOSX\textKOI{ и  Windows.}}|\\
+|\Keywords{TeX Live \thisyear\sep \textKOI{Структура}\sep \textKOI{установки}\sep \TeX}|\\
+|\CoverDisplayDate{\textKOI{Май} \thisyear}|\\
+|\CoverDate{2015-05-06}|\\
+|\Copyrighted{False}|\\
+|\Copyright{Public Domain}|\\
+|\CopyrightURL{http://tug.org/texlive/}|\\
+|\Creator{pdfTeX + pdfx.sty with options \pdfxopts }|\\
+|\end{filecontents*}|\\
+|\documentclass{article}|\\
+|\usepackage[\pdfxopts]{pdfx}[2016/03/09]|\\
+|\PassOptionsToPackage{obeyspaces}{url}|\\
+|\let\tldocrussian=1  % for live4ht.cfg |\\
+|\usepackage{cmap}|\\
+|\usepackage{tex-live}|\\
+|\usepackage[koi8-r]{inputenc}|\\
+|\usepackage[russian]{babel}|\\
+| ... |\\
+|\begin{document}|\\
+|\title{%|\\
+|  {\huge \textit{Руководство пользователя \protect\TL{} "--- \thisyear}}%|\\
+|}|\\
+|\author{Редактор: Карл Берри\\[3mm]|\\
+|        \url{http://tug.org/texlive/}}|\\
+|\date{Май \thisyear}|

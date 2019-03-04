@@ -1,0 +1,87 @@
+Šablona pro sazbu bakalářské práce na MFF UK v LaTeXu
+
+Autoři:
+
+	Martin Mareš <mj@ucw.cz> -- správce šablony
+	Arnošt Komárek <komarek@karlin.mff.cuni.cz>
+	Michal Kulich <kulich@karlin.mff.cuni.cz>
+
+Tento balík souborů je povoleno libovolně šířit, používat a upravovat.
+Pokud máte jakékoliv připomínky nebo návrhy na vylepšení, dejte prosím vědět.
+--------------------------------------------------------------------------------
+
+Šablona existuje ve dvou verzích -- české (adresář cs) a anglické (en).
+
+Povinné náležitosti úpravy bakalářských prací jsou dány směrnicemi děkana
+č. 1/2015 a 7/2016 a opatřením rektora č. 72/2017. Mimo to existují ještě další
+doporučení -- ta najdete v souboru vzor.pdf. Tento formát pro LaTeX se
+jimi řídí a snaží se důležité věci připomínat komentáři. Přesto si ale celá
+pravidla přečtěte -- například úprava desek práce je popsána pouze tam.
+
+Pokud LaTeX ještě neznáte, na webu naleznete mnoho úvodních textů.
+Nám se nejvíce osvědčil http://en.wikibooks.org/wiki/LaTeX.
+
+Základní nastavení sazby naleznete v souboru prace.tex, ten se také
+odkazuje na ostatní soubory s jednotlivými kapitolami práce. Pečlivě
+si hlavní soubor přečtěte a doplňte všechny chybějící údaje. Také je
+doplňte do metadatového souboru prace.xmpdata.
+
+Česká verze obsahuje komentáře a ukázkové kapitoly s popisem doporučené
+úpravy a různými radami pro sazbu v TeXu. Anglická verze má zatím pouze
+komentáře.
+
+Elektronická podoba práce, kterou odevzdáváte do SISu, musí být povinně
+ve formátu PDF/A-1a nebo -2u. Tato šablona vytváří PDF/A-2u pomocí balíčku
+pdfx (https://www.ctan.org/tex-archive/macros/latex/contrib/pdfx). Pozor,
+ve většině instalací TeXu je tento balíček buď zastaralý nebo nefunkční,
+takže si ho raději stáhněte samostatně a rozbalte do adresáře tex/pdfx/.
+Další instrukce k přípravě PDF/A naleznete v ukázkových kapitolách
+a na http://mj.ucw.cz/vyuka/bc/pdfaq.html.
+
+Pokud pracujete na Unixovém systému, může se vám hodit ukázkový Makefile --
+stačí spustit program "make" a ten už se postará o přeložení všech souborů
+TeXem.
+
+TeX také můžete spouštět ručně. V tom případě je potřeba překládat pdfTeXem
+a spustit bibTeX na vygenerování bibliografie. (Ideálně takto: pdflatex, bibtex,
+a pak 2x pdflatex pro dopočítání referencí.)
+
+Další materiály o psaní bakalářských prací a odborných textů vůbec najdete
+na http://mj.ucw.cz/vyuka/bc/. Tamtéž se nachází celá historie této šablony.
+
+--------------------------------------------------------------------------------
+
+Zásadní změny oproti verzi z roku 2015
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - Vytváříme PDF/A-2u pomocí balíčku pdfx.
+
+ - Češtinu namísto CS-fontů sázíme fonty Latin Modern (s CS-fonty
+   neumíme generovat kompletní tabulky ToUnicode nutné pro PDF/A).
+
+ - Změněna titulní strana: nový název univerzity a fakultní logo.
+
+ - Nadále negenerujeme verze šablony v jiných kódováních než UTF-8.
+
+Zásadní změny oproti verzi z roku 2011
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ - Již pro českou sazbu nepoužíváme starý csLaTeX, nýbrž Babel.
+   Stále ale využíváme tradiční CS-fonty, neboť mají hezčí akcenty.
+
+ - PDF generujeme přímo pomocí pdfTeXu, stará oklika přes DVI a PS
+   už snad není na žádné aktuální instalaci TeXu potřeba.
+
+ - Všechny údaje o práci se nyní definují jako makra v hlavním souboru
+   a automaticky se dosazují na všechna relevantní místa.
+
+ - Bibliografii zpracováváme bibTeXem. Ručně psané položky v seznamu
+   literatury můžete v nouzi stále používat, viz zakomentovaná část
+   souboru literatura.tex.
+
+ - Ukázkové kapitoly obsahují různé rady a příklady sazby. Přesunula
+   se do nich většina původního manuálu "Úprava bakalářské práce",
+   ovšem ujasnili jsme, co je povinnost a co pouze doporučení.
+
+ - Matematická sekce vydávala svou vlastní verzi staré šablony
+   s ukázkovým textem a makry. Tyto ukázky jsme integrovali.

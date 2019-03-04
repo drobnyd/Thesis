@@ -1,0 +1,42 @@
+Readme for pdfx package (pdfx.sty)
+
+pdfx.sty is a LaTeX package which helps to create PDF/X and
+PFD/A, PDF/E and PDF/VT compliant PDF documents with pdfTeX.
+
+Installation:
+
+Create a directory $TEXMF/tex/latex/pdfx and copy pdfx.sty, *.xmp,
+*.icc, *.def and glyphtounicode-cmr.tex to this directory.  Update
+the file database of your TeX system.
+
+Documentation:
+
+Composite documentation and code is available in src/pdfx.dtx. Run
+TeX/LaTeX on pdfx.ins to extract pdfx.sty from pdfx.dtx.  If you
+[pdf]LaTeX pdfx.dtx, you will get pdfx.pdf which is the human readable
+documentation.
+
+A Makefile is provided in the src directory. Following steps will
+create the documentation on GNU/Linux or similar operating system:
+
+ make pdf
+ make out
+ make index
+ make changes
+ make pdf
+
+'make all' does all the above, as a single command-line call.
+
+'make out' is for manipulating the bookmarks file to create QUICK
+LINKS in the pdf document.
+
+Licence:
+
+The package is released under LaTeX Project Public Licence.
+
+Authors:
+
+CV Radhakrishnan <cvr@river-valley.org>
+Han The Thanh <thanh@river-valley.org>
+Ross Moore <ross.moore@mq.edu.au>
+Peter Selinger <selinger@mathstat.dal.ca>

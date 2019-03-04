@@ -1,0 +1,77 @@
+%\pdfcompresslevel=0
+%\pdfobjcompresslevel=0
+%\providecommand{\pdfxopt}{x-1a,allxmp,mathxmp}
+\providecommand{\pdfxopt}{a-1b,allxmp,mathxmp}
+%\providecommand{\pdfxopt}{e-1,allxmp,mathxmp}
+%\providecommand{\pdfxopt}{a-1b,ua-1,allxmp,mathxmp}
+% XMP Metadata first
+\begin{filecontents*}{\jobname.xmpdata}
+\Title{Unicode: U₄(ℤ[1/√2, i]). — 
+       ASCII: !"'()*+,-./:;<=>?@[]`|#$&~^_.
+       Four escaped symbols: \% \backslash\ \{ \}.
+}
+\Author[de-AT]{Gödel\sep[fr]Escher\sep[de]
+ÅąŅƅǅȅɅ
+ǅ
+		Bach\sep[en-US] 
+        U₄(ℤ[1/√2, i]), !"'()*+,-./:;<=>?@[]`|#$&~^_, \% \backslash\ \{ \}}
+\Subject{This is the abstract. It's about ℤ[1/√2, i] and other rings.  \mathbf{A\,+\,B \;=\; C*D/\alpha_{i}^{34}\beta}}
+\Keywords{the group U₄\sep and other stuff\sep Some
+       symbols: & # < > \copyright\ 2014\sp{20125621} }
+\Language{en-GB\sep en-US}
+\Copyright{Copyright \copyright\ 2014 \textLF The artist <currently> known as Ƭ̵̬}
+\CopyrightURL{http://www.mathstat.dal.ca/~selinger/copyright.html}
+\Creator{LaTeX + pdfx.sty with \pdfxopt\space option}
+\Source{\jobname.tex}
+\Coverage{PDF standards: PDF/A and PDF/X}
+\Relation{PDF/A\sep PDF/X\sep PDF/UA\sep PDF 2.0}
+\Contributor{\TeX\space Users Group}
+\PublicationType[en-US]{pamphlet}
+\Date{2018-12-25}
+\Date{2019-01-01}
+\Date{2019-04-07}
+\Date{2019-11-08}
+\Date{2019-12-21}
+\Journaltitle{abc \textLF \S \ddag \dots ÀÁÂÃÄ
+%ÅąŅƅǅȅɅ  % A0 = 10100000
+ÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÛÜÝß 
+%Ņ
+%àĠŠƠǠȠ †  % 85 = 10001010
+%⅀⅁⅒⅕⅘
+% ⠱ ⠲ ⠵ ⠷
+áâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ\P }
+% \dag \ddag \dots \S \P }
+% \textLF \(\mathbf{A}+\mathcal{B} = \mathfrak{C}*\mathsf{D}/\vec{\mathsfbf{E}}\widetilde{ab}\)}
+\end{filecontents*}
+%
+\documentclass{article}
+%\usepackage[utf8]{inputenc}
+%\usepackage[OT1,T1]{fontenc}
+\usepackage{amssymb}
+\usepackage{sansmath}
+\usepackage[\pdfxopt]{pdfx}
+%\usepackage[LY1]{fontenc}
+\usepackage[OT1,T1]{fontenc}
+\usepackage{textcomp,ptmxcomp,tipa,extraipa}
+
+\listfiles
+\tracingstats=2
+\begin{document}
+\noindent
+In this example, only the metadata matters; 
+apart from checking accents: {\`a \'e \"u}
+and whether other characters still work consistently:
+
+\dag \ddag \dots \S \P \$ 
+$\bullet\dots \dag\ddag $
+
+\end{document}
+
+
+Memory usage before: 692&171340; after: 203&171195; still untouched: 4812814
+
+mathxmp
+Memory usage before: 692&183143; after: 203&182998; still untouched: 4800985
+
+allxmp
+Memory usage before: 692&189509; after: 203&189364; still untouched: 4794613

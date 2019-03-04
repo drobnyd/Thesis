@@ -1,0 +1,158 @@
+% \iffalse meta-comment 
+%
+% Copyright 2008-2016 CV Radhakrishnan and Han The Thanh
+% Copyright 2015-2018 Ross Moore and Peter Selinger
+%
+% This file is part of the 'pdfx' package.
+% ----------------------------------------
+%
+% It may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, either version 1.2 of this license or
+% (at your option) any later version.  The latest version of this
+% license is in http://www.latex-project.org/lppl.txt and version 1.2
+% or later is part of all distributions of LaTeX version 1999/12/01 or
+% later.
+%
+% The list of all files belonging to the LaTeX package, 'pdfx.sty' is
+% given in the file `manifest.txt'.
+%
+% \fi
+%
+% CONTENTS
+
+README
+ Readme file
+
+pdfx.sty
+ the main package
+
+pdfx.pdf
+ package documentation
+
+glyphtounicode-cmr.tex
+ maps glyphnames in cmr font to Unicode
+
+glyphtounicode-ntx.tex
+ maps glyphnames in ntx text and math fonts to Unicode
+
+pdfa.xmp
+ XMP template for PDF/A documents
+
+pdfe.xmp
+ XMP template for PDF/E documents
+
+pdfvt.xmp
+ XMP template for PDF/VT documents
+
+pdfx.xmp
+ XMP template for PDF/X documents
+
+8bit.def
+ custom input encoding
+ 
+l8u-penc.def
+ custom output into UTF-8 format text metadata
+
+l8uarb-penc.def
+ supports arabic output into UTF-8 format metadata
+
+l8uarm-penc.def
+ supports armenian output into UTF-8 format metadata
+
+armglyphs.dfu
+ provides \pdfglyphname  map to Unicode, for armenian characters
+
+l8ucyr-penc.def
+ supports cyrillic output into UTF-8 format metadata
+
+l8udev-penc.def
+ supports devanagari output into UTF-8 format metadata
+
+l8ugrk-penc.def
+ supports greek output into UTF-8 format metadata
+
+l8uheb-penc.def
+ supports hebrew output into UTF-8 format metadata
+
+l8ulat-penc.def
+ supports input from Latin-1 to Latin-9 encodings for UTF-8 format metadata
+
+l8umath-penc.def
+ supports mathematical symbols in UTF-8 format metadata
+
+AdobeColorProfiles.tex
+ defines commands for including Adobe profiles
+
+AdobeExternalProfiles.tex
+ defines commands for external Adobe profiles; PDF/X-4p, PDF/X-5pg
+
+CallasColorProfiles.tex
+ defines commands for profiles included with Callas pdfaPilot software
+
+sample.tex
+ example TeX document, no metadata included
+
+sample.xmpdata
+ example metadata file, for sample.tex
+
+small2e-pdfx.tex
+ example TeX document, with included metadata
+
+manifest.txt
+ file list, with descriptions
+
+Directory: src
+
+Makefile
+ make file for compiling documentation
+
+pdfx.dtx
+ main package with driver, including documentation
+
+pdfx.xmpdata
+ metadata for documentation as PDF/A-u2
+
+pdfx.ins
+ main installer batch file
+
+rvdtx.sty
+ extra package needed to compile documentation
+
+Armenian-example-UTF.png
+ shows how coding creates a UTF-8 sequence
+
+arm-start.tex
+ used to show example coding in a Figure
+
+koi8-example.tex
+ used to show example coding in a Figure
+
+koi8-example2.tex
+ used to show example coding in a Figure
+
+latin2-example.tex
+ used to show example coding in a Figure
+
+TL-POL-meta.png
+ screen-shot image used in a Figure
+ 
+TL-RU-LICRs.png
+ screen-shot image used in a Figure
+
+TL-RU-metadata.png
+ screen-shot image used in a Figure
+
+TL-RU-toc.png
+ screen-shot image used in a Figure
+
+armtex-meta.png
+ screen-shot image used in a Figure
+
+math-assign5.png
+ screen-shot image used in a Figure
+
+text89.def
+ maps bytes "80 to "9F to the '?' character, for visibility in a code listing
+
+usage-meta.png
+ screen-shot image used in a Figure

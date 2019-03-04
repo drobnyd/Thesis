@@ -1,0 +1,118 @@
+% This file gives macros to specify CMYK Color Profiles as supported by Callas's pdfaPilot 7 software.
+% Identifying names, comments and descriptions are taken from pdfaPilot's "Color Setup" Preferences panel.
+%  --- user-command ---   CMYK profile needed with  PDF/X-??  files
+%  \setCMYKcolorprofile{<filename>}{<output intent>}{<identifier>}{<registry URL>}
+%  \setCUSTOMcolorprofile{<filename>}{<directory>}{<identifier>}{<registry URL>}%
+%%   {<num>}{<ICC version>}{<color names>}{<CheckSum>}
+%  e.g.
+
+\begingroup
+ \catcode`\_ 12  \catcode`\( 12  \catcode`\) 12  \catcode`\/ 12   \catcode`\- 12
+
+%% Locations of Callas profiles on Mac OS X:
+%%  consult the list of profiles given at the end, to choose the correct directory.
+%
+\gdef\CallasMacOSpdfaPilotdir{/Applications/callas pdfaPilot 7/callas pdfaPilot.app/Contents/Resources/etc}
+\gdef\CallasMacOSAcroPlugindir{%
+  /Library/Application Support/Adobe/Acrobat/Beta/Plug-ins/callas software/pdfaPilot7.acroplugin/Versions/A/Resources/}
+
+%% use one of the following:
+\global\let\CallasMacOSdir\CallasMacOSpdfaPilotdir
+%\global\let\CallasMacOSdir\CallasMacOSAcroPlugindir
+
+\gdef\CallasAPDFLdir{\CallasMacOSdir/APDFL/Resource/Color/Profiles/}
+\gdef\CallasColorConversiondir{\CallasMacOSdir/ColorConversion/ManageColors/}
+\gdef\CallasDeviceLinkdir{\CallasMacOSdir/DeviceLink/}
+\gdef\CallasProfilesdir{\CallasMacOSdir/ICC profiles/}
+\gdef\CallasCMYKdir{\CallasMacOSdir/ICC profiles/CMYK/}
+\gdef\CallasRGBdir{\CallasMacOSdir/ICC profiles/RGB/}
+\gdef\CallasGraydir{\CallasMacOSdir/ICC profiles/Gray/}
+\gdef\CallasLabdir{\CallasMacOSdir/ICC profiles/Lab/}
+\gdef\CallasPDFPSTool{\CallasMacOSdir/PDFPSTool/ICCProfiles/}
+
+%e.g.,  Use  \pdfxSetCMYKcolorProfileDir{\CallasCMYKdir}  within the  .xmpdata file
+
+
+%%  Custom Color space example
+
+% 7C Indigo TAC370 (ColorLogic)
+% "7 color profile"
+% Custom 7-color profile.
+\gdef\viiIndigoTAC{%
+ \let\CallasMacOSdir\CallasMacOSpdfaPilotdir
+ \setCUSTOMcolorprofile
+   {7C Indigo_TAC370_ColorLogic.icc}%
+   {\CallasProfilesdir}%
+   {7C Indigo TAC370 (ColorLogic)}%  /ProfileName
+   {http://www.colorlogic.de}% /RegistryName
+   {7CLR}% number of colors specifier
+   {02400000}%  ICC version
+   {/Cyan /Magenta /Yellow /Black /Orange /Green /Violet}%  colour names
+   {48110b8b410ee6be015f3932c3167869}%  CheckSum
+}%   
+
+
+\endgroup
+\endinput
+
+/Applications/callas pdfaPilot 7/callas pdfaPilot.app/Contents/Resources/etc/
+
+  APDFL/Resource/Color/Profiles/USWebCoatedSWOP.icc
+  ColorConversion/ManageColors/DefaultCMYK.icc
+  DeviceLink/DL4_sRGB-ISOcoated_v2_300_bas_0001.icc
+  DeviceLink/ISOcoated_v2_to_PSOcoated_v3_DeviceLink.icc
+  DeviceLink/PSOcoated_v3_to_ISOcoated_v2_DeviceLink.icc
+  ICC profiles/7C Indigo_TAC370_ColorLogic.icc
+  ICC profiles/sRGB IEC61966-2.1.icc
+  ICC profiles/CMYK/CoatedFOGRA27.icc
+  ICC profiles/CMYK/CoatedFOGRA39.icc
+  ICC profiles/CMYK/EuroscaleCoated.icc
+  ICC profiles/CMYK/GRACoL2006_Coated1v2.icc
+  ICC profiles/CMYK/ISOcoated_v2_eci.icc
+  ICC profiles/CMYK/ISOnewspaper26v4.icc
+  ICC profiles/CMYK/JapanColor2001Coated.icc
+  ICC profiles/CMYK/PSO_Coated_300_NPscreen_ISO12647_eci.icc
+  ICC profiles/CMYK/PSO_LWC_Improved_eci.icc
+  ICC profiles/CMYK/PSO_MFC_Paper_eci.icc
+  ICC profiles/CMYK/PSO_SNP_Paper_eci.icc
+  ICC profiles/CMYK/PSO_Uncoated_ISO12647_eci.icc
+  ICC profiles/CMYK/PSOcoated_v3.icc
+  ICC profiles/CMYK/SWOP2006_Coated3v2.icc
+  ICC profiles/CMYK/USWebCoatedSWOP.icc
+  ICC profiles/CMYK/callas_small_FOGRA39.icc
+  ICC profiles/Gray/Dot Gain 10 prct.icc
+  ICC profiles/Gray/Dot Gain 15 prct.icc
+  ICC profiles/Gray/Dot Gain 20 prct.icc
+  ICC profiles/Gray/Dot Gain 25 prct.icc
+  ICC profiles/Gray/Dot Gain 30 prct.icc
+  ICC profiles/Lab/Generic Lab Profile.icc
+  ICC profiles/RGB/AdobeRGB1998.icc
+  ICC profiles/RGB/ECI-RGB.V1.0.icc
+  ICC profiles/RGB/eciRGB_v2.icc
+  PDFPSTool/ICCProfiles/AdobeRGB1998.icc
+  PDFPSTool/ICCProfiles/AppleRGB.icc
+  PDFPSTool/ICCProfiles/BlackWhite.icc
+  PDFPSTool/ICCProfiles/CIERGB.icc
+  PDFPSTool/ICCProfiles/CoatedFOGRA27.icc
+  PDFPSTool/ICCProfiles/CoatedFOGRA39.icc
+  PDFPSTool/ICCProfiles/CoatedGRACol2006.icc
+  PDFPSTool/ICCProfiles/ColorMatchRGB.icc
+  PDFPSTool/ICCProfiles/EuropeISOCoatedFOGRA27.icc
+  PDFPSTool/ICCProfiles/EuroscaleCoated.icc
+  PDFPSTool/ICCProfiles/EuroscaleUncoated.icc
+  PDFPSTool/ICCProfiles/JapanColor2001Coated.icc
+  PDFPSTool/ICCProfiles/JapanColor2001Uncoated.icc
+  PDFPSTool/ICCProfiles/JapanColor2002Newspaper.icc
+  PDFPSTool/ICCProfiles/JapanStandard.icc
+  PDFPSTool/ICCProfiles/JapanWebCoated.icc
+  PDFPSTool/ICCProfiles/PAL_SECAM.icc
+  PDFPSTool/ICCProfiles/SMPTE-C.icc
+  PDFPSTool/ICCProfiles/USSheetfedCoated.icc
+  PDFPSTool/ICCProfiles/USSheetfedUncoated.icc
+  PDFPSTool/ICCProfiles/USWebCoatedSWOP.icc
+  PDFPSTool/ICCProfiles/USWebUncoated.icc
+  PDFPSTool/ICCProfiles/UnCoatedFOGRA29.icc
+  PDFPSTool/ICCProfiles/WebCoatedFOGRA28.icc
+  PDFPSTool/ICCProfiles/WebCoatedSWOP2006Grade3.icc
+  PDFPSTool/ICCProfiles/WebCoatedSWOP2006Grade5.icc
+  PDFPSTool/ICCProfiles/WideGamutRGB.icc

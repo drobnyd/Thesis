@@ -1,0 +1,173 @@
+%%% Hlavní soubor. Zde se definují základní parametry a odkazuje se na ostatní části. %%%
+
+%% Verze pro jednostranný tisk:
+% Okraje: levý 40mm, pravý 25mm, horní a dolní 25mm
+% (ale pozor, LaTeX si sám přidává 1in)
+\documentclass[12pt,a4paper]{report}
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+% \openright zařídí, aby následující text začínal na pravé straně knihy
+\let\openright=\clearpage
+
+%% Pokud tiskneme oboustranně:
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{14.2mm}
+% \setlength\evensidemargin{0mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\cleardoublepage
+
+%% Vytváříme PDF/A-2u
+\usepackage[a-2u]{pdfx}
+
+%% Přepneme na českou sazbu a fonty Latin Modern
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+%% Použité kódování znaků: obvykle latin2, cp1250 nebo utf8:
+\usepackage[utf8]{inputenc}
+
+%%% Další užitečné balíčky (jsou součástí běžných distribucí LaTeXu)
+\usepackage{amsmath}        % rozšíření pro sazbu matematiky
+\usepackage{amsfonts}       % matematické fonty
+\usepackage{amsthm}         % sazba vět, definic apod.
+\usepackage{bbding}         % balíček s nejrůznějšími symboly
+			    % (čtverečky, hvězdičky, tužtičky, nůžtičky, ...)
+\usepackage{bm}             % tučné symboly (příkaz \bm)
+\usepackage{graphicx}       % vkládání obrázků
+\usepackage{fancyvrb}       % vylepšené prostředí pro strojové písmo
+\usepackage{indentfirst}    % zavede odsazení 1. odstavce kapitoly
+\usepackage{natbib}         % zajištuje možnost odkazovat na literaturu
+			    % stylem AUTOR (ROK), resp. AUTOR [ČÍSLO]
+\usepackage[nottoc]{tocbibind} % zajistí přidání seznamu literatury,
+                            % obrázků a tabulek do obsahu
+\usepackage{icomma}         % inteligetní čárka v matematickém módu
+\usepackage{dcolumn}        % lepší zarovnání sloupců v tabulkách
+\usepackage{booktabs}       % lepší vodorovné linky v tabulkách
+\usepackage{paralist}       % lepší enumerate a itemize
+\usepackage[usenames]{xcolor}  % barevná sazba
+
+%%% Údaje o práci
+
+% Název práce v jazyce práce (přesně podle zadání)
+\def\NazevPrace{Název práce}
+
+% Název práce v angličtině
+\def\NazevPraceEN{Name of thesis}
+
+% Jméno autora
+\def\AutorPrace{Jméno Příjmení}
+
+% Rok odevzdání
+\def\RokOdevzdani{ROK}
+
+% Název katedry nebo ústavu, kde byla práce oficiálně zadána
+% (dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF)
+\def\Katedra{Název katedry nebo ústavu}
+\def\KatedraEN{Name of the department}
+
+% Jedná se o katedru (department) nebo o ústav (institute)?
+\def\TypPracoviste{Katedra}
+\def\TypPracovisteEN{Department}
+
+% Vedoucí práce: Jméno a příjmení s~tituly
+\def\Vedouci{Vedoucí práce}
+
+% Pracoviště vedoucího (opět dle Organizační struktury MFF)
+\def\KatedraVedouciho{katedra}
+\def\KatedraVedoucihoEN{department}
+
+% Studijní program a obor
+\def\StudijniProgram{studijní program}
+\def\StudijniObor{studijní obor}
+
+% Nepovinné poděkování (vedoucímu práce, konzultantovi, tomu, kdo
+% zapůjčil software, literaturu apod.)
+\def\Podekovani{%
+Poděkování.
+}
+
+% Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
+\def\Abstrakt{%
+Abstrakt.
+}
+\def\AbstraktEN{%
+Abstract.
+}
+
+% 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
+\def\KlicovaSlova{%
+{klíčová} {slova}
+}
+\def\KlicovaSlovaEN{%
+{key} {words}
+}
+
+%% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
+%% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
+%% Většinu nastavítek přednastaví balíček pdfx.
+\hypersetup{unicode}
+\hypersetup{breaklinks=true}
+
+%% Definice různých užitečných maker (viz popis uvnitř souboru)
+\include{makra}
+
+%% Titulní strana a různé povinné informační strany
+\begin{document}
+\include{titulka}
+
+%%% Strana s automaticky generovaným obsahem bakalářské práce
+
+\tableofcontents
+
+%%% Jednotlivé kapitoly práce jsou pro přehlednost uloženy v samostatných souborech
+\include{uvod}
+\include{kap01}
+\include{kap02}
+\include{kap03}
+\include{kap04}
+
+\include{zaver}
+
+%%% Seznam použité literatury
+\include{literatura}
+
+%%% Obrázky v bakalářské práci
+%%% (pokud jich je malé množství, obvykle není třeba seznam uvádět)
+\listoffigures
+
+%%% Tabulky v bakalářské práci (opět nemusí být nutné uvádět)
+%%% U matematických prací může být lepší přemístit seznam tabulek na začátek práce.
+\listoftables
+
+%%% Použité zkratky v bakalářské práci (opět nemusí být nutné uvádět)
+%%% U matematických prací může být lepší přemístit seznam zkratek na začátek práce.
+\chapwithtoc{Seznam použitých zkratek}
+
+%%% Přílohy k bakalářské práci, existují-li. Každá příloha musí být alespoň jednou
+%%% odkazována z vlastního textu práce. Přílohy se číslují.
+%%%
+%%% Do tištěné verze se spíše hodí přílohy, které lze číst a prohlížet (dodatečné
+%%% tabulky a grafy, různé textové doplňky, ukázky výstupů z počítačových programů,
+%%% apod.). Do elektronické verze se hodí přílohy, které budou spíše používány
+%%% v elektronické podobě než čteny (zdrojové kódy programů, datové soubory,
+%%% interaktivní grafy apod.). Elektronické přílohy se nahrávají do SISu a lze
+%%% je také do práce vložit na CD/DVD. Povolené formáty souborů specifikuje
+%%% opatření rektora č. 72/2017.
+\appendix
+\chapter{Přílohy}
+
+\section{První příloha}
+
+\openright
+\end{document}

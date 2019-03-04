@@ -1,0 +1,2978 @@
+%%
+%% This is file `pdfx.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% pdfx.dtx  (with options: `package')
+%% 
+%%  Copyright (c) 2018, CV Radhakrishnan <cvr@river-valley.org>,
+%%    Han The Thanh <thanh@river-valley.org>,
+%%    Ross Moore <ross.moore@mq.edu.au>,
+%%    Peter Selinger <selinger@mathstat.dal.ca>
+%% 
+%%  This file may be distributed and/or modified under the conditions
+%%  of the LaTeX Project Public License, either version 1.2 of this
+%%  license or (at your option) any later version.  The latest version
+%%  of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%%  and version 1.2 or later is part of all distributions of LaTeX
+%%  version 1999/12/01 or later.
+%% 
+\@ifpackageloaded{pdfxmult}{%
+ \PackageError{pdfx}%
+  {^^JThis package may not be used in conjunction with the \space
+   pdfxmult \space package}%
+  {Type \space x <return> \space to exit; or just \space <return> \space
+   to continue without this package.}%
+ \expandafter\let\csname opt@pdfx.sty\endcsname\@empty\endinput
+}{}%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{pdfx}
+  [2018/11/29 v1.6 PDF/X and PDF/A support (CVR/HTH/RRM/PS)]
+
+\newif\ifpdfx@noBOM \pdfx@noBOMfalse   % use a BOM in the XMP packet
+\newif\ifpdfx@x \pdfx@xfalse   % PDF/X mode
+\newif\ifpdfx@e \pdfx@efalse   % PDF/E mode; not fully implemented yet
+\newif\ifpdfx@ua\pdfx@uafalse   % PDF/UA mode; not fully implemented yet
+\newif\ifpdfx@vt \pdfx@vtfalse   % PDF/VT mode, extension of  PDF/X
+\newif\ifno@iccprofile   % used with PDF/X-4p and PDF/X-5pg
+\newif\ifpdfx@noerr   % error messages become just warnings
+
+\DeclareOption{noerr}{\pdfx@noerrtrue}
+
+%% Not all combinations of the following parameters are meaningful.
+\def\xmp@Part{1}               % PDF/A part: 1, 2, or 3
+\def\xmp@Conformance{B}        % Conformance level: A, B, or U
+\def\xmp@ReleaseDate{2005}     % 2001 for PDF/X-1, 2005 for PDF/A-1,
+                               % 2010 for PDF/A-2, 2012 for PDF/A-3.
+
+\newcount\pdfx@minorversion
+\expandafter\ifx\csname pdfminorversion\endcsname\relax
+\else
+ \global\pdfx@minorversion=\the\pdfminorversion
+\fi
+
+\def\pdfx@ErrorWarning#1#2#3#4{%
+ \ifpdfx@noerr \PackageWarning{pdfx}{#1.^^J  #2#3.^^J}%
+ \else \PackageError{pdfx}{#1}{#2#4.^^J
+    Use option 'noerr' to avoid this message.^^J}%
+ \fi}
+
+\def\pdfx@Xvn@message{%
+ \pdfx@ErrorWarning{PDF/X-5n has no default profile}%
+   {Provide your own}{; continuing to build a non-valid document}%
+   {, else continue to build a non-valid document}%
+}
+
+%% PDF/A options
+%%  default is to create  PDF/A-1b
+%%  options can change this for PDF/X or higher levels of PDF/A
+\DeclareOption{a-1a}{\global\pdfx@xfalse\def\xmp@Part{1}%
+ \def\xmp@Conformance{A}\def\xmp@ReleaseDate{2005}}
+\DeclareOption{a-1b}{\global\pdfx@xfalse\def\xmp@Part{1}%
+ \def\xmp@Conformance{B}\def\xmp@ReleaseDate{2005}}
+\DeclareOption{a-2a}{\global\pdfx@xfalse\def\xmp@Part{2}%
+ \def\xmp@Conformance{A}\def\xmp@ReleaseDate{2010}}
+\DeclareOption{a-2b}{\global\pdfx@xfalse\def\xmp@Part{2}%
+ \def\xmp@Conformance{B}\def\xmp@ReleaseDate{2010}}
+\DeclareOption{a-2u}{\global\pdfx@xfalse\def\xmp@Part{2}%
+ \def\xmp@Conformance{U}\def\xmp@ReleaseDate{2010}}
+\DeclareOption{a-3a}{\global\pdfx@xfalse\def\xmp@Part{3}%
+ \def\xmp@Conformance{A}\def\xmp@ReleaseDate{2012}}
+\DeclareOption{a-3b}{\global\pdfx@xfalse\def\xmp@Part{3}%
+ \def\xmp@Conformance{B}\def\xmp@ReleaseDate{2012}}
+\DeclareOption{a-3u}{\global\pdfx@xfalse\def\xmp@Part{3}%
+ \def\xmp@Conformance{U}\def\xmp@ReleaseDate{2012}}
+%%
+%% PDF/X options
+%% comments added, using
+%% https://www.eci.org/_media/downloads/pdfx/pdfx_faq_english_nov05.pdf
+%% https://en.wikipedia.org/wiki/PDF/X#List_of_the_PDF.2FX_standards
+%%
+\DeclareOption{x-1}{\global\pdfx@xtrue\def\xmp@Part{1}%  obsolete
+ \def\xmp@Conformance{a}\def\xmp@ReleaseDate{1999}% CMYK only
+ \global\pdfx@minorversion=2\relax
+ \pdfx@ErrorWarning{PDF/X-1:1999 is no longer an accepted standard}%
+    {Use option  x-1a1 or  x-1a3 }{; continuing to build a non-valid document}%
+    {, else continue to build a non-valid document.}%
+ }%  effectively same as  x-1a1
+\DeclareOption{x-1a}{\global\pdfx@xtrue\def\xmp@Part{1}% CMYK only
+ \def\xmp@Conformance{a}\def\xmp@ReleaseDate{2003}%
+ \global\pdfx@minorversion=3 }%  same as  x-1a3
+\DeclareOption{x-1a1}{\global\pdfx@xtrue\def\xmp@Part{1}%
+ \def\xmp@Conformance{a}\def\xmp@ReleaseDate{2001}%  ISO 15930-1:2001
+ \global\pdfx@minorversion=3 }
+\DeclareOption{x-1a3}{\global\pdfx@xtrue\def\xmp@Part{1}%
+ \def\xmp@Conformance{a}\def\xmp@ReleaseDate{2003}%  ISO 15930-4:2003
+ \global\pdfx@minorversion=3 }
+\DeclareOption{x-2}{\global\pdfx@xtrue\def\xmp@Part{2}%  XMP Metadata
+%% \def\xmp@Conformance{}\def\xmp@ReleaseDate{2002}%  ISO 15930-2:2003
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2003}%   ISO 15930-5, withdrawn 2011
+ \global\pdfx@minorversion=4\relax
+ \pdfx@ErrorWarning{PDF/X-2:2003 was never published as a standard}%
+   {Use option  x-1a or  x-3 }{; continuing to build a non-valid document}%
+   {, else continue to build a non-valid document}%
+ }%  external OPI workflow, i.e. multiple files involved
+\DeclareOption{x-3}{\global\pdfx@xtrue\def\xmp@Part{3}% RGB allowed, but rare!
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2003}%
+ \global\pdfminorversion=4 }%  same as x-303
+\DeclareOption{x-302}{\global\pdfx@xtrue\def\xmp@Part{3}%
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2002}%   ISO 15930-3:2002
+ \global\pdfx@minorversion=3 }
+\DeclareOption{x-303}{\global\pdfx@xtrue\def\xmp@Part{3}%
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2003}%  ISO 15930-6:2003
+ \global\pdfx@minorversion=4 }
+%%%  Later versions, yet to be fully implemented
+\DeclareOption{x-4}{\global\pdfx@xtrue\def\xmp@Part{4}%
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2010}%  ISO 15930-7:2010
+ \global\pdfx@minorversion=6 }%  same as  x-410
+\DeclareOption{x-4p}{\global\pdfx@xtrue\global\no@iccprofiletrue
+  \def\xmp@Part{4}\def\xmp@Conformance{p}\def\xmp@ReleaseDate{2010}%
+  \global\pdfx@minorversion=6 }%  same as  x-4p10
+\DeclareOption{x-408}{\global\pdfx@xtrue\def\xmp@Part{4}%
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2008}%  ISO 15930-7:2008
+ \global\pdfx@minorversion=6 }
+\DeclareOption{x-410}{\global\pdfx@xtrue\def\xmp@Part{4}%
+ \def\xmp@Conformance{}\def\xmp@ReleaseDate{2010}%  ISO 15930-7:2010
+ \global\pdfx@minorversion=6 }
+\DeclareOption{x-4p08}{\global\pdfx@xtrue\global\no@iccprofiletrue
+  \def\xmp@Part{4}\def\xmp@Conformance{p}\def\xmp@ReleaseDate{2008}%
+  \global\pdfx@minorversion=6 }%   ISO 15930-7:2010
+\DeclareOption{x-4p10}{\global\pdfx@xtrue\global\no@iccprofiletrue
+  \def\xmp@Part{4}\def\xmp@Conformance{p}\def\xmp@ReleaseDate{2010}%
+  \global\pdfx@minorversion=6 }%   ISO 15930-7:2010
+\DeclareOption{x-5}{\global\pdfx@xtrue\def\xmp@Part{5}%
+ \def\xmp@Conformance{g}\def\xmp@ReleaseDate{2008}%
+ \global\pdfx@minorversion=6 }%   ISO 15930-8:2010
+\DeclareOption{x-5g}{\global\pdfx@xtrue\def\xmp@Part{5}%
+ \def\xmp@Conformance{g}\def\xmp@ReleaseDate{2008}%
+ \global\pdfx@minorversion=6 }%   ISO 15930-8:2010
+\DeclareOption{x-5n}{\global\pdfx@xtrue %\global\no@iccprofiletrue
+ \def\xmp@Part{5}\def\xmp@Conformance{n}\def\xmp@ReleaseDate{2010}%
+ \global\pdfx@minorversion=6 \pdfx@Xvn@message}%   ISO 15930-8:2010
+\DeclareOption{x-5pg}{\global\pdfx@xtrue\global\no@iccprofiletrue
+  \def\xmp@Part{5}\def\xmp@Conformance{pg}\def\xmp@ReleaseDate{2010}%
+  \global\pdfx@minorversion=6 }%  ISO 15930-8:2010
+\DeclareOption{x-508}{\global\pdfx@xtrue\def\xmp@Part{5}%
+ \def\xmp@Conformance{g}\def\xmp@ReleaseDate{2008}%
+ \global\pdfx@minorversion=6 }%   ISO 15930-8:2008
+\DeclareOption{x-5g08}{\global\pdfx@xtrue\def\xmp@Part{5}%
+ \def\xmp@Conformance{g}\def\xmp@ReleaseDate{2008}%
+ \global\pdfx@minorversion=6 }%   ISO 15930-8:2008
+\DeclareOption{x-5n08}{\global\pdfx@xtrue %\global\no@iccprofiletrue
+ \def\xmp@Part{5}\def\xmp@Conformance{n}\def\xmp@ReleaseDate{2008}%
+ \global\pdfx@minorversion=6 \pdfx@Xvn@message}%   ISO 15930-8:2008
+\DeclareOption{x-5pg08}{\global\pdfx@xtrue\global\no@iccprofiletrue
+  \def\xmp@Part{5}\def\xmp@Conformance{pg}\def\xmp@ReleaseDate{2008}%
+  \global\pdfx@minorversion=6 }%  ISO 15930-8:2008
+\DeclareOption{x-510}{\global\pdfx@xtrue\def\xmp@Part{5}%
+ \def\xmp@Conformance{g}\def\xmp@ReleaseDate{2010}%
+ \global\pdfx@minorversion=6 }%  ISO 15930-8:2010
+\DeclareOption{x-5g10}{\global\pdfx@xtrue\def\xmp@Part{5}%
+ \def\xmp@Conformance{g}\def\xmp@ReleaseDate{2010}%
+ \global\pdfx@minorversion=6 }%  ISO 15930-8:2010
+\DeclareOption{x-5n10}{\global\pdfx@xtrue %\global\no@iccprofiletrue
+ \def\xmp@Part{5}\def\xmp@Conformance{n}\def\xmp@ReleaseDate{2010}%
+ \global\pdfx@minorversion=6 \pdfx@Xvn@message}%  ISO 15930-8:2010
+\DeclareOption{x-5pg10}{\global\pdfx@xtrue\global\no@iccprofiletrue
+  \def\xmp@Part{5}\def\xmp@Conformance{pg}\def\xmp@ReleaseDate{2010}%
+  \global\pdfx@minorversion=6 }%  ISO 15930-8:2010
+%%
+%% PDF/E options
+%%
+\DeclareOption{e}{\global\pdfx@xfalse\global\pdfx@etrue
+  \def\xmp@Part{1}\def\xmp@Conformance{}\def\xmp@ReleaseDate{2008}%
+  \gdef\thepdfminorversion{6}%   same as  e-1
+  }
+\DeclareOption{e-1}{\global\pdfx@xfalse\global\pdfx@etrue
+  \def\xmp@Part{1}\def\xmp@Conformance{}\def\xmp@ReleaseDate{2008}%
+  \gdef\thepdfminorversion{6}%  ISO 24517-1:2008
+  }
+%% PDF/UA options
+%%
+\let\xmp@PDFUA\@empty
+\DeclareOption{ua}{\global\pdfx@uatrue % ISO 14289-1:2012, 2014
+  \def\xmp@UAlevel{1}\let\xmp@PDFUA\relax}%   same as  ua-1
+\DeclareOption{ua-1}{\global\pdfx@uatrue % ISO 14289-1:2012, 2014
+  \def\xmp@UAlevel{1}\let\xmp@PDFUA\relax}
+%%
+%% PDF/VT options
+%%
+\DeclareOption{vt-1}{\global\pdfx@xtrue\global\pdfx@vttrue
+  \def\xmp@Part{4}\def\xmp@vtPart{1}\def\xmp@Conformance{}%
+  \def\xmp@vtConformance{}\def\xmp@ReleaseDate{2010}%
+  \gdef\xmpMM@VersionID{1}%
+  \global\pdfx@minorversion=6 }
+\DeclareOption{vt-2}{\global\pdfx@xtrue\global\pdfx@vttrue
+  \global\no@iccprofiletrue   \gdef\xmpMM@VersionID{1}%
+  \def\xmp@Part{5}\def\xmp@vtPart{2}\def\xmp@Conformance{pg}%
+  \def\xmp@vtConformance{}\def\xmp@ReleaseDate{2010}%
+  \global\pdfx@minorversion=6 }
+\DeclareOption{vt-2s}{\global\pdfx@xtrue\global\pdfx@vttrue
+  \global\no@iccprofiletrue   \gdef\xmpMM@VersionID{1}%
+  \def\xmp@Part{5}\def\xmp@vtPart{2}\def\xmp@Conformance{pg}%
+  \def\xmp@vtConformance{s}\def\xmp@ReleaseDate{2010}%
+  \global\pdfx@minorversion=6 }
+
+%% options to alter PDF minor version, in case needed in special circumstances
+\DeclareOption{pdf12}{\global\pdfx@minorversion=2 }%  1999
+\DeclareOption{pdf13}{\global\pdfx@minorversion=3 }%  2001  Acrobat 4 (ISBN 0-201-61588-6)
+\DeclareOption{pdf14}{\global\pdfx@minorversion=4 }%  2003  Acrobat 5 (ISBN 0-201-75839-3)
+\DeclareOption{pdf15}{\global\pdfx@minorversion=5 }%  2005  Acrobat 6
+\DeclareOption{pdf16}{\global\pdfx@minorversion=6 }%  2006  Acrobat 7 (ISBN 0-321-30474-8)
+\DeclareOption{pdf17}{\global\pdfx@minorversion=7 }%  2008  ISO 32000-1:2008
+
+%% inhibits writing the XMP byte-order marker
+\DeclareOption{noBOM}{\pdfx@noBOMtrue}
+\DeclareOption{useBOM}{\pdfx@noBOMfalse}
+
+%% options for language character macros in XMP metadata
+\newif\ifcyrxmp
+\newif\ifcyrKOIxmp
+\newif\ifgrkxmp
+\newif\ifgrkLGRxmp
+\newif\ifhebxmp
+\newif\ifhebHEBxmp
+\newif\ifarbxmp
+\newif\ifarmxmp
+\newif\ifarmSCIxmp
+\newif\ifdevxmp
+\newif\ifvnmxmp
+\newif\iflatEXTxmp
+\newif\iflatLATxmp
+\newif\ifipaxmp
+\newif\ifmathxmp
+
+\DeclareOption{latxmp}{\global\latEXTxmptrue}
+\DeclareOption{LATxmp}{\global\latLATxmptrue\global\latEXTxmptrue}
+\DeclareOption{cyrxmp}{\global\cyrxmptrue}
+\DeclareOption{KOIxmp}{\global\cyrKOIxmptrue\global\cyrxmptrue}
+\DeclareOption{grkxmp}{\global\grkxmptrue}
+\DeclareOption{LGRxmp}{\global\grkLGRxmptrue\global\grkxmptrue}
+\DeclareOption{hebxmp}{\global\hebxmptrue}
+\DeclareOption{HEBxmp}{\global\hebHEBxmptrue\global\hebxmptrue}
+\DeclareOption{arbxmp}{\global\arbxmptrue}
+\DeclareOption{armxmp}{\global\armxmptrue}
+\DeclareOption{AR8xmp}{\global\armSCIxmptrue\global\armxmptrue}
+\DeclareOption{devxmp}{\global\devxmptrue}
+\DeclareOption{vnmxmp}{\global\vnmxmptrue}
+\DeclareOption{ipaxmp}{\global\ipaxmptrue\global\latEXTxmptrue}
+\DeclareOption{mathxmp}{\global\mathxmptrue\global\grkxmptrue}
+
+%% all the above
+\DeclareOption{allxmp}{%
+ \global\cyrxmptrue
+ \global\cyrKOIxmptrue
+ \global\grkxmptrue
+ \global\grkLGRxmptrue
+ \global\hebxmptrue
+ \global\hebHEBxmptrue
+ \global\arbxmptrue
+ \global\armxmptrue
+ \global\armSCIxmptrue
+ \global\devxmptrue
+ \global\vnmxmptrue
+ \global\latEXTxmptrue
+ \global\latLATxmptrue
+ \global\vnmxmptrue
+ \global\ipaxmptrue
+ \global\mathxmptrue
+ \global\let\pdfx@useactivespacestrue\pdfx@useactivespacesfalse
+}
+
+\newif\ifpdfx@useactivespaces
+
+\ExecuteOptions{noBOM,a-1b}
+\ProcessOptions
+
+\ifpdfx@ua\ifpdfx@x\else
+ \expandafter\if\xmp@Conformance A\else
+ \pdfx@ErrorWarning{PDF/UA requires 'Tagged PDF' for any structure.^^J
+  Then PDF/A Conformance must be 'a'}%
+  {Use option 'a-\xmp@Part a'}%
+  {; continuing with a likely invalid document}%
+  {, or continue for a likely invalid document}%
+%%%  \gdef\xmp@Conformance{A}%   do we want this?
+\fi\fi\fi
+
+\expandafter\ifx\csname pdflastobj\endcsname\relax
+\else
+ \ifnum\pdflastobj >\z@ % pdftex  has already written objects
+  \ifnum\pdfx@minorversion=\pdfminorversion\else
+   \PackageError{pdfx}%
+    {^^J(pdfx)    Cannot change the \string\pdfminorversion^^J%
+     (pdfx)   PDF version remains at 1.\the\pdfminorversion.^^J%
+     (pdfx)   Use \string\pdfminorversion=\the\pdfx@minorversion\space
+      before \string\documentclass}%
+    {(pdfx)   Another package or document-class has written objects into the PDF.^^J%
+     (pdfx)   Hit return to continue with PDF version 1.\the\pdfminorversion.%
+    }%
+   \global\pdfx@minorversion=\the\pdfminorversion
+  \fi
+ \else
+  \global\pdfminorversion\pdfx@minorversion
+ \fi
+\fi
+
+\expandafter\ifx\csname thepdfminorversion\endcsname\relax
+ \expandafter\ifx\csname pdfminorversion\endcsname\relax
+ \else
+  \xdef\thepdfminorversion{\the\pdfminorversion}
+\fi\fi
+
+\expandafter\ifx\csname pdfminorversion\endcsname\relax
+ \gdef\thepdfminorversion{4}% assumed with XeTeX
+ \def\pdf@minorversion@xetex=#1{\gdef\thepdfminorversion{#1}}%
+ \let\pdfminorversion\pdf@minorversion@xetex
+\else
+ \ifnum\pdfminorversion < 4\relax
+  \ifpdfx@x
+    % more testing needed with PDF/X
+  \else
+   \pdfminorversion=4\relax %  assumed for PDF/A ;  options may change this for  PDF/X
+   \gdef\thepdfminorversion{4}%
+  \fi
+ \else
+  \ifnum\pdfminorversion<\thepdfminorversion\relax
+   \global\pdfminorversion=\thepdfminorversion\relax
+  \fi
+ \fi
+\fi
+\expandafter\ifx\csname pdfresetpageorigin\endcsname\relax\else
+ \pdfresetpageorigin=0
+\fi
+
+\newif\ifpdfx@nopdfinfo
+\ifmathxmp\pdfx@nopdfinfotrue
+\else
+ \iflatLATxmp\pdfx@nopdfinfotrue
+\else
+ \ifgrkLGRxmp\pdfx@nopdfinfotrue
+\else
+ \ifhebHEBxmp\pdfx@nopdfinfotrue
+\else
+ \ifcyrKOIxmp\pdfx@nopdfinfotrue
+\else
+ \ifarmSCIxmp\pdfx@nopdfinfotrue
+\fi\fi\fi\fi\fi\fi
+
+\iflatLATxmp\pdfx@useactivespacestrue\fi
+\ifgrkLGRxmp\pdfx@useactivespacestrue\fi
+\ifhebHEBxmp\pdfx@useactivespacestrue\fi
+\ifcyrKOIxmp\pdfx@useactivespacestrue\fi
+\ifarmSCIxmp\pdfx@useactivespacestrue\fi
+
+\newif\ifpdfx@transliterated
+\ifgrkLGRxmp\pdfx@transliteratedtrue\fi
+\ifhebHEBxmp\pdfx@transliteratedtrue\fi
+\ifarmSCIxmp\pdfx@transliteratedtrue\fi
+
+\RequirePackage{iftex}
+\RequirePackage{ifpdf}
+%% Support for pdfTeX primitives when using XeTeX:
+\RequirePackage{ifxetex}
+\ifxetex
+ \def\pdfx@pages@xetex#1{\special{pdf:put @pages <<#1>>}}
+ \def\pdfx@docinfo@xetex#1{\special{pdf:put @docinfo <<#1>>}}
+ \def\pdfx@catalog@xetex#1{\special{pdf:put @catalog <<#1>>}}
+ \def\pdfx@mapline@xetex#1{}
+ \def\pdf@compress@xetex=#1{}
+%%
+ \let\pdfpageattr\pdfx@pages@xetex
+ \let\pdfinfo\pdfx@docinfo@xetex
+ \let\pdfcatalog\pdfx@catalog@xetex
+ \let\pdfmapline\pdfx@mapline@xetex
+ \let\pdfcompresslevel\pdf@compress@xetex
+ \let\pdfobjcompresslevel\pdf@compress@xetex
+\fi
+
+%%\newif\ifpdfx@pdfmark  %  control future support for  dvips
+
+\RequirePackage{ifluatex}
+\ifluatex
+ \IfFileExists{luatex85.sty}{% 2016+
+  \RequirePackage{luatex85}%
+  \edef\pdfcreationdate{\pdfcreationdate}%
+ }{%  earlier versions
+ }%
+ \RequirePackage{pdftexcmds}%
+ \let\pdfx@mdfivesum\pdf@mdfivesum
+ \let\pdfescapestring\pdf@escapestring
+\else
+ \ifxetex
+  \usepackage{everyshi}%
+  \expandafter\ifx\csname mdfivesum\endcsname\relax
+   %  too early a version of  XeTeX
+   \let\pdfx@mdfivesum\relax
+  \else
+   %  since mid-2015
+   \let\pdfx@mdfivesum\mdfivesum
+  \fi
+ \else
+  \let\pdfx@mdfivesum\pdfmdfivesum
+ \fi
+\fi
+\def\pdfx@encodingfile{l8u-penc.def}
+
+\expandafter\ifx\csname pdftexbanner\endcsname\relax
+ \expandafter\ifx\csname luatexbanner\endcsname\relax
+ \else %  luatex85
+  \let\pdftexbanner\luatexbanner
+ \fi
+\else %  pdfTeX, but which version ???
+ {\endlinechar=-1
+  \everyeof{\noexpand}%
+  \xdef\pdfx@bannerstring{\expandafter\scantokens\expandafter{\pdftexbanner}}
+ }%
+ \def\pdfx@testbannerstr{%
+  This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/dev)
+  kpathsea version 6.2.0dev}%
+ \ifx\pdfx@bannerstring\pdfx@testbannerstr
+  \typeout{This version of pdfTeX cannot write out upper-range character bytes,
+   128-255.}%
+  \typeout{Any UTF-8 Unicode characters in the Metadata will not be written
+   correctly.}%
+  \typeout{Please update to a more stable version of pdfTeX.^^J}%
+ \fi
+\fi
+
+%% How to support XeTeX here ?
+\ifpdfx@x
+ \pdfobjcompresslevel=0 \relax
+ \expandafter\ifx\csname pdfinterwordspaceoff\endcsname\relax\else
+  \pdfinterwordspaceoff
+  \let\pdfinterwordspaceon\pdfinterwordspaceoff
+  \let\pdfinterwordspace\relax
+ \fi
+ \expandafter\ifx\csname pdfgeninterwordspace\endcsname\relax\else
+  \pdfgeninterwordspace=0 \relax
+ \fi
+ \begingroup
+  \dimen0=0.996264009963\paperwidth\relax
+  \edef\pdfx@mwidth{\strip@pt\dimen0}%
+  \advance\dimen0 -25\p@
+  \edef\pdfx@twidth{\strip@pt\dimen0}%
+  \dimen0=0.996264009963\paperheight\relax
+  \edef\pdfx@mheight{\strip@pt\dimen0}%
+  \advance\dimen0 -20\p@
+  \edef\pdfx@theight{\strip@pt\dimen0}%
+  \ifxetex
+   \xdef\pdfx@everypage@xetex{%
+    /MediaBox[0 0 \pdfx@mwidth\space \pdfx@mheight]^^J
+    /TrimBox[25 20 \pdfx@twidth\space \pdfx@theight]%
+   }%
+  \fi
+  \edef\next{\endgroup\global\pdfpagesattr{%
+    /MediaBox[0 0 \pdfx@mwidth\space \pdfx@mheight]^^J
+%%    /ArtBox[0 0 \pdfx@mwidth\space \pdfx@mheight]^^J
+    /BleedBox[0 0 \pdfx@mwidth\space \pdfx@mheight]^^J
+    /CropBox[0 0 \pdfx@mwidth\space \pdfx@mheight]^^J
+    /TrimBox[25 20 \pdfx@twidth\space \pdfx@theight]}
+  }\next \relax
+ \ifxetex
+  \AtBeginDvi{%
+   \immediate\special{pdf:put @thispage <<\pdfx@everypage@xetex>>}}%
+  \EveryShipout{%
+   \immediate\special{pdf:put @thispage <<\pdfx@everypage@xetex>>}}%
+ \else
+  \expandafter\pdfpageattr\expandafter{\the\pdfpagesattr}%
+ \fi
+\else
+%%  PDF/A-1b  doesn't allow object compression
+ \ifnum\xmp@ReleaseDate=2005\relax
+  \expandafter\ifx\csname pdfobjcompresslevel\endcsname\relax
+  \else
+   \pdfobjcompresslevel=0\relax
+ \fi \fi
+\fi
+\ifxetex
+%% How to support XeTeX here ?
+\else
+ \ifnum\thepdfminorversion >3 \relax
+  \expandafter\ifx\csname pdfsuppresswarningdupmap\endcsname\relax
+   \expandafter\ifx\csname pdfmapline\endcsname\relax\else
+    \pdfmapline{+dummy-space <dummy-space.pfb}
+   \fi
+  \else
+   \advance\pdfsuppresswarningdupmap 1
+   \pdfmapline{+dummy-space <dummy-space.pfb}
+   \advance\pdfsuppresswarningdupmap -1
+  \fi
+  \expandafter\ifx\csname pdfgeninterwordspace\endcsname\relax\else
+   \pdfgeninterwordspace=1 \relax
+  \fi
+ \fi
+\fi
+
+\ifluatex\else\ifxetex\else
+ \@ifpackageloaded{inputenc}{%
+ }{%
+  \RequirePackage{inputenc}
+ % allow this to be loaded again cleanly
+ \expandafter\let\csname ver@inputenc.sty\endcsname\relax
+ }
+\fi\fi
+
+%% pseudo-declare the L8U encoding
+\expandafter\let\csname L8U-cmd\expandafter\endcsname\csname OT1-cmd\endcsname
+\@namedef{T@L8U}{}%
+\@namedef{D@L8U}{}%
+\@namedef{M@L8U}{}%
+
+%% adjust to LaTeX's 2018 change to the default encoding
+\expandafter\ifx\csname inputencodingname\endcsname\relax
+\else
+ \def\pdfx@restoreencoding#1{%
+  \@tempcnta=128
+  \loop
+   \catcode\@tempcnta=13
+   \advance\@tempcnta\@ne
+  \ifnum\@tempcnta<256
+  \repeat
+  \inputencoding{#1}%
+  }%
+  \AtEndOfPackage{\pdfx@restoreencoding\pdfx@inputencodingname}%
+  \let\pdfx@inputencodingname\inputencodingname
+  \let\pdfx@DeclareUnicodeCharacter\DeclareUnicodeCharacter
+  \UseRawInputEncoding
+\fi
+\InputIfFileExists{\pdfx@encodingfile}{}{}
+\expandafter\ifx\csname pdfx@inputencodingname\endcsname\relax
+\else
+  \let\inputencodingname\pdfx@inputencodingname
+  \let\DeclareUnicodeCharacter\pdfx@DeclareUnicodeCharacter
+  \let\DeclareFontEncoding@\DeclareFontEncoding@saved
+  \inputencoding{\inputencodingname}%
+\fi
+
+%%----------------------------------------------------------------------
+%% Macros for reading XMP data with special catcodes. Usage:
+%%
+%% \xmp@parse{continuation}{data}
+%%
+%% The effect is to read the data with special catcodes: '<', '>', and
+%% '&' are "active", and '^', '_', '#', '$', '~' are "other". The data
+%% is then bound to the locally scoped name \@this, and the
+%% continuation is called.
+\def\xmp@parse#1{%
+ \begingroup
+ \catcode`\<=13\catcode`\>=13\catcode`\&=13\catcode`\^=12
+ \catcode`\_=12\catcode`\#=12\catcode`\$=12\catcode`\~=12
+ \ifpdfx@useactivespaces\obeyspaces\fi % capture spaces as active characters
+ \xmp@doparse{#1}%
+}
+\def\afterxmp@parse{}% methods may change this
+\def\xmp@doparse#1#2{%
+ \def\@this{#2}#1
+ \endgroup
+ % do any post-processing
+ \afterxmp@parse
+ \def\afterxmp@parse{}%
+}
+
+%%----------------------------------------------------------------------
+%% Local commands. They are only brought into scope during the reading
+%% of xmpdata. Some fields can have a 'xml:lang' attribute; others must have.
+%%  LANG values as in:  (BCP 47)  https://tools.ietf.org/html/rfc5646#appendix-A
+%%
+\def\xmp@lang@Default{x-default}
+\let\xmp@lang@Title\xmp@lang@Default
+\let\xmp@lang@Author\xmp@lang@Default
+\let\xmp@lang@Keywords\xmp@lang@Default
+\let\xmp@lang@Subject\xmp@lang@Default
+%%\def\xmp@lang@CreatorTool{\xmp@lang@Default}
+\let\xmp@lang@Producer\xmp@lang@Default
+%%\def\xmp@lang@Volume{\xmp@lang@Default}
+%%\def\xmp@lang@Issue{\xmp@lang@Default}
+\let\xmp@lang@Copyright\xmp@lang@Default
+\let\xmp@lang@PublicationType\xmp@lang@Default
+\let\xmp@lang@Publisher\xmp@lang@Default
+\let\xmp@lang@Coverage\xmp@lang@Default
+\let\xmp@lang@Contributor\xmp@lang@Default
+\let\xmp@lang@Relation\xmp@lang@Default
+%%%  PRISM fields
+\let\xmp@lang@CoverDisplayDate\xmp@lang@Default
+\let\xmp@lang@JournalTitle\xmp@lang@Default
+%%\def\xmp@lang@JournalNumber{\xmp@lang@Default}
+%%%  xmp:  &  xmpRights:  fields
+\let\xmp@lang@Advisory\xmp@lang@Default
+\let\xmp@lang@Identifier\xmp@lang@Default
+\let\xmp@lang@Nickname\xmp@lang@Default
+\let\xmp@lang@Owner\xmp@lang@Default
+
+%% some validators require a language attribute for
+%%   dc:title                 set via  \Title
+%%   dc:description   set via  \Subject
+%%   dc:rights              set via  \Copyright
+%%   xmpRights:UsageTerms   set via \Copyright
+%%
+{\catcode `\" 12 \catcode`\: 12 \catcode`\= 12
+ \gdef\pdfx@xmp@checklang#1{%
+  \ifx #1\xmp@lang@Default\else\space xml:lang="#1"\fi}
+ \gdef\pdfx@xmp@strictlang#1{\space xml:lang="#1"}
+}%  end of  \catcodes
+\let\xmp@checklang\pdfx@xmp@checklang
+\let\xmp@strictlang\pdfx@xmp@strictlang
+
+\newcommand{\pdfx@Title}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Title{#1}\fi
+ \xmp@parse{\global\let\xmp@Title\@this}}
+
+%% allow for multiple authors, keywords and languages
+%%  also:  contributor, date, relation, type, thumbnails
+%%  and  AuthoritativeDomain, Advisory, Identifier, Owner
+\newcommand{\pdfx@Author}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Author{#1}\fi
+ \def\afterxmp@parse{\let\Author\pdfx@extraAuthor}%
+ \xmp@parse{\global\let\xmp@Author\@this}}
+\newcommand{\pdfx@Keywords}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Keywords{#1}\fi
+ \def\afterxmp@parse{\let\Keywords\pdfx@extraKeywords}%
+ \xmp@parse{\global\let\xmp@Keywords\@this}}
+\newcommand{\pdfx@Language}{%
+ \def\afterxmp@parse{\let\Language\pdfx@extraLanguages}%
+ \xmp@parse{\global\let\xmp@Language\@this}}
+
+\newcommand{\pdfx@AuthoritativeDomain}{%
+ \def\afterxmp@parse{\let\AuthoritativeDomain\pdfx@extraAuthoritativeDomain}%
+ \xmp@parse{\global\let\xmp@AuthoritativeDomain\@this}}
+\newcommand{\pdfx@Date}{%
+ \def\afterxmp@parse{\let\Date\pdfx@extraDate}%
+ \xmp@parse{\global\let\xmp@Date\@this}}
+\newcommand{\pdfx@Contributor}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Contributor{#1}\fi
+ \def\afterxmp@parse{\let\Contributor\pdfx@extraContributor}%
+ \xmp@parse{\global\let\xmp@Contributor\@this}}
+\newcommand{\pdfx@Relation}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Relation{#1}\fi
+ \def\afterxmp@parse{\let\Relation\pdfx@extraRelation}%
+ \xmp@parse{\global\let\xmp@Relation\@this}}
+%%\newcommand{\pdfx@Type}[1][]{%
+%% \ifx\relax#1\relax\else\gdef\xmp@lang@Type{#1}\fi
+%% \def\afterxmp@parse{\let\Type\pdfx@extraType}%
+%% \xmp@parse{\global\let\xmp@Type\@this}}
+
+\newcommand{\pdfx@Advisory}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Advisory{#1}\fi
+ \def\afterxmp@parse{\let\Advisory\pdfx@extraAdvisory}%
+ \xmp@parse{\global\let\xmp@Advisory\@this}}
+\newcommand{\pdfx@Identifier}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Identifier{#1}\fi
+ \def\afterxmp@parse{\let\Identifier\pdfx@extraIdentifier}%
+ \xmp@parse{\global\let\xmp@Identifier\@this}}
+\newcommand{\pdfx@Thumbnails}{%
+ \def\afterxmp@parse{\let\Thumbnails\pdfx@extraThumbnails}%
+ \xmp@parse{\global\let\xmp@Thumbnails\@this}}
+
+\newcommand{\pdfx@Owner}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Owner{#1}\fi
+ \def\afterxmp@parse{\let\Owner\pdfx@extraOwner}%
+ \xmp@parse{\global\let\xmp@Owner\@this}}
+
+{\obeyspaces%
+ \ifpdfx@useactivespaces\gdef\pdfx@insert@sep{\sep }%
+ \else\gdef\pdfx@insert@sep{\sep}\fi%
+}
+\newcommand{\pdfx@extraAuthor}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Author
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Author\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Author
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Author\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Author
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Author\xmp@extraAuthor}%
+   }%
+ \xmp@parse{\global\let\xmp@extraAuthor\@this}%
+ }%
+\newcommand{\pdfx@extraKeywords}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Keywords
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Keywords\pdfx@insert@sep}%
+ \else%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Keywords
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Keywords\pdfx@insert@sep[#1]}%
+ \fi%
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Keywords
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Keywords\xmp@extraKeywords}}%
+ \xmp@parse{\global\let\xmp@extraKeywords\@this}%
+ }%
+\newcommand{\pdfx@extraLanguages}{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Language
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Language\pdfx@insert@sep}%
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Language
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Language\xmp@extraLanguages}}%
+ \xmp@parse{\global\let\xmp@extraLanguages\@this}%
+ }%
+
+\newcommand{\pdfx@extraContributor}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Contributor
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Contributor\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Contributor
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Contributor\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Contributor
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Contributor\xmp@extraContributor}%
+   }%
+ \xmp@parse{\global\let\xmp@extraContributor\@this}%
+ }%
+
+\newcommand{\pdfx@extraAuthoritativeDomain}{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@AuthoritativeDomain
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@AuthoritativeDomain\pdfx@insert@sep}%
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@AuthoritativeDomain
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@AuthoritativeDomain\xmp@extraAuthoritativeDomain}%
+   }%
+ \xmp@parse{\global\let\xmp@extraAuthoritativeDomain\@this}%
+ }%
+
+\newcommand{\pdfx@extraDate}{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Date
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Date\pdfx@insert@sep}%
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Date
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Date\xmp@extraDate}%
+   }%
+ \xmp@parse{\global\let\xmp@extraDate\@this}%
+ }%
+
+\newcommand{\pdfx@extraRelation}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Relation
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Relation\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Relation
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Relation\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Relation
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Relation\xmp@extraRelation}%
+   }%
+ \xmp@parse{\global\let\xmp@extraRelation\@this}%
+ }%
+
+%%\newcommand{\pdfx@extraType}[1][]{%
+%%% \show\xmp@Type
+%% \ifx\relax#1\relax
+%%  \expandafter\expandafter\expandafter\gdef
+%%   \expandafter\expandafter\expandafter\xmp@Type
+%%    \expandafter\expandafter\expandafter{%
+%%     \expandafter\xmp@Type\pdfx@insert@sep}%
+%% \else
+%%  \expandafter\expandafter\expandafter\gdef
+%%   \expandafter\expandafter\expandafter\xmp@Type
+%%    \expandafter\expandafter\expandafter{%
+%%     \expandafter\xmp@Type\pdfx@insert@sep[#1]}%
+%% \fi
+%% \def\afterxmp@parse{%
+%%  \expandafter\expandafter\expandafter\gdef
+%%   \expandafter\expandafter\expandafter\xmp@Type
+%%   \expandafter\expandafter\expandafter{%
+%%    \expandafter\xmp@Type\xmp@extraType}%
+%%   %\show\xmp@Type
+%%   }%
+%% \xmp@parse{\global\let\xmp@extraType\@this}%
+%% }%
+
+\newcommand{\pdfx@extraAdvisory}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Advisory
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Advisory\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Advisory
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Advisory\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Advisory
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Advisory\xmp@extraAdvisory}%
+   }%
+ \xmp@parse{\global\let\xmp@extraAdvisory\@this}%
+ }%
+
+\newcommand{\pdfx@extraIdentifier}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Identifier
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Identifier\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Identifier
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Identifier\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Identifier
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Identifier\xmp@extraIdentifier}%
+   }%
+ \xmp@parse{\global\let\xmp@extraIdentifier\@this}%
+ }%
+
+\newcommand{\pdfx@extraThumbnails}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Thumbnails
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Thumbnails\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Thumbnails
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Thumbnails\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Thumbnails
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Thumbnails\xmp@extraThumbnails}%
+   }%
+ \xmp@parse{\global\let\xmp@extraThumbnails\@this}%
+ }%
+
+\newcommand{\pdfx@extraOwner}[1][]{%
+ \ifx\relax#1\relax
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Owner
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Owner\pdfx@insert@sep}%
+ \else
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Owner
+    \expandafter\expandafter\expandafter{%
+     \expandafter\xmp@Owner\pdfx@insert@sep[#1]}%
+ \fi
+ \def\afterxmp@parse{%
+  \expandafter\expandafter\expandafter\gdef
+   \expandafter\expandafter\expandafter\xmp@Owner
+   \expandafter\expandafter\expandafter{%
+    \expandafter\xmp@Owner\xmp@extraOwner}%
+   }%
+ \xmp@parse{\global\let\xmp@extraOwner\@this}%
+ }%
+
+\newcommand{\pdfx@Subject}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Subject{#1}\fi
+ \xmp@parse{\global\let\xmp@Subject\@this}}
+\newcommand{\pdfx@Producer}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Producer{#1}\fi
+ \xmp@parse{\global\let\xmp@Producer\@this}}
+\newcommand{\pdfx@Publisher}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Publisher{#1}\fi
+ \xmp@parse{\global\let\xmp@Publisher\@this}}
+\newcommand{\pdfx@Copyright}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Copyright{#1}\fi
+ \xmp@parse{\global\let\xmp@Copyright\@this%
+  \ifx\xmp@Copyrighted\@empty\gdef\xmp@Copyrighted{True}\fi}}
+
+\newcommand{\pdfx@Coverage}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@Coverage{#1}\fi
+ \xmp@parse{\global\let\xmp@Coverage\@this}}
+
+%%  PRISM Text fields
+\newcommand{\pdfx@CoverDisplayDate}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@CoverDisplayDate{#1}\fi
+ \xmp@parse{\global\let\xmp@CoverDisplayDate\@this}}
+\newcommand{\pdfx@JournalTitle}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@JournalTitle{#1}\fi
+ \ifx\xmp@PublicationType\@empty\gdef\xmp@PublicationType{journal}\fi
+ \xmp@parse{\global\let\xmp@JournalTitle\@this}}
+
+%%  Uses PRISM Controlled Vocabulary:
+%%    http://prismstandard.org/vocabularies/3.0/aggregationtype.xml
+%%  blog, book, bookazine, catalog, feed, journal, magazine, manual
+%%  newsletter, newspaper, other, report, pamphlet, vook, whitepaper
+%%
+\newcommand{\pdfx@PublicationType}[1][]{%
+ \ifx\relax#1\relax\else\gdef\xmp@lang@PublicationType{#1}\fi
+ \xmp@parse{\global\let\xmp@PublicationType\@this}}
+
+\def\pdfx@localcommands{
+ \let\Title\pdfx@Title
+ \let\Author\pdfx@Author
+ \let\Keywords\pdfx@Keywords
+ \let\Subject\pdfx@Subject
+ \let\Language\pdfx@Language
+ \def\CreatorTool{\xmp@parse{\global\let\xmp@CreatorTool\@this}}
+ \let\Producer\pdfx@Producer
+ \def\Volume{\xmp@parse{\global\let\xmp@Volume\@this}}
+ \def\Issue{\xmp@parse{\global\let\xmp@Issue\@this}}
+ \let\CoverDisplayDate\pdfx@CoverDisplayDate
+ \def\CoverDate{\xmp@parse{\global\let\xmp@CoverDate\@this}}
+ \let\Copyright\pdfx@Copyright
+ \def\CopyrightURL{\xmp@parse{\global\let\xmp@CopyrightURL\@this%
+   \ifx\xmp@Copyrighted\@empty\gdef\xmp@Copyrighted{True}\fi}}
+ \def\Copyrighted{\xmp@parse{\global\let\xmp@Copyrighted\@this}}
+ \def\Doi{\xmp@parse{\global\let\xmp@Doi\@this}}
+ \def\ISBN{\xmp@parse{\global\let\xmp@ISBN\@this}}
+ \def\URLlink{\xmp@parse{\global\let\xmp@URL\@this}}
+ \def\Lastpage{\xmp@parse{\global\let\xmp@Lastpage\@this}}
+ \def\Firstpage{\xmp@parse{\global\let\xmp@Firstpage\@this}}
+ \let\PublicationType\pdfx@PublicationType
+ \let\Journaltitle\pdfx@JournalTitle
+ \def\Journalnumber{\xmp@parse{\global\let\xmp@Journalnumber\@this}}
+ \let\Publisher\pdfx@Publisher
+ \let\Coverage\pdfx@Coverage
+ \def\Source{\xmp@parse{\global\let\xmp@Source\@this}}
+ \let\Contributor\pdfx@Contributor
+ \let\Date\pdfx@Date
+ \let\Relation\pdfx@Relation
+ \let\Advisory\pdfx@Advisory
+ \def\BaseURL{\xmp@parse{\global\let\xmp@BaseURL\@this}}
+ \let\Identifier\pdfx@Identifier
+ \let\Nickname\pdfx@Nickname
+ \let\Thumbnails\pdfx@Thumbnails
+ \let\Owner\pdfx@Owner
+ \def\CertificateURL{\xmp@parse{\global\let\xmp@CertificateURL\@this}}
+ \def\MMversionID{\xmp@parse{\global\let\xmpMM@versionID\@this}}
+%% \let\Type\pdfx@Type
+%%
+%% currently unused; for backward compatibility only
+ \let\AuthoritativeDomain\pdfx@AuthoritativeDomain
+ \let\Creator\CreatorTool  % for backward compatibility
+ \let\Org\Publisher        % for backward compatibility
+ \let\WebStatement\CopyrightURL  % for backward compatibility
+}
+
+%%----------------------------------------------------------------------
+%% The following characters and markup can be used within the XMP data
+%% defined by \Author, \Title, and so on.
+%%
+%% * All printable non-whitespace ASCII characters except
+%%   '%', '{', '}', '\' can be used as themselves.
+%%
+%% * All printable non-whitespace UTF-8 encoded Unicode characters
+%%   from the basic multilingual plane can be used as themselves.
+%%
+%% * As usual, consecutive whitespace characters are contracted to a
+%%   single space. Whitespace after a macro such as \copyright is
+%%   ignored. Blank lines are not permitted.
+%%
+%% * The following markup can be used:
+%%   '\ '        - a literal space  (for example after a macro)
+%%   \%          - a literal '%'
+%%   \{          - a literal '{'
+%%   \}          - a literal '}'
+%%   \backslash  - a literal '\'
+%%   \copyright  - the (c) copyright symbol
+%%
+%%   \sep        - only permitted within \Author, \Keywords, \Publisher.
+%%
+%% * For backward compatibility, \& and \TextCopyright are also
+%%   provided. Their use is deprecated.
+
+%%----------------------------------------------------------------------
+%% The macro \pdfx@actives binds the active characters
+%% '&', '<', and '>' to \pdfx@amp, \pdfx@lt, and \pdfx@gt,
+%% respectively, without actually making them active.
+\begingroup
+ \catcode`\<=13
+ \catcode`\>=13
+ \catcode`\&=13
+ \gdef\pdfx@actives{
+  \def&{\pdfx@amp}
+  \def<{\pdfx@lt}
+  \def>{\pdfx@gt}
+ }
+\endgroup
+
+%%----------------------------------------------------------------------
+%% Markup bindings to be used during XMP generation.
+
+{%
+ \catcode`\<=12 \catcode`\>=12 \catcode`\/=12 \catcode`\:=12 \catcode`\"=12
+\obeyspaces\ifpdfx@useactivespaces%
+ \gdef\pdfx@sep {\pdfx@check@lang}%
+\else%
+ \gdef\pdfx@sep{\pdfx@check@lang}%
+\fi%
+ \xdef\pdfx@sep@nolang{</rdf:li>^^J     <rdf:li>}%
+ \xdef\pdfx@sep@lang[#1]{</rdf:li>^^J     <rdf:li xml:lang="#1">}%
+}% end of \obeyspaces and \catcode ....
+
+\def\pdfx@check@lang#1{%
+ \ifx[#1\expandafter\@firstoftwo
+ \else\expandafter\@secondoftwo\fi
+ {\pdfx@sep@lang#1}{\pdfx@sep@nolang#1}}
+
+\def\pdfx@xmpmarkup{%
+ \pdfx@actives
+ \edef\@amp{\expandafter\@gobble\string\&}%
+ \edef\@hash{\expandafter\@gobble\string\#}%
+ \edef\ {\expandafter\@gobble\string\ }%
+ \edef\%{\expandafter\@gobble\string\%}%
+ \edef\{{\expandafter\@gobble\string\{}%
+ \edef\}{\expandafter\@gobble\string\}}%
+ \edef\backslash{\expandafter\@gobble\string\\}%
+ \def\@unicode##1{\@amp\@hash x##1;}%
+ \def\pdfx@amp{\@unicode{0026}}%
+ \def\pdfx@lt{\@unicode{003c}}%
+ \def\pdfx@gt{\@unicode{003e}}%
+ \def\copyright{\@unicode{00A9}}%
+ \let\&\pdfx@amp               % for backward compatibility
+ \let\TextCopyright\copyright  % for backward compatibility
+ \let\sep\pdfx@sep
+ \pdfx@xmpunimarkup   % only need this when writing XMP
+ \the\pdfxsafeforxmp@toks
+}
+
+%% cope with active spaces with LGR encoding
+%% and the spaces written out with \IeC in KOI8-r
+%% It's possible to have both together.
+\def\liixu@IeC#1#{\liixu@IeCi}
+\def\liixu@IeCi#1{\liixu@IeCii#1}
+\def\liixu@IeCii#1#2{#1}
+\def\liixu@enableIeC{\ifpdfx@useactivespaces
+ \let\IeC\liixu@IeC\else\def\IeC##1{##1}\fi}
+\def\liixu@numberline#1#{\liixu@numberlinei}
+\def\liixu@numberlinei#1{\liixu@numberlineii#1}
+\def\liixu@numberlineii#1{\textLF #1. }
+\def\liixu@enablenumberline{\ifpdfx@useactivespaces
+ \let\numberline\liixu@numberline
+ \else\def\numberline##1{\textLF ##1. }\fi}
+
+\def\pdfx@xmpunimarkup{%
+ \liixu@enableIeC
+ \liixu@enablenumberline
+ \def\empty{}% used in LICR patterns
+ \LIIXUscriptcommands
+ \LIIXUtipacommands
+ \LIIXUmapTeXnames
+%%  from Hyperref's  psdextra.def
+ \csname psdmapshortnames\endcsname
+ \csname psdaliasnames\endcsname
+%% from  lu8enc.def
+ \csname LIIXUmapmathletterlikes\endcsname
+ \csname LIIXUmapmathspaces\endcsname
+ \iflatLATxmp
+  \LIIXUmaplatinchars
+  \LIIXUcancelfontswitches
+ \fi
+ \ifmathxmp
+  \let\(\textinlinemath
+  \let\[\textdisplaymath
+  \LIIXUmapmathaccents
+  \LIIXUmapisomathgreek
+  \LIIXUmapmatharrowsA
+  \LIIXUmapmathoperatorsA
+  \LIIXUmapmathoperatorsB
+  \LIIXUmapmiscmathsymbolsA
+  \LIIXUmapsupparrowsA
+  \LIIXUmapsupparrowsB
+  \LIIXUmapmiscmathsymbolsB
+  \LIIXUmapsuppmathoperators
+  \LIIXUmapunimathgreek
+  \LIIXUmapmathalphabets
+ \fi
+ \ifarbxmp \LIIXUmaparabicletters\fi
+ \ifarmxmp \LIIXUmaparmenianletters\fi
+ \ifdevxmp\LIIXUmapdevaccents\fi
+ \ifgrkxmp \LIIXUmapgreekletters\fi
+ \ifhebxmp \LIIXUmaphebrewletters\fi
+}
+
+%% In case macros are used in XMP Metadata, need a way to map these
+%% to simple text, rather than specific font characters, or whatever:
+\newtoks\pdfxsafeforxmp@toks
+\def\pdfxEnableCommands{%   user command
+ \begingroup
+  \ifpdfx@useactivespaces\obeyspaces\fi
+  \pdfx@EnableCommands
+}
+\def\pdfx@EnableCommands#1{%   internal command
+ \expandafter\global\expandafter\pdfxsafeforxmp@toks
+  \expandafter{\the\pdfxsafeforxmp@toks#1}%
+ \endgroup
+}
+
+%%----------------------------------------------------------------------
+%% Markup bindings to be used during PDF string generation.
+
+\def\pdfx@pdfmarkup{%
+ \pdfx@actives
+ \edef\%{\expandafter\@gobble\string\%}%
+ \edef\{{\expandafter\@gobble\string\{}%
+ \edef\}{\expandafter\@gobble\string\}}%
+ \edef\pdfx@backslash{\expandafter\@gobble\string\\}%
+ \def\backslash{\pdfx@backslash000\pdfx@backslash134}%
+ \edef\pdfx@amp{\expandafter\@gobble\string\&}%
+ \edef\pdfx@lt{\expandafter\@gobble\string\<}%
+ \edef\pdfx@gt{\expandafter\@gobble\string\>}%
+ \let\TextCopyright\copyright  % for backward compatibility
+ \def\sep{; }%
+ %\let\sep\pdfx@sep
+%% Note: '\ ', \&, \copyright are already predefined by hyperref.
+%% allow LICRs to expand into PDF strings
+ \def\cf@encoding{PU}%
+ \def\9##1{\ifcase##1\string\0\or\string\1\or\string\2\or\string\3\fi}%
+ \def\8{\string\00}%
+ \def\0{\string\0}\def\1{\string\1}\def\2{\string\2}\def\3{\string\3}%
+ \pdfx@xmpunimarkup
+ \the\pdfxsafeforxmp@toks
+}
+
+%%----------------------------------------------------------------------
+%% Defaults
+\ifxetex
+ \def\xmp@Producer{XeTeX}
+\else\ifluatex
+ \def\xmp@Producer{LuaTeX}
+\else
+ \def\xmp@Producer{pdfTeX}
+\fi\fi
+\global\let\pdfxProducer\xmp@Producer
+
+\global\let\xmp@CreatorTool\@empty
+\global\let\xmp@Title\@empty
+\global\let\xmp@Author\@empty
+\global\let\xmp@Keywords\@empty
+\global\let\xmp@Subject\@empty
+\global\let\xmp@Language\@empty
+\global\let\xmp@Volume\@empty
+\global\let\xmp@Issue\@empty
+\global\let\xmp@CoverDisplayDate\@empty
+\global\let\xmp@CoverDate\@empty
+\global\let\xmp@Copyright\@empty
+\global\let\xmp@Copyrighted\@empty
+\global\let\xmp@CopyrightURL\@empty
+\gdef\xmp@WebStatement{\xmp@CopyrightURL}
+\global\let\xmp@Doi\@empty
+\global\let\xmp@ISBN\@empty
+\global\let\xmp@URL\@empty
+\global\let\xmp@Lastpage\@empty
+\global\let\xmp@Firstpage\@empty
+\global\let\xmp@PublicationType\@empty
+\global\let\xmp@Journaltitle\@empty
+\global\let\xmp@Journalnumber\@empty
+%%\global\let\xmp@Type\@empty
+\global\let\xmp@Contributor\@empty
+\global\let\xmp@Coverage\@empty
+\global\let\xmp@Date\@empty
+\global\let\xmp@Relation\@empty
+\global\let\xmp@Source\@empty
+\global\let\xmp@Publisher\@empty
+\gdef\xmp@Org{\xmp@Publisher}
+\global\let\xmp@AuthoritativeDomain\@empty
+\global\let\xmp@Advisory\@empty
+\global\let\xmp@BaseURL\@empty
+\global\let\xmp@Identifier\@empty
+\global\let\xmp@Nickname\@empty
+\global\let\xmp@Thumbnails\@empty
+\global\let\xmp@Owner\@empty
+\global\let\xmp@CertificateURL\@empty
+
+%%----------------------------------------------------------------------
+%%  Alternative way to get the CreationDate using Lua  for XeTeX
+\ifdefined\pdfcreationdate\else
+ \begingroup  %% ensure correct catcodes, not done by \dospecials
+ \catcode`\:=12 \catcode`\.=12
+\begin{filecontents*}{creationdate.lua}
+ os.remove("creationdate.timestamp")
+ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa{\\string D:%Y%m%d%H%M%S}\n\\def\\tempb{%z}"))
+\end{filecontents*}
+ \endgroup
+ \ifnum\shellescape=1
+  \begingroup  %% ensure correct catcodes when file is read in
+   \catcode`\'=12 \catcode`\.=12 \catcode`\:=12 \catcode`\+=12
+   \immediate\write18{texlua creationdate.lua}
+   \input{creationdate.timestamp}
+   \def\tempc#1#2#3#4#5{#1#2#3'#4#5'}
+   \edef\tempb{\expandafter\tempc\tempb}
+   \edef\x{\endgroup\def\noexpand\pdfcreationdate{\tempa\tempb}}\x
+ \else
+  \begingroup  %% ensure correct catcodes in the error/warning messages
+  \catcode`\<=12 \catcode`\>=12 \catcode`\"=12 \catcode`\-=12
+  \catcode`\: 12 \catcode`\' 12 \catcode`\= 12
+  \ifpdfx@noerr
+   \PackageWarning{pdfx}{%
+    CreationDate is not properly supported;^^J
+    PDF validation may fail. To avoid this problem use:^^J
+     xelatex -shell-escape  -output-driver="xdvipdfmx -z 0" <filename>^^J}
+  \else
+   \PackageError{pdfx}{%
+    CreationDate is not properly supported;^^J
+    PDF validation may fail.}{To avoid this problem use:^^J
+     xelatex -shell-escape  -output-driver="xdvipdfmx -z 0" <filename> }
+  \fi
+  %% Using a constant date, to allow processing to finish smoothly.
+  \edef\x{\endgroup
+   \def\noexpand\pdfcreationdate{\string D:20181028075445+10'00'}}%
+   \x
+ \fi
+\fi
+
+%%----------------------------------------------------------------------
+\def\pdfx@findUUID#1{\edef\pdfx@tmpstring{\pdfx@mdfivesum{#1}}
+     \expandafter\pdfx@eightofnine\pdfx@tmpstring\end}
+\def\pdfx@eightofnine#1#2#3#4#5#6#7#8#9\end{%
+     \xdef\pdfx@eightchars{#1#2#3#4#5#6#7#8}
+     \pdfx@fouroffive#9\end}
+\def\pdfx@fouroffive#1#2#3#4#5\end{\xdef\pdfx@ffourchars{#1#2#3#4}
+     \pdfx@sfouroffive#5\end}
+\def\pdfx@sfouroffive#1#2#3#4#5\end{\xdef\pdfx@sfourchars{#1#2#3#4}
+     \pdfx@tfouroffive#5\end}
+\def\pdfx@tfouroffive#1#2#3#4#5\end{\xdef\pdfx@tfourchars{#1#2#3#4}
+     \xdef\pdfx@laststring{#5}}
+
+\def\pdfx@uuid{\pdfx@eightchars-%
+          \pdfx@ffourchars-%
+          \pdfx@sfourchars-%
+          \pdfx@tfourchars-%
+          \pdfx@laststring}
+
+\expandafter\ifx\csname pdfx@mdfivesum\endcsname\relax
+  \PackageError{pdfx}{%
+    No implementation for \string\pdfx@mdfivesum.^^J
+    \ifxetex XeTeX needs to be 2015 or later\fi
+   }{%
+    Continue without, but the PDF will not validate.
+   }%
+ \def\xmp@docid{}%
+ \def\pdfx@findUUID#1{}%
+ \def\pdfx@uuid{}%
+\else
+ \pdfx@findUUID{\jobname.pdf}
+ \edef\xmp@docid{\pdfx@uuid}
+\fi
+
+\expandafter\ifx\csname pdfcreationdate\endcsname\relax\relax
+  \PackageWarning{pdfx}{%
+   No implementation for \string\pdfxcreation .
+  }%
+ \def\xmp@instid{}%
+%%
+\else   %% use the MD5 sum methods
+%%
+ \pdfx@findUUID{\pdfcreationdate}%
+ \edef\xmp@instid{\pdfx@uuid}
+\fi
+
+%%----------------------------------------------------------------------
+%% load  xcolor  before  hyperref  to get the link colors correct
+%%
+\PassOptionsToPackage{nosetpagesize}{color}
+\PassOptionsToPackage{nosetpagesize}{graphics}
+\@ifpackageloaded{xcolor}{%
+ % Beamer will have already loaded  xcolor
+ % need to understand what options it used
+}{
+\ifpdfx@x
+ \RequirePackage[cmyk,hyperref]{xcolor}
+\else
+ \RequirePackage[rgb,hyperref]{xcolor}
+\fi
+}%
+
+%%  loading  puenc.def  will kill a lot of what  mathtext.sty  established
+\@ifpackageloaded{mathtext}{%
+ \PackageWarningNoLine{pdfx}{pdfx.sty  and hyperref.sty should be loaded^^J
+  before mathtext.sty , otherwise text symbols may not show in math mode.}%
+}{}
+
+\newif\ifpdfx@hluatex
+\IfFileExists{hluatex.def}{\pdfx@hluatextrue}{\pdfx@hluatexfalse}
+
+%% the "pdftex" option seems to work fine with LuaTeX
+\def\pdfx@luatest{\ifpdfx@hluatex luatex\else pdftex \fi}
+
+%% Hyperref options for PDF/X
+\edef\pdfx@pdfX@opts@pdftex{%
+   draft,pdftex,pdfpagemode=UseNone,bookmarks=false,%
+   pdfversion=1.\thepdfminorversion,pdfstartview=}
+\edef\pdfx@pdfX@opts@xetex{%
+   draft,xetex,pdfpagemode=UseNone,bookmarks=false,%
+   pdfversion=1.\thepdfminorversion,pdfstartview=}
+ \edef\pdfx@pdfX@opts@luatex{%
+   draft,\pdfx@luatest,pdfpagemode=UseNone,bookmarks=false,%
+   pdfversion=1.\thepdfminorversion,pdfstartview=}%
+
+\newif\ifpdfx@hyperrefloaded
+\expandafter\ifx\csname ifHy@pdfa\endcsname\relax\else\pdfx@hyperrefloadedtrue\fi
+
+%% Hyperref options for PDF/A and PDF/E
+\newtoks\pdfx@tmptoks
+\pdfx@tmptoks{%
+\ifHy@pdfa
+   \edef\pdfx@pdfAE@opts@pdftex{pdftex}%
+   \edef\pdfx@pdfAE@opts@xetex{xetex,pdfversion=1.\thepdfminorversion}%
+   \edef\pdfx@pdfAE@opts@luatex{\pdfx@luatest,pdfversion=1.\thepdfminorversion}%
+   \edef\pdfx@pdfAE@opts@pdfmark{pdfmark,pdfversion=1.\thepdfminorversion}%
+  \else
+   \edef\pdfx@pdfAE@opts@pdftex{pdftex,pdfa}%
+   \edef\pdfx@pdfAE@opts@xetex{xetex,pdfa,pdfversion=1.\thepdfminorversion}%
+   \edef\pdfx@pdfAE@opts@luatex{\pdfx@luatest,pdfa,pdfversion=1.\thepdfminorversion}%
+   \edef\pdfx@pdfAE@opts@pdfmark{pdfmark,pdfa,pdfversion=1.\thepdfminorversion}%
+  \fi
+}
+\ifpdfx@hyperrefloaded
+ \the\pdfx@tmptoks\relax
+\else
+ \edef\pdfx@pdfAE@opts@pdftex{pdftex,pdfa}%
+ \edef\pdfx@pdfAE@opts@xetex{xetex,pdfa,pdfversion=1.\thepdfminorversion}%
+ \edef\pdfx@pdfAE@opts@luatex{\pdfx@luatest,pdfa,pdfversion=1.\thepdfminorversion}%
+ \edef\pdfx@pdfAE@opts@pdfmark{pdfmark,pdfa,pdfversion=1.\thepdfminorversion}%
+\fi
+\pdfx@tmptoks{}%
+
+\ifpdfx@x
+ \@ifpackageloaded{hyperref}{%
+  \ifxetex
+   \expandafter\hypersetup\expandafter{\pdfx@pdfX@opts@xetex}
+  \else\ifluatex
+   \expandafter\hypersetup\expandafter{\pdfx@pdfX@opts@luatex}
+  \else
+   \expandafter\hypersetup\expandafter{\pdfx@pdfX@opts@pdftex}
+  \fi\fi
+ }{%
+  \ifxetex
+   \expandafter\RequirePackage\expandafter[\pdfx@pdfX@opts@xetex]{hyperref}
+  \else\ifluatex
+   \expandafter\RequirePackage\expandafter[\pdfx@pdfX@opts@luatex]{hyperref}
+  \else
+   \expandafter\RequirePackage\expandafter[\pdfx@pdfX@opts@pdftex]{hyperref}
+  \fi\fi
+ }%
+\else
+ \ifpdfx@e
+  \@ifpackageloaded{hyperref}{%
+   \ifxetex
+    \expandafter\hypersetup\expandafter{\pdfx@pdfAE@opts@xetex}
+   \else\ifluatex
+    \expandafter\hypersetup\expandafter{\pdfx@pdfAE@opts@luatex}
+   \else
+    \expandafter\hypersetup\expandafter{\pdfx@pdfAE@opts@pdftex}
+   \fi\fi
+  }{%
+   \ifxetex
+    \expandafter\RequirePackage\expandafter[\pdfx@pdfAE@opts@xetex]{hyperref}
+   \else\ifluatex
+    \expandafter\RequirePackage\expandafter[\pdfx@pdfAE@opts@luatex]{hyperref}
+   \else
+    \expandafter\RequirePackage\expandafter[\pdfx@pdfAE@opts@pdftex]{hyperref}
+   \fi\fi
+  }%
+ \else % generating PDF/A or ...
+  \@ifpackageloaded{hyperref}{%
+   \ifxetex
+    \expandafter\hypersetup\expandafter{\pdfx@pdfAE@opts@xetex}%
+   \else\ifluatex
+    \expandafter\hypersetup\expandafter{\pdfx@pdfAE@opts@luatex}%
+   \else
+    \expandafter\hypersetup\expandafter{\pdfx@pdfAE@opts@pdftex}%
+   \fi\fi
+  }{%
+   \ifxetex
+    \expandafter\RequirePackage\expandafter[\pdfx@pdfAE@opts@xetex]{hyperref}
+   \else\ifluatex
+    \expandafter\RequirePackage\expandafter[\pdfx@pdfAE@opts@luatex]{hyperref}
+   \else
+    \expandafter\RequirePackage\expandafter[\pdfx@pdfAE@opts@pdftex]{hyperref}
+   \fi\fi
+ }%
+\fi\fi
+\hypersetup{pdfencoding=auto}%  unicode
+\expandafter\ifx\csname KV@Hyp@psdextra\endcsname\relax\else
+ \hypersetup{psdextra}
+\fi
+
+%% hyperref doesn't set the minor version for XeTeX
+\ifxetex
+ \special{pdf:minorversion \thepdfminorversion}
+\fi
+
+\ifx\xmp@CreatorTool\@empty
+ \edef\xmp@CreatorTool{\@pdfcreator}
+\fi
+
+\newif\ifpdfx@cmyk
+\newif\ifpdfx@custom
+\ifpdfx@x   %  PDF/X  normally needs a CMYK color profile for printing
+ \global\pdfx@cmyktrue
+\fi
+%%----------------------------------------------------------------------
+%% -----   Color Profiles  -------
+%% Define how to specify the profile, so the default
+%% can be over-ridden in the  .xmpdata  file.
+%%
+%%   --- user-command ---   RGB profile needed with  PDF/A-??
+%% \setRGBcolorprofile{<filename>}{<identifier>}
+%%    {<info string>}{<registry URL>}
+\def\setRGBcolorprofile{%
+ \begingroup
+  \catcode`\_ 11\relax\catcode`\& 11\relax\catcode`\~ 11\relax
+  \catcode`\% 11\relax
+  \edef\({\string\(}\edef\){\string\)}%
+  \pdfx@setrgbprofile}
+%%
+%%  --- user-command ---   CMYK profile needed with  PDF/X-??
+%% \setCMYKcolorprofile{<filename>}{<output intent>}
+%%    {<identifier>}{<registry URL>}
+\def\setCMYKcolorprofile{%
+ \begingroup
+  \catcode`\_ 11\relax\catcode`\& 11\relax\catcode`\~ 11\relax
+  \catcode`\% 11\relax
+  \edef\({\string\(}\edef\){\string\)}%
+  \pdfx@setcmykprofile}
+%%
+%%  --- user-command ---   DeviceGray profile needed with  PDF/E-1
+%% \setGRAYcolorprofile{<filename>}{<output intent>}
+%%    {<identifier>}{<registry URL>}
+\def\setGRAYcolorprofile{%
+ \begingroup
+  \catcode`\_ 11\relax\catcode`\& 11\relax\catcode`\~ 11\relax
+  \catcode`\% 11\relax
+  \edef\({\string\(}\edef\){\string\)}%
+  \pdfx@setgrayprofile}
+%%
+%%  --- user-command ---  External profile with  PDF/X-4p and PDF/X-5pg
+%% \setEXTERNALprofile{<profilename>}{<output intent>}
+%%    {<identifier>}{<registry URL>}{<color-space>}%
+%%    {<ICC Version>}{<provider URL>}{<extra info>}{<Check Sum>}
+\def\setEXTERNALprofile{%
+ \begingroup
+  \catcode`\_ 11\relax\catcode`\& 11\relax\catcode`\~ 11\relax
+  \catcode`\% 11\relax
+  \edef\({\string\(}\edef\){\string\)}%
+  \ifno@iccprofile
+   \expandafter\pdfx@externalprofile
+   \else
+    \expandafter\pdfx@externalprofile@gobble
+   \fi
+  }
+%%
+%%
+\def\pdfx@setRGBcolorprofiledir#1{%
+ \xdef\pdfx@RGBcolorprofiledir{#1}%
+}
+\def\pdfx@setCMYKcolorprofiledir#1{%
+ \xdef\pdfx@CMYKcolorprofiledir{#1}%
+}
+\pdfx@setRGBcolorprofiledir{}
+\pdfx@setCMYKcolorprofiledir{}
+
+%% This does indeed work!  Use it in  .xmpdata  files
+\providecommand{\MacOSColordir}{/System/Library/ColorSync/Profiles/}
+\providecommand{\MacOSLibraryColordir}{/Library/ColorSync/Profiles/}
+\providecommand{\AdobeMacOSdir}%
+  {/Library/Application Support/Adobe/Color/Profiles/Recommended/}
+\edef\pdfx@tmp{C:\string\Windows\string\System32\string\Spool%
+  \string\Drivers\string\Color\string/}
+\expandafter\providecommand\expandafter
+  {\expandafter\WindowsColordir\expandafter}\expandafter{\pdfx@tmp}
+%%\pdfx@setcolorprofiledir{\AdobeMacOSdir}
+
+%% overide that value using the following commands:
+\let\pdfxSetCMYKcolorProfileDir\pdfx@setCMYKcolorprofiledir
+\let\pdfxSetRGBcolorProfileDir\pdfx@setRGBcolorprofiledir
+%%  for back-compatibility
+\let\pdfxSetColorProfileDir\pdfxSetCMYKcolorProfileDir
+%%
+\def\pdfx@setrgbprofile#1#2#3#4{%
+ \xdef\pdfx@rgb@profile{\pdfx@RGBcolorprofiledir#1}%  valid file path/name
+ \xdef\pdfx@rgb@profilename{#1}%  valid file name
+ \gdef\pdfx@rgb@identifier{#2}%
+ \gdef\pdfx@rgb@info{#3}%
+ \pdfstringdef\pdfx@rgb@registry{#4}%  valid URL
+ \endgroup
+ \global\pdfx@cmykfalse
+ }%  closes-off  \setRGBcolorprofile
+%%
+\def\pdfx@setcmykprofile#1#2#3#4{%
+ \xdef\pdfx@cmyk@profile{\pdfx@CMYKcolorprofiledir#1}%  valid file path/name
+ \xdef\pdfx@cmyk@profilename{#1}%  valid file name
+%% \expandafter\gdef\expandafter\pdfx@cmyk@profile\expandafter
+%%    {\pdfx@colorprofiledir#1}%  valid file name
+ \gdef\pdfx@cmyk@intent{#2}%
+%% \pdfstringdef\pdfx@cmyk@intent{#2}%  color intent
+ \gdef\pdfx@cmyk@identifier{#3}%
+%% \pdfstringdef\pdfx@cmyk@identifier{#3}%  text string identifier
+ \gdef\pdfx@cmyk@registry{#4}%
+%% \pdfstringdef\pdfx@cmyk@registry{#4}%  valid URL
+ \endgroup
+ \global\pdfx@cmyktrue
+ }%  closes-off  \setcmykcolorprofile
+%%
+\def\setCUSTOMcolorprofile{%
+ \begingroup
+  \catcode`\_ 11\relax\catcode`\& 11\relax\catcode`\~ 11\relax
+  \catcode`\% 11\relax
+  \edef\({\string\(}\edef\){\string\)}%
+  \pdfx@setcustomprofile
+}
+\def\pdfx@setcustomprofile#1#2#3#4#5#6#7#8{%
+ \xdef\pdfx@customcolorprofiledir{#2}% valid directory location
+ \xdef\pdfx@custom@profile{#1}%  valid file name
+ \gdef\pdfx@custom@identifier{#3}%
+ \gdef\pdfx@custom@registry{#4}%
+ \gdef\pdfx@custom@numcolors{#5}% num-colors specifier
+ \gdef\pdfx@iccversion{#6}%  Hex string for /ICCVersion < ... >
+ \gdef\pdfx@custom@colornames{#7}%
+ \gdef\pdfx@profile@checksum{#8}%  Hex string for /CheckSum < ... >
+\endgroup
+ \global\pdfx@cmykfalse
+ \global\pdfx@customtrue
+ }%  closes-off  \pdfx@setcustomprofile
+%%
+\def\pdfx@setgrayprofile#1#2#3#4{%
+ \gdef\pdfx@gray@profile{#1}%  valid file name
+ \gdef\pdfx@gray@intent{#2}%
+ \gdef\pdfx@gray@identifier{#3}%
+ \pdfstringdef\pdfx@gray@registry{#4}%  valid URL
+ \endgroup}%  closes-off  \setGRAYcolorprofile
+%%
+\def\pdfx@externalprofile#1#2#3#4#5#6#7#8#9{%
+ \gdef\pdfx@extprofile{#1}% PDF string for /ProfileName
+ \gdef\pdfx@cmyk@intent{#2}% PDF string for /OutputCondition
+ \gdef\pdfx@cmyk@identifier{#3}% PDF string for /OutputConditionIdentifier
+ \gdef\pdfx@cmyk@registry{#4}% {http://www.color.org}%
+ \gdef\pdfx@profileCS{#5}%  4 bytes for /ProfileCS
+ \gdef\pdfx@iccversion{#6}%  Hex string for /ICCVersion < ... >
+ \gdef\pdfx@colorURL{#7}%  URL
+ \gdef\pdfx@cmyk@info{#8}%  for /Info
+ \gdef\pdfx@profile@checksum{#9}%  Hex string for /CheckSum < ... >
+ \endgroup}%  closes-off  \setEXTERNALprofile
+\def\pdfx@externalprofile@gobble#1#2#3#4#5#6#7#8#9{%
+  \PackageError{pdfx}{Wrong option for using an External Color profile}%
+   {Use one of the options: x-4p , x-4p08 , x-4p10 or  x-5pg .}%
+ \endgroup}
+%%
+%% default color profiles
+
+{\catcode`\_ 12 \catcode`\& 12 \catcode`\~ 12
+ \gdef\pdfx@xprofile@cmykdefault{coated_FOGRA39L_argl.icc}
+ \gdef\pdfx@aprofile@rgbdefault{sRGB_IEC61966-2-1_black_scaled.icc}
+ \gdef\pdfx@eprofile@graydefault{Gray_linear.icc}
+ \gdef\pdfx@pprofile@externaldefault{FOGRA39}
+}% end of \catcode
+\xdef\pdfx@rgb@profile{\pdfx@aprofile@rgbdefault}
+\xdef\pdfx@cmyk@profile{\pdfx@xprofile@cmykdefault}
+\xdef\pdfx@gray@profile{\pdfx@eprofile@graydefault}
+\xdef\pdfx@external@profile{\pdfx@pprofile@externaldefault}
+
+%%----------------------------------------------------------------------
+%% License for the file  sRGB_IEC61966-2-1_black_scaled.icc :
+%%
+%% Copyright International Color Consortium, 2009  -- http://www.color.org/
+%%
+%% It is hereby acknowledged that the file "sRGB_IEC61966-2-1_black_scaled.icc"
+%% is provided "AS IS" WITH NO EXPRESS OR IMPLIED WARRANTY.
+%%
+%% Licensing
+%%
+%% This profile is made available by the International Color Consortium,
+%% and may be copied, distributed, embedded, made, used, and sold without
+%% restriction. Altered versions of this profile shall have the original
+%% identification and copyright information removed and shall not be
+%% misrepresented as the original profile.
+%%
+%% Terms of use
+%%
+%% To anyone who acknowledges that the file "sRGB_IEC61966-2-1_black_scaled.icc"
+%% is provided "AS IS" WITH NO EXPRESS OR IMPLIED WARRANTY, permission to use,
+%% copy and distribute these file for any purpose is hereby granted without fee,
+%% provided that the file is not changed including the ICC copyright notice tag,
+%% and that the name of ICC shall not be used in advertising or publicity
+%% pertaining to distribution of the software without specific, written prior
+%% permission. ICC makes no representations about the suitability of this
+%% software for any purpose.
+%%
+%%----------------------------------------------------------------------
+
+\newif\ifpdfx@tryoldprofiles
+
+%%  The  colorprofiles package was added to  TeXLive  in October 2018.
+%%  It allows the default Color Profiles to be maintained independent
+%%  of the  pdfx  package.
+%%  In particular  sRGB_IEC61966-2-1_black_scaled.icc  is no longer
+%%  distributed with TeXLive 2018 and later.
+%%  Older versions still have this file.
+%%
+\IfFileExists{colorprofiles.tex}{%
+  \RequirePackage{colorprofiles}[2018/11/01]%
+  \ifx\colorpro@rgb@profile\relax
+    \expandafter\pdfx@tryoldprofilestrue
+   \else
+    \begingroup %%  \endgroup occurs within the macro expansion
+     \pdfx@setrgbprofile{\colorpro@rgb@profile
+     }{\colorpro@rgb@identifier
+     }{\colorpro@rgb@info
+     }{\colorpro@rgb@registry
+     }%
+    \begingroup %%  \endgroup occurs within the macro expansion
+    \pdfx@setcmykprofile{\colorpro@cmyk@profile
+     }{\colorpro@cmyk@intent
+     }{\colorpro@cmyk@identifier
+     }{\colorpro@cmyk@registry
+     }%
+    \expandafter\pdfx@tryoldprofilesfalse
+   \fi
+}{\pdfx@tryoldprofilestrue}
+
+{\catcode`\| 14 \catcode`\% 12 \catcode`\_ 12 \catcode`\: 12
+ \catcode`\. 12 \catcode`\- 12 \catcode`\/ 12
+ \edef\@bchar{\expandafter\@gobble\string\\}|
+ \edef\({\string\(}\edef\){\string\)}|
+\ifpdfx@tryoldprofiles
+ || this will be used by TeXLive installations up to 2017.
+ \begingroup | \endgroup occurs within the macro expansion
+\expandafter\pdfx@setrgbprofile\expandafter
+ {sRGB_IEC61966-2-1_black_scaled.icc}|
+ {sRGB_IEC61966-2-1_black_scaled}|
+ {sRGB IEC61966 v2.1 with black scaling}|
+ {http://www.color.org}|
+ \begingroup | \endgroup occurs within the macro expansion
+\pdfx@setcmykprofile{coated_FOGRA39L_argl.icc}| coated_FOGRA39L_argl.icc
+ {Coated FOGRA39}|
+ {FOGRA39 \string\(ISO Coated v2 300%\space \string\(ECI\string\)\string\)}|
+ {http://www.argyllcms.com/}|{http://www.color.org}|
+\fi  ||  end of   \ifpdfx@tryoldprofiles
+ \begingroup | \endgroup occurs within the macro expansion
+\pdfx@setgrayprofile{Gray_linear.icc}|
+ {}|
+ {Custom}|
+ {http://www.freedesktop.org/wiki/OpenIcc}|
+\ifno@iccprofile
+ \begingroup | \endgroup occurs within the macro expansion
+  \pdfx@externalprofile{Coated FOGRA39 \(ISO 12647-2:2004\)}|
+   {Offset commercial and specialty printing according to ISO 12647-2:2004 |
+    / Amd 1, paper type 1 or 2 \(gloss or matte coated offset, 115 g/m2\), |
+    screen frequency 60/cm.}|
+   {FOGRA39}{http://www.color.org}{CMYK}{02100000}{http://www.adobe.com}|
+   {Coated FOGRA39 \(ISO 12647-2:2004\)}{74FF62F330BF0DBE4495B5720542D511}|
+\fi
+}% end of \catcode
+
+%%
+%%----------------------------------------------------------------------
+%% License for the file  coated_FOGRA39L_argl.icc :
+%%
+%% The zlib/libpng License
+%%
+%% Copyright (c) 2008 Kai-Uwe Behrmann
+%%
+%% This software is provided 'as-is', without any express or implied
+%% warranty. In no event will the authors be held liable for any damages
+%% arising from the use of this software.
+%%
+%% Permission is granted to anyone to use this software for any purpose,
+%% including commercial applications, and to alter it and redistribute
+%% it freely, subject to the following restrictions:
+%%
+%%    1. The origin of this software must not be misrepresented; you
+%%    must not claim that you wrote the original software. If you use
+%%    this software in a product, an acknowledgment in the product
+%%    documentation would be appreciated but is not required.
+%%
+%%    2. Altered source versions must be plainly marked as such, and
+%%    must not be misrepresented as being the original software.
+%%
+%%    3. This notice may not be removed or altered from any source
+%%    distribution.
+%%----------------------------------------------------------------------
+
+\newif\ifexternalICCprofiles
+\newif\ifpdfx@noXMPdata
+
+\begingroup
+%% override unneeded color-profile specifier
+ \ifpdfx@x
+  \ifno@iccprofile %  PDF/X-4p and PDF/X-5pg  PDF/VT-2
+   \begingroup
+    \def\pdfx@extprofiles@store{AdobeExternalProfiles.tex}%
+    \InputIfFileExists{\pdfx@extprofiles@store}%
+     {\global\externalICCprofilestrue \catcode `\# 12\relax}%
+     {\typeout{** pdfx: No file \pdfx@extprofiles@store\space
+       found for PDF/X-4p or PDF/X-5pg}}%
+   \endgroup
+  \else
+   \begingroup
+    \def\pdfx@profiles@store{AdobeColorProfiles.tex}%
+    \InputIfFileExists{\pdfx@profiles@store}%
+     {\global\externalICCprofilesfalse \catcode `\# 12\relax}%
+     {\typeout{** pdfx: No file \pdfx@profiles@store\space
+       found for PDF/X variants}}%
+   \endgroup
+%%   \def\setRGBcolorprofile#1#2#3#4{%
+%%    \PackageError{pdfx}{PDF/X requires a CMYK color profile}%
+%%     {Just continue using the default CMYK profile.^^J}}%
+  \fi
+ \else
+%% load it, in case the macros are used in .xmpdata
+  \InputIfFileExists{AdobeColorProfiles.tex}{}{}%
+  \ifpdfx@e
+  \else
+   \def\setCMYKcolorprofile#1#2#3#4{}%
+   \def\setGRAYcolorprofile#1#2#3#4{}%
+ \fi\fi
+%%
+ \ifluatex\else\ifxetex\else
+  \inputencoding{8bit}%
+ \fi\fi
+ \makeatletter
+ \pdfx@localcommands
+%% Do this in a box, so any stray characters don't get into TeX's lists.
+\setbox0\hbox{%
+ \InputIfFileExists{\jobname.xmpdata}%
+  {\typeout{** pdfx: Metadata file \jobname.xmpdata  read successfully.}}%
+  {\typeout{** pdfx: No file  \jobname.xmpdata .
+    Metadata will be incomplete!}\aftergroup\pdfx@noXMPdatatrue}}
+\endgroup
+%% ----------------------------------------------------------------------
+
+\def\pdfx@LanguageSpec{}
+\def\pdfx@mainLanguage{en-US}%  absolute default
+\def\pdfx@checkfor@sep#1#2\sep#3\pdfx@endparse{\def#1{#2}}
+\ifx\@empty\xmp@Language\else
+ \expandafter\pdfx@checkfor@sep\expandafter\pdfx@mainLanguage\xmp@Language
+  \sep\pdfx@endparse
+\fi
+\edef\pdfx@LanguageSpec{/Lang (\pdfx@mainLanguage)}
+
+%% ----------------------------------------------------------------------
+\begingroup
+ \catcode`\_ 12 \catcode`\" 12 \catcode`\' 12
+ \catcode`\< 12 \catcode`\> 12 \catcode`\/ 12 \catcode`\[ 12 \catcode`\] 12
+ \edef\@pctchar{\expandafter\@gobble\string\%}
+ \edef\@bchar{\expandafter\@gobble\string\\}
+ \edef\0{\string\0}
+ \edef\({\string\(}
+ \edef\){\string\)}
+%%
+ \def\pdfx@outcatalog@dict{%
+  \pdfx@LanguageSpec
+  /ViewerPreferences <</DisplayDocTitle true >>
+  /OutputIntents \pdfx@outintents % needs appropriate expansion
+ }%
+\ifpdfx@x   %  PDF/X  needs a CMYK or RGB color profile for printing
+ \ifno@iccprofile %  PDF/X-4p and PDF/X-5pg
+%%
+%% URL and metadata for the desired external Color Profile
+%%
+  \edef\pdfx@colorURL@dict{<</FS/URL/F(\pdfx@colorURL)>>}
+  \def\pdfx@colorprofile@dict{<< %
+     /CheckSum <\pdfx@profile@checksum>^^J%
+     /ICCVersion <\pdfx@iccversion>%
+     /ProfileCS (\pdfx@profileCS)^^J%
+     /ProfileName (\pdfx@extprofile)^^J%
+     /URLs [\OBJ@URLs] >>
+  }
+%% How to specify the PDF objects with different drivers
+  \ifxetex
+   \def\OBJ@URLs{ @colorURL }%
+   \def\OBJ@ICC{ @colorprofile }%
+   \immediate\special{pdf:obj \OBJ@URLs \pdfx@colorURL@dict }%
+   \immediate\special{pdf:obj \OBJ@ICC \pdfx@colorprofile@dict }%
+  \else %  pdfTeX & LuaTeX
+   \immediate\pdfobj{\pdfx@colorURL@dict}%
+   \edef\OBJ@URLs{\the\pdflastobj\space 0 R}%
+   \immediate\pdfobj{\pdfx@colorprofile@dict}%
+   \edef\OBJ@ICC{\the\pdflastobj\space 0 R}%
+  \fi
+%%  Output Intent dictionary, with object reference
+  \edef\pdfx@outintent@dict{%
+    /Type/OutputIntent
+    /S/GTS_PDFX^^J
+    /OutputCondition (\pdfx@cmyk@intent)^^J
+    /OutputConditionIdentifier (\pdfx@cmyk@identifier)^^J
+    /Info(\pdfx@cmyk@intent)^^J
+    /RegistryName(\pdfx@cmyk@registry)^^J
+%% extra dictionary required for  PDF/X-4p and PDF/X-5pg
+    /DestOutputProfileRef \OBJ@ICC
+  }%
+%%
+ \else  %  PDF/X-1 , PDF/X-1a , PDF/X-3 , PDF/X-4 , PDF/X-5g
+%%
+  \ifpdfx@cmyk
+   \IfFileExists{"\pdfx@cmyk@profile"}{%
+  %  embedded CMYK color profile
+  %%
+  %%  Output Intent dictionary, with object reference
+  \def\pdfx@outintent@dict{%
+    /Type/OutputIntent
+    /S/GTS_PDFX^^J
+    /OutputCondition (\pdfx@cmyk@intent)^^J
+    /OutputConditionIdentifier (\pdfx@cmyk@identifier)^^J
+    /Info(\pdfx@cmyk@intent)^^J
+    /RegistryName(\pdfx@cmyk@registry)
+    /DestOutputProfile \OBJ@CMYK
+   }%
+  \def\pdfx@numcoords{/N 4}%
+%%
+  \ifxetex
+   \def\OBJ@CMYK{@colorprofile}%
+   \immediate\special{%
+     pdf:fstream \OBJ@CMYK (\pdfx@cmyk@profile) <<\pdfx@numcoords >>}%
+  \else % pdfTeX
+   \immediate\pdfobj stream attr{\pdfx@numcoords} file {\pdfx@cmyk@profile}%
+   \edef\OBJ@CMYK{\the\pdflastobj\space 0 R}%
+  \fi
+  \pdfcatalog{%
+   \pdfx@LanguageSpec
+   /OutputIntents [ <<
+   /Type/OutputIntent
+   /S/GTS_PDFX
+   /OutputCondition (\pdfx@cmyk@intent)%
+   /OutputConditionIdentifier (\pdfx@cmyk@identifier)%
+   /Info(\pdfx@cmyk@intent)%
+   /RegistryName(\pdfx@cmyk@registry)
+   /DestOutputProfile \OBJ@CMYK
+   >> ]}%
+  }{%
+   \PackageError{pdfx}{No color profile \pdfx@cmyk@profilename\space found
+     to use for CMYK printing colors.}%
+     {Is this the correct directory: \pdfx@CMYKcolorprofiledir\space  ?}%
+  }% end of \IfFileExists for CMYK
+  \else\ifpdfx@custom
+%%  allow Custom profile with PDF/X-5n
+   \IfFileExists{"\pdfx@customcolorprofiledir\pdfx@custom@profile"}{%
+%%  embedded Custom color profile
+%%
+  %%  Output Intent dictionary, with object reference
+  \def\pdfx@outintent@dict{%
+    /Type/OutputIntent
+    /S/GTS_PDFX^^J
+    /OutputConditionIdentifier (Custom)^^J
+    /OutputCondition (\pdfx@custom@identifier)^^J
+    /Info(\pdfx@custom@profile)^^J
+    /RegistryName(\pdfx@custom@registry)
+    /Registry(\pdfx@custom@registry)
+    /DestOutputProfileRef \OBJ@CustomDir
+   }%
+ \def\OBJ@CustomDir{<<
+   \pdfx@numcoords^^J
+    /URLs [ << /Type /Filespec ^^J/EF \OBJ@CustomFile^^J
+     /F (\pdfx@custom@profile) /UF (\pdfx@custom@profile)  >>]^^J
+    >>}
+%% need more attributes:
+  \def\pdfx@numcoords{%
+    /CheckSum <\pdfx@profile@checksum>^^J%
+    /ICCVersion <\pdfx@iccversion>%
+    /ProfileName (\pdfx@custom@profile)^^J%
+    /ProfileCS (\pdfx@custom@numcolors)^^J%
+    /ColorantTable [\pdfx@custom@colornames]
+   }%
+  \def\pdfx@custom@filespec{%
+      /Type /EmbeddedFile >>^^J
+      /Subtype (application/vnd.iccprofile )
+  }%
+%%
+  \ifxetex
+   \def\OBJ@CustomFile{@colorprofile}%
+   \immediate\special{pdf:fstream \OBJ@CustomFile
+     (\pdfx@customcolorprofiledir\pdfx@custom@profile) <<\pdfx@custom@filespec >>}%
+  \else % pdfTeX
+   \immediate\pdfobj stream attr{\pdfx@custom@filespec} file %
+     {\pdfx@customcolorprofiledir\pdfx@custom@profile}%
+   \edef\OBJ@CustomFile{\the\pdflastobj\space 0 R}%
+  \fi
+  \pdfcatalog{%
+   \pdfx@LanguageSpec
+   /OutputIntents [ << \pdfx@outintent@dict >>]}%
+  }{%
+    \PackageError{pdfx}%
+     {No color profile \pdfx@custom@profile\space found to use for Custom printing colors.}%
+     {Is this the correct directory: \pdfx@customcolorprofiledir\space  ?}%
+  }% end of \IfFileExists for Custom
+  \global\pdfx@cmyktrue  % for TeX coloring
+%%
+  \else  % allow RGB profile with PDF/X   ???
+   \ifpdfx@noerr
+    \PackageWarning{pdfx}{PDF/X normally requires a CMYK color profile.^^J
+      Assuming RGB profile is of type 'prtr' not 'mntr'.^^J^^J}%
+   \else
+    \PackageError{pdfx}{PDF/X normally requires a CMYK color profile.}%
+      {To use RGB ensure profile is of type 'prtr' not 'mntr'.^^J^^J}%
+   \fi
+   %  embedded RGB color profile
+   %%
+   %%  Output Intent dictionary, with object reference
+   \def\pdfx@outintent@dict{%
+     /Type /OutputIntent
+     /S/GTS_PDFX^^J
+     /OutputConditionIdentifier (\pdfx@rgb@identifier)^^J
+     /DestOutputProfile \OBJ@RGB^^J
+     /Info(\pdfx@rgb@info)^^J
+     /RegistryName(\pdfx@rgb@registry)
+   }%
+   \IfFileExists{"\pdfx@rgb@profile"}{%
+    \def\pdfx@numcoords{/N 3 /Alternate/DeviceRGB}
+    \ifxetex
+     \immediate\special{%
+      pdf:fstream @colorprofile (\pdfx@rgb@profile) << \pdfx@numcoords >>}
+     \def\OBJ@RGB{@colorprofile}%
+    \else
+     \immediate\pdfobj stream attr{\pdfx@numcoords} file{\pdfx@rgb@profile}%
+     \edef\OBJ@RGB{\the\pdflastobj\space 0 R}%
+    \fi
+    \edef\pdfx@outintent@dict{%
+      /Type /OutputIntent
+      /S/GTS_PDFX
+      /OutputConditionIdentifier (\pdfx@rgb@identifier)%
+      /DestOutputProfile \OBJ@RGB
+      /Info(\pdfx@rgb@info)
+      /RegistryName(\pdfx@rgb@registry)
+    }%
+    \ifxetex
+     \def\OBJ@RGB{ @colorprofile }%
+     \immediate\special{%
+       pdf:fstream @colorprofile (\pdfx@rgb@profile) <<\pdfx@numcoords >>}
+    \else  %%     pdfTeX or LuaTeX
+      \immediate\pdfobj stream attr{\pdfx@numcoords} file{\pdfx@rgb@profile}%
+      \edef\OBJ@RGB{\the\pdflastobj\space 0 R}%
+     \fi
+   }{%
+    \PackageError{pdfx}%
+     {No color profile \pdfx@rgb@profilename\space found to use for RGB screen colors.}%
+     {Is this the correct directory: \pdfx@RGBcolorprofiledir\space  ?}%
+   }% end of \IfFileExists for RGB
+   \fi % end of \ifpdfx@custom
+  \fi % end of \ifpdfx@cmyk
+ \fi % end of  \ifno@iccprofile
+%%  end of PDF/X
+\else
+%%  PDF/A and PDF/E  can specify a CMYK profile
+ \expandafter\ifx\expandafter\relax\pdfx@rgb@profile\relax
+  \global\pdfx@cmyktrue
+  \IfFileExists{"\pdfx@cmyk@profile"}{%
+   \def\pdfx@numcoords{/N 4}
+  %  embedded CMYK color profile
+   \ifxetex
+    \def\OBJ@CMYK{@colorprofile}%
+    \special{pdf:fstream @colorprofile (\pdfx@cmyk@profile) <<\pdfx@numcoords >>}
+   \else  %% pdfTeX or LuaTeX
+    \immediate\pdfobj stream attr{\pdfx@numcoords} file{\pdfx@cmyk@profile}%
+    \edef\OBJ@CMYK{\the\pdflastobj\space 0 R}%
+   \fi
+   \edef\pdfx@outintent@dict{%
+     /Type /OutputIntent
+    \ifpdfx@e
+     /S/ISO_PDFE1
+    \else
+     /S/GTS_PDFA1
+    \fi
+    /OutputCondition (\pdfx@cmyk@intent)%  use this or  /Info ?
+    /OutputConditionIdentifier (\pdfx@cmyk@identifier)%
+    /DestOutputProfile \OBJ@CMYK
+    /Info(\pdfx@cmyk@intent)%
+    /RegistryName(\pdfx@cmyk@registry)
+  }%
+ }{%
+   \PackageError{pdfx}{No color profile \pdfx@cmyk@profilename\space found
+     to use for CMYK printing colors.}%
+     {Is this the correct directory: \pdfx@CMYKcolorprofiledir\space  ?}%
+ }% end of \IfFileExists for CMYK
+ \else
+%%  PDF/A and PDF/E  usually need an RGB color profile for on-screen rendering
+ \global\pdfx@cmykfalse
+  \expandafter\IfFileExists\expandafter{\pdfx@rgb@profile}{%
+   \def\pdfx@numcoords{/N 3 /Alternate/DeviceRGB}
+  \ifxetex
+    \def\OBJ@RGB{ @colorprofile }%
+    \immediate\special{pdf:fstream @colorprofile (\pdfx@rgb@profile) <<\pdfx@numcoords >>}
+  \else
+    \immediate\pdfobj stream attr{\pdfx@numcoords} file{\pdfx@rgb@profile}%
+    \edef\OBJ@RGB{\the\pdflastobj\space 0 R}%
+  \fi
+  \edef\pdfx@outintent@dict{%
+    /Type /OutputIntent
+   \ifpdfx@e
+    /S/ISO_PDFE1
+   \else
+    /S/GTS_PDFA1
+   \fi
+    /OutputConditionIdentifier (\pdfx@rgb@identifier)%
+    /DestOutputProfile \OBJ@RGB
+    /Info(\pdfx@rgb@info)
+    /RegistryName(\pdfx@rgb@registry)
+  }%
+ }{%
+   \PackageError{pdfx}%
+    {No color profile \pdfx@rgb@profilename\space found to use for RGB screen colors.}%
+    {Is this the correct directory: \pdfx@RGBcolorprofiledir\space  ?}%
+ }% end of \IfFileExists for RGB
+ \fi % end of ifx  for PDF/A or PDF/E
+\fi % end of  ifpdfx@x
+%%
+ \expandafter\ifx\csname pdfx@outintent@dict\endcsname\relax
+ \else
+%%
+%% build the OutputIntent array
+%%
+  \ifxetex
+   \def\pdfx@outintents{ @outintentsarray }%
+   \def\pdfx@outintentref{ @outintent@dict }%
+   \immediate\special{pdf:obj \pdfx@outintentref << \pdfx@outintent@dict >>}
+   \immediate\special{pdf:obj \pdfx@outintents [ ]}%
+   \immediate\special{pdf:put \pdfx@outintents \pdfx@outintentref }%
+  \else
+   \immediate\pdfobj{<<\pdfx@outintent@dict>>}%
+   \edef\pdfx@outintents{[\the\pdflastobj\space 0 R]}%
+  \fi
+%%
+%% make the Catalog entry, if not already done
+%%
+  \ifx\pdfx@outcatalog@dict\relax
+  \else
+   \pdfcatalog{\pdfx@outcatalog@dict}%
+  \fi
+\fi  % end of  OutputIntent array and Catalog entry
+\endgroup
+
+%% ----------------------------------------------------------------------
+%% Make a version of \xmp@Keywords and \xmp@Author where \sep has been
+%% replaced by a comma. The first is for the pdf:Keywords property,
+%% which accepts a comma-separated string of keywords, and seems to be
+%% mandatory for PDF/A-1 compliance. The second is for the dc:creator
+%% property. Although it is defined to be a sequence of authors, Adobe
+%% Acrobat will in fact ignore and delete all except the first author.
+%% Therefore, it's safer to always separate authors by commas.
+
+\begingroup
+ \let\pdfx@xmpunimarkup\relax
+ \pdfx@xmpmarkup
+ \ifluatex\else\ifxetex\else
+  \inputencoding{8bit}%
+ \fi\fi
+ \makeatletter
+ \IfFileExists{\pdfx@encodingfile}{%
+  \def\cf@encoding{L8U}\fontencoding{L8U}%
+ }{}%
+ \let\protect\@typeset@protect
+ \pdfx@xmpmarkup %%  !!!!! no longer needed
+%% \xdef\xmp@@Author{\xmp@Author}% no need to expand
+ \global\let\xmp@@Author\xmp@Author
+ \def\sep{; }%  expand to replace \sep   !!!  no longer needed
+%% \xdef\xmp@@Copyright{\xmp@Copyright}%
+ \global\let\xmp@@Copyright\xmp@Copyright
+%% \xdef\xmp@@Keywords{\xmp@Keywords}%
+%% \global\let\xmp@@Keywords\xmp@Keywords
+%% \global\let\xmp@Keywords\@empty %
+ \global\let\xmp@@Keywords\@empty % don't use  pdf:Keywords
+\endgroup
+
+%% ----------------------------------------------------------------------
+\def\xmp@convertDate{\pdfx@getYear}
+{\catcode`\D=12 \catcode`\:=12
+ \gdef\pdfx@getYear D:#1#2#3#4{\edef\pdfx@xYear{#1#2#3#4}\pdfx@getMonth}
+}
+\def\pdfx@getMonth#1#2{\edef\pdfx@xMonth{#1#2}\pdfx@getDay}
+\def\pdfx@getDay#1#2{\edef\pdfx@xDay{#1#2}\pdfx@getHour}
+\def\pdfx@getHour#1#2{\edef\pdfx@xHour{#1#2}\pdfx@getMin}
+\def\pdfx@getMin#1#2{\edef\pdfx@xMin{#1#2}\pdfx@getSec}
+\def\pdfx@getSec#1#2{\edef\pdfx@xSec{#1#2}\pdfx@getTZh}
+\def\pdfx@getTZh{\futurelet\pdfx@next\pdfx@getTzh@branches}
+
+{\catcode`\@=11 \catcode`\Z=12 \catcode`\+=12 \catcode`\-=12
+\gdef\pdfx@getTzh@branches{%
+ \ifx\pdfx@next Z\let\pdfx@getTzbranch\pdfx@getTznozone
+ \else\ifx\pdfx@next +\let\pdfx@getTzbranch\pdfx@getTzplus
+ \else\ifx\pdfx@next -\let\pdfx@getTzbranch\pdfx@getTzminus
+ \else\let\pdfx@getTzbranch\pdfx@getTzerror
+ \fi\fi\fi \pdfx@getTzbranch }
+
+\catcode`\0=12
+\gdef\pdfx@getTznozone Z#1\pdfx@getTzend{%
+ \edef\pdfx@xTzh{+00}\edef\pdfx@xTzm{00}}
+\gdef\pdfx@getTzplus +#1'#2'#3\pdfx@getTzend{%
+ \edef\pdfx@xTzh{+#1}\edef\pdfx@xTzm{#2}%
+ \ifx\relax#2\relax\def\pdfx@xTzm{00}\fi}
+\gdef\pdfx@getTzminus -#1'#2'#3\pdfx@getTzend{%
+ \edef\pdfx@xTzh{-#1}\edef\pdfx@xTzm{#2}%
+ \ifx\relax#2\relax\def\pdfx@xTzm{00}\fi}
+%%
+%% How to support XeTeX here ?
+\expandafter\ifx\csname pdfcreationdate\endcsname\relax
+%% \xdef\pdfx@convDate{2016-04-01}%  April fool!
+%% \xdef\xmp@convDate{2016-04-01}%  April fool!
+\else
+ \expandafter\expandafter\expandafter\xmp@convertDate\pdfcreationdate''\pdfx@getTzend
+ \xdef\pdfx@convDate{\pdfx@xYear\pdfx@xMonth\pdfx@xDay\pdfx@xHour
+  \pdfx@xMin\pdfx@xSec\pdfx@xTzh'\pdfx@xTzm'}%
+ \xdef\xmp@convDate{\pdfx@xYear-\pdfx@xMonth-\pdfx@xDay
+  T\pdfx@xHour:\pdfx@xMin:\pdfx@xSec\pdfx@xTzh:\pdfx@xTzm}%
+\fi
+}% end of \catcode
+
+%% ----------------------------------------------------------------------
+%% \pdfx@topdfstring\toka\tokb: Convert the string in \tokb to a format
+%% appropriate for PDF /Info strings, i.e., PDFDoc encoding or UTF-16
+%% encoding, and store the result in \toka As a special case, if \tokb
+%% is \@empty, set \toka to \@empty.
+
+\def\pdfx@topdfstring#1#2{%
+ \ifx#2\@empty
+  \global\let#1\empty
+ \else
+  \begingroup
+   \ifluatex\else\ifxetex\else
+    \inputencoding{utf8}%
+   \fi\fi
+   \hypersetup{pdfencoding=auto}%
+   \pdfstringdef#1{#2}%
+  \endgroup
+ \fi
+}
+
+%% ----------------------------------------------------------------------
+%% if high-bit characters are already encoded as active
+%% then  \pdfstringdef  probably changes their meaning
+%% so save these for later reversion.
+%%
+\newif\ifpdf@activechars
+{\ifnum\catcode`^^c0 = 13\relax \aftergroup\pdf@activecharstrue\fi}%
+%%
+%% normally not used with XeTeX or LuaTeX
+%%
+
+\ifpdf@activechars
+ \global\let\pdfx@save@co ^^c0\relax
+ \global\let\pdfx@save@ci ^^c1\relax
+ \global\let\pdfx@save@cii ^^c2\relax
+ \global\let\pdfx@save@ciii ^^c3\relax
+ \global\let\pdfx@save@civ ^^c4\relax
+ \global\let\pdfx@save@cv ^^c5\relax
+ \global\let\pdfx@save@cvi ^^c6\relax
+ \global\let\pdfx@save@cvii ^^c7\relax
+ \global\let\pdfx@save@cviii ^^c8\relax
+ \global\let\pdfx@save@cix ^^c9\relax
+ \global\let\pdfx@save@ca ^^ca\relax
+ \global\let\pdfx@save@cb ^^cb\relax
+ \global\let\pdfx@save@cc ^^cc\relax
+ \global\let\pdfx@save@cd ^^cd\relax
+ \global\let\pdfx@save@ce ^^ce\relax
+ \global\let\pdfx@save@cf ^^cf\relax
+ \global\let\pdfx@save@do ^^d0\relax
+ \global\let\pdfx@save@di ^^d1\relax
+ \global\let\pdfx@save@dii ^^d2\relax
+ \global\let\pdfx@save@diii ^^d3\relax
+ \global\let\pdfx@save@div ^^d4\relax
+ \global\let\pdfx@save@dv ^^d5\relax
+ \global\let\pdfx@save@dvi ^^d6\relax
+ \global\let\pdfx@save@dvii ^^d7\relax
+ \global\let\pdfx@save@dviii ^^d8\relax
+ \global\let\pdfx@save@dix ^^d9\relax
+ \global\let\pdfx@save@da ^^da\relax
+ \global\let\pdfx@save@db ^^db\relax
+ \global\let\pdfx@save@dc ^^dc\relax
+ \global\let\pdfx@save@dd ^^dd\relax
+ \global\let\pdfx@save@de ^^de\relax
+ \global\let\pdfx@save@df ^^df\relax
+ \global\let\pdfx@save@eo ^^e0\relax
+ \global\let\pdfx@save@ei ^^e1\relax
+ \global\let\pdfx@save@eii ^^e2\relax
+ \global\let\pdfx@save@eiii ^^e3\relax
+ \global\let\pdfx@save@eiv ^^e4\relax
+ \global\let\pdfx@save@ev ^^e5\relax
+ \global\let\pdfx@save@evi ^^e6\relax
+ \global\let\pdfx@save@evii ^^e7\relax
+ \global\let\pdfx@save@eviii ^^e8\relax
+ \global\let\pdfx@save@eix ^^e9\relax
+ \global\let\pdfx@save@ea ^^ea\relax
+ \global\let\pdfx@save@eb ^^eb\relax
+ \global\let\pdfx@save@ec ^^ec\relax
+ \global\let\pdfx@save@ed ^^ed\relax
+ \global\let\pdfx@save@ee ^^ee\relax
+ \global\let\pdfx@save@ef ^^ef\relax
+ \global\let\pdfx@save@fo ^^f0\relax
+ \global\let\pdfx@save@fi ^^f1\relax
+ \global\let\pdfx@save@fii ^^f2\relax
+ \global\let\pdfx@save@fiii ^^f3\relax
+\fi
+
+%% ----------------------------------------------------------------------
+%% detect when \sep is used for multiple authors
+%% then suppress the /Author field in PDF /Info
+\newif\ifpdfx@sep@infield@
+\let\pdfx@endparse\relax
+\def\pdfx@parseforsep#1\sep#2\pdfx@endparse{%
+ \pdfx@sep@infield@false
+ \ifx\relax#2\relax\else\pdfx@sep@infield@true\fi
+}
+
+\begingroup
+ \let\CATCODE\catcode
+ \let\ENDGROUP\endgroup
+ \let\GDEF\gdef
+ \CATCODE`\m 12 \CATCODE`\a 12 \CATCODE`\c 12 \CATCODE`\r 12 \CATCODE`\o 12
+ \CATCODE`\: 12 \CATCODE`\- 12 \CATCODE`\> 12
+ \GDEF\pdfx@DOSTRIP@MACRO macro:->#1\@{#1}%
+\ENDGROUP
+\def\pdfx@strip@macro#1{%
+  \expandafter\edef\expandafter#1\expandafter{%
+    \expandafter\pdfx@DOSTRIP@MACRO\meaning#1\@}%
+}
+
+%% Convert the relevant XMP properties to PDF strings, expanding markup
+%% (such as \sep, \&, \copyright, etc) in an appropriate way.
+%% These PDF strings are actually not always necessary, but if supplied they
+%% must match exactly what is in the XMP version. This may be impossible
+%% if math symbols are used; e.g. Plane-1 alphanumerics.
+%% Generally, it is better to *not* provide PDF-info strings;
+%% instead just providing metadata through XMP.
+%% This is not always enough — a driver may add it by default!
+%%
+%% But some PDF readers don't support XMP, so it is nice to have
+%%  /Info fields, when this can be done reliably.
+%%
+\begingroup
+ \RequirePackage{stringenc}%
+ \expandafter\ifx\csname pdf@escapehex\endcsname\relax
+  \PackageWarning{pdfx}{%
+   Missing an implementation of \string\pdf@escapehex ^^J
+   Translated Metadata cannot be generated as PDF strings.^^J}%
+  \def\pdfx@GeneratePdfString#1#2{}%
+  \def\pdfx@ConvertUTFtoBE#1#2{}%
+ \else
+  \def\pdfx@GeneratePdfString#1#2{%
+   % converts a UTF-8 string to UTF-16be
+   \StringEncodingConvert{#1}{#2}{utf8}{utf16be}%
+   \xdef#1{\string\376\string\377\pdfescapestring{#1}}%
+  }%
+  \def\pdfx@ConvertUTFtoBE#1#2{%
+   \setbox0=\hbox{% catch any rubbish escaping to the MVL
+    \def\cf@encoding{L8U}\fontencoding{L8U}%
+    \ifluatex
+     \let\pdfescapestring\luaescapestring
+    \else\ifxetex\else
+     \inputencoding{8bit}%
+    \fi\fi
+%%    \pdfx@xmpmarkup %% don't want some things
+    \pdfx@xmpunimarkup
+    \let\backslash\textbackslash
+    \edef\pdfx@temp{#2}% ensure XMP expands to UTF8
+    \pdfx@GeneratePdfString{#1}{\pdfx@temp}%
+   }%
+  }%
+ \fi
+ \pdfx@pdfmarkup
+ \global\let\pdfx@pdfAuthor\@empty
+ \global\let\pdfx@pdfTitle\@empty
+ \global\let\pdfx@pdfSubject\@empty
+ \global\let\pdfx@pdfKeywords\@empty
+ \ifpdfx@nopdfinfo  %  transliterated strings present
+%% RRM: this may still work with parser macros   ???
+ \ifluatex
+  %%  \pdf@escapehex   gets it wrong!!
+  %%   Is there a better way ?
+ \else
+  \pdfx@ConvertUTFtoBE\pdfx@pdfTitle\xmp@Title
+  \pdfx@ConvertUTFtoBE\pdfx@pdfSubject\xmp@Subject
+ \fi
+\else
+  \pdfx@topdfstring\pdfx@pdfTitle\xmp@Title
+  \ifpdfx@e\else\ifpdfx@x\else
+   \pdfx@topdfstring\pdfx@pdfSubject\xmp@Subject
+  \fi\fi
+ \fi
+ \pdfx@topdfstring\pdfx@CreatorTool\xmp@CreatorTool
+ \pdfx@topdfstring\pdfx@Producer\xmp@Producer
+%%  \pdfescapestring  needed
+ \expandafter\ifx\csname pdfescapestring\endcsname\relax
+  \else
+    \expandafter\ifx\expandafter\relax\xmp@Author\relax
+    \else
+%%  check for multiple authors with parser macro
+     \expandafter\pdfx@parseforsep\xmp@Author\sep\pdfx@endparse
+     \ifpdfx@sep@infield@
+     \else
+      \pdfx@ConvertUTFtoBE{\pdfx@pdfAuthor}{\xmp@Author}%
+     \fi %% end of  \ifpdfx@sep@infield@
+    \fi  %%  end of  \xmp@Author  test
+    \expandafter\ifx\expandafter\relax\xmp@Keywords\relax
+    \else
+%%  check for multiple keywords with parser macro
+     \expandafter\pdfx@parseforsep\xmp@Keywords\sep\pdfx@endparse
+     \ifpdfx@sep@infield@\else
+      \ifluatex\else
+      \pdfx@ConvertUTFtoBE{\pdfx@pdfKeywords}{\xmp@Keywords}%
+     \fi
+     \fi %% end of  \ifpdfx@sep@infield@
+    \fi  %%  end of  \xmp@Keywords  test
+%%
+  \fi  %%  end of \pdfescapestring  test
+\endgroup
+
+%% Affects CMap creation for certain fonts, according to glyph names
+%%  How to support XeTeX here ?
+%%  Maybe it's best to be using an updated  mmap.sty  ?
+\ifxetex
+\else
+ \input glyphtounicode.tex
+ \input glyphtounicode-cmr.tex
+ \input glyphtounicode-ntx.tex
+ \pdfgentounicode=1
+\fi
+\ifgrkLGRxmp
+ \ifxetex\else
+  \pdfglyphtounicode{internalchar2}{200D}%
+\fi \fi
+
+%% patch to place accents *after* the base character, rather than before
+%%  based on coding from  mmap.sty  by RRM
+\newif\ifPDFX@inaccent
+\let\LTX@add@accent\add@accent
+\def\PDFX@add@accent#1#2{%
+ \hmode@bgroup
+  \let \hmode@start@before@group \@firstofone
+  \setbox\@tempboxa\hbox{\PDFX@inaccenttrue
+   #2\global\mathchardef\accent@spacefactor\spacefactor}%
+  #2\kern-\wd\@tempboxa
+%%  \ifdim\ht\@tempboxa>1ex\relax
+   \dimen@=\ht\@tempboxa\advance\dimen@-1ex\relax
+%%% reduce how much a nested accent is raised
+   \ifPDFX@inaccent\advance\dimen@-.2ex\relax\fi
+   \raise\dimen@\hbox to\wd\@tempboxa{\hss
+    \accent#1{\vphantom{#2}}\hss}%
+%%  \else
+%%  \accent#1{%\vphantom{#2}
+%%   \vrule width\z@ height\ht\@tempboxa depth\dp\@tempboxa}%
+%% \fi
+ \egroup
+ \spacefactor\accent@spacefactor
+}
+
+%% How to support XeTeX here ?
+%%%%%  adjust accent characters to the Unicode Combining variant  %%%%
+\def\PDFX@combiningchars@unicode{%
+ \pdfglyphtounicode{grave}{0300}%
+ \pdfglyphtounicode{acute}{0301}%
+ \pdfglyphtounicode{circumflex}{0302}%
+ \pdfglyphtounicode{tilde}{0303}%
+ \pdfglyphtounicode{macron}{0304}%
+ \pdfglyphtounicode{Macronsmall}{0304}%
+ \pdfglyphtounicode{breve}{0306}%
+ \pdfglyphtounicode{dotaccent}{0307}%
+ \pdfglyphtounicode{Dotaccent}{0307}%
+ \pdfglyphtounicode{Dotaccentsmall}{0307}%
+ \pdfglyphtounicode{dieresis}{0308}%
+ \pdfglyphtounicode{ogonek}{0309}%
+ \pdfglyphtounicode{ring}{030A}%
+ \pdfglyphtounicode{hungarumlaut}{030B}%
+ \pdfglyphtounicode{caron}{030C}%
+ \pdfglyphtounicode{cedilla}{0327}%
+ \pdfglyphtounicode{commaaccent}{0326}%   droid
+ %  tie accents in  berenisadf  lm  stix  and others
+ \pdfglyphtounicode{tieaccentlowercase}{0311}%
+ \pdfglyphtounicode{tieaccentcapital}{0361}%
+ \pdfglyphtounicode{newtieaccentlowercase}{0311}%
+ \pdfglyphtounicode{newtieaccentcapital}{0361}%
+ % cm-unicode
+ \pdfglyphtounicode{space_uni030D}{030D}%
+ \pdfglyphtounicode{space_uni030E}{030E}%
+ \pdfglyphtounicode{space_uni030F}{030F}%
+ \pdfglyphtounicode{space_uni0311}{0311}%
+ \pdfglyphtounicode{space_uni0321}{0321}%
+ \pdfglyphtounicode{space_uni0322}{0322}%
+ \pdfglyphtounicode{space_uni032A}{032A}%
+ \pdfglyphtounicode{space_uni032B}{032B}%
+ \pdfglyphtounicode{space_uni0335}{0335}%
+ \pdfglyphtounicode{space_uni0337}{0337}%
+ \pdfglyphtounicode{space_uni033A}{033A}%
+ \pdfglyphtounicode{space_uni033B}{033B}%
+ \pdfglyphtounicode{space_uni033C}{033C}%
+ \pdfglyphtounicode{space_uni034D}{034D}%
+}
+
+\AtBeginDocument{%
+ \ifx\add@accent\LTX@add@accent
+  \let\add@accent\PDFX@add@accent
+ \else
+  \expandafter\ifx\csname MT@orig@add@accent\endcsname\relax
+  \TPDF@error{another package has already patched \string\add@accent }%
+  \else
+   \expandafter\let\csname MT@orig@add@accent\endcsname\PDFX@add@accent
+ \fi\fi
+ \ifxetex
+ \else
+  \PDFX@combiningchars@unicode
+  \@ifpackageloaded{newtxmath}{%
+    \pdfglyphtounicode{vec}{20D7}%
+    \pdfglyphtounicode{rvec}{20D6}%
+    \pdfglyphtounicode{lrvec}{20E1}%
+   }{}%
+  \fi %  end of   \ifxetex
+}
+
+%%  suppress hyperlinks when generating  PDF/X
+\def\pdfx@linkfile@pdfX#1#2#3{%
+ \Hy@colorlink\@filecolor#1\Hy@xspace@end}
+\def\pdfx@linkstart@pdfX#1#2#3{%
+ \Hy@colorlink\@linkcolor#3\endgroup\Hy@xspace@end}
+\def\pdfx@linkurl@pdfX#1#2{%
+ \Hy@colorlink\@urlcolor#1\endgroup\Hy@xspace@end}
+\def\pdfx@StartlinkName@pdfX#1#2{}
+\def\pdfx@close@pdflink{\Hy@VerboseLinkStop\Hy@endcolorlink}%
+\def\pdfx@Acrobatmenu@noaction#1#2{#2}
+
+\ifpdfx@x
+ \let\hyper@linkfile\pdfx@linkfile@pdfX
+ \let\hyper@linkurl\pdfx@linkurl@pdfX
+ \let\hyper@linkstart\pdfx@linkstart@pdfX
+ \let\hyper@linkend\relax
+ \let\Hy@StartlinkName\pdfx@StartlinkName@pdfX
+ \let\close@pdflink\pdfx@close@pdflink
+ \let\AcrobatMenu\pdfx@Acrobatmenu@noaction
+ \Hy@bookmarksfalse
+%% {\def\sep{;}% should not be needed, but just in case
+  \AtBeginDocument{%
+   % cancel annotations and links
+   %
+   \def\PDF@FinishDoc{%  ??? What uses this ???
+    \begingroup
+     \def\sep{; }% should not be needed, but just in case
+     \pdfinfo{%
+      \ifx\pdfx@pdfTitle\@empty\else /Title(\pdfx@pdfTitle)\fi
+      \ifx\pdfx@pdfAuthor\@empty\else /Author(\pdfx@pdfAuthor)\fi
+      \ifx\pdfx@pdfSubject\@empty\else /Subject(\pdfx@pdfSubject)\fi
+      \ifx\pdfx@pdfKeywords\@empty\else /Keywords(\pdfx@pdfKeywords)\fi
+       /Creator(\pdfx@CreatorTool)%
+      \ifx\@pdfcreationdate\@empty
+       /CreationDate(D:\pdfx@convDate)%
+      \else
+       \ifxetex\else
+        /CreationDate(\@pdfcreationdate)%
+      \fi\fi
+      \ifx\@pdfmoddate\@empty
+       /ModDate(D:\pdfx@convDate)%
+      \else
+       /ModDate(\@pdfmoddate)%
+      \fi
+      /Producer(\pdfx@Producer)%
+      /Trapped/False
+      \ifnum\xmp@Part=1
+       /GTS_PDFXVersion(PDF/X-1\ifnum\xmp@ReleaseDate>2001
+        \xmp@Conformance\fi:\xmp@ReleaseDate)%
+      \else
+       /GTS_PDFXVersion(PDF/X-\xmp@Part\xmp@Conformance
+        \ifnum\xmp@Part< 4 :\xmp@ReleaseDate\fi)%
+      \fi
+      \ifnum\xmp@Part < 3
+        /GTS_PDFXConformance(PDF/X-\xmp@Part\xmp@Conformance
+          :\xmp@ReleaseDate)%
+      \fi
+      \ifpdfx@vt
+%%   support for PDF/VT extensions of  PDF/X-4 and PDF/X-5
+       /GTS_PDFVTVersion(PDF/VT-\xmp@vtPart\xmp@vtConformance)%
+      \fi
+     }%%  end of  PDF/X  info
+    \endgroup   %%  end of scope for  \sep
+   }%% end of  \PDF@FinishDoc
+  }% end of  \AtBeginDocument
+%%  \pdfinfo{%   order of these dictionary keys should not matter
+%%   \ifx\pdfx@Author\@empty\else /Author(\pdfx@Author)\fi
+%%   /CreationDate(D:\pdfx@convDate)%
+%%   /Creator(\pdfx@CreatorTool)%
+%%   \ifnum\xmp@Part=1
+%%     /GTS_PDFXVersion(PDF/X-1\ifnum\xmp@ReleaseDate>2001
+%%      \xmp@Conformance\fi:\xmp@ReleaseDate)%
+%%   \else
+%%    /GTS_PDFXVersion(PDF/X-\xmp@Part\xmp@Conformance
+%%     \ifnum\xmp@Part< 4 :\xmp@ReleaseDate\fi)%
+%%   \fi
+%%   \ifnum\xmp@Part < 3
+%%      /GTS_PDFXConformance(PDF/X-\xmp@Part\xmp@Conformance
+%%        :\xmp@ReleaseDate)%
+%%   \fi
+%%
+%%   \ifpdfx@vt
+%%%   support for PDF/VT extensions of  PDF/X-4 and PDF/X-5
+%%     /GTS_PDFVTVersion(PDF/VT-\xmp@vtPart\xmp@vtConformance)%
+%%   \fi
+%%   \ifx\pdfx@Keywords\@empty\else /Keywords(\pdfx@Keywords)\fi
+%%   /ModDate(D:\pdfx@convDate)%
+%%   /Producer(\pdfx@Producer)%
+%%   \ifx\pdfx@Subject\@empty\else /Subject(\pdfx@Subject)\fi
+%%   \ifx\pdfx@Title\@empty\else /Title(\pdfx@Title)\fi
+%%   /Trapped/False%
+%%  }%  end of  PDF/X  info
+%% }% end of scope for  \sep
+\else
+ \ifpdfx@e   %% PDF/E
+  \AtBeginDocument{%
+   \def\PDF@FinishDoc{%  ??? What uses this ???
+    \begingroup
+     \def\sep{; }% should not be needed, but just in case
+     \pdfinfo{%
+      \ifx\pdfx@pdfTitle\@empty\else /Title(\pdfx@pdfTitle)\fi
+      \ifx\pdfx@pdfAuthor\@empty\else /Author(\pdfx@pdfAuthor)\fi
+      \ifx\pdfx@pdfSubject\@empty\else /Subject(\pdfx@pdfSubject)\fi
+      \ifx\pdfx@pdfKeywords\@empty\else /Keywords(\pdfx@pdfKeywords)\fi
+       /Creator(\pdfx@CreatorTool)%
+      \ifx\@pdfcreationdate\@empty
+       /CreationDate(D:\pdfx@convDate)%
+      \else
+       \ifxetex\else
+        /CreationDate(\@pdfcreationdate)%
+      \fi\fi
+      \ifx\@pdfmoddate\@empty
+       /ModDate(D:\pdfx@convDate)%
+      \else
+       /ModDate(\@pdfmoddate)%
+      \fi
+      /Producer(\pdfx@Producer)%
+      /Trapped/False
+      /GTS_PDFEVersion(PDF/E-1\xmp@Conformance:\xmp@ReleaseDate)%
+     }%  end of  PDF/E  info
+    \endgroup  %% end of scope for  \sep
+   }% end of  \PDF@FinishDoc
+  }% end of  \AtBeginDocument
+%% {\def\sep{;}% should not be needed, but just in case
+%%  \pdfinfo{%   order of these dictionary keys should not matter
+%%     \ifx\pdfx@Title\@empty\else /Title(\pdfx@Title)\fi
+%%     \ifx\pdfx@Author\@empty\else /Author(\pdfx@Author)\fi
+%%     \ifx\pdfx@Subject\@empty\else /Subject(\pdfx@Subject)\fi
+%%     \ifx\pdfx@Keywords\@empty\else /Keywords(\pdfx@Keywords)\fi
+%%   \ifx\pdfx@Author\@empty\else /Author(\pdfx@Author)\fi
+%%   /CreationDate(\pdfx@convDate)%
+%%   /Creator(\pdfx@CreatorTool)%
+%%   /GTS_PDFEVersion(PDF/E-1\xmp@Conformance:\xmp@ReleaseDate)%
+%%   \ifx\pdfx@Keywords\@empty\else /Keywords(\pdfx@Keywords)\fi
+%%   /ModDate(D:\pdfx@convDate)%
+%%   /Producer(\pdfx@Producer)%
+%%   \ifx\pdfx@Subject\@empty\else /Subject(\pdfx@Subject)\fi
+%%   \ifx\pdfx@Title\@empty\else /Title(\pdfx@Title)\fi
+%%   /Trapped/False%
+%%  }%  end of  PDF/E  info
+%% }% end of scope for  \sep
+ \else  %%  PDF/A
+  \def\pdfx@confA{a}%
+  \def\pdfx@confB{b}%
+  \def\pdfx@confU{u}%
+  \expandafter\def\expandafter\xmp@conf\expandafter
+   {\csname pdfx@conf\xmp@Conformance\endcsname}%
+  \AtBeginDocument{%
+   \def\PDF@FinishDoc{%  ??? What uses this ???
+   \begingroup
+    \def\sep{; }% should not be needed, but just in case
+    \pdfinfo{%
+     \ifx\pdfx@pdfTitle\@empty\else /Title(\pdfx@pdfTitle)\fi
+     \ifx\pdfx@pdfAuthor\@empty\else /Author(\pdfx@pdfAuthor)\fi
+     \ifx\pdfx@pdfSubject\@empty\else /Subject(\pdfx@pdfSubject)\fi
+     \ifx\pdfx@pdfKeywords\@empty\else /Keywords(\pdfx@pdfKeywords)\fi
+      /Creator(\pdfx@CreatorTool)%
+     \ifx\@pdfcreationdate\@empty
+      /CreationDate(D:\pdfx@convDate)%
+     \else
+      \ifxetex\else
+       /CreationDate(\@pdfcreationdate)%
+     \fi\fi
+     \ifx\@pdfmoddate\@empty
+      /ModDate(D:\pdfx@convDate)%
+     \else
+      /ModDate(\@pdfmoddate)%
+     \fi
+     /Producer(\pdfx@Producer)%
+     /Trapped/False
+     /GTS_PDFA1Version (PDF/A-\xmp@Part\xmp@conf:\xmp@ReleaseDate)%
+    }%  end of  PDF/A  info
+   \endgroup  %%  end of scope for  \sep
+  }% end of  \PDF@FinishDoc
+ }% end of  \AtBeginDocument
+\fi\fi
+
+%%----------------------------------------------------------------------
+\begingroup
+%% override the \ifpdf  check of  xmpincl  package
+\ifxetex
+ \pdftrue
+\else\ifluatex
+ \pdftrue
+\fi\fi
+\RequirePackage{xmpincl}
+\ifxetex
+ % revert \ifpdf
+ \pdffalse
+\else\ifluatex
+ \pdffalse
+\fi\fi
+
+%% combine coding from  xmpincl  and  hyperxml to support XeTeX
+\def\pdfx@xmpincl@xetex#1{%
+ \IfFileExists{#1.xmp}{%
+  \mcs@xmpincl@patchFile{#1}%
+  \begingroup
+   \special{pdf:fstream @pdfx@Metadata (#1.xmpi)
+    <<
+      /Type /Metadata
+      /Subtype /XML
+    >>
+   }%
+   \special{pdf:put @catalog
+    <<
+      /Metadata @pdfx@Metadata
+    >>
+   }%
+  \endgroup
+ }{%
+  \newcommand{\mcs@xmpincl@filename}{#1.xmp}%
+    \PackageError{xmpincl}%
+    {The file \mcs@xmpincl@filename\space was not found}%
+    {The file \mcs@xmpincl@filename\space The metadata file
+     wasn't found.\MessageBreak Oops.}%
+ }
+}
+\ifxetex
+ \let\includexmp\pdfx@xmpincl@xetex
+\fi
+
+%% macro provided by Leonardo E. Segovia on 2017-05-15
+%% <leonardo.segovia@cs.uns.edu.ar>
+\def\pdfx@xmpincl@luatex#1{%
+ \IfFileExists{#1.xmp}{%
+   \mcs@xmpincl@patchFile{#1}%
+   \begingroup
+   \pdfcompresslevel=0
+   \immediate\pdfobj uncompressed stream attr {/Type /Metadata /Subtype /XML}
+   file{#1.xmpi}%
+   \pdfcatalog{%\pdfx@LanguageSpec
+    /Metadata \the\pdflastobj\space 0 R}%
+   \endgroup
+ }{%
+  \newcommand{\mcs@xmpincl@filename}{#1.xmp}%
+   \PackageError{xmpincl}%
+   {The file \mcs@xmpincl@filename\space was not found}%
+   {The file \mcs@xmpincl@filename\space The metadata file
+     wasn't found.\MessageBreak Oops.}%
+ }
+}
+\ifluatex
+ \let\includexmp\pdfx@xmpincl@luatex
+\fi
+
+%%----------------------------------------------------------------------
+\begingroup
+ \ifpdfx@x
+  \ifpdfx@vt
+   \def\xmp@template{pdfvt}%
+  \else
+   \def\xmp@template{pdfx}%    formerly  pdfx-1a
+  \fi
+ \else
+  \ifpdfx@e
+   \def\xmp@template{pdfe}%
+  \else
+   \def\xmp@template{pdfa}%
+ \fi\fi
+ \catcode`\'=12 \catcode`\<=12 \catcode`\>=12 \catcode`\?=12
+ \catcode`\"=12 \catcode`\= 12 %% used within the template file
+%% patch commands from  xmpincl.sty  ...
+ \def\pdfx@xmpinclStart{% supply byte-order marker
+  <?xpacket begin='^^ef^^bb^^be' id='W5M0MpCehiHzreSzNTczkc9d' ?> %
+ }%
+ \def\pdfx@xmpinclStartAlt{% no byte-order marker
+  <?xpacket begin='' id='W5M0MpCehiHzreSzNTczkc9d' ?> %
+ }%
+ \def\pdfx@xmpinclEnd{%  allow XMP packet to be writable
+  <?xpacket end='w'?> %
+ }%
+ \let\mcs@xmpinclStart\pdfx@xmpinclStart
+ \let\mcs@xmpinclStartAlt\pdfx@xmpinclStartAlt
+ \ifpdfx@noBOM  % don't use the byte-order marker
+  \let\mcs@xmpinclStart\pdfx@xmpinclStartAlt
+ \fi
+ \let\mcs@xmpinclEnd\pdfx@xmpinclEnd
+%% ... preventing their redefinition
+ \def\newcommand#1#2{}%
+%%
+%% \def\pdfx@endeval{%
+%%  \noexpand \TE@setvaltrue \noexpand \else
+%%  \noexpand \TE@setvalfalse \noexpand \fi
+%%   \noexpand \TE@negatefalse \noexpand \fi}%
+%% \let\TE@endeval\pdfx@endeval
+ \ifluatex\else\ifxetex\else
+  \inputencoding{8bit}%
+ \fi\fi
+ \makeatletter
+ \def\cf@encoding{L8U}\fontencoding{L8U}%
+ \providecommand{\ifnot@empty}[2]{\ifx#1\@empty\relax\else#2\fi}%
+ \pdfx@xmpmarkup
+\expandafter\global\expandafter
+  \let\csname L8U-cmd\expandafter\endcsname\csname U-cmd\endcsname
+ \def\cf@encoding{L8U}\fontencoding{L8U}%
+ \providecommand{\ifnot@empty}[2]{\ifx#1\@empty\relax\else#2\fi}%
+ \obeyspaces%
+%% beware 128 space characters -- for padding end of XMP packet
+ \gdef\paddingline{                                                                                                                                }%
+ \typeout{Using XMP template file: \xmp@template.xmp}%
+ \includexmp{\xmp@template}%
+\endgroup
+
+%%
+%% revert active characters to previous encoding
+%%
+\ifpdf@activechars
+ \global\let ^^c0\pdfx@save@co
+ \global\let ^^c1\pdfx@save@ci
+ \global\let ^^c2\pdfx@save@cii
+ \global\let ^^c3\pdfx@save@ciii
+ \global\let ^^c4\pdfx@save@civ
+ \global\let ^^c5\pdfx@save@cv
+ \global\let ^^c6\pdfx@save@cvi
+ \global\let ^^c7\pdfx@save@cvii
+ \global\let ^^c8\pdfx@save@cviii
+ \global\let ^^c9\pdfx@save@cix
+ \global\let ^^ca\pdfx@save@ca
+ \global\let ^^cb\pdfx@save@cb
+ \global\let ^^cc\pdfx@save@cc
+ \global\let ^^cd\pdfx@save@cd
+ \global\let ^^ce\pdfx@save@ce
+ \global\let ^^cf\pdfx@save@cf
+ \global\let ^^d0\pdfx@save@do
+ \global\let ^^d1\pdfx@save@di
+ \global\let ^^d2\pdfx@save@dii
+ \global\let ^^d3\pdfx@save@diii
+ \global\let ^^d4\pdfx@save@div
+ \global\let ^^d5\pdfx@save@dv
+ \global\let ^^d6\pdfx@save@dvi
+ \global\let ^^d7\pdfx@save@dvii
+ \global\let ^^d8\pdfx@save@dviii
+ \global\let ^^d9\pdfx@save@dix
+ \global\let ^^da\pdfx@save@da
+ \global\let ^^db\pdfx@save@db
+ \global\let ^^dc\pdfx@save@dc
+ \global\let ^^dd\pdfx@save@dd
+ \global\let ^^de\pdfx@save@de
+ \global\let ^^df\pdfx@save@df
+ \global\let ^^e0\pdfx@save@eo
+ \global\let ^^e1\pdfx@save@ei
+ \global\let ^^e2\pdfx@save@eii
+ \global\let ^^e3\pdfx@save@eiii
+ \global\let ^^e4\pdfx@save@eiv
+ \global\let ^^e5\pdfx@save@ev
+ \global\let ^^e6\pdfx@save@evi
+ \global\let ^^e7\pdfx@save@evii
+ \global\let ^^e8\pdfx@save@eviii
+ \global\let ^^e9\pdfx@save@eix
+ \global\let ^^ea\pdfx@save@ea
+ \global\let ^^eb\pdfx@save@eb
+ \global\let ^^ec\pdfx@save@ec
+ \global\let ^^ed\pdfx@save@ed
+ \global\let ^^ee\pdfx@save@ee
+ \global\let ^^ef\pdfx@save@ef
+ \global\let ^^f0\pdfx@save@fo
+ \global\let ^^f1\pdfx@save@fi
+ \global\let ^^f2\pdfx@save@fii
+ \global\let ^^f3\pdfx@save@fiii
+\fi
+
+\endgroup
+
+%%
+%% controls the color model and conversions with  xcolor  package
+%%
+\ifpdfx@cmyk
+ %
+ % this will have been done already for PDF/X
+ %
+ \PassOptionsToPackage{xcolor}{cmyk,hyperref}
+ \def\pdfx@handlexcolor{\def\@@mod{cmyk}\selectcolormodel{cmyk}%
+   \convertcolorsUtrue\convertcolorsDtrue}
+ \ifpdfx@x
+ \else
+%%  \AtBeginDocument{%
+%%   \def\@linkcolor{0 1 1 0}%
+%%   \def\@anchorcolor{0 0 0 1}%
+%%   \def\@citecolor{1 0 1 0}%
+%%   \def\@filecolor{.5 0 0 .5}%
+%%   \def\@urlcolor{0 1 0 0}%
+%%   \def\@menucolor{0 1 1 0}%
+%%   \def\@runcolor{.5 0 0 .5}%
+%%   \def\@linkbordercolor{0 1 1 0}%
+%%   \def\@citebordercolor{1 0 1 0}%
+%%   \def\@filebordercolor{.5 0 0 .5}%
+%%   \def\@urlbordercolor{1 0 0 0}%
+%%   \def\@menubordercolor{0 1 1 0}%
+%%   \def\@runbordercolor{.7 0 0 .3}%
+%%   \def\Fld@bcolor{0 0 0 0}%
+%%   \def\Fld@bordercolor{0 1 1 0}%
+%%  }
+ \fi
+\else
+ \PassOptionsToPackage{xcolor}{rgb,hyperref}
+ \def\pdfx@handlexcolor{\def\@@mod{rgb}\selectcolormodel{rgb}%
+   \convertcolorsUtrue\convertcolorsDtrue}
+\fi
+\@ifpackageloaded{xcolor}{\pdfx@handlexcolor
+ \ifpdfx@cmyk\else\color{black}\fi}{%
+ \AtBeginDocument{\@ifpackageloaded{xcolor}{\pdfx@handlexcolor}{}}
+}
+
+%%----------------------------------------------------------------------
+%%  Disable some actions in Beamer navigation
+\@ifclassloaded{beamer}{%
+ \let\real@insertslidenavigationsymbol
+   \insertslidenavigationsymbol
+ \let\real@insertbackfindforwardnavigationsymbol
+   \insertbackfindforwardnavigationsymbol
+ \def\pdfx@insertslidenavigationsymbol{{%
+  \let\Acrobatmenu\pdfx@Acrobatmenu@noaction
+  \real@insertslidenavigationsymbol
+ }}%
+ \def\pdfx@insertbackfindforwardnavigationsymbol{{%
+  \let\Acrobatmenu\pdfx@Acrobatmenu@noaction
+  \real@insertbackfindforwardnavigationsymbol
+ }}%
+ \AtBeginDocument{%
+  \ifHy@pdfa
+   \let\insertslidenavigationsymbol
+     \pdfx@insertslidenavigationsymbol
+   \let\insertbackfindforwardnavigationsymbol
+     \pdfx@insertbackfindforwardnavigationsymbol
+  \fi}%
+}{}
+
+%%----------------------------------------------------------------------
+\ifpdfx@transliterated
+%% support for bookmarks with transliterated input
+ \RequirePackage{stringenc}
+ \ifxetex\let\pdf@escapehex\empty\fi  % don't need it
+ \expandafter\ifx\csname pdf@escapehex\endcsname\relax
+  \PackageWarning{pdfx}{%
+   Missing an implementation of \string\pdf@escapehex ^^J
+   Translated Bookmarks cannot be generated.^^J}%
+  \newcommand{\pdfxBookmark}[4][]{#2[#1]{#4}}%
+ \else
+  \def\pdfx@GeneratePdfString#1#2{%
+   % converts a UTF-8 string to UTF-16be
+   \StringEncodingConvert{#1}{#2}{utf8}{utf16be}%
+   \edef#1{\string\376\string\377\pdfescapestring{#1}}%
+  }
+  \newtoks\pdfx@DisabledCommands
+  \def\pdfxDisableCommands#1{%
+  \expandafter\pdfx@DisabledCommands
+   \expandafter{\the\pdfx@DisabledCommands#1}}
+  \pdfxDisableCommands{%
+   \def\80{}%    else   \000\( --> \000\80\050   \000\000\050
+   \aftergroup\let\aftergroup\HyPsd@ConvertToUnicode\aftergroup\@gobble}
+  \let\Hy@@writetorep\@@writetorep
+  \def\pdfx@@writetorep#1#2#3#4#5{%
+   \begingroup
+    \pdfx@xmpunimarkup
+    \pdfx@prebookmark
+    \edef\pdfstringdefPreHook{%\pdfstringdefPreHook
+     \the\pdfx@DisabledCommands}%
+    \Hy@@writetorep{#1}{#2}{#3}{#4}{#5}%
+   \endgroup
+  }
+  \newcommand{\pdfxBookmark}[4][]{%
+   \ifx\relax#3\relax
+    \PackageError{pdfx}{Unknown macro \string#3.
+      A proper bookmark cannot be created}%
+     {Proceed to process the \string#1 as usual.}%
+    #2{#4}%
+   \else
+    \ifluatex  % use the utf8 directly
+     \let\pdfx@temp#3\relax
+     \def\pdfx@prebookmark{%
+      \pdfx@DisabledCommands{}%
+      \let#3\pdfx@temp
+     }%
+    \else\ifxetex  % use the utf8 directly
+     \let\pdfx@temp#3\relax
+     \def\pdfx@prebookmark{%
+      \pdfx@DisabledCommands{}%
+      \let#3\pdfx@temp
+     }%
+    \else
+     % convert the utf8 to utf16be
+     \pdfxBookmarkString\pdfx@temp{#3}%
+    \fi\fi
+    \let\@@writetorep\pdfx@@writetorep
+    \ifx\empty#1\empty
+     \def#3{#4}%
+     #2{#3}%
+    \else
+     \def#3{#1}%
+     #2[#3]{#4}%
+    \fi
+    \let\@@writetorep\Hy@@writetorep
+   \fi
+   \ignorespaces
+  }
+%%  use as:  \pdfxBookmark{\section}{\sectAtitle}{...}
+%%  use as:  \pdfxBookmark[<opt-title>]{\section}{\sectAtitle}{...}
+%%  only needed by pdfTeX --- Lua-/XeTeX use the utf8 directly
+  \def\pdfxBookmarkString#1#2{%
+   \pdfx@GeneratePdfString#1{#2}%
+   \def\pdfx@prebookmark{%
+    \pdfxDisableCommands{\let#2#1}%
+   }%
+  }
+%% use as:  \pdfxBookmarkString\PdfSectA\sectAtitle
+%%  where \sectAtitle has been defined by e.g.
+%%  \pdfxEnableCommands{\xdef\sectAtitle{\textLGR{...}}}
+
+ \fi % end of \ifx\pdf@escapehex\relax
+\fi % end of \ifpdfx@transliterated
+
+%%----------------------------------------------------------------------
+
+%% disable hyperref options,
+%%   to prevent changes that will cause an incompatibility
+ \Hy@DisableOption{pdfauthor}%
+ \Hy@DisableOption{pdftitle}%
+ \Hy@DisableOption{pdfsubject}%
+ \Hy@DisableOption{pdfcreator}%
+ \Hy@DisableOption{pdfcreationdate}%
+ \Hy@DisableOption{pdfmoddate}%
+ \Hy@DisableOption{pdfproducer}%
+ \Hy@DisableOption{pdfkeywords}%
+%% once set correctly, don't let this change
+ \Hy@DisableOption{pdfa}\let\Hy@pdfafalse\relax\let\Hy@pdfatrue\relax
+\endinput
+%%
+%% End of file `pdfx.sty'.

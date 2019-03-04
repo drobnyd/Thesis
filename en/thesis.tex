@@ -1,0 +1,160 @@
+%%% The main file. It contains definitions of basic parameters and includes all other parts.
+
+%% Settings for single-side (simplex) printing
+% Margins: left 40mm, right 25mm, top and bottom 25mm
+% (but beware, LaTeX adds 1in implicitly)
+\documentclass[12pt,a4paper]{report}
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+% \openright makes the following text appear on a right-hand page
+\let\openright=\clearpage
+
+%% Settings for two-sided (duplex) printing
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{14.2mm}
+% \setlength\evensidemargin{0mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\cleardoublepage
+
+%% Generate PDF/A-2u
+\usepackage[a-2u]{pdfx}
+
+%% Character encoding: usually latin2, cp1250 or utf8:
+\usepackage[utf8]{inputenc}
+
+%% Prefer Latin Modern fonts
+\usepackage{lmodern}
+
+%% Further useful packages (included in most LaTeX distributions)
+\usepackage{amsmath}        % extensions for typesetting of math
+\usepackage{amsfonts}       % math fonts
+\usepackage{amsthm}         % theorems, definitions, etc.
+\usepackage{bbding}         % various symbols (squares, asterisks, scissors, ...)
+\usepackage{bm}             % boldface symbols (\bm)
+\usepackage{graphicx}       % embedding of pictures
+\usepackage{fancyvrb}       % improved verbatim environment
+\usepackage{natbib}         % citation style AUTHOR (YEAR), or AUTHOR [NUMBER]
+\usepackage[nottoc]{tocbibind} % makes sure that bibliography and the lists
+			    % of figures/tables are included in the table
+			    % of contents
+\usepackage{dcolumn}        % improved alignment of table columns
+\usepackage{booktabs}       % improved horizontal lines in tables
+\usepackage{paralist}       % improved enumerate and itemize
+\usepackage[usenames]{xcolor}  % typesetting in color
+
+%%% Basic information on the thesis
+
+% Thesis title in English (exactly as in the formal assignment)
+\def\ThesisTitle{Extracting Information from Database Modeling Tools}
+
+% Author of the thesis
+\def\ThesisAuthor{Denis Drobny}
+
+% Year when the thesis is submitted
+\def\YearSubmitted{2019}
+
+% Name of the department or institute, where the work was officially assigned
+% (according to the Organizational Structure of MFF UK in English,
+% or a full name of a department outside MFF)
+\def\Department{Department of Distributed and Dependable Systems}
+
+% Is it a department (katedra), or an institute (ústav)?
+\def\DeptType{Department}
+
+% Thesis supervisor: name, surname and titles
+\def\Supervisor{RNDr. Pavel Parízek, Ph.D.}
+
+% Supervisor's department (again according to Organizational structure of MFF)
+\def\SupervisorsDepartment{Department of Distributed and Dependable Systems}
+
+% Study programme and specialization
+\def\StudyProgramme{Computer Science}
+\def\StudyBranch{Programming and Software Systems}
+
+% An optional dedication: you can thank whomever you wish (your supervisor,
+% consultant, a person who lent the software, etc.)
+\def\Dedication{%
+Dedication.
+}
+
+% Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
+\def\Abstract{%
+Abstract.
+}
+
+% 3 to 5 keywords (recommended), each enclosed in curly braces
+\def\Keywords{%
+{key} {words}
+}
+
+%% The hyperref package for clickable links in PDF and also for storing
+%% metadata to PDF (including the table of contents).
+%% Most settings are pre-set by the pdfx package.
+\hypersetup{unicode}
+\hypersetup{breaklinks=true}
+
+% Definitions of macros (see description inside)
+\include{macros}
+
+% Title page and various mandatory informational pages
+\begin{document}
+\include{title}
+
+%%% A page with automatically generated table of contents of the bachelor thesis
+
+\tableofcontents
+
+%%% Each chapter is kept in a separate file
+\include{preface}
+\include{chap01}
+\include{chap02}
+\include{chap03}
+\include{chap04}
+\include{chap05}
+\include{chap06}
+\include{chap07}
+\include{chap08}
+\include{conclusion}
+
+
+\include{epilog}
+
+%%% Bibliography
+\include{bibliography}
+
+%%% Figures used in the thesis (consider if this is needed)
+\listoffigures
+
+%%% Tables used in the thesis (consider if this is needed)
+%%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
+\listoftables
+
+%%% Abbreviations used in the thesis, if any, including their explanation
+%%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
+\chapwithtoc{List of Abbreviations}
+
+%%% Attachments to the bachelor thesis, if any. Each attachment must be
+%%% referred to at least once from the text of the thesis. Attachments
+%%% are numbered.
+%%%
+%%% The printed version should preferably contain attachments, which can be
+%%% read (additional tables and charts, supplementary text, examples of
+%%% program output, etc.). The electronic version is more suited for attachments
+%%% which will likely be used in an electronic form rather than read (program
+%%% source code, data files, interactive charts, etc.). Electronic attachments
+%%% should be uploaded to SIS and optionally also included in the thesis on a~CD/DVD.
+%%% Allowed file formats are specified in provision of the rector no. 72/2017.
+\appendix
+\chapter{Attachments}
+
+\openright
+\end{document}

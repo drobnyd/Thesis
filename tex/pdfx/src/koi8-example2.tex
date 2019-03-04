@@ -1,0 +1,45 @@
+|% $Id: texlive-ru.tex 34060 2014-05-16 19:52:41Z boris $|\\
+|% |\\
+|%\def\Status{1}|\\
+|\providecommand{\pdfxopts}{a-2u,KOIxmp}|\\
+|\providecommand{\thisyear}{2015}|\\
+|%\immediate\write18{rm \jobname.xmpdata}%  uncomment for Unix-based systems |\\
+|\begin{filecontents*}{\jobname.xmpdata}|\\
+|\Title{\IeC {\CYRR }\IeC {\cyru }\IeC {\cyrk }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyro }|\\
+| \IeC {\cyrd }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyrv }\IeC {\cyro } \IeC {\cyrp }\IeC {\cyro }|\\
+| \IeC {\cyrl }\IeC {\cyrsftsn }\IeC {\cyrz }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyra }\IeC {\cyrt }|\\
+| \IeC {\cyre }\IeC {\cyrl }\IeC {\cyrya } TeX Live \textemdash \thisyear}|\\
+|\Author{\IeC {\CYRR }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrk }\IeC {\cyrt }|\\
+| \IeC {\cyro }\IeC {\cyrr }: \IeC {\CYRK }\IeC {\cyra }\IeC {\cyrr }\IeC {\cyrl } |\\
+| \IeC {\CYRB }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyrr }\IeC {\cyri }|\\
+|\Keywords{TeX Live \thisyear\sep \IeC {\CYRS }\IeC {\cyrt }\IeC {\cyrr }\IeC {\cyru }|\\
+| \IeC {\cyrk }\IeC {\cyrt }\IeC {\cyru }\IeC {\cyrr }\IeC {\cyra }\sep \IeC {\cyru }|\\
+| \IeC {\cyrs }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrk }|\\
+| \IeC {\cyri }\sep \TeX}|\\
+|\Subject{\IeC {\CYRV } \IeC {\cyrerev }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrm } \IeC {\cyrd }|\\
+| \IeC {\cyro }\IeC {\cyrk }\IeC {\cyru } ... |\\
+| ... |\\
+|\CoverDisplayDate{\IeC {\CYRM }\IeC {\cyra }\IeC {\cyrishrt } 2015}|\\
+|\CoverDate{2015-05-06}|\\
+|\Copyrighted{False}|
+\endinput
+|\Copyright{Public Domain}|\\
+|\CopyrightURL{http://tug.org/texlive/}|\\
+|\Creator{pdfTeX + pdfx.sty with options \pdfxopts }|\\
+|\end{filecontents*}|\\
+|\documentclass{article}|\\
+|\usepackage[\pdfxopts]{pdfx}[2016/03/09]|\\
+|\PassOptionsToPackage{obeyspaces}{url}|\\
+|\let\tldocrussian=1  % for live4ht.cfg |\\
+|\usepackage{cmap}|\\
+|\usepackage{tex-live}|\\
+|\usepackage[koi8-r]{inputenc}|\\
+|\usepackage[russian]{babel}|\\
+| ... |\\
+|\begin{document}|\\
+|\title{%|\\
+|  {\huge \textit{Руководство пользователя \protect\TL{} "--- \thisyear}}%|\\
+|}|\\
+|\author{Редактор: Карл Берри\\[3mm]|\\
+|        \url{http://tug.org/texlive/}}|\\
+|\date{Май \thisyear}|

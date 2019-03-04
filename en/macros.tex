@@ -1,0 +1,87 @@
+%%% This file contains definitions of various useful macros and environments %%%
+%%% Please add more macros here instead of cluttering other files with them. %%%
+
+%%% Minor tweaks of style
+
+% These macros employ a little dirty trick to convince LaTeX to typeset
+% chapter headings sanely, without lots of empty space above them.
+% Feel free to ignore.
+\makeatletter
+\def\@makechapterhead#1{
+  {\parindent \z@ \raggedright \normalfont
+   \Huge\bfseries \thechapter. #1
+   \par\nobreak
+   \vskip 20\p@
+}}
+\def\@makeschapterhead#1{
+  {\parindent \z@ \raggedright \normalfont
+   \Huge\bfseries #1
+   \par\nobreak
+   \vskip 20\p@
+}}
+\makeatother
+
+% This macro defines a chapter, which is not numbered, but is included
+% in the table of contents.
+\def\chapwithtoc#1{
+\chapter*{#1}
+\addcontentsline{toc}{chapter}{#1}
+}
+
+% Draw black "slugs" whenever a line overflows, so that we can spot it easily.
+\overfullrule=1mm
+
+%%% Macros for definitions, theorems, claims, examples, ... (requires amsthm package)
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{claim}[thm]{Claim}
+
+\theoremstyle{plain}
+\newtheorem{defn}{Definition}
+
+\theoremstyle{remark}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{rem}{Remark}
+\newtheorem*{example}{Example}
+
+%%% An environment for proofs
+
+%%% FIXME %%% \newenvironment{proof}{
+%%% FIXME %%%   \par\medskip\noindent
+%%% FIXME %%%   \textit{Proof}.
+%%% FIXME %%% }{
+%%% FIXME %%% \newline
+%%% FIXME %%% \rightline{$\square$}  % or \SquareCastShadowBottomRight from bbding package
+%%% FIXME %%% }
+
+%%% An environment for typesetting of program code and input/output
+%%% of programs. (Requires the fancyvrb package -- fancy verbatim.)
+
+\DefineVerbatimEnvironment{code}{Verbatim}{fontsize=\small, frame=single}
+
+%%% The field of all real and natural numbers
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+%%% Useful operators for statistics and probability
+\DeclareMathOperator{\pr}{\textsf{P}}
+\DeclareMathOperator{\E}{\textsf{E}\,}
+\DeclareMathOperator{\var}{\textrm{var}}
+\DeclareMathOperator{\sd}{\textrm{sd}}
+
+%%% Transposition of a vector/matrix
+\newcommand{\T}[1]{#1^\top}
+
+%%% Various math goodies
+\newcommand{\goto}{\rightarrow}
+\newcommand{\gotop}{\stackrel{P}{\longrightarrow}}
+\newcommand{\maon}[1]{o(n^{#1})}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\dint}{\int_0^\tau\!\!\int_0^\tau}
+\newcommand{\isqr}[1]{\frac{1}{\sqrt{#1}}}
+
+%%% Various table goodies
+\newcommand{\pulrad}[1]{\raisebox{1.5ex}[0pt]{#1}}
+\newcommand{\mc}[1]{\multicolumn{1}{c}{#1}}

@@ -1,0 +1,40 @@
+%%% Fiktivní kapitola s instrukcemi k PDF/A
+
+\chapter{Formát PDF/A}
+
+Opatření rektora č. 13/2017 určuje, že elektronická podoba závěrečných
+prací musí být odevzdávána ve formátu PDF/A úrovně 1a nebo 2u. To jsou
+profily formátu PDF určující, jaké vlastnosti PDF je povoleno používat,
+aby byly dokumenty vhodné k~dlouhodobé archivaci a dalšímu automatickému
+zpracování. Dále se budeme zabývat úrovní 2u, kterou sázíme \TeX{}em.
+
+Mezi nejdůležitější požadavky PDF/A-2u patří:
+
+\begin{itemize}
+
+\item Všechny fonty musí být zabudovány uvnitř dokumentu. Nejsou přípustné
+odkazy na externí fonty (ani na \uv{systémové}, jako je Helvetica nebo Times).
+
+\item Fonty musí obsahovat tabulku ToUnicode, která definuje převod z~kódování
+znaků použitého uvnitř fontu to Unicode. Díky tomu je možné z~dokumentu
+spolehlivě extrahovat text.
+
+\item Dokument musí obsahovat metadata ve formátu XMP a je-li barevný,
+pak také formální specifikaci barevného prostoru.
+
+\end{itemize}
+
+Tato šablona používá balíček {\tt pdfx,} který umí \LaTeX{} nastavit tak,
+aby požadavky PDF/A splňoval. Metadata v~XMP se generují automaticky podle
+informací v~souboru {\tt prace.xmpdata} (na vygenerovaný soubor se můžete
+podívat v~{\tt pdfa.xmpi}).
+
+Validitu PDF/A můžete zkontrolovat pomocí nástroje VeraPDF, který je
+k~dispozici na \url{http://verapdf.org/}.
+
+Pokud soubor nebude validní, mezi obvyklé příčiny patří používání méně
+obvyklých fontů (které se vkládají pouze v~bitmapové podobě a/nebo bez
+unicodových tabulek) a vkládání obrázků v~PDF, které samy o~sobě standard
+PDF/A nesplňují.
+
+Další postřehy o~práci s~PDF/A najdete na \url{http://mj.ucw.cz/vyuka/bc/pdfaq.html}.

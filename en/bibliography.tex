@@ -1,0 +1,35 @@
+%%% Bibliography (literature used as a source)
+%%%
+%%% We employ bibTeX to construct the bibliography. It processes
+%%% citations in the text (e.g., the \cite{...} macro) and looks up
+%%% relevant entries in the bibliography.bib file.
+%%%
+%%% The \bibliographystyle command selects, which style will be used
+%%% for references from the text. The argument in curly brackets is
+%%% the name of the corresponding style file (*.bst). Both styles
+%%% mentioned in this template are included in LaTeX distributions.
+
+\bibliographystyle{plainnat}    %% Author (year)
+% \bibliographystyle{unsrt}     %% [number]
+
+\renewcommand{\bibname}{Bibliography}
+
+%%% Generate the bibliography. Beware that if you cited no works,
+%%% the empty list will be omitted completely.
+
+\bibliography{bibliography}
+
+%%% If case you prefer to write the bibliography manually (without bibTeX),
+%%% you can use the following. Please follow the ISO 690 standard and
+%%% citation conventions of your field of research.
+
+% \begin{thebibliography}{99}
+%
+% \bibitem{lamport94}
+%   {\sc Lamport,} Leslie.
+%   \emph{\LaTeX: A Document Preparation System}.
+%   2nd edition.
+%   Massachusetts: Addison Wesley, 1994.
+%   ISBN 0-201-52983-1.
+%
+% \end{thebibliography}

@@ -1,0 +1,24 @@
+\Title{Generation of PDF/X- and PDF/A-compliant PDFs with pdfTeX \textemdash\ pdfx.sty}
+\Author{\CVR\sep \Thanh\sep Ross Moore\sep Peter Selinger}
+\Subject{This package supports generation of PDF/X-, PDF/A- and PDF/E-compliant documents, in most of their variants, using pdfLaTeX, LuaLaTeX and XeLaTeX.}
+\Keywords{PDF/X-, PDF/A- and PDF/E-compliance\sep Multilingual Metadata\sep installation\sep \TeX Live \lastyear}
+\PublicationType{manual}
+\Contributor{Norbert Preining: 'colorprofiles' package}
+\Copyright{Public domain.}
+\Copyrighted{False}
+\CopyrightURL{http://tug.org/texlive/}
+\CoverDisplayDate{November \thisyear}
+\CoverDate{\thisyear-11-29}
+\CreatorTool{pdfTeX + pdfx.sty with option \pdfxopt, from TeX Live \lastyear}
+\Date{2017-05-18\sep 2017-06-23\sep 2018-11-29}
+\Advisory{An earlier version of this documentation was published as: TUGboat 36, No.2, pp.136\textendash 142 (2015)}
+\Advisory{v1.6: Added XMP support for PDF/UA-1. Added more Metadata fields and Language support.}
+\Advisory{v1.6: Default RGB and CMYK profiles now require the  colorprofiles.sty  package.}
+\Relation{Requires the  colorprofiles  package for RGB and CMYK default profiles.}
+\Advisory{v1.6: Access more profiles, incl. to  pdfaPilot's color profile folders.}
+\Advisory{v1.6: Revised  glyphtounicode.sty  to use variation selectors, altered maps to PUA codepoints; added more glyphs via glyphtounicode-ntx.tex }
+\Advisory{v1.6: Support for 8-bit Hebrew encodings, some Arabic and Devanagari.}
+\Advisory{v1.6: Updated documentation, incl. for LaTeX changes.}
+\pdfxEnableCommands{%
+ \def\CVR{C.V. Radhakrishnan}\def\Thanh{H\`an Th\eee Thanh}%
+ \def\eee{^^c3^^aa^^cc^^81 }}
