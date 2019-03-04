@@ -1,3 +1,14 @@
+Zásady pro vypracování
+Rozsáhlé databáze se často navrhují za pomoci modelovacích nástrojů, jako třeba PowerDesigner a E/R Studio. Model je typicky složen ze tří vrstev - fyzické (SQL), logické (E/R diagramy), a uživatelské (manažerské). Hlavní cíl této práce je vytvořit nástroj pro extrakci těch informací ze modelů, které jsou důležité pro výpočet datových toků. To především zahrnuje (1) vazby mezi různými vrstvami modelů a (2) některé atributy entit (jména sloupců ve databázových tabulkách, apod). Součástí práce bude také analýza 2-3 modelovacích nástrojů zejména s ohledem na způsob reprezentace modelů. Primární aplikace informací extrahovaných ze modelů je projekce datových toků, které byly spočítány pro fyzickou vrstvu, na uživatelskou vrstvu daného modelu. Nakonec bude provedena základní analýza možností, jestli lze specifikovat datové toky přímo ve modelovacích nástrojích (a jak toho lze dosáhnout), a následně srovnání namodelovaných a skutečných toků. 
+
+Seznam odborné literatury
+1. B. Thalheim. Entity-Relationship Modeling: Foundations of Database Technology. Springer, 2000 
+2. ER/Studio Data Architect, https://www.idera.com/er-studio-data-architect-software 
+3. ER/Studio Product Documentation, http://docs.embarcadero.com/products/er_studio/, http://docwiki.embarcadero.com/ERStudioDA/171/en/User_Guide 
+4. PowerDesigner, https://www.powerdesigner.biz/EN/, https://www.powerdesigner.biz/EN/powerdesigner-resources/powerdesigner-documentation.html 
+
+--------------------------------------------------------------------------------
+
 Šablona pro sazbu bakalářské práce na MFF UK v LaTeXu
 
 Autoři:
