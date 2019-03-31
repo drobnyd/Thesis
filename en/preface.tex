@@ -2,37 +2,35 @@
 
 %\section{Databases}
 \par 
-A \textit{database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in Fundamentals of Database Systems \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network.
+A \textit{Database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in Fundamentals of Database Systems \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network.
 Databases became deep-rooted in every business. 
 Independently of the field that a company is focused on we can enumerate many reasons for considering a database storage deployment a good idea.
 Let us show some examples of how databases are used through various business domains.
 
-\TODO{examples}
 \begin{itemize}
-	\item E-commerce \\
-	Every company that sells products online does should use a database. The bare minimum is to store offered products themselves and keeping track of purchases that were done by users.
 	
 	\item Social Media \\
 	Every piece of information that has ever been published on social media, from photo through like or comment to friendship establishment, was stored somewhere and that place is a database. Usually the database that a social platform uses does its job in a background. Nevertheless there may occur events when the data storage reminds of its presence as it did on the most recent outage of Facebook. \cite{Facebook19}.
 	
 	\item Healthcare \\
-	Easy accessibility of large amount of patient's data is a main reason to deploy a database at doctor's office or a healthcare organization.
-	\TODO{https://blogs.wsj.com/cio/2013/12/03/healthcare-govs-heart-beats-for-nosql/}
-	And that is just a beginning of digitization of this industry.
+	Easy accessibility of large amount of patient's data is a main reason to deploy a database at doctor's office or a healthcare organization \cite{Healthcare13}. High discretion is a requirement when managing data of such sensitiveness.
 	
 	\item Finances \\
+	\TODO{complete}
+	
+	\item E-commerce \\
+	Every company that sells products online should use a database. The bare minimum is to store offered products themselves and keeping track of purchases that were done by users.
 	
 	
 \end{itemize}
 And the list goes on.
  \\
-%\section{Database Design}
 
 %\section{Database Models}
 \par
-A \textit{data model} is a description of data, data relationships, data semantics, and consistency constraints. \\
+A \textit{Data Model} is a description of data, data relationships, data semantics, and consistency constraints. \\
 \par
-A \textit{database model} is a particular type of a data model that determines in what manner can be data in database organized, stored, represented and accessed in a database.
+A \textit{Database Model} is a particular type of a data model that determines in what manner can be data in database organized, stored, represented and accessed in a database.
 \\
 \\
 There are multiple kinds of specific database models known.
@@ -48,22 +46,27 @@ According to Fundamentals of Database Systems \cite{SilberschatzKorthSudarshan10
 		 In contrast to conceptual models the physical ones are tied with how data are stored physically at storage media showing all specific internal details that may be overwhelming in the case that the reader is a computer specialist.
 \end{itemize}
 
+%\section{Database Design}
+\par
+Once the decision is made and the usefulness of a database for our thing is proved there may be still a long way until everything runs as expected and we can use all the advantages that a data storage brings.
+The database design phase comes in place then. By the nature of the problem, a top-down approach is followed.
+A database designer comes in handy for the process. \\ \\
+The first thing that is needed to do is to discuss with an expert in the domain \TODO{what domain} in order to identify and collect requirements for the designed system. \\ \\
+The debate should be translated to a conceptual model by the designer. \TODO{that is an instance of what data model} \\ \\
+Once the abstract model is created a movement towards its implementation is desired. That is when the development of a logical model takes place and the high level view is turned into system-specific model that is the logical one. \\ \\
+Finally, the organization of the database itself is figured out and captured in a physical model of the analyzed system. \\ \\
+Given the physical model a database can be deployed straightforwardly. \\
 
+\par 
+A \textit{Database Schema} defines how is the database described in a data model constructed, represents an instance of a data model. \\
+\par 
+A \textit{Diagram} is a graphical visualization of a data model. \\
+\par
+A \textit{Data Modeling Tool} is a software that allows a database designer to create data models. End user may use the tools for interactive previewing of the models' diagrams. \\
 
-\TODO{move to the chapter about databases in comparison with the historical proposition}
-In 1975 American National Standards Institute \cite{ANSIArchitecture75} introduced its database architecture consisting of three layers:
-\begin{itemize}
-	\item  External Level
-	\item Conceptual Level
-	\item Physical Level
-\end{itemize}
-
-
-%\section{Diagrams}
-
-\TODO{Modeling tools}
-
-%\section{Data Lineage}
+\par
+\textit{Data Lineage} provides a picture of how data moves in some system. It is a description of how data go from an origin through their transformations until they reach a destination. 
+The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
 
 \par
 The process of development and deployment of a database consists of multiple stages. At the beginning there is a high level view of why the database is needed and what purpose will it serve. Hopefully in some time the result is that the data described in the initial step are stored physically at some server. 
