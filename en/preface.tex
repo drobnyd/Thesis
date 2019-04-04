@@ -31,6 +31,7 @@ And the list goes on.
 A \textit{Data Model} is a description of data, data relationships, data semantics, and consistency constraints. \\
 \par
 A \textit{Database Model} is a particular type of a data model that determines in what manner can be data in database organized, stored, represented and accessed in a database.
+\TODO{Structure of database vs modeling tools}
 \\
 \\
 There are multiple kinds of specific database models known.
@@ -58,18 +59,21 @@ Finally, the organization of the database itself is figured out and captured in 
 Given the physical model a database can be deployed straightforwardly. \\
 
 \par 
-A \textit{Database Schema} defines how is the database described in a data model constructed, represents an instance of a data model. \\
+A \textit{Database Schema} defines how is the database described in a data model constructed in use, represents an instance of a data model. \\
 \par 
 A \textit{Diagram} is a graphical visualization of a data model. \\
 \par
 A \textit{Data Modeling Tool} is a software that allows a database designer to create data models. End user may use the tools for interactive previewing of the models' diagrams. \\
 
 \par
-\textit{Data Lineage} provides a picture of how data moves in some system. It is a description of how data go from an origin through their transformations until they reach a destination. 
+\TODO{\textit{Data Flow} is an internal logic of how data moves in some system across its components.} \\
+
+\par
+\textit{Data Lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
 The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
 
 \par
-The process of development and deployment of a database consists of multiple stages. At the beginning there is a high level view of why the database is needed and what purpose will it serve. Hopefully in some time the result is that the data described in the initial step are stored physically at some server. 
+The process of development and deployment of a database consists of multiple stages as we have seen. At the beginning there is a high level view of why the database is needed and what purpose will it serve. Hopefully, in some time the result is that the data described in the initial step are stored physically at some server. 
 This way the data can be accessed and processed. 
 What we want to achieve in this work is to make use of the individual steps taken during the design process, and make operations on data as transparent and traceable as possible even for business users that don't have a technical background.
 
@@ -77,11 +81,10 @@ What we want to achieve in this work is to make use of the individual steps take
 
 \begin{itemize}
 	\item Develop a component that extracts metadata from database models that were created using SAP PowerDesigner 
-	\item Develop a component that extracts metadata from database models that were created using ER/Studio  \\
-	\TODO{complete the list}
+	\item Develop a component that extracts metadata from database models that were created using ER/Studio
+	\item Provide a description by means of a programming language for a general scenario of metadata extraction from a data modeling tool output and passing the information to a data lineage tool
+	\item Propagate data lineage acquired by analysis of how is database used and constructed to more abstract data models than is the physical one, to the logical and the conceptual models.
 \end{itemize}
 
-\section{Overview of Chapters}
-
-\TODO{Introduction to each of the following chapters}
+\TODO{Introduction to each of the following chapters once the final organization is known}
 

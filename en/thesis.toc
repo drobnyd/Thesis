@@ -1,8 +1,13 @@
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
 \contentsline {section}{\numberline {1.1}Goals}{5}{section.1.1}
-\contentsline {section}{\numberline {1.2}Overview of Chapters}{5}{section.1.2}
 \contentsline {chapter}{\numberline {2}Databases}{6}{chapter.2}
-\contentsline {chapter}{\numberline {3}Data Models and Abstraction Layers}{7}{chapter.3}
+\contentsline {section}{\numberline {2.1}Database Model Types}{6}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Relational Databases}{6}{subsection.2.1.1}
+\contentsline {subparagraph}{The Most Used Relational Database Engines}{6}{section*.2}
+\contentsline {subsection}{\numberline {2.1.2}Non-Relational Databases}{6}{subsection.2.1.2}
+\contentsline {subparagraph}{The Most Used Non-Relational Database Engines}{6}{section*.3}
+\contentsline {section}{\numberline {2.2}Means of Database Access}{6}{section.2.2}
+\contentsline {chapter}{\numberline {3}Data Models}{7}{chapter.3}
 \contentsline {section}{\numberline {3.1}Data Modeling}{7}{section.3.1}
 \contentsline {section}{\numberline {3.2}Abstraction Layer Types}{7}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Physical Data Model}{7}{subsection.3.2.1}
@@ -30,11 +35,11 @@
 \contentsline {section}{\numberline {7.1}Extensibility}{11}{section.7.1}
 \contentsline {section}{\numberline {7.2}Technologies}{11}{section.7.2}
 \contentsline {section}{\numberline {7.3}Testing}{11}{section.7.3}
-\contentsline {chapter}{Conclusion}{12}{chapter*.2}
-\contentsline {chapter}{Bibliography}{13}{chapter*.3}
-\contentsline {chapter}{List of Figures}{14}{chapter*.4}
-\contentsline {chapter}{List of Tables}{15}{chapter*.5}
-\contentsline {chapter}{List of Abbreviations}{16}{chapter*.6}
+\contentsline {chapter}{Conclusion}{12}{chapter*.4}
+\contentsline {chapter}{Bibliography}{13}{chapter*.5}
+\contentsline {chapter}{List of Figures}{14}{chapter*.6}
+\contentsline {chapter}{List of Tables}{15}{chapter*.7}
+\contentsline {chapter}{List of Abbreviations}{16}{chapter*.8}
 \contentsline {chapter}{\numberline {A}Attachments}{17}{appendix.A}
 \contentsline {section}{\numberline {A.1}Building}{17}{section.A.1}
 \contentsline {section}{\numberline {A.2}User Documentation}{17}{section.A.2}

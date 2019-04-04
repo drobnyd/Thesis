@@ -1,1 +1,41 @@
 \chapter{Databases}
+
+\section{Database Model Types}
+
+We already described why we want to use a database and roughly described what are the pieces of data that we want to save there. 
+Now let's have a look at what are differences between in database implementations and what to take in account when comparing database technologies.
+That may be helpful when choosing the best suitable option for some specific data set to store or to see how storing of great amount of structured information can be approached. \\ 
+
+The basic division of database model types is simple and binary - they are either Relational or Non-Relational. 
+
+\subsection{Relational Databases}
+A \textit{Relational Database} is a set of tables. A table consists of rows (or records) and columns. We can see such table as an object whose attributes are represented by columns and instances by rows. 
+The important thing is that relational tables tables carry both data that need to be stored by user and the relationships between the data as well. 
+To store an atomic piece of data about instance a proper column is filled with a value.
+Whereas to capture a relationship between objects the concept of primary and foreign keys is used. \TODO{is it necessary to explain keys?}
+
+\subparagraph{The Most Used Relational Database Engines}
+
+\begin{itemize}
+	\item Oracle
+	\item MySQL
+	\item Microsoft SQL Server
+	\item PostgreSQL
+	\item IBM Db2
+\end{itemize}
+
+\subsection{Non-Relational Databases} 
+\textit{Non-Relational Databases}
+
+\subparagraph{The Most Used Non-Relational Database Engines} 
+\begin{itemize}
+	\item MongoDB
+\end{itemize}
+
+\TODO{Summation of advantages/disadvantages and usage stats}
+
+The usage statistics are taken from the most up to date rankings by web db-engines.com \cite{DatabaseEnginesStatistics19}.
+
+\section{Means of Database Access}
+\TODO{Drivers}
+\TODO{Connection strings(ODBC,JDBC)}

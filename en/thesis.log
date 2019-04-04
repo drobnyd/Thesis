@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  1 APR 2019 01:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  4 APR 2019 22:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -537,7 +537,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/logo-en.pdf): PDF inc
 lusion: found PDF version <1.5>, but at most version <1.4> allowed
-<../img/logo-en.pdf, id=174, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=186, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -616,7 +616,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--39
+Underfull \hbox (badness 10000) in paragraph at lines 33--40
 
  []
 
@@ -624,52 +624,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--39
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--59
+Underfull \hbox (badness 10000) in paragraph at lines 52--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--64
+Underfull \hbox (badness 10000) in paragraph at lines 64--65
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--66
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--70
+Underfull \hbox (badness 10000) in paragraph at lines 69--70
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 72--74
 
  []
 
@@ -678,6 +683,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--70
 
  (./databases.tex
 Chapter 2.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--8
+
+ []
+
 ) [6
 
 
@@ -771,14 +781,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 163.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 163.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 163.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 143FAF777B82ADB91A07C0936087DF7A;5767.
+(rerunfilecheck)             Checksum: 1C00E9B291AEEC7732350C18FBC66FAC;6177.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 163.
  ) 
 Here is how much of TeX's memory you used:
- 14108 strings out of 492649
- 192774 string characters out of 6129623
- 259708 words of memory out of 5000000
- 17669 multiletter control sequences out of 15000+600000
+ 14120 strings out of 492649
+ 193023 string characters out of 6129623
+ 260729 words of memory out of 5000000
+ 17675 multiletter control sequences out of 15000+600000
  54839 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,7n,35p,491b,1942s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -789,9 +799,9 @@ ist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/t
 ype1/public/lm/lmr17.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
 /lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy10
 .pfb>
-Output written on thesis.pdf (21 pages, 475534 bytes).
+Output written on thesis.pdf (21 pages, 481704 bytes).
 PDF statistics:
- 374 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 354 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 75 named destinations out of 1000 (max. 500000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 
