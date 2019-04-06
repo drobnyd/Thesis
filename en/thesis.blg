@@ -18,48 +18,63 @@ Warning--entry type for "ANSIArchitecture75" isn't style-file defined
 Warning--entry type for "Facebook19" isn't style-file defined
 --line 51 of file bibliography.bib
 Warning--entry type for "Healthcare13" isn't style-file defined
---line 57 of file bibliography.bib
+--line 66 of file bibliography.bib
 Warning--entry type for "DatabaseEnginesStatistics19" isn't style-file defined
---line 62 of file bibliography.bib
-You've used 6 entries,
+--line 71 of file bibliography.bib
+Warning--entry type for "NonRelationalDBs" isn't style-file defined
+--line 76 of file bibliography.bib
+Warning--entry type for "DatabaseTypes" isn't style-file defined
+--line 81 of file bibliography.bib
+Warning--entry type for "KeyValueStores" isn't style-file defined
+--line 86 of file bibliography.bib
+Warning--entry type for "NoSQLDatabaseModeling" isn't style-file defined
+--line 91 of file bibliography.bib
+Warning--entry type for "RelationalVsNonRelationalDatabases1" isn't style-file defined
+--line 96 of file bibliography.bib
+Warning--entry type for "RelationalVsNonRelationalDatabases2" isn't style-file defined
+--line 101 of file bibliography.bib
+Warning--all relevant fields are empty in RelationalVsNonRelationalDatabases1
+Warning--all relevant fields are empty in RelationalVsNonRelationalDatabases2
+Warning--all relevant fields are empty in NoSQLDatabaseModeling
+You've used 12 entries,
             1791 wiz_defined-function locations,
-            484 strings with 4492 characters,
-and the built_in function-call counts, 746 in all, are:
-= -- 49
-> -- 26
+            499 strings with 4857 characters,
+and the built_in function-call counts, 1255 in all, are:
+= -- 67
+> -- 32
 < -- 0
-+ -- 12
++ -- 18
 - -- 6
-* -- 16
-:= -- 99
-add.period$ -- 11
-call.type$ -- 6
-change.case$ -- 4
+* -- 19
+:= -- 128
+add.period$ -- 17
+call.type$ -- 12
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 40
-empty$ -- 111
+cite$ -- 15
+duplicate$ -- 70
+empty$ -- 219
 format.name$ -- 6
-if$ -- 181
+if$ -- 313
 int.to.chr$ -- 0
-int.to.str$ -- 6
+int.to.str$ -- 12
 missing$ -- 4
-newline$ -- 26
+newline$ -- 44
 num.names$ -- 3
-pop$ -- 39
+pop$ -- 72
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 33
+skip$ -- 86
 stack$ -- 0
 substring$ -- 0
-swap$ -- 6
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
+warning$ -- 3
 while$ -- 3
-width$ -- 7
-write$ -- 45
-(There were 4 warnings)
+width$ -- 14
+write$ -- 72
+(There were 13 warnings)

@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{ElmasryNavathe15}
 Ramez Elmasri and Shamkant~B. Navathe.
@@ -20,6 +20,24 @@ Abraham~Silberschatz Professor, Henry~F. Korth, and S.~Sudarshan.
 
 \bibitem{DatabaseEnginesStatistics19}
 {DB-Engines Ranking}.
+
+\bibitem{RelationalVsNonRelationalDatabases1}
+
+
+\bibitem{RelationalVsNonRelationalDatabases2}
+
+
+\bibitem{NonRelationalDBs}
+{What Is A Non Relational Database}.
+
+\bibitem{DatabaseTypes}
+{The Types of Modern Databases}.
+
+\bibitem{KeyValueStores}
+{What Is a Key-Value Database?}
+
+\bibitem{NoSQLDatabaseModeling}
+
 
 \bibitem{ANSIArchitecture75}
 SPARC-DBMS~Study Group.

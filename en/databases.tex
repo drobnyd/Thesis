@@ -1,20 +1,29 @@
 \chapter{Databases}
 
+A standalone database is not very useful. To take the full advantage of it we need some means to define, create, maintain and control access to the database. That is purpose of a software called \textit{Database Management System (DBMS)}.
+
 \section{Database Model Types}
 
-We already described why we want to use a database and roughly described what are the pieces of data that we want to save there. 
-Now let's have a look at what are differences between in database implementations and what to take in account when comparing database technologies.
+We already described why we want to use a database and roughly mentioned what are the pieces of data that we want to save there. 
+Now let's take a look at what are differences between in database implementations and what to take in account when comparing database technologies.
 That may be helpful when choosing the best suitable option for some specific data set to store or to see how storing of great amount of structured information can be approached. \\ 
 
-The basic division of database model types is simple and binary - they are either Relational or Non-Relational. 
+The basic division of database model types is simple and binary - they are either Relational or Non-Relational.
 
-\subsection{Relational Databases}
+There are Database Management Systems build around both, Relational Database Management System (RDBMS).
+
+\TODO{BASE, ACID}
+
+\subsection{Relational}
 A \textit{Relational Database} is a set of tables. A table consists of rows (or records) and columns. We can see such table as an object whose attributes are represented by columns and instances by rows. 
 The important thing is that relational tables tables carry both data that need to be stored by user and the relationships between the data as well. 
 To store an atomic piece of data about instance a proper column is filled with a value.
-Whereas to capture a relationship between objects the concept of primary and foreign keys is used. \TODO{is it necessary to explain keys?}
+Whereas to capture a relationship between objects the concept of primary and foreign keys is used.
+They are known also as SQL databases by the query language used in RDBMS for managing data.
 
-\subparagraph{The Most Used Relational Database Engines}
+\TODO{is it necessary to explain keys?}
+
+\subparagraph{The Most Used Relational Database Management Systems} \footnote{The database technologies usage statistics are based on data from the most up to date version of website db-engines.com \cite{DatabaseEnginesStatistics19}.}
 
 \begin{itemize}
 	\item Oracle
@@ -24,17 +33,74 @@ Whereas to capture a relationship between objects the concept of primary and for
 	\item IBM Db2
 \end{itemize}
 
-\subsection{Non-Relational Databases} 
-\textit{Non-Relational Databases}
+\subparagraph{Advantages}
+\cite{RelationalVsNonRelationalDatabases1} \cite{RelationalVsNonRelationalDatabases2}
 
-\subparagraph{The Most Used Non-Relational Database Engines} 
 \begin{itemize}
-	\item MongoDB
+	\item Designed for managing structured data
+	\item ACID compliance - database transactions are Atomic, Consistent, Isolated, Durable
+	\item The technology is mature, well-established with large eco-system and many developers have experiences with SQL and \TODO{define RDBMS}
+	\item Data integrity is enforced
 \end{itemize}
 
-\TODO{Summation of advantages/disadvantages and usage stats}
+\subparagraph{Disadvantages}
 
-The usage statistics are taken from the most up to date rankings by web db-engines.com \cite{DatabaseEnginesStatistics19}.
+\begin{itemize}
+	\item Problems managing data that are unstructured or semi-structured
+	\item Data is normalized in order to achieve reduction of data redundancy, therefore stored objects may not have one-to-one mapping with the tables that represent them in memory. Also meaning lots of expensive (in terms of speed) joins when fetching such objects.
+\end{itemize}
+
+\subsection{Non-Relational}
+A \textit{Non-Relational Database}, is any database that does not follow the relational paradigm. They are younger and were invented to overcome limitations that relational engines have. 
+The ultimate aim is to be more effective when coping with Big Data - data that is fast growing and their structure may not be defined strictly (unstructured, semi-structured information) \cite{NonRelationalDBs}.
+There are multiple ways that these requirements can be met so we will introduce more precise division \cite{DatabaseTypes}.
+They are also commonly referred as NoSQL databases as the opposite of SQL databases.
+
+\TODO{Description of the types?}
+\subparagraph{Non-Relational Database Types}
+The most used DBMS is listed with each type.
+\begin{itemize}
+	\item Key-value stores \cite{KeyValueStores} \\ Redis
+	\item Wide column stores \\ Cassandra
+	\item Document stores \\ MongoDB
+	\item Graph databases \\ Neo4j
+	\item Search engines \\ Elasticsearch 
+\end{itemize}
+
+\subparagraph{Advantages}
+\cite{RelationalVsNonRelationalDatabases1} \cite{RelationalVsNonRelationalDatabases2}
+
+\begin{itemize}
+	\item Elastic scaling, new cluster nodes can be added easily
+	\item No strict database schema is required, bigger flexibility when changing inserted data format
+\end{itemize}
+
+\subparagraph{Disadvantages}
+
+\begin{itemize}
+	\item Weaker data consistency mode - BASE (Basically Available, Soft state, Eventual consistency)  in contrast to stronger ACID in RDBMS
+	\item Lack of built-in data integrity
+	\item Join operation is hard and may be even not supported
+\end{itemize}
+
+\subsection{Conclusion}
+
+By the described properties of the respective systems, hopefully, a reader has some image of in what situation is reasonable to use the more traditional Relational design or look around for one of the Non-Relational databases.
+To sum it up, if the ACID principle is required by a user and business rules should be enforced the SQL databases are the ones to choose. Enterprises should be cautious and their first choice would be a Relational Database.
+In contrast when storing heterogeneous data or big volumes of it, consistency is not a priority and the system is extensively distributed some of the Non-Relational databases may be the right one. \\ 
+
+\TODO{Move to the modeling chapter?}
+
+However, in this work we will focus only on databases that are of the Relational kind. 
+
+The main reason behind this is that since NoSQL Databases have flexible schema or are schema-less (there is no point in determining a database schema when data types of attributes or keys) modeling of these databases quite a new discipline and is hard to find an intersection among different approaches to NoSQL modeling.
+Also concepts of higher abstraction models are omitted. \cite{NoSQLDatabaseModeling}
+
+The second thing to consider is that once a database is Relational we more or less know what to expect from it. The structure of these databases . So a tool that would extract metadata from relational data models is potentially more powerful as it can be applied to more database technologies than a similar tool aimed for some specific type of Non-Relational database. 
+
+Lastly, despite the Non-Relational may be growing in numbers and becoming a serious player the Relational still are, and in the near future will be, far more widely used.
+
+\section{Query Language}
 
 \section{Means of Database Access}
 \TODO{Drivers}
