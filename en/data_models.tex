@@ -1,33 +1,73 @@
-\chapter{Data Models}
+\chapter{Database Modeling}
 
-\section{Data Modeling}
+The first question that has to be answered is what does data modeling brings us. \\
+
+One may ask why it is necessary to develop some models before an actual database creation.
+But let us imagine building a house without solid design and documentation. 
+It sounds a bit strange to hire construction workers straight ahead and tell them that we need a house that has 5 rooms, some toilets and expect a good result. Most probably some building would be produced, but we will agree that expectations and requirements of the later inhabitant could not be met properly.
+Surely there are good reasons why the usual steps are followed strictly.
+Let us move on from the analogy to the database domain. \\
+When deploying a database from a scratch we may think of two short term advantages. Firstly, the time needed to have data stored somewhere would be much shorter and secondly the initial cost of the system could be lower. \\
+But over time both of the advantages will, most likely, get outnumbered by problems that will begin to appear. Maintenance of a poorly designed system (or not designed at all) is expansive and leads to numerous outages. \\
+
+Data modeling should lead to higher quality as is pushes to thorough definition of the modeled problem. Once we know what to solve and what is the scope, it is much easier to come with different solutions and justify which of the proposed approaches is the most suitable one. \\
+
+Costs are reduced since during creation of a data model many errors are identified thus can be caught early, when they are easy to fix. \\
+
+Data models form a nice piece of documentation that is understandable by each of the involved parties. When someone tries to understand the system, he can choose a data model on an appropriate level of abstraction that will introduce him the important aspects of the problem that suits his knowledge and qualification. \\
+
+Also during the design process we may learn a lot about properties of the data that we need or have and will be stored. These information are crucial for choosing an appropriate type of database, whether to stick with a relational database if so which DBMS is the one for us, or to look for a non-relational one. \\
 
 \section{Abstraction Layer Types}
 
-\TODO{mention the types from introduction}
-
-\TODO{move to the chapter about databases in comparison with the historical proposition}
-In 1975 American National Standards Institute \cite{ANSIArchitecture75} introduced its database architecture consisting of three layers:
+Some time ago, in 1975, American National Standards Institute \cite{ANSIArchitecture75} first came with database architecture consisting of three levels:
 \begin{itemize}
-	\item  External Level
+	\item External Level
 	\item Conceptual Level
 	\item Physical Level
 \end{itemize}
 
-\subsection{Physical Data Model}
-
-\subsection{Logical Data Model}
+\TODO{Now let's have a look at what different options are available when creating a data model of a database.
+The first categorization of these models was proposed \ref{DataModelsByAbstraction} - conceptual (also high-Level), logical (also representational, or implementation) and physical (also low-level) data models.}
 
 \subsection{Conceptual Data Model}
 
-\section{Relations Between the Layers}
+The purpose of a conceptual data model is to project to the model real-world and business concepts or objects. \\
+
+\subsubsection{Characteristics}
+Aimed to be readable and understandable by everyone. \\
+Is completely independent of technicalities like a software used to manage the data, DBMS, data types etc. \\
+Is not normalized. \\
+
+A real world object is captured by an \textbf{entity} in conceptual model if our modeling domain is public transport then entity may be a bus or a tram.
+For further description of objects that we are interested in \textbf{attributes} are used, those are properties of entities, for example a license plate number would an information to store when describing buses.
+Also \textbf{relationships} between objects are necessary to provide full view of the section of the world that a data model resembles. Having transportation companies in our data model it is really fundamental to see that a company may own some vehicles.
+
+\TODO{Types of data models used for CDM}
+
+But if someone speaks about a conceptual data model most probably he means an entity-relationship data model.
+
+\subsection{Logical Data Model}
+
+Keeping its structure generic a logical model extends the objects described in a conceptual data model making it not that easy to read but becomes a good base documentation for an implementation.
+
+\subsubsection{Characteristics}
+Independent of a software used to manage the data or DBMS. \\
+Data types description is introduced (but in a way that is not tied with any specific technology). \\
+Normalized up to \TODO{third normal form}. \\
+
+\subsection{Physical Data Model}
+
+\subsubsection{Characteristics}
+
+\section{Relations Between the Models}
 
 \subsection{Maps-to Relation}
 
-\section{Possible Construction of a Model}
+\section{Construction of a Data Model}
 
 \subsection{Modeling}
-\TODO{Each layer}
+\TODO{Each layer or not}
 
 \subsection{Reverse-Engineering}
 \TODO{Physical layer}

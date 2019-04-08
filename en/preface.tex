@@ -1,8 +1,7 @@
 \chapter{Introduction}
 
-%\section{Databases}
 \par 
-A \textit{Database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in Fundamentals of Database Systems \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network.
+A \textbf{database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in Fundamentals of Database Systems \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network.
 Databases became deep-rooted in every business. 
 Independently of the field that a company is focused on we can enumerate many reasons for considering a database storage deployment a good idea.
 Let us show some examples of how databases are used through various business domains.
@@ -26,16 +25,13 @@ Let us show some examples of how databases are used through various business dom
 And the list goes on.
  \\
 
-%\section{Database Models}
 \par
-A \textit{Data Model} is a description of data, data relationships, data semantics, and consistency constraints. \\
-\par
-A \textit{Database Model} is a particular type of a data model that determines in what manner can be data in database organized, stored, represented and accessed in a database.
-\TODO{Structure of database vs modeling tools}
+A \textbf{data model} is a description of data, data relationships, data semantics, and consistency constraints. \label{DataModel} \\
+\par 
+A \textbf{database schema} defines how is the database described in a data model actually constructed, specifying types of fields from data model. Represents an instance of a data model. \\
 \\
-\\
-There are multiple kinds of specific database models known.
-According to Fundamentals of Database Systems \cite{SilberschatzKorthSudarshan10} the main categorization of database models nowadays, according to what do they describe and on what type of user are aimed, is following:
+There are multiple kinds of specific data models known.
+By Fundamentals of Database Systems \cite{SilberschatzKorthSudarshan10} the main categorization of data models nowadays, according to how big is the abstraction used and on what type of user are aimed, is following: \label{DataModelsByAbstraction}
 \begin{itemize}
 	\item Conceptual Data Models (High-Level) \\
 		Reproduces real world objects along with their relationships and should be close to how business end-users perceive them.
@@ -47,29 +43,27 @@ According to Fundamentals of Database Systems \cite{SilberschatzKorthSudarshan10
 		 In contrast to conceptual models the physical ones are tied with how data are stored physically at storage media showing all specific internal details that may be overwhelming in the case that the reader is a computer specialist.
 \end{itemize}
 
-%\section{Database Design}
+% Database Design
 \par
-Once the decision is made and the usefulness of a database for our thing is proved there may be still a long way until everything runs as expected and we can use all the advantages that a data storage brings.
-The database design phase comes in place then. By the nature of the problem, a top-down approach is followed.
+Once the decision is made and the usefulness of a database for our thing is proved there may be still a long way until everything runs as expected and we can use all the advantages that such data storage brings.
+The database design phase comes in place then. By the nature of the problem, a top-down approach is usually followed.
 A database designer comes in handy for the process. \\ \\
 The first thing that is needed to do is to discuss with an expert in the domain \TODO{what domain} in order to identify and collect requirements for the designed system. \\ \\
-The debate should be translated to a conceptual model by the designer. \TODO{that is an instance of what data model} \\ \\
+The debate should be translated to a conceptual data model of the future database by the designer.\\ \\
 Once the abstract model is created a movement towards its implementation is desired. That is when the development of a logical model takes place and the high level view is turned into system-specific model that is the logical one. \\ \\
 Finally, the organization of the database itself is figured out and captured in a physical model of the analyzed system. \\ \\
-Given the physical model a database can be deployed straightforwardly. \\
+Given the physical model a database should be possible to deploy straightforwardly. \\
 
 \par 
-A \textit{Database Schema} defines how is the database described in a data model constructed in use, represents an instance of a data model. \\
-\par 
-A \textit{Diagram} is a graphical visualization of a data model. \\
+A \textbf{diagram} is a graphical visualization of a data model. \\
 \par
-A \textit{Data Modeling Tool} is a software that allows a database designer to create data models. End user may use the tools for interactive previewing of the models' diagrams. \\
+A \textbf{data modeling tool} is a software that allows a database designer to create data models. End user may use the tools for interactive previewing of the models' diagrams. \\
 
 \par
-\TODO{\textit{Data Flow} is an internal logic of how data moves in some system across its components.} \\
+\TODO{\textbf{Data flow} is an internal logic of how data moves in some system across its components.} \\
 
 \par
-\textit{Data Lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
+\textbf{Data lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
 The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
 
 \par
