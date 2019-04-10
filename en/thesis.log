@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  10 APR 2019 01:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  10 APR 2019 09:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -753,12 +753,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
-
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
-[11]
+
 Underfull \hbox (badness 10000) in paragraph at lines 57--60
 
  []
@@ -769,12 +769,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--64
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--79
+Underfull \hbox (badness 10000) in paragraph at lines 70--75
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 88--93
+Underfull \hbox (badness 10000) in paragraph at lines 84--89
 
  []
 
@@ -883,7 +883,7 @@ ype1/public/lm/lmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
 b></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/loca
 l/texlive/2018/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/
 2018/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on thesis.pdf (27 pages, 567752 bytes).
+Output written on thesis.pdf (27 pages, 567909 bytes).
 PDF statistics:
  471 PDF objects out of 1000 (max. 8388607)
  98 named destinations out of 1000 (max. 500000)
