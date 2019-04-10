@@ -1,6 +1,6 @@
 \chapter{Databases}
 
-A standalone database is not very useful. To take the full advantage of it we need some means to define, create, maintain and control access to the database. That is purpose of a software called \textbf{Database Management System (DBMS)}.
+A standalone database is not very useful. To take the full advantage of it we need some means to define, create, maintain and control access to the database. That is purpose of a software called \definition{Database Management System (DBMS)}.
 
 \section{Database Types}
 
@@ -13,13 +13,13 @@ The basic division of databases types is simple and binary - they are either Rel
 There are Database Management Systems build around both, Relational Database Management System (RDBMS)
 
 \subsection{Relational}
-A \textbf{Relational Database} is a set of tables. A table consists of rows (also records) and columns. We can see such table as an object whose attributes are represented by columns and instances by rows. 
+A \definition{Relational Database} is a set of tables. A table consists of rows (also records) and columns. We can see such table as an object whose attributes are represented by columns and instances by rows. 
 The important thing is that relational tables tables carry both data that need to be stored by user and the relationships between the data as well. 
 To store an atomic piece of data about instance a proper column is filled with a value.
 Whereas to capture a relationship between objects the concept of keys is used. \\
-A \textbf{Key} is a subset of table's columns used for identifying a record. \\
-A \textbf{Primary Key} is a Key that non-ambiguously identifies a record in table and is used when referring to the record. \\
-A \textbf{Foreign Key} is a Key that uniquely identifies a record from a table (may be the same or a different one). \\
+A \definition{Key} is a subset of table's columns used for identifying a record. \\
+A \definition{Primary Key} is a Key that non-ambiguously identifies a record in table and is used when referring to the record. \\
+A \definition{Foreign Key} is a Key that uniquely identifies a record from a table (may be the same or a different one). \\
 They are known also as SQL databases by the query language used in RDBMS for managing data.
 
 \subparagraph{The Most Used Relational Database Management Systems} \footnote{The database technologies usage statistics are based on data from the most up to date version of website db-engines.com \cite{DatabaseEnginesStatistics19}.}
@@ -50,7 +50,7 @@ They are known also as SQL databases by the query language used in RDBMS for man
 \end{itemize}
 
 \subsection{Non-Relational}
-A \textbf{Non-Relational Database}, is any database that does not follow the relational paradigm. They are younger and were invented to overcome limitations that relational engines have. 
+A \definition{Non-Relational Database}, is any database that does not follow the relational paradigm. They are younger and were invented to overcome limitations that relational engines have. 
 The ultimate aim is to be more effective when coping with Big Data - data that is fast growing and their structure may not be defined strictly (unstructured, semi-structured information) \cite{NonRelationalDBs}.
 There are multiple ways that these requirements can be met so we will introduce more precise division \cite{DatabaseTypes}.
 They are also commonly referred as NoSQL databases as the opposite of SQL databases.
@@ -109,7 +109,7 @@ We have a database that stores some data, the data may be queried and modified v
 A solution is to provide them with an application programming interface (API) that provides a set of methods available in the programming language that the application program was written in, so it can use them.
 Most commonly when the API is called its implementation translates the request so that to a specific DBMS driver that it is passed after understands it and performs the desired action. \\
 
-A \textbf{Connection String} is a textual information used to identify a data source and establish a connection with it. It it is made of pairs of keywords and values separated by semicolon, the keywords are parameters of the connection.
+A \definition{Connection String} is a textual information used to identify a data source and establish a connection with it. It it is made of pairs of keywords and values separated by semicolon, the keywords are parameters of the connection.
 
 \paragraph{APIs to DBMS}
 \begin{itemize}

@@ -44,4 +44,10 @@ SPARC-DBMS~Study Group.
 \newblock Interim {R}eport: {ANSI}/x3/{SPARC} {S}tudy {G}roup on {D}ata {B}ase
   {M}anagement {S}ystems, 1975.
 
+\bibitem{Codd69}
+E.~F. Codd.
+\newblock Derivability, redundancy and consistency of relations stored in large
+  data banks.
+\newblock {\em {IBM} Research Report, San Jose, California}, {RJ599}, 1969.
+
 \end{thebibliography}

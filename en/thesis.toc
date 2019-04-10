@@ -19,38 +19,38 @@
 \contentsline {subsection}{\numberline {3.1.1}Conceptual Data Model}{12}{subsection.3.1.1}
 \contentsline {subsubsection}{Characteristics}{12}{section*.9}
 \contentsline {subsection}{\numberline {3.1.2}Logical Data Model}{12}{subsection.3.1.2}
-\contentsline {subsubsection}{Characteristics}{12}{section*.10}
+\contentsline {subsubsection}{Characteristics}{13}{section*.10}
 \contentsline {subsection}{\numberline {3.1.3}Physical Data Model}{13}{subsection.3.1.3}
 \contentsline {subsubsection}{Characteristics}{13}{section*.11}
 \contentsline {section}{\numberline {3.2}Relations Between the Models}{13}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Maps-to Relation}{13}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}Construction of a Data Model}{13}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Modeling}{13}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Reverse-Engineering}{13}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Generating}{13}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Importing}{13}{subsection.3.3.4}
-\contentsline {chapter}{\numberline {4}Modeling Tools}{14}{chapter.4}
-\contentsline {section}{\numberline {4.1}ER/Studio}{14}{section.4.1}
-\contentsline {section}{\numberline {4.2}PowerDesigner}{14}{section.4.2}
-\contentsline {chapter}{\numberline {5}Data Lineage}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Theory}{15}{section.5.1}
-\contentsline {section}{\numberline {5.2}Manta Flow}{15}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Supported Database Technologies}{15}{subsection.5.2.1}
-\contentsline {chapter}{\numberline {6}Analysis \& Design of the Solution}{16}{chapter.6}
-\contentsline {section}{\numberline {6.1}Requirements}{16}{section.6.1}
-\contentsline {section}{\numberline {6.2}Analysis of the Problem}{16}{section.6.2}
-\contentsline {section}{\numberline {6.3}Architecture of the System}{16}{section.6.3}
-\contentsline {chapter}{\numberline {7}Implementation}{17}{chapter.7}
-\contentsline {section}{\numberline {7.1}Extensibility}{17}{section.7.1}
-\contentsline {section}{\numberline {7.2}Technologies}{17}{section.7.2}
-\contentsline {section}{\numberline {7.3}Testing}{17}{section.7.3}
-\contentsline {chapter}{Conclusion}{18}{chapter*.12}
-\contentsline {chapter}{Bibliography}{19}{chapter*.13}
-\contentsline {chapter}{List of Figures}{20}{chapter*.14}
-\contentsline {chapter}{List of Tables}{21}{chapter*.15}
-\contentsline {chapter}{List of Abbreviations}{22}{chapter*.16}
-\contentsline {chapter}{\numberline {A}Attachments}{23}{appendix.A}
-\contentsline {section}{\numberline {A.1}Building}{23}{section.A.1}
-\contentsline {section}{\numberline {A.2}User Documentation}{23}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Tutorials}{23}{subsection.A.2.1}
-\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{23}{section.A.3}
+\contentsline {subsection}{\numberline {3.2.1}Maps-to Relation}{14}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.3}Construction of a Data Model}{14}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Modeling}{14}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Reverse-Engineering}{14}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Generating}{14}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Importing}{14}{subsection.3.3.4}
+\contentsline {chapter}{\numberline {4}Modeling Tools}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}ER/Studio}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}PowerDesigner}{15}{section.4.2}
+\contentsline {chapter}{\numberline {5}Data Lineage}{16}{chapter.5}
+\contentsline {section}{\numberline {5.1}Theory}{16}{section.5.1}
+\contentsline {section}{\numberline {5.2}Manta Flow}{16}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Supported Database Technologies}{16}{subsection.5.2.1}
+\contentsline {chapter}{\numberline {6}Analysis \& Design of the Solution}{17}{chapter.6}
+\contentsline {section}{\numberline {6.1}Requirements}{17}{section.6.1}
+\contentsline {section}{\numberline {6.2}Analysis of the Problem}{17}{section.6.2}
+\contentsline {section}{\numberline {6.3}Architecture of the System}{17}{section.6.3}
+\contentsline {chapter}{\numberline {7}Implementation}{18}{chapter.7}
+\contentsline {section}{\numberline {7.1}Extensibility}{18}{section.7.1}
+\contentsline {section}{\numberline {7.2}Technologies}{18}{section.7.2}
+\contentsline {section}{\numberline {7.3}Testing}{18}{section.7.3}
+\contentsline {chapter}{Conclusion}{19}{chapter*.12}
+\contentsline {chapter}{Bibliography}{20}{chapter*.13}
+\contentsline {chapter}{List of Figures}{21}{chapter*.14}
+\contentsline {chapter}{List of Tables}{22}{chapter*.15}
+\contentsline {chapter}{List of Abbreviations}{23}{chapter*.16}
+\contentsline {chapter}{\numberline {A}Attachments}{24}{appendix.A}
+\contentsline {section}{\numberline {A.1}Building}{24}{section.A.1}
+\contentsline {section}{\numberline {A.2}User Documentation}{24}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Tutorials}{24}{subsection.A.2.1}
+\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{24}{section.A.3}
