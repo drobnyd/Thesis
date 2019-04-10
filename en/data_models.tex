@@ -16,19 +16,38 @@ Costs are reduced since during creation of a data model many errors are identifi
 
 Data models form a nice piece of documentation that is understandable by each of the involved parties. When someone tries to understand the system, he can choose a data model on an appropriate level of abstraction that will introduce him the important aspects of the problem that suits his knowledge and qualification. \\
 
+Models should make easy to track whether high-level concepts were implemented and represented correctly in the end and to determine it the system is consistent. \\
+
 Also during the design process we may learn a lot about properties of the data that we need or have and will be stored. These information are crucial for choosing an appropriate type of database, whether to stick with a relational database if so which DBMS is the one for us, or to look for a non-relational one. \\
 
-\section{Abstraction Layer Types}
+\TODO{mention NoSQL modeling possibilities}
 
-Some time ago, in 1975, American National Standards Institute \cite{ANSIArchitecture75} first came with database architecture consisting of three levels:
+\section{Data Model Perspectives}
+
+Some time ago, in 1975, American National Standards Institute \cite{ANSIArchitecture75} first came with a database structure called Three-schema architecture. It is formed by:
 \begin{itemize}
-	\item External Level
-	\item Conceptual Level
-	\item Physical Level
+	\item External Level \\ Database as a user sees it, view of the conceptual level. 
+	\item Conceptual Level \\ Point of view of the enterprise that the database belongs to.
+	\item Physical Level \\ The actual implementation.
 \end{itemize}
 
-\TODO{Now let's have a look at what different options are available when creating a data model of a database.
-The first categorization of these models was proposed \ref{DataModelsByAbstraction} - conceptual (also high-Level), logical (also representational, or implementation) and physical (also low-level) data models.}
+The idea behind the structure is to create three different views that are independent of each other. For example change of the implementation that is tied with physical level would not affect any of the remaining levels if the structures remained the same. The important thing is that this structure is used to describe finished product, it does not say anything about the design process that leads to the product and should not be mistaken with the data model structure proposed earlier \ref{DataModelsByAbstraction}.\\
+
+An important thing related to data modeling happened a year later, in 1976, when Peter Chen identified four levels of view of data: \\
+(1) Information concerning entities and relationships which exist in our minds. \\
+(2) Information structure-organization of information in which entities and relationships are represented by data. (Conceptual data model) \\
+(3) Access-path-independent data structure-the data structures which are not involved with search schemes, indexing schemes, etc. (Logical data model) \\
+(4) Access-path-dependent data structure. (Physical data model)\\
+And he proposed \textbf{entity-relationship (ER) data model} that covers the highest two levels and may be a basis for unified view of data. \\
+In that time three major data models were used - relational, network and entity set model. His aim was to bring a data model that would reflect real-world objects and relations between them naturally, while having advantages of all the three already existing models. The mission seems to be successful as years have proven the ER data model to be the most suitable one for conceptual data modeling. Moreover, ER data models are used most commonly in logical data modeling as well. \\
+An extended version of ER data model was introduced later - \textbf{enhanced-entity-relationship (EER) data model}. The main change is that concept sub-classes and super-classes, known as inheritance or is-a relationship, between entities was brought.
+
+Conceptual and logical data models are usually represented by ER data models. The question is what specific data model type is used for physical models. 
+As the most low-level model type is tied directly with how a database is organized, physical models must obey the structure of database.
+
+In the early days when navigational databases were trending, concretely hierarchical and network database, each of them was represented by corresponding data model. \TODO{Mention in databases details.}
+
+In 1969 Edgar F. Codd \TODO{ Codd, E.F (1969), Derivability, Redundancy, and Consistency of Relations Stored in Large Data Banks, Research Report, IBM. } brought the idea of relational database organization and the relational data model was born. \TODO{quick overview}
 
 \subsection{Conceptual Data Model}
 
@@ -40,25 +59,37 @@ Is completely independent of technicalities like a software used to manage the d
 Is not normalized. \\
 
 A real world object is captured by an \textbf{entity} in conceptual model if our modeling domain is public transport then entity may be a bus or a tram.
-For further description of objects that we are interested in \textbf{attributes} are used, those are properties of entities, for example a license plate number would an information to store when describing buses.
-Also \textbf{relationships} between objects are necessary to provide full view of the section of the world that a data model resembles. Having transportation companies in our data model it is really fundamental to see that a company may own some vehicles.
-
-\TODO{Types of data models used for CDM}
-
-But if someone speaks about a conceptual data model most probably he means an entity-relationship data model.
+For further description of objects that we are interested in \textbf{attributes} are used, those are properties of entities, for example a license plate number would an information to store when describing buses. Only the important ones are listed. \footnote{Definitions varies and in some literature can be even found that a conceptual entity lacks attributes. We assume that the entity can contain important attributes as it is more common interpretation and modeling tools have attributes support on conceptual layer as well.}
+Also \textbf{relationships} between objects are necessary to provide full view of the section of the world that a data model resembles. Having transportation companies in our data model it is really fundamental to see that a company may own some vehicles. \\
 
 \subsection{Logical Data Model}
 
-Keeping its structure generic a logical model extends the objects described in a conceptual data model making it not that easy to read but becomes a good base documentation for an implementation.
+Keeping its structure generic a logical model extends the objects described in a conceptual data model making it not that easy to read but becomes a good base documentation for an implementation. Data requirements are described from business point of view.
 
 \subsubsection{Characteristics}
 Independent of a software used to manage the data or DBMS. \\
+Each entity has the primary key. \\
+Foreign keys are expressed. \\
 Data types description is introduced (but in a way that is not tied with any specific technology). \\
 Normalized up to \TODO{third normal form}. \\
 
+\textbf{Entities}, \textbf{attributes} and \textbf{relationships} from a conceptual model are present on this layer as well. Relationships are not that abstract as before and keys that actually make relationship happen between entities are added as their attributes.
+
 \subsection{Physical Data Model}
 
+A physical data is a description of a database implementation so it is necessarily tied with one specific database technology as it should have one-to-one mapping to actual implementation. Its main message is to communicate \textbf{how} the data are stored.
+
 \subsubsection{Characteristics}
+
+Exact data types (DBMS specific) and default values of columns are outlined. \\
+DBMS's naming conventions are applied on objects. \\
+Constraints are defined (eg. not null, keys, or unique for columns). \\
+Contains validation rules, database triggers, indexes, stored procedures, domains, and access constraints. \\ 
+Normalization in order to avoid data redundancy or de-normalized if performance increase is reflected in the model. \\
+
+Objects in physical models are created by related higher-level concepts. \textbf{Tables} should store records that corresponds to logical entities and \textbf{columns} represent previously described attributes in memory.
+
+\TODO{image that illustrating the division}
 
 \section{Relations Between the Models}
 
