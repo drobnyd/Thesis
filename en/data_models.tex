@@ -99,24 +99,40 @@ Objects in physical models are created by related higher-level concepts. \defini
 We described what the role of each of the layers in a database design process is.
 Now we will show that the data models are somehow connected vertically and what are the implications.
 
-When talking about horizontal divisions, we should think of how database design proceeds.
+When talking about vertical divisions, we should think about how database design can proceed.
 
 The basic approach is the \definition{top-down approach} to database modeling.
+It is natural to start with a general idea what should a database store and what are the relations between stored object. 
+End-user defines this high-level logic and as time goes importance of database designer grows until he is at full charge and develops a complete database. It is the most common case of database development when a client identifies a high-level need for a database and hires an expert in this domain to make it happen.
 
-\TODO{bottom-up approach}
+The other way to create full view of a database is the \definition{bottom-up approach}. It can be harder to imagine what would be use-cases for this approach, but there are some problems that are bottom-up in nature. A nice real world example of bottom-up strategy is how doctors work. 
+They start with "low-level" details such as symptoms and they're trying to build the whole image of patient's condition. So in the field of software data elements are firstly identified and after they are logically grouped to form bigger units, entities, and so on until the full hierarchy is known.
 
 \subsection{Maps-to Relation}
 
+In order to capture how high-level concepts are actually realized by more precise object a relation that we will call \definition{maps-to} is used. The relation leads between objects that are semantically equivalent on different levels of abstraction, sometimes even mapping between objects on the same layer are allowed but we will not consider this, as we consider it be mixing two different concepts together - data modeling with data lineage. To be more define what we mean by semantically equivalent objects in data models is that we will assume maps-to edges solely source is model and target is model, entity and table, attribute and column, or the other way around.
+Following these mapping links is extremely useful when a person wants to gain an overall overview of the system and comprehend it. For example when a user sees a data table in physical model that has a technical name that obey some naming convention and due to normalization does not represent any object straightforwardly, he can follow mapping links that leads to higher layer providing greater  abstraction over the implementation and the motivation why the table was created should be much clearer then.
+It is worth mentioning that usually the mapping relations between objects of different layers simple one-to-one relationships but the cardinalities may vary greatly. For example one logical attribute may be realized via multiple database columns.
+Normally more technical models are composed of bigger count of objects so one conceptual entity may be realized by multiple database tables in the end. Generally it is assumed that number of conceptual objects $<$ number of logical objects $<$ number of physical objects. It is natural that when capturing important high-level aims less entities is needed to express the intention but as we are getting closer to the implementation more necessary details come to play.
+
 \section{Construction of a Data Model}
 
-\subsection{Modeling}
-\TODO{Each layer or not}
+We tried to make clear what is a data model and show that there are good reasons to use them throughout the process of database design.
+Now we will take a look how someone developing a database can actually create those models.
+In fact, a data model could be created by hand using only paper and pen. It would definitely bring some of the benefits described above but to take the full advantage of modeling we will use \definition{computer-aided software engineering (CASE) tools}. The tools are here to help with development of quality software. The CASE tools are divided into multiple categories, our interest will be focused on the one that deals with Business and Analysis modeling. Graphical modeling tools. E.g., ER modeling, object modeling.
+The main motivation behind using the tools is that they facilitate creating and previewing data models. Here is an overview of different ways how a data model can be created using them.
 
-\subsection{Reverse-Engineering}
-\TODO{Physical layer}
+\subsection{Modeling}
+This way of creation is the most similar to the pen and paper method. A user builds a model manually by selecting what object should be created and bringing it to the particular model, then he provides details about the object, creates sub-objects or specifies relationships with different objects.
+Some tools do not allow creating an arbitrary model, but only the conceptual or logical models may be drawn like this. 
+The reason behind not allowing user to create a physical data model out of scratch is that a physical model should either be the result of some process and be based on a model with higher level of abstraction(see the Generating section) and then adjusted or resemble a live database that and to be obtained by reverse-engineering (see the Reverse Engineering section).
+
+\subsection{Reverse Engineering}
+Reverse engineering, or alternatively back engineering, is the process whose aim is to find out principles of how things are done or works in a system that is already running and try to gain deeper understanding of the system.
+Applied to our domain the reverse engineering approach to creation of a data model means that a CASE tool connects to a database and brings every object found to the physical model that is created. \TODO{relationships} The model is an exact image of the database and one-to-one mapping between the model and database should be secured.
 
 \subsection{Generating}
-\TODO{Downwards}
+Given a data model on some level another one on different abstraction level can be derived from it. Modeling tools usually support translating objects to semantically equivalent ones either towards either greater smaller abstraction. Of course models created like this are not full-featured models but may be a better starting point for a database designer to takeover. For example when conceptual data model is arranged and logical model should be created based on it it is really helpful not to start from a scratch but to generate an outline of the logical one by generating from the conceptual. Then it may be reshaped into the desired condition more quickly. Generation sources and targets are in maps-to relationship implicitly.
 
 \subsection{Importing}
-\TODO{Each layer}
+Finally a CASE modeling tool may be able to import data models that were created using a different modeling software and recreate the data models.
