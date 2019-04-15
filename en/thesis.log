@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  13 APR 2019 22:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  15 APR 2019 12:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -805,16 +805,16 @@ Chapter 4.
 
  (./data_lineage.tex
 Chapter 5.
-) [17
+[17
 
 
 
-]
+]) [18]
 \openout2 = `solution_design.aux'.
 
  (./solution_design.tex
 Chapter 6.
-) [18
+) [19
 
 
 
@@ -823,14 +823,14 @@ Chapter 6.
 
  (./implementation.tex
 Chapter 7.
-) [19
+) [20
 
 
 
 ]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [20
+ (./epilog.tex) [21
 
 
 
@@ -843,7 +843,7 @@ Underfull \hbox (badness 1009) in paragraph at lines 17--20
 u-dar-shan.
  []
 
-)) [21
+)) [22
 
 
 
@@ -851,20 +851,20 @@ u-dar-shan.
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [22
+ [23
 
 
 ] (./thesis.lot)
 \tf@lot=\write8
 \openout8 = `thesis.lot'.
 
- [23
+ [24
 
-] [24
+] [25
 
 ]
 Appendix A.
-[25
+[26
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 163.
@@ -880,8 +880,8 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 163.
  ) 
 Here is how much of TeX's memory you used:
- 14233 strings out of 492649
- 194823 string characters out of 6129623
+ 14235 strings out of 492649
+ 194841 string characters out of 6129623
  260919 words of memory out of 5000000
  17744 multiletter control sequences out of 15000+600000
  77659 words of font info for 73 fonts, out of 8000000 for 9000
@@ -898,9 +898,9 @@ local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texliv
 e/2018/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf
 -dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/font
 s/type1/public/lm/lmsy10.pfb>
-Output written on thesis.pdf (29 pages, 585695 bytes).
+Output written on thesis.pdf (30 pages, 591898 bytes).
 PDF statistics:
- 487 PDF objects out of 1000 (max. 8388607)
- 101 named destinations out of 1000 (max. 500000)
+ 494 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
  386 words of extra memory for PDF output out of 10000 (max. 10000000)
 
