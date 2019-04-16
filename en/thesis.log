@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  15 APR 2019 23:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  17 APR 2019 01:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -537,7 +537,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/logo-en.pdf): PDF inc
 lusion: found PDF version <1.5>, but at most version <1.4> allowed
-<../img/logo-en.pdf, id=190, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=198, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -818,19 +818,19 @@ Chapter 6.
 
 
 
-]
+] [21]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Chapter 7.
-) [21
+) [22
 
 
 
 ]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [22
+ (./epilog.tex) [23
 
 
 
@@ -843,7 +843,7 @@ Underfull \hbox (badness 1009) in paragraph at lines 17--20
 u-dar-shan.
  []
 
-)) [23
+)) [24
 
 
 
@@ -851,20 +851,20 @@ u-dar-shan.
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [24
+ [25
 
 
 ] (./thesis.lot)
 \tf@lot=\write8
 \openout8 = `thesis.lot'.
 
- [25
+ [26
 
-] [26
+] [27
 
 ]
 Appendix A.
-[27
+[28
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 163.
@@ -875,22 +875,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 163.
 (./bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 163.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 163.
-
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: B1105047445D3B7C6AFBC350B440B630;6173
-(rerunfilecheck)             After:  CBBB43C0FD0C060C8A3CF5EC3D7D97A3;6254.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: C1D37AD822A3B0EA53C1966ABB96A445;6488.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 163.
  ) 
 Here is how much of TeX's memory you used:
- 14236 strings out of 492649
- 194848 string characters out of 6129623
- 260919 words of memory out of 5000000
- 17744 multiletter control sequences out of 15000+600000
+ 14248 strings out of 492649
+ 194965 string characters out of 6129623
+ 260922 words of memory out of 5000000
+ 17746 multiletter control sequences out of 15000+600000
  77659 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,8n,35p,769b,1942s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -905,9 +898,9 @@ local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texliv
 e/2018/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf
 -dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/font
 s/type1/public/lm/lmsy10.pfb>
-Output written on thesis.pdf (31 pages, 593260 bytes).
+Output written on thesis.pdf (32 pages, 598583 bytes).
 PDF statistics:
- 499 PDF objects out of 1000 (max. 8388607)
- 104 named destinations out of 1000 (max. 500000)
- 386 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 522 PDF objects out of 1000 (max. 8388607)
+ 114 named destinations out of 1000 (max. 500000)
+ 402 words of extra memory for PDF output out of 10000 (max. 10000000)
 

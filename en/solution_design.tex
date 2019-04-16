@@ -1,7 +1,36 @@
 \chapter{Analysis \& Design of the Solution}
 
+We will work towards a piece of software that will obtain metadata from data models created using modeling tools ER/Studio and PowerDesigner and the solution will be able to connect to Manta Flow and bring data lineage to objects that have greater extent of abstraction than the physical ones currently supported by Manta.
+
+The solution, which we will refer to as \definition{Metadata Extractor} in this text, is comprised of two separate parts. The first one processes ER/Studio's data models, whereas the second one works with PowerDesigner.
+
 \section{Requirements}
+
+The overall goal is to collect those metadata that will allow us to recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage.
+
+In order to achieve this goal we must answer these important questions:
+
+\begin{enumerate}
+	\item Identify what data models the modeling tools work with, what objects are contained in the data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage. \TODO{Analysis}
+	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
+	\item Design a data structure suitable for storage image of the modeled objects described in 1). \TODO{Model}
+	\item Determine how the file format can be parsed. \TODO{Parser}
+	\item Construct the data structure. \TODO{Model}
+	\item Build a graphical representation of the data structure. \TODO{DataFlow Generator}
+	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{DataFlow Generator}
+\end{enumerate}
+
+ \TODO{how models are mapped to each other}
 
 \section{Analysis of the Problem}
 
+\TODO{in the following specify what format, what objects with what attributes} \\
+\TODO{where is the border-line between analysis and implementation, eg. the er/studio parser - describe format}
+
+\subsection{ER/Studio}
+
+\subsection{PowerDesigner}
+
 \section{Architecture of the System}
+
+\TODO{Figure showing cooperation of the most important components Manta $<->$ Model $<->$ Dataflow $<->$ Resolver }
