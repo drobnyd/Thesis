@@ -1,15 +1,265 @@
 \chapter{Analysis \& Design of the Solution}
 
-We will work towards a piece of software that will obtain metadata from data models created using modeling tools ER/Studio and PowerDesigner and the solution will be able to connect to Manta Flow and bring data lineage to objects that have greater extent of abstraction than the physical ones currently supported by Manta.
+We will work towards a piece of software that will obtain metadata from data models created using modeling tools ER/Studio and PowerDesigner and the solution will be able to connect to Manta Flow and bring data lineage to objects that have greater extent of abstraction than the physical ones which are currently the only objects supported by Manta.
 
 The solution, which we will refer to as \definition{Metadata Extractor} in this text, is comprised of two separate parts. The first one processes ER/Studio's data models, whereas the second one works with PowerDesigner.
 
-\section{Requirements}
+\section{Analysis of the Problem}
+
+We already presented that the modeling tools are capable of creating data models. These models are then saved into files from which they usually are reopened to be modified or previewed. We will use them for reconstruction of the objects and information contained in the data models.
+In order to do so we need to determine what objects we will be looking for in the files and how they are related to each other.
+In \autoref{chap:database_modeling} about database modeling we introduced the standard layout of every data model type. We will quickly review the basic skeleton of each model type once again. \\
+
+In conceptual data model is focused mainly on entities which may have attributes. An entity may be related to other entities.
+
+On logical layer also entities with attributes can be found and the entities may have relationships.
+
+Physical data models are made of tables. A table belongs to a schema and is composed of columns.
+
+These are the objects we must find in the file formats to recreate the main object hierarchy.
+
+Then we will need to figure out how the models in maps-to relation refer to each other across levels of abstraction. For example how a logical model and a physical model, being the realization of the logical one, are tied together.
+
+\subsection{File Format}
+
+Firstly, we will have a look at what is the output of the analyzed modeling tools, what information are stored there and how it is done.
+
+\subsubsection{ER/Studio}
+The modeling tools uses its custom file format. The file stores plain text and it is made up of many tables. A table in this context is a CSV (comma-separated values) structure but as there is not only one CSV table identifying name is also included. So by table we understand its name, definition of columns (or fields) and records. \TODO{escaping in CSV}
+How more complex objects can be stored in files like this is not clear from the first sight and it required some work to get the idea behind it. \TODO{insert a table here} 
+An attentive reader may find these terms, that we used for describing the data structure, familiar since we already used them where introducing relational databases. And he would be true. When investigating these tables we can notice columns that are shared, meaning relation between the tables that have them in common. This is pretty much how primary and foreign key work in relational databases.
+Now we face the challenge of reverse-engineering the tables to rebuild the composite objects that are deconstructed and saved in the tables.
+It would be quite exhausting to try to restore the relationships by hand, so we will develop a little tool that will help us to get on overview of the format that will work on one hand with tables' metadata to find the intersecting columns as well as with the records to see whether there are similarities in data stored in different tables to uncover relations between them and the core concepts behind the file format.
+Further details and ideas related to the ER/Studio file reverse-engineering tool can be found in the chapter \autoref{subsec:dm1_tool}
+
+Surely, when we want to load an arbitrary file a component that parses it will be needed. 
+We mentioned that the file of our interest is basically a sequence of CSV tables. The question stood whether to reach out for an existing CSV parser or to develop a tailor made one. We took the second option why and how we did so is described further in  \autoref{subsec:dm1_parser}.
+
+Once we understand the structure and can tell how the data we are seeking for are stored we can reconstruct them.
+In one .DM1 file related data models are stored. Let's call these models a solution. An \definition{ER/Studio solution} is set of data models, describing a problem on both logical and physical levels (the two layers are only that ER/Studio supports). In a solution one logical model must be present whereas 0 to N physical ones are supporting it. 
+We can imagine why ER/Studio behaves like this. The motivation may be that we have a problem (if there is no challenge, no data modeling is needed) that is obligatory described by the logical model. Possibly we worked out the way to solve it and that is when physical models are present. 
+Note that the actual storage may be distributed and the corresponding databases can be of different technologies, that is why more than one physical model is allowed in a single solution.
+
+\subsubsection{PowerDesigner}
+
+\TODO{TODO}
+
+\subsection{Metadata to Collect from Data Models}
+
+Now it is time to identify which metadata to collect in order to bring data lineage to the conceptual and logical level.
+The bare minimum is to be able to reconstruct high-level entities to have at least something to visualize data flow between according to knowledge gained in later stages.
+But we will aim to bring as much information as possible and try to make use of every relevant (meta)datum saved by a modeling tool. 
+In this section we will discuss what specific types of objects can we obtain and what are means to describe these objects even further then by the basic definition using the tools.
+On the other hand we will not pay attention to most relations in entity-relationship model. This is given by nature of Manta Flow, it is not a modeling tool thus it does not work with them and links between objects are used solely to represent dependencies determined by data lineage.
+The only relationship type from data models we will need to cope with is the inheritance relation. It is present in enhanced-entity-relationship models. The exception is made because if the is-a links are not captured, entities' structure are be not described completely and their attributes may be missing.
+Other categories of metadata we will not extract are the ones that describe some constraints on the actual records saved in database themselves. We will work exclusively with database metadata and don't have access to what is really saved there thus we cannot neither monitor nor enforce anything on the database entries. That is why likes of keys and data types defined in data models will not be in our domain of interest.
+
+\subsubsection{Conceptual \& Logical Data Model}
+
+Here we list objects that appear in both conceptual and logical data models, together with what additional information about them can be inserted by user.
+
+\subsubsection{ER/Studio}
+
+ER/Studio does not support conceptual data models.
+
+\subsubsection{LDM}
+
+\begin{itemize}
+	\item Owner \\ 
+	Owner is a concept equivalent to a schema - it is a container for logically related entities. Every entity belongs to an owner.
+	\item Entity \\
+	An entity has the following properties
+	\begin{itemize}
+		\item Name \\ 
+		Identification of the entity.
+		\item Attributes \\ 
+		Attributes assigned to the entity.
+		\item Definition \\
+		Further description of the entity. Plain text or RTF (rich text format).
+		\item Note \\
+		Notes are used when a documentation about the entity is generated. Plain text or RTF.
+		\item Where Used \\
+		Shows objects that are in maps-to relation with the entity. Those which were created by generating.
+		\item User-Defined Mappings \\
+		Shows objects that are in maps-to relation with the entity. These mapping are user defined. They can contain description of a relation, but we will not fetch the text as Manta Flow does not support attributes on mapping edges.
+		\item Owner
+		Owner is a concept equivalent to a schema - it is a container for logically related entities. The entity belongs to an owner.
+		\subsubsection{Properties We Will Not Extract}
+		\item \TODO{Permissions} \\
+		\TODO{By owner assigned to the entity permissions are realized.} \\
+		\item Keys \\
+		As we work exclusively with metadata we cannot enforce key constraints on the actual records in database, thus there is no need for them.
+		\item Relationships \\
+		Manta Flow does not support them.
+		\item Constraints \\
+		The same reason as with the keys above.
+		\item Naming Standards \\ 
+		The property is used when creating/generating data models but as we don't modify or add anything that would need to apply naming convention to, it is irrelevant for our case.
+		\item Data Lineage \\
+		We already mentioned that we want to create a real data lineage not just something that was drawn by user because it could have nothing to do with how the data actually flows.
+		\item Security Information \\
+		There would not be much of use if extracting security information since they are currently not supported in Manta Flow.
+		\item Attachment Bindings \\
+		\TODO{Manta Flow does not support attaching external pieces of information like ... to objects.}
+	\end{itemize}
+	\item Attribute
+	\begin{itemize}
+		\item Definition
+		\item Notes
+		\item Where Used
+		\item User-Defined Mappings
+		\subsubsection{Properties We Will Not Extract}
+		\item Datatype
+		\item Default
+		\item Rule/Constraint
+		\item Reference Values
+		\item Naming Standards
+		\item Compare Options
+		\item Data Lineage
+		\item Security Information
+		\item Attachment Bindings
+		\item Data Movement Rules
+	\end{itemize}
+	\subsubsection{Objects We Will Not Extract}
+	\begin{itemize}
+		\item Relationships
+	\end{itemize}
+\end{itemize}
+
+
+\subsubsection{PowerDesigner}
+
+\begin{itemize}
+	\item Data Item
+	A data item holds an elementary piece of information, which is given by some fact or a definition in a modeled system. It may or may not be present as a modeled object. Data items can be attached to entities to form their attributes. It is a datum that may seem relevant and is possible to capture at first but later may be not used as no entity needs it in the end.
+	\begin{itemize}
+		\item Name 
+		\item Code 
+		\item Comment
+		\item Keywords
+		\subsubsection{Properties We Will Not Extract}
+		\item Data type
+		\item Length
+		\item Precision
+		\item Domain
+		\item \TODO{Stereotype}
+	\end{itemize}
+	\item Entities
+	\begin{itemize}
+		\item Name 
+		\item Code 
+		\item Comment
+		\item Keywords
+		\item Parent Entity
+		\item Attributes
+		\subsubsection{Properties We Will Not Extract}
+		\item Number
+		\item Generate
+		\item Identifiers
+		\item Rules
+		\item \TODO{Stereotype}
+	\end{itemize}
+	\item Attributes
+	\begin{itemize}
+		\item Name 
+		\item Code 
+		\item Comment
+		\item Keywords
+		\subsubsection{Properties We Will Not Extract}
+		\item Data type 
+		\item Length 
+		\item Precision
+		\item Domain
+		\item Primary Identifier
+		\item Displayed
+		\item Mandatory
+		\item Foreign identifier (LDM only)
+		\item Standard Checks
+		\item Additional Checks
+		\item Rules
+		\item \TODO{Stereotype}
+	\end{itemize}
+	\item Inheritances
+	\subsubsection{Objects We Will Not Extract}
+	\item Relationships
+	\item Identifiers
+	\item Associations and Association Links (CDM only)
+	\item Domains
+\end{itemize}
+
+\subsubsection{Physical Data Model}
+
+\subsubsection{ER/Studio}
+
+\begin{itemize}
+	\item Physical Model \\
+		\TODO{connection, type of data model}
+	\item Owner (Schema)
+	\item Table
+	\begin{itemize}
+		\item Columns
+		\item Definition
+		\item Note
+		\item Where Used
+		\item User-Defined Mappings
+		\subsubsection{Properties We Will Not Extract}
+		Technical properties, many of them are effective only on some specific technologies (Organization adjusts only behavior of Netazza tables). \TODO{describe every?}
+		\item Storage \\ 
+		Specifies storage option
+		\item Dimensions
+		\item Properties
+		\item DDL \\ 
+		Code to create the table.
+		\item Indexes
+		\item Foreign Keys
+		\item Partition Columns
+		\item Distribute Columns
+		\item Distribution
+		\item Organization
+		\item Partitions
+		\item Overflow
+		\item Constraints
+		\item Dependencies
+		\item Capacity Planning
+		\item Permissions
+		\item PreSQL \& Post SQL
+		\item Naming Standards
+		\item Compare Options
+		\item Data Lineage
+		\item Security Information
+		\item Attachment Bindings
+	\end{itemize}
+	\item Column
+	\begin{itemize}
+		\item Definition
+		\item Notes
+		\item Where Used
+		\item User-Defined Mappings
+		\subsubsection{Properties We Will Not Extract}
+		\item Datatype
+		\item Default
+		\item Reference Values
+		\item Naming Standards
+		\item Compare Options
+		\item LOB Storage
+		\item Data Lineage
+		\item Security Information
+		\item Attachment Bindings
+		\item Data Movement Rules
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{PowerDesigner}
+
+\subsection{Maps-to Relation}
+\TODO{how it is realized}
+
+\section{Requirements/Desired Features}
 
 The overall goal is to collect those metadata that will allow us to recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage.
 
 In order to achieve this goal we must answer these important questions:
-
+\TODO{Architecture}
 \begin{enumerate}
 	\item Identify what data models the modeling tools work with, what objects are contained in the data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage. \TODO{Analysis}
 	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
@@ -20,17 +270,8 @@ In order to achieve this goal we must answer these important questions:
 	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{DataFlow Generator}
 \end{enumerate}
 
- \TODO{how models are mapped to each other}
-
-\section{Analysis of the Problem}
-
-\TODO{in the following specify what format, what objects with what attributes} \\
-\TODO{where is the border-line between analysis and implementation, eg. the er/studio parser - describe format}
-
-\subsection{ER/Studio}
-
-\subsection{PowerDesigner}
+\TODO{how models are mapped to each other}
 
 \section{Architecture of the System}
 
-\TODO{Figure showing cooperation of the most important components Manta $<->$ Model $<->$ Dataflow $<->$ Resolver }
+\TODO{Figure showing cooperation of the most important components Manta $<->$ Model $<->$ Dataflow $<->$ Resolver}

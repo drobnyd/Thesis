@@ -1,4 +1,5 @@
 \chapter{Database Modeling}
+\label{chap:database_modeling}
 
 The first question that has to be answered is what does data modeling brings us. \\
 
@@ -80,7 +81,7 @@ Normalized up to \TODO{third normal form}. \\
 
 \subsection{Physical Data Model}
 
-A physical data is a description of a database implementation so it is necessarily tied with one specific database technology as it should have one-to-one mapping to actual implementation. Its main message is to communicate \definition{how} the data are stored.
+A physical data is a description of a database implementation so it is necessarily tied with one specific database technology as it should have one-to-one mapping to actual implementation. Its main message is to communicate how the data are stored.
 
 \subsubsection{Characteristics}
 
@@ -90,7 +91,8 @@ Constraints are defined (eg. not null, keys, or unique for columns). \\
 Contains validation rules, database triggers, indexes, stored procedures, domains, and access constraints. \\ 
 Normalization in order to avoid data redundancy or de-normalized if performance increase is reflected in the model. \\
 
-Objects in physical models are created by related higher-level concepts. \definition{Tables} should store records that corresponds to logical entities and \definition{columns} represent previously described attributes in memory.
+Objects in physical models should reflect database organization and at the same moment related higher-level concepts should be transformable to physical level. \definition{Tables} should store records that corresponds to logical entities and \definition{columns} represent previously described attributes in memory.
+Commonly schemas\footnote{Plural of the word schema is schemata but in literature about database design the word schemas is used} are present. A \definition{schema} is basically container for tables that logically groups them. Users have usually schemas assigned and can access only the tables contained in those schemas.
 
 \TODO{image that illustrating the division horizontally and vertically}
 
@@ -103,7 +105,7 @@ When talking about vertical divisions, we should think about how database design
 
 The basic approach is the \definition{top-down approach} to database modeling.
 It is natural to start with a general idea what should a database store and what are the relations between stored object. 
-End-user defines this high-level logic and as time goes importance of database designer grows until he is at full charge and develops a complete database. It is the most common case of database development when a client identifies a high-level need for a database and hires an expert in this domain to make it happen.
+End-user defines this high-level logic and as time goes importance of a database designer grows until he is at full charge and develops a complete database. It is the most common case of database development when a client identifies a high-level need for a database and hires an expert in this domain to make it happen.
 
 The other way to create full view of a database is the \definition{bottom-up approach}. It can be harder to imagine what would be use-cases for this approach, but there are some problems that are bottom-up in nature. A nice real world example of bottom-up strategy is how doctors work. 
 They start with "low-level" details such as symptoms and they're trying to build the whole image of patient's condition. So in the field of software data elements are firstly identified and after they are logically grouped to form bigger units, entities, and so on until the full hierarchy is known.
