@@ -49,11 +49,14 @@ Since we have three different output file types from the modeling tool it is eas
 While ER/Studio groups data models into solutions every model created in PowerDesigner is saved independently. Set of files that are currently opened in PowerDesigner form its state. Such state is called a workspace here and can be saved into a .sws file, but these files do not bring us anything interesting. The information captured stores only what files were at some time opened in the environment and does not tell anything about logical links between the captured files.
 
 When parsing XML files there are basically two major ways we can face the problem.
-The first one is SAX (Simple API for XML)
 
-\TODO{.xdb}
+The first approach is SAX (Simple API for XML) that is an event-driven parser, which process an XML document sequentially by a single pass. By default the processing is state independent and handlers are triggered when an event occurs. It is a simple (for some cases may be even too simple) and lightweight parser.
 
-\TODO{.dsn, .dcp}
+On the other hand we have a family of DOM (Document Object Model) parsers. They load an XML file into a full AST (Abstract Syntactic Tree) structure. This way of file processing is both more memory and time consuming but translates everything stored in the parsed file into data structure straightforwardly. Then we can conveniently work with the tree-like result structure where nodes represent parts of the processed document.
+
+In the next chapter we will describe what we want to retrieve from the PowerDesigner data model files. We will see that the objects and their properties are quite complex and composite using a DOM parser will be much more suitable and doing XPath queries over a DOM document is nicer than having to store a context manually, what would be needed with SAX.
+
+\TODO{detail, move: One more extension to mention is .xdb, that is definition of a specific DBMS that is used for reverse-engineering databases into physical models.}
 
 \subsection{Metadata to Collect from Data Models}
 
@@ -355,7 +358,44 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 \end{itemize}
 
 \subsection{Maps-to Relation}
-\TODO{how it is realized}
+
+Once we identified objects across the data models it would be handy \TODO{further explanation} to know which ones are related even though they are not defined at the same level of abstraction.
+
+We will deal only with mappings of objects which are not at the same level of abstraction. 
+Some modeling tools allow mapping, for example, a logical entity to a logical entity but it is unclear what is the meaning of such construct, since we have relationships available for defining relationships like that. Possibly it could indicate that the objects are used identically as they are implemented by a single database table, but that is what data lineage describes precisely and will be brought by Metadata Extractor.
+
+To be specific only the following mappings we will extract: 
+\begin{itemize}
+	\item An entity to a table or another entity. 
+	\item An attribute to a column or another attribute.
+\end{itemize}
+
+\subsubsection{ER/Studio}
+
+We already listed two types of mapping relation that entities, tables, attributes and columns in ER/Studio can dispose of. 
+In fact their meaning is the same, the only difference is that the where used mappings are generated automatically and the user-defined are drawn by user. We assumed that all the objects in maps-to relation are in the very same solution but there is also an option to create a mapping to objects that are defined in different .DM1 files. It can be done using the Compare and Merge utility in ER/Studio whose functionality is to synchronize a model with another model/live database/SQL file. Among other operations that keep the pairs in sync there is the mapping creation option. We are interested in the first scenario where models may come from two solutions. The compared models' objects are listed side by side and mappings can be created between pairs of them. These mappings are referred to as universal. \\
+
+Our focus is on how mappings are saved in an ER/Studio solution. \\ 
+
+We will look at what is required to do in order to extract the mappings.
+Let's start with the seemingly easier case of mappings between objects inside the same solution. After some analysis we found a table defining them. It is named Where\textunderscore Used\textunderscore PD. 
+In the table there are four crucial attributes namely \TODO{id\textunderscore A, id\textunderscore B,} Meta\textunderscore Table\textunderscore A, Meta\textunderscore Table\textunderscore B.
+The first two attributes are foreign keys to tables where the mapped objects are defined. The second pair of columns defines a type of the object so that we know to which tables we should look for the keys that are referenced. The meta tables also allows us to check if the objects are actually compatible with each other. \\
+
+At the first sight solving the universal mappings may appear more difficult as it looks like we will need to search for object in different solution than the one that is analyzed and reconstruct them. But the way it is really solved in ER/Studio is much simpler. We don't need to go anywhere as the external objects referenced by a mapping are saved in the solution as well. They are described briefly in a table called External\textunderscore Mapped\textunderscore Objects by XML structures. 
+Also a table Universal\textunderscore Mappings using the same concepts as Where\textunderscore Used\textunderscore PD allows us to reconstruct them easily. \TODO{type-checking}
+
+\subsubsection{PowerDesigner}
+
+\TODO{TODO}
+
+\subsection{Database Connections}
+
+\subsubsection{ER/Studio}
+
+\subsubsection{PowerDesigner}
+\TODO{to connections: .dsn, .dcp}
+
 
 \section{Requirements/Desired Features}
 
