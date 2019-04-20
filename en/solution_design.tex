@@ -42,7 +42,18 @@ Note that the actual storage may be distributed and the corresponding databases 
 
 \subsubsection{PowerDesigner}
 
-\TODO{TODO}
+In the case of PowerDesigner we will be handling files with three types of extensions - .pdm, .ldm and .cdm. They  stand for physical data model, logical data model and conceptual data model respectively.
+All of them are XML (Extensible Markup Language) based file formats. \TODO{more about the XML format - elements, tags we will use/need}
+
+Since we have three different output file types from the modeling tool it is easy to see that the logic of how data models are saved varies from ER/Studio's approach. 
+While ER/Studio groups data models into solutions every model created in PowerDesigner is saved independently. Set of files that are currently opened in PowerDesigner form its state. Such state is called a workspace here and can be saved into a .sws file, but these files do not bring us anything interesting. The information captured stores only what files were at some time opened in the environment and does not tell anything about logical links between the captured files.
+
+When parsing XML files there are basically two major ways we can face the problem.
+The first one is SAX (Simple API for XML)
+
+\TODO{.xdb}
+
+\TODO{.dsn, .dcp}
 
 \subsection{Metadata to Collect from Data Models}
 
@@ -59,6 +70,8 @@ Other categories of metadata we will not extract are the ones that describe some
 Here we list objects that appear in both conceptual and logical data models, together with what additional information about them can be inserted by user.
 
 \subsubsection{ER/Studio}
+
+\subsubsection{CDM}
 
 ER/Studio does not support conceptual data models.
 
@@ -104,6 +117,7 @@ ER/Studio does not support conceptual data models.
 	\end{itemize}
 	\item Attribute
 	\begin{itemize}
+		\item Name
 		\item Definition
 		\item Notes
 		\item Where Used
@@ -129,8 +143,10 @@ ER/Studio does not support conceptual data models.
 
 \subsubsection{PowerDesigner}
 
+Conceptual and logical data models in PowerDesigner have so much in common that we will propose unified view on what may be stored in them. The properties/object that are specific for either of them are marked with information in brackets saying "CDM/LDM only".
+
 \begin{itemize}
-	\item Data Item
+	\item Data Item (CDM only) \\
 	A data item holds an elementary piece of information, which is given by some fact or a definition in a modeled system. It may or may not be present as a modeled object. Data items can be attached to entities to form their attributes. It is a datum that may seem relevant and is possible to capture at first but later may be not used as no entity needs it in the end.
 	\begin{itemize}
 		\item Name 
@@ -147,11 +163,11 @@ ER/Studio does not support conceptual data models.
 	\item Entities
 	\begin{itemize}
 		\item Name 
+		\item Attributes
 		\item Code 
 		\item Comment
 		\item Keywords
 		\item Parent Entity
-		\item Attributes
 		\subsubsection{Properties We Will Not Extract}
 		\item Number
 		\item Generate
@@ -165,6 +181,7 @@ ER/Studio does not support conceptual data models.
 		\item Code 
 		\item Comment
 		\item Keywords
+		\item Parent Entity
 		\subsubsection{Properties We Will Not Extract}
 		\item Data type 
 		\item Length 
@@ -181,6 +198,11 @@ ER/Studio does not support conceptual data models.
 	\end{itemize}
 	\item Inheritances
 	\subsubsection{Objects We Will Not Extract}
+	\begin{itemize}
+		\item Parent Entity
+		\item Child Entity
+	\end{itemize}
+	\subsubsection{Objects We Will Not Extract}
 	\item Relationships
 	\item Identifiers
 	\item Associations and Association Links (CDM only)
@@ -194,10 +216,16 @@ ER/Studio does not support conceptual data models.
 \begin{itemize}
 	\item Physical Model \\
 		\TODO{connection, type of data model}
-	\item Owner (Schema)
+	\item Schema
+	 \begin{itemize}
+	 	\item Name
+	 	\item Tables
+	 \end{itemize}
 	\item Table
 	\begin{itemize}
+		\item Name
 		\item Columns
+		\item Schema
 		\item Definition
 		\item Note
 		\item Where Used
@@ -231,6 +259,7 @@ ER/Studio does not support conceptual data models.
 	\end{itemize}
 	\item Column
 	\begin{itemize}
+		\item Name
 		\item Definition
 		\item Notes
 		\item Where Used
@@ -247,9 +276,83 @@ ER/Studio does not support conceptual data models.
 		\item Attachment Bindings
 		\item Data Movement Rules
 	\end{itemize}
+	\subsubsection{Objects We Will Not Extract}
+		\begin{itemize}
+			\item View
+		\end{itemize}
 \end{itemize}
 
 \subsubsection{PowerDesigner}
+
+\begin{itemize}
+	\item Tables
+	\begin{itemize}
+		\item Name 
+		\item Columns
+		\item Code 
+		\item Comment
+		\item Keywords
+		\item Schema
+		\subsubsection{Properties We Will Not Extract}
+		\item Number
+		\item Generate
+		\item Dimensional type
+		\item Type
+		\item Indexes
+		\item Keys 
+		\item Triggers
+		\item Procedures
+		\item Check 
+		\item Physical Options
+		\item Preview
+		\item Lifecycle 
+		\item \TODO{Stereotype}
+	\end{itemize}
+	\item Columns
+	\begin{itemize}
+		\item Name 
+		\item Code 
+		\item Comment
+		\item Keywords
+		\item Table
+		\subsubsection{Properties We Will Not Extract}
+		\item Data type 
+		\item Length 
+		\item Precision
+		\item Domain
+		\item Primary Key
+		\item Foreign Key
+		\item Sequence
+		\item Displayed
+		\item With default
+		\item Mandatory
+		\item Identity
+		\item Computed
+		\item Column fill parameters
+		\item Profile 
+		\item Computed Expression
+		\item Standard Checks
+		\item Additional Checks
+		\item Rules
+		\item \TODO{Stereotype}
+	\end{itemize}
+	\item \TODO{Users, Groups, and Roles}
+	\subsubsection{Objects We Will Not Extract}
+	\item Primary, Alternate, and Foreign Keys 
+	\item Indexes
+	\item Views
+	\item Triggers
+	\item Stored Procedures and Functions
+	\item Synonyms 
+	\item Defaults
+	\item Domains
+	\item Sequences 
+	\item Abstract Data Types
+	\item References
+	\item View References
+	\item Business Rules
+	\item Lifecycles
+\end{itemize}
 
 \subsection{Maps-to Relation}
 \TODO{how it is realized}
