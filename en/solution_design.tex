@@ -80,6 +80,8 @@ ER/Studio does not support conceptual data models.
 
 \subsubsection{LDM}
 
+\TODO{justification of each of property?}
+
 \begin{itemize}
 	\item Owner \\ 
 	Owner is a concept equivalent to a schema - it is a container for logically related entities. Every entity belongs to an owner.
@@ -357,6 +359,14 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 	\item Lifecycles
 \end{itemize}
 
+\subsection{Recreating of Modeled Objects}
+
+\TODO{TODO}
+
+\subsubsection{ER/Studio}
+
+\subsubsection{PowerDesigner}
+
 \subsection{Maps-to Relation}
 
 Once we identified objects across the data models it would be handy \TODO{further explanation} to know which ones are related even though they are not defined at the same level of abstraction.
@@ -382,19 +392,91 @@ Let's start with the seemingly easier case of mappings between objects inside th
 In the table there are four crucial attributes namely \TODO{id\textunderscore A, id\textunderscore B,} Meta\textunderscore Table\textunderscore A, Meta\textunderscore Table\textunderscore B.
 The first two attributes are foreign keys to tables where the mapped objects are defined. The second pair of columns defines a type of the object so that we know to which tables we should look for the keys that are referenced. The meta tables also allows us to check if the objects are actually compatible with each other. \\
 
-At the first sight solving the universal mappings may appear more difficult as it looks like we will need to search for object in different solution than the one that is analyzed and reconstruct them. But the way it is really solved in ER/Studio is much simpler. We don't need to go anywhere as the external objects referenced by a mapping are saved in the solution as well. They are described briefly in a table called External\textunderscore Mapped\textunderscore Objects by XML structures. 
+At the first sight solving the universal mappings may appear more difficult as it looks like we will need to search for object in different solution than the one that is analyzed and reconstruct them. But the way it is really solved in ER/Studio is much simpler. We don't need to go anywhere else as the external objects referenced by a mapping are saved in the solution as well. They are described briefly in a table called External\textunderscore Mapped\textunderscore Objects by XML structures.
 Also a table Universal\textunderscore Mappings using the same concepts as Where\textunderscore Used\textunderscore PD allows us to reconstruct them easily. \TODO{type-checking}
 
 \subsubsection{PowerDesigner}
 
-\TODO{TODO}
+By the nature of how PowerDesigner saves every data model into a separate file to resolve mappings will be not as straightforward as in the case of ER/Studio.
+So every mapping we take into account is an external one, using the terminology introduced above. There is a further division into two categories. Similarly as in the first tool, the mappings may be either generated or user-defined. \\ 
+
+Before we will go through how they are represented we must mention the way objects taking part in the relation are identified.
+Every standalone object in PowerDesigner has a unique identifier stored in its attribute named ObjectID. This sequence of characters (string) is used when referring to an object in the XML.\\
+
+When an object is created out of an existing one it is reflected in the structure of the object's definition. In such case an element History is present where all the ids of objects that made an impact on the objects creation are listed there \TODO{date as well}.
+
+User defined mappings are stored as separate relations. A composite XML element describe one relation \TODO{the name}. The structure is formed by a pair of mapped entities/tables \TODO{may be empty} and if their underlying attributes/column are in maps-to relation as well they are contained as in children elements of the mapping element \TODO{name}.
+
+So we are reading a file where the mappings are defined but we are only able to reconstruct a single object in the relation out of two. 
+The only property of the second one known is its id. We will need to find the object corresponding to the id in the file where it is defined in order to gather all the required metadata about it.
+Thus in situation like this a data model file are somehow dependent on other(s).
+To learn about the needed files there is an XML element \TODO{Targets}.
+When a model is generated from a file a dependency is created in both of the data model files, the one that was generated just like in the one that it was generated from. In other words, if we imagine an oriented graph where a file is a node and an edge leads from file $a$ to file $b$ $\iff$ $b$ is listed as a target file of $a$, then bidirectional edges are created when models are created by generation.
+Whereas when user-defined mapping is created from an object in a source model $a$ to an object in a target model $b$, only the $a \rightarrow b$ edge is created and the $b$ file has no knowledge about the mapping.
+We must solve how a resolution of the foreign objects will be done. As we have nothing but a target object's id, not even information what file does it from a naïve approach would be hugely inefficient. 
+It would go search for every demanded id across all targets. 
+But that potentially leads to a great amount of file opens as well as having to reconstruct the same objects over and over, leading to a big time overhead.
+Surely we can improve this solution by collecting the ids and postponing the resolution to the and so when processing a single files its target would be opened only once and the reconstruction of the object would take place one time as well. But that is still expansive in terms of time.
+If we went in a different direction and processed each of the model once, then stored all the objects that may be referred to and once all the data models on input are loaded, resolve mappings. Logic like this would decreased count of reconstructions and file openings to ideal amount but eventually, if number of inputted data models would be too big the size of memory claimed by Metadata Extractor could become unbearable.
+To achieve a solution that would have advantages of the both naïve approaches we need to split the set of input files into disjoint subsets that represent the smallest group of logically tied files. We will transform all of the unidirectional edges in the dependency graph described above into bidirectional and will find connected components, that will be our searched logical groups. Therefore we can make the resolution at the end as storage requirements for objects of such subset should be reasonable enough. Based on the assumption that the far most common use-case is having three data models - logical, conceptual and physical (or few physical ones). \\
+
+But there is one thing remaining that may cause some problems. The basic scenario how a user will behave is that he will works with PowerDesigner data models in some directory, for example C:/PowerDesigner/Project/ and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
+This way, the paths pointing to targets of models became are not correct since they have no reason to be updated and still depend on the files in C:/PowerDesigner/Project/. We want to work only with the files that user explicitly marked as to process, those are only the ones that are present in the input directory. Also if this problem is not thought of, it may cause undesired and unexpected behavior. 
+For example we have file $a$ referring to $b$ in input but a change of external object in C:/PowerDesigner/Project/$b$ would have affect on $a$.
+So we will try to come up with a fallback for this situation and will try to deduce by the former path the one in input folder.
+First thing to do, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one. \TODO{example} 
+If not we will assume similar structure of the both directories as well as that the names of files were not changed.
 
 \subsection{Database Connections}
 
+Modeling tools usually can make connections to a databases. It is useful for multiple reasons. For example already familiar reverse-engineering would not be possible without this ability since metadata are fetched directly from a database in order to capture its most up-to-date state. Also one of the features of modeling tools is keeping data models and databases that are tied with them in sync, so basically there is a mechanism for comparing actual state of a database with a model. 
+
+Manta Flow also extracts metadata of databases for needs of data lineage creation. It is done via JDBC connections.
+
+What we will do is not accessing metastores \footnote{shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - type of metadata and their organization varies greatly. Instead we will make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
+
+And why would we want to request another metadata when that is just what we are extracting from physical data models?
+Because we are interested in data lineage which it is created by Manta Flow based on the real metadata of physical objects that are present in database.
+The simple view is that at the moment when we ask for the objects from Manta Flow's metastore, the analysis of data flow has already taken part, thus there are data lineage edges leading between the objects. To bring together both features of Manta Flow and our tool, that brings more metadata and links to higher abstraction data models, we need to merge equivalent physical objects which come from the both sources - from Manta's extraction as well as from our tool. 
+So only if we are on the same page and we know what database at which server the modeled objects belong to we can ensure correct pairing of the objects and data lineage. \\
+
+The details we use for identification of a database instance are the following:
+\begin{itemize}
+	\item Database Type (Technology)
+	\item Database Name
+	\item Server Name
+	\item Schema Name
+	\item User Name
+\end{itemize} \TODO{is the list complete?}\\
+All the above can be stored in one property called \definition{connection string}.\\
+To this set of properties we will refer as a \definition{connection}. \\
+As each physical data model describes a single database (or its subset) we need exactly one connection for each processed physical model in order to achieve what we described just above.
+
 \subsubsection{ER/Studio}
 
+Databases whose models are created in ER/Studio can be reached only by ODBC drivers present in the used machine.
+
+We cannot really work with that, so we will leave it up to a user to define connection parameters by hand.
+A .ini files is used for that where sections are named by physical models that they correspond to and connection details are specified inside a section. 
+\TODO{we can get type}
+\TODO{describe somewhere the format precisely}
+
 \subsubsection{PowerDesigner}
-\TODO{to connections: .dsn, .dcp}
+
+In PowerDesigner a user has multiple options for connecting to a database to choose from. Either ODBC or JDBC connection may be used. 
+We would like to have the ability to find out what connections with what parameters were used for connecting to a database corresponding to a physical model. So a great help would be if there was a trace left after every each connection is made. We cannot enforce it but in PowerDesigner these traces can be created when connecting using .dsn or .dcp files.
+The tool has nice user environment for creating or using connections to a database where a user is guided through set up nicely and can test if he did set up everything correctly. \\
+
+The .dsn files are definitions of ODBC connection containing parameters for an ODBC driver and stores all the interesting information we would like to have. The drawback of this file format is that it varies from a technology to technology. It has a structure of an .ini files but the properties representing the same things may be called differently. That means we would need to have a parser for each supported database engine. \\
+
+On the other we have .dcp files. They can store information about native DBMS connection or about JDBC connection. 
+The nice thing about them is that they are not that flexible and once we know whether we deal with native or JDBC respectively we know what exact structure expect. 
+It is also a file consisting of property=value map.
+There are couple of properties common for both types, like description and user name.
+Then the most important property of a JDBC .dcp file is JDBC connection URL - in other words connection string which should sufficiently define a connection.
+In case of native DBMS variant Server Name along with Database Name are crucial in order to identify a database we are connecting to by the setup.
+
+But there is a problem that is common for both of the approaches, namely that there is no link between the connection file and a model that is result of reverse-engineering of the connection. So we will need to create a workaround. \TODO{how it is solved, also .ini file can be the solution}
 
 
 \section{Requirements/Desired Features}
@@ -408,13 +490,27 @@ In order to achieve this goal we must answer these important questions:
 	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
 	\item Design a data structure suitable for storage image of the modeled objects described in 1). \TODO{Model}
 	\item Determine how the file format can be parsed. \TODO{Parser}
-	\item Construct the data structure. \TODO{Model}
-	\item Build a graphical representation of the data structure. \TODO{DataFlow Generator}
-	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{DataFlow Generator}
+	\item Construct the data structure. \TODO{Resolver}
+	\item Build a graphical representation of the data structure. \TODO{Data Flow Generator}
+	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{Data Flow Generator}
 \end{enumerate}
 
 \TODO{how models are mapped to each other}
 
 \section{Architecture of the System}
 
-\TODO{Figure showing cooperation of the most important components Manta $<->$ Model $<->$ Dataflow $<->$ Resolver}
+Metadata Extractor consists of two major parts where the first one handles ER/Studio models and the second one processes PowerDesigner files.
+Further division of each of the parts is that they are split the system into four modules. 
+Then the most high-level view of the system's architecture is following:
+\begin{itemize}
+	\item Model \label{model_data_structure}\footnote{There is a naming collision but here we don't refer to any data model but a data structure that reproduces objects stored somewhere, which one of these two possible meanings we use should be clear from context.}\\ 
+	Is a read-only description of a data model source. On one hand it reflects the raw structure of a file so no information is left out when compared to the source. 
+	On the other hand it allows reading access to the modeled objects we are interested in that were reconstructed in convenient fashion. \TODO{Independent of Manta}
+	\item Resolver \\ 
+	Is the part where the logic of construction of objects from a file is hidden and loading of the model\ref{model_data_structure} is done. \TODO{Independent of manta}
+	\item Data Flow Generator \\ 
+	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via DataFlowQueryService and connections.
+	\item Manta Flow \\
+	The external part creating a graph of data lineage. 
+\end{itemize}
+\TODO{A figure showing cooperation of the most components }

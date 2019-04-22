@@ -49,7 +49,7 @@
 \contentsline {subsubsection}{LDM}{24}{section*.17}
 \contentsline {subsubsection}{Properties We Will Not Extract}{24}{section*.18}
 \contentsline {subsubsection}{Properties We Will Not Extract}{25}{section*.19}
-\contentsline {subsubsection}{Objects We Will Not Extract}{25}{section*.20}
+\contentsline {subsubsection}{Objects We Will Not Extract}{26}{section*.20}
 \contentsline {subsubsection}{PowerDesigner}{26}{section*.21}
 \contentsline {subsubsection}{Properties We Will Not Extract}{26}{section*.22}
 \contentsline {subsubsection}{Properties We Will Not Extract}{26}{section*.23}
@@ -65,28 +65,31 @@
 \contentsline {subsubsection}{Properties We Will Not Extract}{30}{section*.33}
 \contentsline {subsubsection}{Properties We Will Not Extract}{30}{section*.34}
 \contentsline {subsubsection}{Objects We Will Not Extract}{31}{section*.35}
-\contentsline {subsection}{\numberline {6.1.3}Maps-to Relation}{31}{subsection.6.1.3}
-\contentsline {subsubsection}{ER/Studio}{32}{section*.36}
-\contentsline {subsubsection}{PowerDesigner}{32}{section*.37}
-\contentsline {subsection}{\numberline {6.1.4}Database Connections}{32}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.3}Recreating of Modeled Objects}{31}{subsection.6.1.3}
+\contentsline {subsubsection}{ER/Studio}{31}{section*.36}
+\contentsline {subsubsection}{PowerDesigner}{31}{section*.37}
+\contentsline {subsection}{\numberline {6.1.4}Maps-to Relation}{31}{subsection.6.1.4}
 \contentsline {subsubsection}{ER/Studio}{32}{section*.38}
-\contentsline {subsubsection}{PowerDesigner}{32}{section*.39}
-\contentsline {section}{\numberline {6.2}Requirements/Desired Features}{32}{section.6.2}
-\contentsline {section}{\numberline {6.3}Architecture of the System}{33}{section.6.3}
-\contentsline {chapter}{\numberline {7}Implementation}{34}{chapter.7}
-\contentsline {section}{\numberline {7.1}ER/Studio}{34}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}File Reverse-Engineering Tool}{34}{subsection.7.1.1}
-\contentsline {subsection}{\numberline {7.1.2}Parser}{34}{subsection.7.1.2}
-\contentsline {section}{\numberline {7.2}Extensibility}{34}{section.7.2}
-\contentsline {section}{\numberline {7.3}Technologies}{34}{section.7.3}
-\contentsline {section}{\numberline {7.4}Testing}{34}{section.7.4}
-\contentsline {chapter}{Conclusion}{35}{chapter*.40}
-\contentsline {chapter}{Bibliography}{36}{chapter*.41}
-\contentsline {chapter}{List of Figures}{37}{chapter*.42}
-\contentsline {chapter}{List of Tables}{38}{chapter*.43}
-\contentsline {chapter}{List of Abbreviations}{39}{chapter*.44}
-\contentsline {chapter}{\numberline {A}Attachments}{40}{appendix.A}
-\contentsline {section}{\numberline {A.1}Building}{40}{section.A.1}
-\contentsline {section}{\numberline {A.2}User Documentation}{40}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Tutorials}{40}{subsection.A.2.1}
-\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{40}{section.A.3}
+\contentsline {subsubsection}{PowerDesigner}{33}{section*.39}
+\contentsline {subsection}{\numberline {6.1.5}Database Connections}{34}{subsection.6.1.5}
+\contentsline {subsubsection}{ER/Studio}{35}{section*.40}
+\contentsline {subsubsection}{PowerDesigner}{35}{section*.41}
+\contentsline {section}{\numberline {6.2}Requirements/Desired Features}{36}{section.6.2}
+\contentsline {section}{\numberline {6.3}Architecture of the System}{37}{section.6.3}
+\contentsline {chapter}{\numberline {7}Implementation}{38}{chapter.7}
+\contentsline {section}{\numberline {7.1}ER/Studio}{38}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}File Reverse-Engineering Tool}{38}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Parser}{38}{subsection.7.1.2}
+\contentsline {section}{\numberline {7.2}Extensibility}{38}{section.7.2}
+\contentsline {section}{\numberline {7.3}Technologies}{38}{section.7.3}
+\contentsline {section}{\numberline {7.4}Testing}{38}{section.7.4}
+\contentsline {chapter}{Conclusion}{39}{chapter*.42}
+\contentsline {chapter}{Bibliography}{40}{chapter*.43}
+\contentsline {chapter}{List of Figures}{41}{chapter*.44}
+\contentsline {chapter}{List of Tables}{42}{chapter*.45}
+\contentsline {chapter}{List of Abbreviations}{43}{chapter*.46}
+\contentsline {chapter}{\numberline {A}Attachments}{44}{appendix.A}
+\contentsline {section}{\numberline {A.1}Building}{44}{section.A.1}
+\contentsline {section}{\numberline {A.2}User Documentation}{44}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Tutorials}{44}{subsection.A.2.1}
+\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{44}{section.A.3}
