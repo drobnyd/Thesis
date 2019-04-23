@@ -80,7 +80,7 @@ ER/Studio does not support conceptual data models.
 
 \subsubsection{LDM}
 
-\TODO{justification of each of property?}
+\TODO{justification of each of property or not? \& the item lists are too much}
 
 \begin{itemize}
 	\item Owner \\ 
@@ -149,6 +149,8 @@ ER/Studio does not support conceptual data models.
 \subsubsection{PowerDesigner}
 
 Conceptual and logical data models in PowerDesigner have so much in common that we will propose unified view on what may be stored in them. The properties/object that are specific for either of them are marked with information in brackets saying "CDM/LDM only".
+
+\subsubsection{CDM \& LDM}
 
 \begin{itemize}
 	\item Data Item (CDM only) \\
@@ -474,7 +476,9 @@ As each physical data model describes a single database (or its subset) we need 
 Databases whose models are created in ER/Studio can be reached only by ODBC drivers present in the used machine.
 
 We cannot really work with that, so we will leave it up to a user to define connection parameters by hand.
-A .ini files is used for that where sections are named by physical models that they correspond to and connection details are specified inside a section. 
+A .ini files \label{ini_connections}is used for that where sections are named by physical models that they correspond to and connection details are specified inside a section. 
+
+
 \TODO{we can get type}
 \TODO{describe somewhere the format precisely}
 
@@ -493,14 +497,26 @@ There are couple of properties common for both types, like description and user 
 Then the most important property of a JDBC .dcp file is JDBC connection URL - in other words connection string which should sufficiently define a connection.
 In case of native DBMS variant Server Name along with Database Name are crucial in order to identify a database we are connecting to by the setup.
 
-But there is a problem that is common for both of the approaches, namely that there is no link between the connection file and a model that is result of reverse-engineering of the connection. So we will need to create a workaround. \TODO{how it is solved, also .ini file can be the solution}
+But there is a problem that is common for both of the approaches, namely that there is no link between the connection file and a model that is result of reverse-engineering of the connection. So we will need to create a workaround. \TODO{the workaround}
+
+One more solution, which is not native to PowerDesigner but is standard for Manta Flow, is to use auxiliary .ini just like in the ER/Studio case described in \autoref{ini_connections}.
+
+\subsection{Building a Graph representation}
+
+\TODO{describe what graph will be used etc.}
+
 
 
 \section{Requirements/Desired Features}
 
-The overall goal is to collect those metadata that will allow us to recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage.
+The overall goal is to collect metadata that will allow us to recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage. \\ 
 
-In order to achieve this goal we must answer these important questions:
+\TODO{-get the described objects with properties \\
+-build hierarchy \\
+-find pairings of physical objects in manta\\
+-draw graph} \\
+
+\TODO{where to put this} In order to achieve this goal we must answer these important questions:
 \begin{enumerate}
 	\item Identify what data models the modeling tools work with, what objects are contained in the data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage. \TODO{Analysis}
 	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
@@ -511,12 +527,10 @@ In order to achieve this goal we must answer these important questions:
 	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{Data Flow Generator}
 \end{enumerate}
 
-\TODO{how models are mapped to each other}
-
 \section{Architecture of the System}
 
 Metadata Extractor consists of two major parts where the first one handles ER/Studio models and the second one processes PowerDesigner files.
-Further division of each of the parts is that they are split the system into four modules. 
+Further division of each of the parts is that they are split into four modules forming a system. 
 Then the most high-level view of the system's architecture is following:
 \begin{itemize}
 	\item Model \label{model_data_structure}\footnote{There is a naming collision but here we don't refer to any data model but a data structure that reproduces objects stored somewhere, which one of these two possible meanings we use should be clear from context.}\\ 
