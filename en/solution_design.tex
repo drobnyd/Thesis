@@ -361,13 +361,30 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 
 \subsection{Recreating of Modeled Objects}
 
-\TODO{TODO}
+We defined what are the objects and their properties that we will try to obtain from data models. 
+The objects live in the common environment of a data model, therefore they must be organized in some hierarchy.
+ The above enumeration of the objects may help reader to see that the very basic layout of objects of a model is resembling a tree-like structure. The reason is that the basic skeleton of a data model goes like shown on the figure \TODO{figure}. A file can store one or more data models, the models may have several owners, each of them may own zero or more entities/tables which are comprised of none or multiple attributes/columns. 
+ Surely further relations between the objects will come to play, like inheritances or mappings discussed later in the \autoref{maps_to_analysis}, making the diagram of actors in the system more complex.
+ 
+ These objects can be seen then as nodes of the tree, whereas their properties are attributes of the corresponding nodes.
+ 
+ We will be building the tree from top to bottom. Firstly we will reconstruct the root standing for a file, then link it to its children, data models, and so on and so forth.
 
 \subsubsection{ER/Studio}
 
+Each type of the objects is defined in some table that defines its type as such table is used for storing all instance of the type. It has an id relative to its table used for identification among other realizations of the same type. Basically all links to other objects are done using foreign keys the only thing is to know from which tables the keys come from. 
+So if an object has a reference to its, if we stick with the tree terminology, parent we can get it by looking at what is the id being referenced and identifying the reconstructed object using this information and as we are descending down the tree the object is already loaded and we can plug the child in.
+
 \subsubsection{PowerDesigner}
 
+XML files form a tree structure by definition what makes storing hierarchy of objects with the same nature very much natural and straightforward. 
+This way a parent object of a child is simply its predecessor in layout of XML elements. 
+Other properties of an object are stored as child elements as well or attributes of the object's representation. 
+Also in this case creating our resulting tree structure top-down makes sense. As first, on our way from the XML root, build objects higher in the hierarchy and only if a parent is build we examine its children.
+
+
 \subsection{Maps-to Relation}
+\label{maps_to_analysis}
 
 Once we identified objects across the data models it would be handy \TODO{further explanation} to know which ones are related even though they are not defined at the same level of abstraction.
 
@@ -484,7 +501,6 @@ But there is a problem that is common for both of the approaches, namely that th
 The overall goal is to collect those metadata that will allow us to recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage.
 
 In order to achieve this goal we must answer these important questions:
-\TODO{Architecture}
 \begin{enumerate}
 	\item Identify what data models the modeling tools work with, what objects are contained in the data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage. \TODO{Analysis}
 	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
@@ -511,6 +527,6 @@ Then the most high-level view of the system's architecture is following:
 	\item Data Flow Generator \\ 
 	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via DataFlowQueryService and connections.
 	\item Manta Flow \\
-	The external part creating a graph of data lineage. 
+	The external part capable of crating data lineage on database objects.
 \end{itemize}
 \TODO{A figure showing cooperation of the most components }
