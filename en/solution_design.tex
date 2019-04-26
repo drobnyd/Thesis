@@ -62,9 +62,9 @@ In the next chapter we will describe what we want to retrieve from the PowerDesi
 
 Now it is time to identify which metadata to collect in order to bring data lineage to the conceptual and logical level.
 The bare minimum is to be able to reconstruct high-level entities to have at least something to visualize data flow between according to knowledge gained in later stages.
-But we will aim to bring as much information as possible and try to make use of every relevant (meta)datum saved by a modeling tool. 
-In this section we will discuss what specific types of objects can we obtain and what are means to describe these objects even further then by the basic definition using the tools.
-On the other hand we will not pay attention to most relations in entity-relationship model. This is given by nature of Manta Flow, it is not a modeling tool thus it does not work with them and links between objects are used solely to represent dependencies determined by data lineage.
+But we will aim to bring as much information as possible and try to make use of every relevant (meta)datum saved by a modeling tool. They are exhaustive softwares with many features, with ability to capture plenty of aspects of modeled system, so we must determine what subset of the information will be extracted.
+In this section we will discuss what specific types of objects can we obtain and what are means to describe these objects even further by some properties of theirs. 
+On the other hand we will not pay attention to relationships in entity-relationship model. This is given by nature of Manta Flow, it is not a modeling tool thus it does not work with them and links between objects are used solely to represent dependencies determined by data lineage.
 The only relationship type from data models we will need to cope with is the inheritance relation. It is present in enhanced-entity-relationship models. The exception is made because if the is-a links are not captured, entities' structure are be not described completely and their attributes may be missing.
 Other categories of metadata we will not extract are the ones that describe some constraints on the actual records saved in database themselves. We will work exclusively with database metadata and don't have access to what is really saved there thus we cannot neither monitor nor enforce anything on the database entries. That is why likes of keys and data types defined in data models will not be in our domain of interest.
 
@@ -391,7 +391,7 @@ Also in this case creating our resulting tree structure top-down makes sense. As
 Once we identified objects across the data models it would be handy \TODO{further explanation} to know which ones are related even though they are not defined at the same level of abstraction.
 
 We will deal only with mappings of objects which are not at the same level of abstraction. 
-Some modeling tools allow mapping, for example, a logical entity to a logical entity but it is unclear what is the meaning of such construct, since we have relationships available for defining relationships like that. Possibly it could indicate that the objects are used identically as they are implemented by a single database table, but that is what data lineage describes precisely and will be brought by Metadata Extractor.
+Some modeling tools allow mapping, for example, a logical entity to a logical but it is unclear what is the meaning of such construct, since we have relationships available for defining relationships like that. Possibly it could indicate that the objects are used identically as they are implemented by a single database table, but that is what data lineage describes precisely and will be brought by Metadata Extractor.
 
 To be specific only the following mappings we will extract: 
 \begin{itemize}
@@ -446,15 +446,24 @@ So we will try to come up with a fallback for this situation and will try to ded
 First thing to do, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one. \TODO{example} 
 If not we will assume similar structure of the both directories as well as that the names of files were not changed.
 
+\subsection{Interpolation}
+The ultimate goal of the work is to develop a tool capable of creating logical\footnote{By logical lineage we mean data lineage that is formed on a higher level on abstraction than on the physical level.} data lineage automatically.
+We decided to build the lineage on the physical one since it provides the most precise foundation in terms of correctness as it captures the real data movement in a live database.
+Manta Flow primarily analyzes physical data flow but there is already implemented a functionality which can propagate the lineage to objects that are mapped to the physical objects taking part in it. 
+In our domain by \definition{interpolation} we mean the process of making data flow edges based on information given by lower layer.
+We must ensure the objects we collect in physical data models are correctly merged as described in \autoref{matching_physical_objects} to make the most of the interpolation.
+
+\TODO{an example showing table a to table b, table c to table d and a and c are mapped to entity A, b is mapped to B, d to D. Therefore A has flow to both B and D on upper layer.}
+
 \subsection{Database Connections}
 
 Modeling tools usually can make connections to a databases. It is useful for multiple reasons. For example already familiar reverse-engineering would not be possible without this ability since metadata are fetched directly from a database in order to capture its most up-to-date state. Also one of the features of modeling tools is keeping data models and databases that are tied with them in sync, so basically there is a mechanism for comparing actual state of a database with a model. 
 
 Manta Flow also extracts metadata of databases for needs of data lineage creation. It is done via JDBC connections.
 
-What we will do is not accessing metastores \footnote{shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - type of metadata and their organization varies greatly. Instead we will make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
+What we will do is not accessing metastores \footnote{Shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - type of metadata and their organization varies greatly. Instead we will make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
 
-And why would we want to request another metadata when that is just what we are extracting from physical data models?
+And why would we want to request another metadata when that is just what we are extracting from physical data models? \label{matching_physical_objects}
 Because we are interested in data lineage which it is created by Manta Flow based on the real metadata of physical objects that are present in database.
 The simple view is that at the moment when we ask for the objects from Manta Flow's metastore, the analysis of data flow has already taken part, thus there are data lineage edges leading between the objects. To bring together both features of Manta Flow and our tool, that brings more metadata and links to higher abstraction data models, we need to merge equivalent physical objects which come from the both sources - from Manta's extraction as well as from our tool. 
 So only if we are on the same page and we know what database at which server the modeled objects belong to we can ensure correct pairing of the objects and data lineage. \\
@@ -501,22 +510,39 @@ But there is a problem that is common for both of the approaches, namely that th
 
 One more solution, which is not native to PowerDesigner but is standard for Manta Flow, is to use auxiliary .ini just like in the ER/Studio case described in \autoref{ini_connections}.
 
-\subsection{Building a Graph representation}
+\subsection{Output Representation}
 
-\TODO{describe what graph will be used etc.}
-
+The output of Metadata Extractor will be a graph. Earlier we discussed what are going its nodes and edges stand for. The remaining part is how we will represent the output. We require a structure that is both convenient to work with programmatically as a data structure and able to be visually presented to a user of our tool.
+Also we must take into account that Metadata Extractor is going to be plugged into an already existing software environment. 
+Manta Flow is backed by a database storing graphs of data lineage. There is already an existing browser-based user interface using which the data flows can be shown and previewed interactively. Given that we would like to comply with the graph database and merge our graphs to the storage and having the ability to reuse the visualization for presentation of the outputs, the most natural solution is to stick with the very same representation of graph as Manta does.
+In the alternative scenario when we don't want to let Manta handle the output, there is a possibility of using a writer which produces an image of the output at local machine, in contrary of sending it to the Manta Server where the graph database is.
 
 
 \section{Requirements/Desired Features}
 
 The overall goal is to collect metadata that will allow us to recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage. \\ 
 
-\TODO{-get the described objects with properties \\
--build hierarchy \\
--find pairings of physical objects in manta\\
--draw graph} \\
+The analysis forms a set of functional requirements or features we want Metadata Extractor to have.
 
-\TODO{where to put this} In order to achieve this goal we must answer these important questions:
+\begin{itemize}
+	\item Load objects from data models and reconstruct their hierarchy.
+	\begin{itemize}
+		\item ER/Studio: LDM \& PDM.
+		\item PowerDesigner:  CDM, LDM \& PDM.
+	\end{itemize}
+	\item Resolve mappings leading between objects originating in different data models.
+	\item Match the loaded physical objects with their equivalents extracted by Manta Flow if possible, in order to bring in the physical data lineage they take part in.
+	\item Create a graph out of the loaded structure. \\
+	So that it can be further:
+	\begin{itemize}
+		\item Displayed in the user interface of Manta.
+		\item Printed to a file as image.
+	\end{itemize}
+\end{itemize}
+
+\TODO{non-functional requirements?}\\
+
+\TODO{where to put this summary, or better delete?} In order to achieve this goal we must answer these important questions:
 \begin{enumerate}
 	\item Identify what data models the modeling tools work with, what objects are contained in the data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage. \TODO{Analysis}
 	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
@@ -526,6 +552,17 @@ The overall goal is to collect metadata that will allow us to recreate physical,
 	\item Build a graphical representation of the data structure. \TODO{Data Flow Generator}
 	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{Data Flow Generator}
 \end{enumerate}
+
+
+\section{Existing Solutions}
+
+We are working on development of an automated solution for creating data flows.
+The competitors on the field of business data lineage are divided into multiple categories:
+
+\TODO{-Modeling tools - only by hand and lack bigger picture of the data lineage, no other assets than databases.
+-}
+
+While none of the solutions provide the automated functionality we aim to provide by putting together Modeling Tools, Manta Flow and finally Metadata Extractor - create an abstraction over databases summarizing real data flow on business assets.
 
 \section{Architecture of the System}
 
@@ -539,8 +576,8 @@ Then the most high-level view of the system's architecture is following:
 	\item Resolver \\ 
 	Is the part where the logic of construction of objects from a file is hidden and loading of the model\ref{model_data_structure} is done. \TODO{Independent of manta}
 	\item Data Flow Generator \\ 
-	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via DataFlowQueryService and connections.
+	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via DataflowQueryService and connections.
 	\item Manta Flow \\
 	The external part capable of crating data lineage on database objects.
 \end{itemize}
-\TODO{A figure showing cooperation of the most components }
+\TODO{A figure showing cooperation of the most important components }

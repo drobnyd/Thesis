@@ -53,4 +53,8 @@ Among other technologies currently Manta Flow is able to scan these are the supp
 
 \section{Data Lineage in Modeling Tools}
 
-\TODO{what are the limitations and why we want to avoid it}
+It is quite common that modeling tools provide some kind of view how data flow in the modeled diagrams or have data movement models where objects from data models take part. 
+However this is not the way we will determine logical (or conceptual) data lineage.
+The reason why not to take into account this feature is that it may be completely away from how really system works and data move. This is because none of the modeling tools inspects live databases and scripts working with them so the only way how a data lineage can be created in the tools is that a user draws this lineage by hand. 
+It may be useful at the time when the database is not yet implemented and there is type of dependency relationship that cannot be captured other way. But once a database is running the lineage may get misleading as there is no way to enforce correctness of the data flows specified.
+That is why we will bring a data lineage that corresponds to how a database is deployed and used in reality. Then thanks to mapping relations we can propagate the lineage to objects capturing more abstract concepts on conceptual and logical level where the lineage edges will be created by interpolation.
