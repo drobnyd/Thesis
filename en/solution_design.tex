@@ -554,15 +554,35 @@ The analysis forms a set of functional requirements or features we want Metadata
 \end{enumerate}
 
 
-\section{Existing Solutions}
+\section{Survey of Existing Solutions}
 
-We are working on development of an automated solution for creating data flows.
-The competitors on the field of business data lineage are divided into multiple categories:
+We are working on development of an automated solution that delivers business lineage.
+In order to justify that we are not reinventing a wheel let's have a look at the software can provide similar functionality as Metadata Extractor.
 
-\TODO{-Modeling tools - only by hand and lack bigger picture of the data lineage, no other assets than databases.
--}
+The competitors can be divided into multiple categories:
 
-While none of the solutions provide the automated functionality we aim to provide by putting together Modeling Tools, Manta Flow and finally Metadata Extractor - create an abstraction over databases summarizing real data flow on business assets.
+\begin{itemize}
+	\item Data Governance Frameworks \\ 
+	\definition{Data governance} is a discipline that helps enterprises to gain control over their data. Commonly data lineage is a part of functionality that data governance solutions provide. \\
+	Usually the solutions work with \definition{business glossary} which is a set of terms used in business together with their definitions specifying what they precisely mean in a domain. It unifies a vocabulary between system's stakeholders to avoid misinterpretations when it comes to high-level terms. 
+	\begin{itemize}
+		\item Collibra \\ 
+		Works with business assets that connects business terms from glossary to data assets (eg. database column or table). The connections are established manually\cite{CollibraBusinessAssets}. In data lineage diagram business terms can be displayed along with the related data assets to ensure better traceability\cite{CollibraVisualization}.
+		\item Informatica Axon \& EDC \\ 
+		The solution by Informatica Corporation works on a very similar base as the previous one.
+		Data assets are connected by hand in a user interface to business glossary entries\cite{InformaticaBusinessAssets}. That allows, once a technical data lineage is created, to drill down to the data lineage going thorough the mapped database elements. In the data flow can be also found related business assets next to related tables.
+		\item IBM IGC \\ 
+		IBM approaches to data lineage in such way that it only displays assets that should be relevant for a business user. In fact it is just a subset of technical lineage and what is shown is picked by a user \cite{IbmIgcBusinessLineage}.
+	\end{itemize}
+	\item Data Lineage Tools \\ 
+	\TODO{asg}
+	
+	\item Modeling tools \\
+	Both of the analyzed tools, ER/Studio and PowerDesigner, have means to create something like data lineage models, or lineage can be specified by mappings in a single data model. The problem with this approach is that it is not based on an analysis of SQL code managing the database and the approach is not automated. Creating such models is exhaustive and error prone as a user has to define the flow all by himself. 
+\end{itemize}
+
+
+To our knowledge none of the solutions disposes of the automated functionality we aim to provide by putting together Modeling Tools, Manta Flow and finally Metadata Extractor. That is to create an abstraction over technical details of databases, summarizing the real data flow using business vocabulary.
 
 \section{Architecture of the System}
 

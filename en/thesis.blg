@@ -33,48 +33,60 @@ Warning--entry type for "RelationalVsNonRelationalDatabases1" isn't style-file d
 --line 108 of file bibliography.bib
 Warning--entry type for "RelationalVsNonRelationalDatabases2" isn't style-file defined
 --line 113 of file bibliography.bib
+Warning--entry type for "CollibraBusinessAssets" isn't style-file defined
+--line 123 of file bibliography.bib
+Warning--entry type for "CollibraVisualization" isn't style-file defined
+--line 127 of file bibliography.bib
+Warning--entry type for "InformaticaBusinessAssets" isn't style-file defined
+--line 131 of file bibliography.bib
+Warning--entry type for "IbmIgcBusinessLineage" isn't style-file defined
+--line 139 of file bibliography.bib
 Warning--all relevant fields are empty in RelationalVsNonRelationalDatabases1
 Warning--all relevant fields are empty in RelationalVsNonRelationalDatabases2
 Warning--all relevant fields are empty in NoSQLDatabaseModeling
-You've used 13 entries,
+Warning--all relevant fields are empty in CollibraBusinessAssets
+Warning--all relevant fields are empty in CollibraVisualization
+Warning--all relevant fields are empty in InformaticaBusinessAssets
+Warning--all relevant fields are empty in IbmIgcBusinessLineage
+You've used 17 entries,
             1791 wiz_defined-function locations,
-            506 strings with 5013 characters,
-and the built_in function-call counts, 1388 in all, are:
-= -- 79
-> -- 36
+            514 strings with 5191 characters,
+and the built_in function-call counts, 1708 in all, are:
+= -- 83
+> -- 40
 < -- 0
-+ -- 20
++ -- 24
 - -- 7
-* -- 23
-:= -- 153
-add.period$ -- 20
-call.type$ -- 13
+* -- 27
+:= -- 165
+add.period$ -- 24
+call.type$ -- 17
 change.case$ -- 8
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 78
-empty$ -- 233
+cite$ -- 24
+duplicate$ -- 98
+empty$ -- 305
 format.name$ -- 7
-if$ -- 342
+if$ -- 422
 int.to.chr$ -- 0
-int.to.str$ -- 13
+int.to.str$ -- 17
 missing$ -- 5
-newline$ -- 49
+newline$ -- 61
 num.names$ -- 4
-pop$ -- 73
+pop$ -- 93
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 90
+skip$ -- 130
 stack$ -- 0
 substring$ -- 0
-swap$ -- 13
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
+warning$ -- 7
 while$ -- 4
-width$ -- 15
-write$ -- 83
-(There were 13 warnings)
+width$ -- 19
+write$ -- 99
+(There were 21 warnings)
