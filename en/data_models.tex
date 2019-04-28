@@ -109,7 +109,7 @@ To illustrate it on an example, if our modeling domain is education, then an ent
 A lsalary number would be an information to store when describing teacher, making it an attribute.
 Having lectures captured in our data model, it is really fundamental to see what lesson is taught by who, that would be captured using relationships.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{../img/Conceptual_Model_PowerDesigner}
 	\caption{\TODO{Conceptual diagram}\cite{ConceptualModelExample}}
@@ -129,7 +129,7 @@ Keeping its structure generic a logical model extends the objects described in a
 \end{itemize}
 \definition{Entities}, \definition{attributes} and \definition{relationships} from a conceptual model are present on this layer as well. Relationships are not that abstract as before and keys that actually make relationship happen between entities are added as their attributes.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{../img/Logical_Model_PowerDesigner}
 	\caption{\TODO{Logical diagram}\cite{LogicalModelExample}}
@@ -151,7 +151,7 @@ A physical data is a description of a database implementation so it is necessari
 Objects in physical models should reflect database organization and at the same moment related higher-level concepts should be transformable to physical level. \definition{Tables} should store records that corresponds to logical entities and \definition{columns} represent previously described attributes in memory.
 Commonly schemas\footnote{Plural of the word schema is schemata but in literature about database design the word schemas is used} are present. A \definition{schema} is basically container for tables that logically groups them. Users have usually schemas assigned and can access only the tables contained in those schemas.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{../img/Physical_Model_PowerDesigner}
 	\caption{\TODO{Physical diagram}\cite{PhysicalModelExample}}
@@ -178,24 +178,3 @@ Following these mapping links is extremely useful when a person wants to gain an
 It is worth mentioning that usually the mapping relations between objects of different layers simple one-to-one relationships but the cardinalities may vary greatly. For example one logical attribute may be realized via multiple database columns.
 Normally more technical models are composed of bigger count of objects so one conceptual entity may be realized by multiple database tables in the end. Generally it is assumed that number of conceptual objects $<$ number of logical objects $<$ number of physical objects. It is natural that when capturing important high-level aims less entities is needed to express the intention but as we are getting closer to the implementation more necessary details come to play.
 
-\section{Construction of a Data Model}
-
-We tried to make clear what is a data model and show that there are good reasons to use them throughout the process of database design.
-Now we will take a look how someone developing a database can actually create those models.
-In fact, a data model could be created by hand using only paper and pen. It would definitely bring some of the benefits described above but to take the full advantage of modeling we will use \definition{computer-aided software engineering (CASE) tools}. The tools are here to help with development of quality software. The CASE tools are divided into multiple categories, our interest will be focused on the one that deals with Business and Analysis modeling. Graphical modeling tools. E.g., ER modeling, object modeling.
-The main motivation behind using the tools is that they facilitate creating and previewing data models. Here is an overview of different ways how a data model can be created using them.
-
-\subsection{Modeling}
-This way of creation is the most similar to the pen and paper method. A user builds a model manually by selecting what object should be created and bringing it to the particular model, then he provides details about the object, creates sub-objects or specifies relationships with different objects.
-Some tools do not allow creating an arbitrary model, but only the conceptual or logical models may be drawn like this. 
-The reason behind not allowing user to create a physical data model out of scratch is that a physical model should either be the result of some process and be based on a model with higher level of abstraction(see the Generating section) and then adjusted or resemble a live database that and to be obtained by reverse-engineering (see the Reverse Engineering section).
-
-\subsection{Reverse Engineering}
-Reverse engineering, or alternatively back engineering, is the process whose aim is to find out principles of how things are done or works in a system that is already running and try to gain deeper understanding of the system.
-Applied to our domain the reverse engineering approach to creation of a data model means that a CASE tool connects to a database and brings every object found to the physical model that is created. \TODO{relationships} The model is an exact image of the database and one-to-one mapping between the model and database should be secured.
-
-\subsection{Generating}
-Given a data model on some level another one on different abstraction level can be derived from it. Modeling tools usually support translating objects to semantically equivalent ones either towards either greater smaller abstraction. Of course models created like this are not full-featured models but may be a better starting point for a database designer to takeover. For example when conceptual data model is arranged and logical model should be created based on it it is really helpful not to start from a scratch but to generate an outline of the logical one by generating from the conceptual. Then it may be reshaped into the desired condition more quickly. Generation sources and targets are in maps-to relationship implicitly.
-
-\subsection{Importing}
-Finally a CASE modeling tool may be able to import data models that were created using a different modeling software and recreate the data models.

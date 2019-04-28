@@ -2,11 +2,27 @@
 
 The main feature of modeling tools is to capture metadata about data models that can be created using them and previewed. The tools use diagrams to present data models to their users.
 
-\TODO{Bring in the chapters 3.3 and on}
-\TODO{source of metadata}
+\section{Construction of a Data Model}
 
+Now we will take a look how someone developing a database can actually create those models.
+In fact, a data model could be created by hand using only paper and pen. It would definitely bring some of the benefits described above but to take the full advantage of modeling we will use \definition{computer-aided software engineering (CASE) tools}. The tools are here to help with development of quality software. The CASE tools are divided into multiple categories, our interest will be focused on the one that deals with Business and Analysis modeling. Graphical modeling tools. E.g., ER modeling, object modeling.
+The main motivation behind using the tools is that they facilitate creating and previewing data models. Here is an overview of different ways how a data model can be created using them.
 
-\TODO{Describe metadata that are available, layers, object hierarchy or it is a technical detail}
+\subsection{Modeling}
+
+This way of creation is the most similar to the pen and paper method. A user builds a model manually by selecting what object should be created and bringing it to the particular model, then he provides details about the object, creates sub-objects or specifies relationships with different objects.
+Some tools do not allow creating an arbitrary model, but only the conceptual or logical models may be drawn like this. 
+The reason behind not allowing user to create a physical data model out of scratch is that a physical model should either be the result of some process and be based on a model with higher level of abstraction(see the Generating section) and then adjusted or resemble a live database that and to be obtained by reverse-engineering (see the Reverse Engineering section).
+
+\subsection{Reverse Engineering}
+Reverse engineering, or alternatively back engineering, is the process whose aim is to find out principles of how things are done or works in a system that is already running and try to gain deeper understanding of the system.
+Applied to our domain the reverse engineering approach to creation of a data model means that a CASE tool connects to a database and brings every object found to the physical model that is created. \TODO{relationships} The model is an exact image of the database and one-to-one mapping between the model and database should be secured.
+
+\subsection{Generating}
+Given a data model on some level another one on different abstraction level can be derived from it. Modeling tools usually support translating objects to semantically equivalent ones either towards either greater smaller abstraction. Of course models created like this are not full-featured models but may be a better starting point for a database designer to takeover. For example when conceptual data model is arranged and logical model should be created based on it it is really helpful not to start from a scratch but to generate an outline of the logical one by generating from the conceptual. Then it may be reshaped into the desired condition more quickly. Generation sources and targets are in maps-to relationship implicitly.
+
+\subsection{Importing}
+Finally a CASE modeling tool may be able to import data models that were created using a different modeling software and recreate the data models.
 
 \section{ER/Studio Data Architect}
 
@@ -16,10 +32,9 @@ ER/Studio allows creating logical and physical data models.
 
 Logical model is realized by an entity-relationship data model, whereas physical models are relational data models.
 
-
-
 \section{PowerDesigner}
 
 PowerDesigner is a software for data modeling owned by company SAP SE.
 
-The tool supports conceptual, logical and physical data models. The first two are of extended-entity-relationship data model type and physical is relational data model. 
+The tool supports conceptual, logical and physical data models. 
+The first two are of extended-entity-relationship data model type and physical is relational data model. 

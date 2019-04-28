@@ -2,8 +2,8 @@
 
 \definition{Data lineage} brings a way of tracking data from its origin throughout the whole life cycle taking into account every process that manipulates the data until it reaches its final destination. It is like a telling the story of a piece of data including where does it come from and how it interacts with other data.
 It should provide answers for questions where the data in given solution come from, whether it can be trusted or not, how it gets from point to point and how the data changes over time in the analyzed system.
-Basically data lineage helps enterprises to gain deeper knowledge and understanding of what happens to data as it travels through various interconnected data pipelines\footnote{A pipeline is a set of elements manipulating and processing data where output of one element is input of another.} that the system consists of. 
-This is overview of the system, that data lineage provides, is crucial when taking decisions about the infrastructure since the understanding of the consequences should more clear. Also it makes much easier to find errors in systems, since they can be tracked down from where the undesired behavior came to the surface to where the affected data originates. Surely somewhere between these two points the malfunctioning part is and thanks to data lineage the domain of suspicious operations should be reduced and visible. 
+Basically data lineage helps enterprises to gain deeper knowledge and understanding of what happens to data as it travels through various interconnected data pipelines\footnote{A pipeline is a set of elements manipulating and processing data where output of one element is input of another.} that the system consists of. Although we are focused on the subpart coping with databases, data lineage is a general concept where the sources and targets are not necessarily databases, data may come from, let's say, a user interface and ending in an output of a reporting software.
+This overview of the system, that data lineage provides, is crucial when taking decisions about the infrastructure since the understanding of the consequences should more clear. Also it makes much easier to find errors in systems, since they can be tracked down from where the undesired behavior came to the surface to where the affected data originates. Surely somewhere between these two points the malfunctioning part is and thanks to data lineage the domain of suspicious operations should be reduced and visible. 
 Therefore much time spent on solving issues should be saved.
 Data lineage is a discipline of \definition{business intelligence}. \TODO{define}
 
@@ -13,8 +13,6 @@ Having a reference point of interest we can divide data lineage into three types
 
 Other differentiation of data lineage is the business one versus the technical one.
 \definition{Business data lineage} highlights only transformations and aggregation of data in a simplified way to the target business user, whereas \definition{technical data lineage} displays precisely flow of physical data as is in underlying components (eg. applications) of the system is made of.
-
-\TODO{Use case - GDPR}
 
 Now we will focus on how data lineage can be created to describe lifespan of data that are coming from or being saved to an SQL database.
 To analyze flow of actual data, having access to quality metadata is fundamentally needed.

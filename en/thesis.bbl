@@ -1,10 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{ElmasryNavathe15}
-Ramez Elmasri and Shamkant~B. Navathe.
-\newblock {\em Fundamentals of Database Systems (7th Edition)}.
-\newblock Pearson, 2015.
-
 \bibitem{Facebook19}
 {Facebook blames 'database overload' for most severe outage in its history as
   users continue to report problems with Instagram and WhatsApp more than 14
@@ -13,10 +8,13 @@ Ramez Elmasri and Shamkant~B. Navathe.
 \bibitem{Healthcare13}
 {HealthCare.gov’s Heart Beats For NoSQL}.
 
-\bibitem{SilberschatzKorthSudarshan10}
-Abraham~Silberschatz Professor, Henry~F. Korth, and S.~Sudarshan.
-\newblock {\em Database System Concepts}.
-\newblock McGraw-Hill Education, 2010.
+\bibitem{RightOfAccess}
+
+
+\bibitem{ElmasryNavathe15}
+Ramez Elmasri and Shamkant~B. Navathe.
+\newblock {\em Fundamentals of Database Systems (7th Edition)}.
+\newblock Pearson, 2015.
 
 \bibitem{DatabaseEnginesStatistics19}
 {DB-Engines Ranking}.
@@ -49,6 +47,11 @@ Peter~Pin shan Chen.
 \bibitem{AccessPathDefiniton}
 Evaggelia Pitoura.
 \newblock Access path, 2009.
+
+\bibitem{SilberschatzKorthSudarshan10}
+Abraham~Silberschatz Professor, Henry~F. Korth, and S.~Sudarshan.
+\newblock {\em Database System Concepts}.
+\newblock McGraw-Hill Education, 2010.
 
 \bibitem{Codd69}
 E.~F. Codd.
