@@ -46,7 +46,7 @@ In the case of PowerDesigner we will be handling files with three types of exten
 All of them are XML (Extensible Markup Language) based file formats. \TODO{more about the XML format - elements, tags we will use/need}
 
 Since we have three different output file types from the modeling tool it is easy to see that the logic of how data models are saved varies from ER/Studio's approach. 
-While ER/Studio groups data models into solutions every model created in PowerDesigner is saved independently. Set of files that are currently opened in PowerDesigner form its state. Such state is called a workspace here and can be saved into a .sws file, but these files do not bring us anything interesting. The information captured stores only what files were at some time opened in the environment and does not tell anything about logical links between the captured files.
+While ER/Studio groups data models into solutions every model created in PowerDesigner is saved independently. Set of files that are currently opened in PowerDesigner form its state. Such state is called a workspace here and can be saved into a .sws file, but these files do not bring us no interesting information. The information captured stores only what files were at some time opened in the environment and does not tell anything about logical links between the captured files.
 
 When parsing XML files there are basically two major ways we can face the problem.
 
@@ -374,7 +374,7 @@ The objects live in the common environment of a data model, therefore they must 
 
 \subsubsection{ER/Studio}
 
-Each type of the objects is defined in some table that defines its type as such table is used for storing all instance of the type. It has an id relative to its table used for identification among other realizations of the same type. Basically all links to other objects are done using foreign keys the only thing is to know from which tables the keys come from. 
+Each type of the objects is defined in some table that defines its type as such table is used for storing all instance of the type. It has an id relative to its table used for identification among other realizations of the same type. Basically all links to other objects are done using foreign keys, the only necessity is to know from which tables the keys come from. 
 So if an object has a reference to its, if we stick with the tree terminology, parent we can get it by looking at what is the id being referenced and identifying the reconstructed object using this information and as we are descending down the tree the object is already loaded and we can plug the child in.
 
 \subsubsection{PowerDesigner}
@@ -439,11 +439,11 @@ Surely we can improve this solution by collecting the ids and postponing the res
 If we went in a different direction and processed each of the model once, then stored all the objects that may be referred to and once all the data models on input are loaded, resolve mappings. Logic like this would decreased count of reconstructions and file openings to ideal amount but eventually, if number of inputted data models would be too big the size of memory claimed by Metadata Extractor could become unbearable.
 To achieve a solution that would have advantages of the both naïve approaches we need to split the set of input files into disjoint subsets that represent the smallest group of logically tied files. We will transform all of the unidirectional edges in the dependency graph described above into bidirectional and will find connected components, that will be our searched logical groups. Therefore we can make the resolution at the end as storage requirements for objects of such subset should be reasonable enough. Based on the assumption that the far most common use-case is having three data models - logical, conceptual and physical (or few physical ones). \\
 
-But there is one thing remaining that may cause some problems. The basic scenario how a user will behave is that he will works with PowerDesigner data models in some directory, for example C:/PowerDesigner/Project/ and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
+But there is one more matter remaining that may cause some problems. The basic scenario how a user will behave is that he will works with PowerDesigner data models in some directory, for example C:/PowerDesigner/Project/ and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
 This way, the paths pointing to targets of models became are not correct since they have no reason to be updated and still depend on the files in C:/PowerDesigner/Project/. We want to work only with the files that user explicitly marked as to process, those are only the ones that are present in the input directory. Also if this problem is not thought of, it may cause undesired and unexpected behavior. 
 For example we have file $a$ referring to $b$ in input but a change of external object in C:/PowerDesigner/Project/$b$ would have affect on $a$.
 So we will try to come up with a fallback for this situation and will try to deduce by the former path the one in input folder.
-First thing to do, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one. \TODO{example} 
+As first, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one. \TODO{example} 
 If not we will assume similar structure of the both directories as well as that the names of files were not changed.
 
 \subsection{Interpolation}
@@ -497,10 +497,10 @@ In PowerDesigner a user has multiple options for connecting to a database to cho
 We would like to have the ability to find out what connections with what parameters were used for connecting to a database corresponding to a physical model. So a great help would be if there was a trace left after every each connection is made. We cannot enforce it but in PowerDesigner these traces can be created when connecting using .dsn or .dcp files.
 The tool has nice user environment for creating or using connections to a database where a user is guided through set up nicely and can test if he did set up everything correctly. \\
 
-The .dsn files are definitions of ODBC connection containing parameters for an ODBC driver and stores all the interesting information we would like to have. The drawback of this file format is that it varies from a technology to technology. It has a structure of an .ini files but the properties representing the same things may be called differently. That means we would need to have a parser for each supported database engine. \\
+The .dsn files are definitions of ODBC connection containing parameters for an ODBC driver and stores all the interesting information we would like to have. The drawback of this file format is that it varies from a technology to technology. It has a structure of an .ini files but the properties representing the same concepts may be called differently. That means we would need to have a parser for each supported database engine. \\
 
 On the other we have .dcp files. They can store information about native DBMS connection or about JDBC connection. 
-The nice thing about them is that they are not that flexible and once we know whether we deal with native or JDBC respectively we know what exact structure expect. 
+The nice fact about them is that they are not that flexible and once we know whether we deal with native or JDBC respectively we know what exact structure expect. 
 It is also a file consisting of property=value map.
 There are couple of properties common for both types, like description and user name.
 Then the most important property of a JDBC .dcp file is JDBC connection URL - in other words connection string which should sufficiently define a connection.

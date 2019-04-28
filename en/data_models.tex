@@ -1,100 +1,161 @@
 \chapter{Database Modeling}
 \label{chap:database_modeling}
 
-The first question that has to be answered is what does data modeling brings us. \\
-
-One may ask why it is necessary to develop some models before an actual database creation.
-But let us imagine building a house without solid design and documentation. 
-It sounds a bit strange to hire construction workers straight ahead and tell them that we need a house that has 5 rooms, some toilets and expect a good result. Most probably some building would be produced, but we will agree that expectations and requirements of the later inhabitant could not be met properly.
+Modeling is a crucial phase of database design process.
+Developing a database is just like building a house. 
+Every one will agree that no construction work can go without solid design and documentation. 
+It would sound a bit strange to hire construction workers straight ahead and tell them that we need a house that has 5 rooms, some toilets and expect a good result. Most probably some building would be produced, but we will agree that expectations and requirements of the later inhabitant could not be met properly.
 Surely there are good reasons why the usual steps are followed strictly.
 Let us move on from the analogy to the database domain. \\
 When deploying a database from a scratch we may think of two short term advantages. Firstly, the time needed to have data stored somewhere would be much shorter and secondly the initial cost of the system could be lower. \\
-But over time both of the advantages will, most likely, get outnumbered by problems that will begin to appear. Maintenance of a poorly designed system (or not designed at all) is expansive and leads to numerous outages. \\
+But over time both of the advantages will most likely, if the database is not ridiculously small, get outnumbered by problems that will begin to appear. Maintenance of a poorly designed system (or not designed at all) is expansive and leads to numerous outages.\\
 
-Data modeling should lead to higher quality as is pushes to thorough definition of the modeled problem. Once we know what to solve and what is the scope, it is much easier to come with different solutions and justify which of the proposed approaches is the most suitable one. \\
+There are good reasons to why modeling has its place in a database development process:
 
-Costs are reduced since during creation of a data model many errors are identified thus can be caught early, when they are easy to fix. \\
-
-Data models form a nice piece of documentation that is understandable by each of the involved parties. When someone tries to understand the system, he can choose a data model on an appropriate level of abstraction that will introduce him the important aspects of the problem that suits his knowledge and qualification. \\
-
-Models should make easy to track whether high-level concepts were implemented and represented correctly in the end and to determine it the system is consistent. \\
-
-Also during the design process we may learn a lot about properties of the data that we need or have and will be stored. These information are crucial for choosing an appropriate type of database, whether to stick with a relational database if so which DBMS is the one for us, or to look for a non-relational one. \\
-
-\TODO{mention NoSQL modeling possibilities}
+\TODO{even shorter}
+\begin{itemize}
+	\item Higher quality.\\ Modeling push to thorough definition of the modeled problem. Once we know what to solve and what is the scope, it is much easier to come with different solutions and justify which of the proposed approaches is the most suitable one.
+	
+	\item Costs reduction.\\ Errors are identified thus can be caught in early stages, when they are easy to fix.
+	
+	\item Better documentation.\\ Data models form a nice piece of it, they are understandable by each of the involved stakeholders. When someone tries to understand the system, he can choose a data model on an appropriate level of abstraction that will introduce him the important aspects of the problem that suits his knowledge and qualification.
+	
+	\item Correctness.\\ Tracking whether high-level concepts were implemented and represented correctly in the end is made straightforward.
+	
+	\item Determining of consistency of the system.
+	
+	\item Deeper understanding.\\ During the design process we may learn a lot about properties of the data that we need or have and will be stored. These information are crucial for choosing an appropriate type of database, whether to stick with a relational database if so which DBMS is the one for us, or to look for a non-relational one.
+\end{itemize}
 
 \section{Data Model Perspectives}
 
-Some time ago, in 1975, American National Standards Institute \cite{ANSIArchitecture75} first came with a database structure called Three-schema architecture. It is formed by:
+\subsubsection{Vertical Division}
+
+American National Standards Institute \cite{ANSIArchitecture75} came with a database structure called Three-schema architecture. It is formed by:
 \begin{itemize}
 	\item External Level \\ Database as a user sees it, view of the conceptual level. 
 	\item Conceptual Level \\ Point of view of the enterprise that the database belongs to.
 	\item Physical Level \\ The actual implementation.
 \end{itemize}
 
-The idea behind the structure is to create three different views that are independent of each other. For example change of the implementation that is tied with physical level would not affect any of the remaining levels if the structures remained the same. The important thing is that this structure is used to describe finished product, it does not say anything about the design process that leads to the product and should not be mistaken with the data model structure proposed earlier \ref{DataModelsByAbstraction}.\\
+The idea behind the structure was to create three different views that are independent of each other. 
+For example change of the implementation that is tied with physical level would not affect any of the remaining levels if the structures remained the same. 
+The important aspect is that this structure is used to describe finished product, it does not say anything about the design process that leads to the product and should not be mistaken with the data model structure proposed earlier \ref{DataModelsByAbstraction}.\\
 
-An important thing related to data modeling happened a year later, in 1976, when Peter Chen identified four levels of view of data: \\
-(1) Information concerning entities and relationships which exist in our minds. \\
-(2) Information structure-organization of information in which entities and relationships are represented by data. (Conceptual data model) \\
-(3) Access-path-independent data structure-the data structures which are not involved with search schemes, indexing schemes, etc. (Logical data model) \\
-(4) Access-path-dependent data structure. (Physical data model)\\
-And he proposed \definition{entity-relationship (ER) data model} that covers the highest two levels and may be a basis for unified view of data. \\
-In that time three major data models were used - relational, network and entity set model. His aim was to bring a data model that would reflect real-world objects and relations between them naturally, while having advantages of all the three already existing models. The mission seems to be successful as years have proven the ER data model to be the most suitable one for conceptual data modeling. Moreover, ER data models are used most commonly in logical data modeling as well. \\
-An extended version of ER data model was introduced later - \definition{enhanced-entity-relationship (EER) data model}. The main change is that concept sub-classes and super-classes, known as inheritance or is-a relationship, between entities was brought.
+On the other hand, to standardize process of designing a database Peter Chen\cite{Chen76theentity-relationship} identified four levels of view of data, where each of the levels has its important place: \\
+\begin{enumerate}
+	\item Information concerning entities and relationships which exist in our minds.
+	\item Information structure-organization of information in which entities and relationships are represented by data.
+	\item Access-path-independent\footnote{An \definition{access path} is a description how records stored in a database are retrieved by database management system\cite{AccessPathDefiniton}. The important part is that the path is specific for a DBMS technology.} data structure-the data structures which are not involved with search schemes, indexing schemes, etc.
+	\item Access-path-dependent data structure.
+\end{enumerate}
 
-Conceptual and logical data models are usually represented by ER data models. The question is what specific data model type is used for physical models. 
-As the most low-level model type is tied directly with how a database is organized, physical models must obey the structure of database.
+The categorization of data models have undergone some modifications, for example the first level is today omitted, to the one that is recognized nowadays. The differentiation takes takes into account  what is the audience that will work with a data model, whether it is someone who knows all about databases or a business person without technical background. The levels of abstraction used today\cite{SilberschatzKorthSudarshan10} are the following: 
+\begin{itemize}
+	\item Conceptual Data Models (High-Level) \\
+	Reproduces real world objects along with their relationships and should be close to how business end-users perceive them.
+	
+	\item Logical Data Models (Implementation, Representational) \\
+	In the middle between the two other model types there are representational data models which on the one hand are comprehensible by end-users and on the other hand are not too abstract so that they can be used as documentation for an actual database implementation of the modeled data.
+	
+	\item Physical Level Data Models(Low-Level) \\
+	In contrast to conceptual models the physical ones are tied with how data are stored physically at storage media showing all specific internal details that may be overwhelming in the case that the reader is a computer specialist.
+\end{itemize}
 
+
+\subsubsection{Horizontal Division}
+
+\subsubsection{Relational Data Model}
+
+\TODO{Move to database section}
 In the early days when navigational databases were trending, concretely hierarchical and network database, each of them was represented by corresponding data model. 
 The key concept behind these databases was that records stored in databases should be found by navigating through link between objects. 
 There were some issues about it. The biggest problem was that application code was too dependent on how data were actually placed physically and changes in data structures had influence on code that queried the storage had to be rewritten.
-The advantage of navigational databases was their performance as following a link is much simpler operation than a join that is used instead in relational databases so they were considered better in terms of performance. Although, the efficiency was at price of inflexibility when reorganization of the storage was needed. Some solutions to this issue were proposed but they tended to worsen the performance. \TODO{move to database chapter?}\\
+The advantage of navigational databases was their performance as following a link is much simpler operation than a join that is used instead in relational databases so they were considered better in terms of performance. Although, the efficiency was at price of inflexibility when reorganization of the storage was needed. Some solutions to this issue were proposed but they tended to worsen the performance.\\
 
+As in this work we are dealing only with relational databases, for which relational data model is the foundation.
 In 1969 Edgar F. Codd \cite{Codd69} brought the idea of relational database organization and the relational data model was born. \TODO{already described}
+
+\subsubsection{Entity-Relationship Data Model}
+
+The \definition{entity-relationship (ER) data model} was the direct answer for the four level architecture\cite{Chen76theentity-relationship} that covers the highest two levels and may be a basis for unified view of data. \\
+It was an opposition to the three major data models that were used - relational, network and entity set model. His aim was to bring a data model that would reflect real-world objects and relations between them naturally, while having advantages of all the three already existing models. The mission seems to be successful as years have proven the ER data model to be the most suitable one for conceptual data modeling. Moreover, ER data models are used most commonly in logical data modeling as well.
+
+\subsubsection{Enhanced-Entity-Relationship Data Model}
+
+An extended version of ER data model was introduced later - \definition{enhanced-entity-relationship (EER) data model}. The main change is that concept sub-classes and super-classes, known as inheritance or is-a relationship, between entities was brought. \\ 
+
+\TODO{conclusion}
+Conceptual and logical data models are usually represented by ER data models. 
+The question is what specific data model type is used for physical models. 
+As the most low-level model type is tied directly with how a database is organized, physical models must obey the structure of database.
 
 \subsection{Conceptual Data Model}
 
 The purpose of a conceptual data model is to project to the model real-world and business concepts or objects. \\
 
 \subsubsection{Characteristics}
-Aimed to be readable and understandable by everyone. \\
-Is completely independent of technicalities like a software used to manage the data, DBMS, data types etc. \\
-Is not normalized. \\
+\begin{itemize}
+	\item Aimed to be readable and understandable by everyone.
+	\item Is completely independent of technicalities like a software used to manage the data, DBMS, data types etc.
+	\item Is not normalized.
+\end{itemize}
 
-A real world object is captured by an \definition{entity} in conceptual model if our modeling domain is public transport then entity may be a bus or a tram.
-For further description of objects that we are interested in \definition{attributes} are used, those are properties of entities, for example a license plate number would an information to store when describing buses. Only the important ones are listed. \footnote{Definitions varies and in some literature can be even found that a conceptual entity lacks attributes. We assume that the entity can contain important attributes as it is more common interpretation and modeling tools have attributes support on conceptual layer as well.}
-Also \definition{relationships} between objects are necessary to provide full view of the section of the world that a data model resembles. Having transportation companies in our data model it is really fundamental to see that a company may own some vehicles. \\
+A real world object is captured by an \definition{entity} in conceptual model. \\
+For further description of objects that we are interested in \definition{attributes} are used, those are properties of entities. Only the important ones are listed. \footnote{Definitions varies and in some literature can be even found that a conceptual entity lacks attributes. We assume that the entity can contain important attributes as it is more common interpretation and modeling tools have attributes support on conceptual layer as well.} \\
+Also \definition{relationships} between objects are necessary to provide full view of the section of the world that a data model resembles. \\
+
+To illustrate it on an example, if our modeling domain is education, then an entity may be a teacher or lesson. 
+A lsalary number would be an information to store when describing teacher, making it an attribute.
+Having lectures captured in our data model, it is really fundamental to see what lesson is taught by who, that would be captured using relationships.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{../img/Conceptual_Model_PowerDesigner}
+	\caption{\TODO{Conceptual diagram}\cite{ConceptualModelExample}}
+\end{figure}
 
 \subsection{Logical Data Model}
 
 Keeping its structure generic a logical model extends the objects described in a conceptual data model making it not that easy to read but becomes a good base documentation for an implementation. Data requirements are described from business point of view.
 
 \subsubsection{Characteristics}
-Independent of a software used to manage the data or DBMS. \\
-Each entity has the primary key. \\
-Foreign keys are expressed. \\
-Data types description is introduced (but in a way that is not tied with any specific technology). \\
-Normalized up to \TODO{third normal form}. \\
-
+\begin{itemize}
+	\item Independent of a software used to manage the data or DBMS.
+	\item Each entity has the primary key.
+	\item Foreign keys are expressed.
+	\item Data types description is introduced (but in a way that is not tied with any specific technology).
+	\item Normalized up to \TODO{third normal form}.
+\end{itemize}
 \definition{Entities}, \definition{attributes} and \definition{relationships} from a conceptual model are present on this layer as well. Relationships are not that abstract as before and keys that actually make relationship happen between entities are added as their attributes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{../img/Logical_Model_PowerDesigner}
+	\caption{\TODO{Logical diagram}\cite{LogicalModelExample}}
+\end{figure}
 
 \subsection{Physical Data Model}
 
 A physical data is a description of a database implementation so it is necessarily tied with one specific database technology as it should have one-to-one mapping to actual implementation. Its main message is to communicate how the data are stored.
 
 \subsubsection{Characteristics}
-
-Exact data types (DBMS specific) and default values of columns are outlined. \\
-DBMS's naming conventions are applied on objects. \\
-Constraints are defined (eg. not null, keys, or unique for columns). \\
-Contains validation rules, database triggers, indexes, stored procedures, domains, and access constraints. \\ 
-Normalization in order to avoid data redundancy or de-normalized if performance increase is reflected in the model. \\
+\begin{itemize}
+	\item Exact data types (DBMS specific) and default values of columns are outlined.
+	\item DBMS's naming conventions are applied on objects.
+	\item Constraints are defined (eg. not null, keys, or unique for columns).
+	\item Contains validation rules, database triggers, indexes, stored procedures, domains, and access constraints.
+	\item Normalization in order to avoid data redundancy or de-normalized if performance increase is reflected in the model.
+\end{itemize}
 
 Objects in physical models should reflect database organization and at the same moment related higher-level concepts should be transformable to physical level. \definition{Tables} should store records that corresponds to logical entities and \definition{columns} represent previously described attributes in memory.
 Commonly schemas\footnote{Plural of the word schema is schemata but in literature about database design the word schemas is used} are present. A \definition{schema} is basically container for tables that logically groups them. Users have usually schemas assigned and can access only the tables contained in those schemas.
 
-\TODO{image that illustrating the division horizontally and vertically}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{../img/Physical_Model_PowerDesigner}
+	\caption{\TODO{Physical diagram}\cite{PhysicalModelExample}}
+\end{figure}
 
 \section{Relations Between the Models}
 

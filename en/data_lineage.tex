@@ -16,8 +16,6 @@ Other differentiation of data lineage is the business one versus the technical o
 
 \TODO{Use case - GDPR}
 
-\section{Theory}
-
 Now we will focus on how data lineage can be created to describe lifespan of data that are coming from or being saved to an SQL database.
 To analyze flow of actual data, having access to quality metadata is fundamentally needed.
 \definition{Metadata} are the data describing other data. The metadata we will use when analyzing a database are the likes of database name, names of tables, columns in tables, names of columns, procedures, data types etc.
@@ -38,7 +36,8 @@ Alternatively the data flow is not visualized directly by Manta but cooperates w
 Our aim to interconnect the component that is subject of this work with Manta Flow to enrich the data lineage that it produces by metadata that can be obtained from relevant data models and can bring better understanding of the system under analysis.
 
 \subsection{Supported Database Technologies}
-Among other technologies currently Manta Flow is able to scan these are the supported databases it can handle and thus are relevant for us:
+Among other technologies currently Manta Flow is able to scan, these are the supported relational database types it can handle. 
+That means when physical models are aimed on one of the following database types, we can create business lineage. Metadata Extractor is, naturally, effective on the same DBMS as Manta Flow. Specifically:
 \begin{itemize}
 	\item Oracle Database
 	\item Microsoft SQL Server

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  27 APR 2019 20:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  28 APR 2019 20:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -540,7 +540,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/logo-en.pdf): PDF inc
 lusion: found PDF version <1.5>, but at most version <1.4> allowed
-<../img/logo-en.pdf, id=254, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=234, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -617,189 +617,186 @@ LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <12> not available
  (./preface.tex
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--27
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
+Underfull \hbox (badness 10000) in paragraph at lines 28--34
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--36
+Underfull \hbox (badness 10000) in paragraph at lines 28--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--34
 
  []
 
 [3
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 48--56
+] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--56
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--56
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--56
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--56
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--56
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 60--61
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
-
- []
-
-[4]) [5]
+) [5]
 \openout2 = `databases.aux'.
 
  (./databases.tex
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--10
+Underfull \hbox (badness 10000) in paragraph at lines 5--8
 
  []
 
 
-Overfull \hbox (18.61813pt too wide) in paragraph at lines 13--14
+Overfull \hbox (18.61813pt too wide) in paragraph at lines 11--12
 []\OT1/lmr/m/n/12 There are Database Man-age-ment Sys-tems build around both, R
 e-la-tional Database|
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 25.
+(Font)              <10> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 25.
+(Font)              <7> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 25.
+(Font)              <5> on input line 23.
 [6
 
 
 
-] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 87--90
+]
+Underfull \hbox (badness 10000) in paragraph at lines 36--40
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--111
+Underfull \hbox (badness 10000) in paragraph at lines 52--57
 
  []
 
-[8]) [9]
+[7]) [8]
 \openout2 = `data_models.aux'.
 
  (./data_models.tex
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
+Underfull \hbox (badness 10000) in paragraph at lines 4--12
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--13
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--15
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
-
- []
-
-[10
+[9
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 35--36
+
+LaTeX Warning: Reference `DataModelsByAbstraction' on page 10 undefined on inpu
+t line 43.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--44
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--53
+Underfull \hbox (badness 10000) in paragraph at lines 45--47
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 70--75
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--64
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--68
+Underfull \hbox (badness 10000) in paragraph at lines 104--107
 
  []
 
+<../img/Conceptual_Model_PowerDesigner.png, id=424, 559.08875pt x 432.61626pt>
+File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
+<use ../img/Conceptual_Model_PowerDesigner.png>
+Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
+ut line 114.
+(pdftex.def)             Requested size: 284.52756pt x 220.16928pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--79
-
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 88--93
+<../img/Logical_Model_PowerDesigner.png, id=434, 630.355pt x 472.76625pt>
+File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
+<use ../img/Logical_Model_PowerDesigner.png>
+Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
+line 134.
+(pdftex.def)             Requested size: 284.52756pt x 213.39209pt.
 
- []
 
-[13] [14]) [15] [16]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13 <../img/Conceptual_Model_PowerDesigner.png>]
+<../img/Physical_Model_PowerDesigner.png, id=446, 662.475pt x 454.69875pt>
+File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
+<use ../img/Physical_Model_PowerDesigner.png>
+Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
+ line 156.
+(pdftex.def)             Requested size: 284.52756pt x 195.28769pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14 <../img/Logical_Model_PowerDesigner.png>] [15 <../img/Physical_Model_PowerD
+esigner.png>] [16]) [17]
 \openout2 = `modeling_tools.aux'.
 
  (./modeling_tools.tex
 Chapter 4.
-) [17
+) [18
 
 
 
@@ -808,11 +805,11 @@ Chapter 4.
 
  (./data_lineage.tex
 Chapter 5.
-[18
+[19
 
 
 
-] [19]) [20]
+] [20]) [21]
 \openout2 = `solution_design.aux'.
 
  (./solution_design.tex
@@ -822,21 +819,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
  []
 
-[21
+[22
 
 
 
-] [22] [23]
+] [23] [24]
 Underfull \hbox (badness 10000) in paragraph at lines 106--108
 
  []
 
-[24] [25] [26] [27] [28] [29] [30] [31]
+[25] [26] [27] [28] [29] [30] [31] [32]
 Underfull \hbox (badness 10000) in paragraph at lines 404--406
 
  []
 
-[32]
+[33]
 Underfull \hbox (badness 10000) in paragraph at lines 407--408
 
  []
@@ -856,12 +853,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 422--424
 
  []
 
-[33]
+[34]
 Underfull \hbox (badness 10000) in paragraph at lines 429--441
 
  []
 
-[34] [35]
+[35] [36]
 Underfull \hbox (badness 10000) in paragraph at lines 466--470
 
  []
@@ -871,7 +868,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 496--499
 
  []
 
-[36]
+[37]
 Underfull \hbox (badness 10000) in paragraph at lines 500--501
 
  []
@@ -881,24 +878,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 523--524
 
  []
 
-[37]
+[38]
 Underfull \hbox (badness 10000) in paragraph at lines 543--544
 
  []
 
-[38] [39]) [40]
+[39] [40]) [41]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Chapter 7.
-) [41
+) [42
 
 
 
 ]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [42
+ (./epilog.tex) [43
 
 
 
@@ -911,7 +908,7 @@ Underfull \hbox (badness 1009) in paragraph at lines 17--20
 u-dar-shan.
  []
 
-)) [43
+)) [44
 
 
 
@@ -919,25 +916,25 @@ u-dar-shan.
 \tf@lof=\write7
 \openout7 = `thesis.lof'.
 
- [44
+ [45
 
 
 ] (./thesis.lot)
 \tf@lot=\write8
 \openout8 = `thesis.lot'.
 
- [45
+ [46
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
-[46
+[47
 
 ]
 Appendix A.
-[47
+[48
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
@@ -948,23 +945,20 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
 (./bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: A320F21818A67624445A174E09AE2729;8238.
 
 
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Warning: There were undefined references.
 
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: 62FF282BC290FE03955A0B75EFCAD536;8845
-(rerunfilecheck)             After:  8749F42C1328EEA3DF0ECEC7708F3059;8840.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
  ) 
 Here is how much of TeX's memory you used:
- 14377 strings out of 492649
- 196963 string characters out of 6129623
- 262738 words of memory out of 5000000
- 17799 multiletter control sequences out of 15000+600000
- 77659 words of font info for 73 fonts, out of 8000000 for 9000
+ 14413 strings out of 492649
+ 198066 string characters out of 6129623
+ 261766 words of memory out of 5000000
+ 17820 multiletter control sequences out of 15000+600000
+ 81877 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,8n,35p,852b,1968s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
@@ -976,11 +970,12 @@ ic/lm/lmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12
 .pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/
 local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texliv
 e/2018/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf
--dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/font
-s/type1/public/lm/lmsy10.pfb>
-Output written on thesis.pdf (51 pages, 674373 bytes).
+-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/font
+s/type1/public/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pu
+blic/lm/lmsy10.pfb>
+Output written on thesis.pdf (52 pages, 732301 bytes).
 PDF statistics:
- 742 PDF objects out of 1000 (max. 8388607)
- 186 named destinations out of 1000 (max. 500000)
- 514 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 758 PDF objects out of 1000 (max. 8388607)
+ 196 named destinations out of 1000 (max. 500000)
+ 489 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -33,9 +33,6 @@ Abraham~Silberschatz Professor, Henry~F. Korth, and S.~Sudarshan.
 \bibitem{DatabaseTypes}
 {The Types of Modern Databases}.
 
-\bibitem{KeyValueStores}
-{What Is a Key-Value Database?}
-
 \bibitem{NoSQLDatabaseModeling}
 
 
@@ -44,11 +41,29 @@ SPARC-DBMS~Study Group.
 \newblock Interim {R}eport: {ANSI}/x3/{SPARC} {S}tudy {G}roup on {D}ata {B}ase
   {M}anagement {S}ystems, 1975.
 
+\bibitem{Chen76theentity-relationship}
+Peter~Pin shan Chen.
+\newblock The entity-relationship model: Toward a unified view of data.
+\newblock {\em ACM Transactions on Database Systems}, 1976.
+
+\bibitem{AccessPathDefiniton}
+Evaggelia Pitoura.
+\newblock Access path, 2009.
+
 \bibitem{Codd69}
 E.~F. Codd.
 \newblock Derivability, redundancy and consistency of relations stored in large
   data banks.
 \newblock {\em {IBM} Research Report, San Jose, California}, {RJ599}, 1969.
+
+\bibitem{ConceptualModelExample}
+
+
+\bibitem{LogicalModelExample}
+
+
+\bibitem{PhysicalModelExample}
+
 
 \bibitem{CollibraBusinessAssets}
 

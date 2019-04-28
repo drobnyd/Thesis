@@ -1,10 +1,8 @@
 \chapter{Introduction}
 
-\par 
-A \definition{database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in \TODO{literature instead Fundamentals of Database Systems} \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network.
-Databases became deep-rooted in every business. 
-Independently of the field that a company is focused on we can enumerate many reasons for considering a database storage deployment a good idea.
-Let us show some examples of how databases are used through various business domains.
+There is no business today that can live without being backed by a database.
+No matter what field an enterprise is focused on, we can enumerate many reasons why a database storage helps a company to be more effective and its deployment is a good idea.
+We will justify it using some examples of how databases are used through various business domains.
 
 \begin{itemize}
 	
@@ -23,50 +21,35 @@ Let us show some examples of how databases are used through various business dom
 	
 \end{itemize}
 And the list goes on.
- \\
-
-\par
-A \definition{data model} is a description of data, data relationships, data semantics, and consistency constraints. \label{DataModel} \\
-\par 
-A \definition{database schema} defines how is the database described in a data model actually constructed, specifying types of fields from data model. Represents an instance of a data model. \\
 \\
-There are multiple kinds of specific data models known.
-By Fundamentals of Database Systems \cite{SilberschatzKorthSudarshan10} the main categorization of data models nowadays, according to how big is the abstraction used and on what type of user are aimed, is following: \label{DataModelsByAbstraction}
-\begin{itemize}
-	\item Conceptual Data Models (High-Level) \\
-		Reproduces real world objects along with their relationships and should be close to how business end-users perceive them.
-	
-	\item Logical Data Models (Implementation, Representational) \\
-		In the middle between the two other model types there are representational data models which on the one hand are comprehensible by end-users and on the other hand are not too abstract so that they can be used as documentation for an actual database implementation of the modeled data.
-	
-	\item Physical Level Data Models(Low-Level) \\
-		 In contrast to conceptual models the physical ones are tied with how data are stored physically at storage media showing all specific internal details that may be overwhelming in the case that the reader is a computer specialist.
-\end{itemize}
 
-% Database Design
-\par
-Once the decision is made and the usefulness of a database for our thing is proved there may be still a long way until everything runs as expected and we can use all the advantages that such data storage brings.
-The database design phase comes in place then. By the nature of the problem, a top-down approach is usually followed.
-A database designer comes in handy for the process. \\ \\
-The first thing that is needed to do is to discuss with an expert in the domain \TODO{what domain} in order to identify and collect requirements for the designed system. \\ \\
-The debate should be translated to a conceptual data model of the future database by the designer.\\ \\
-Once the abstract model is created a movement towards its implementation is desired. That is when the development of a logical model takes place and the high level view is turned into system-specific model that is the logical one. \\ \\
-Finally, the organization of the database itself is figured out and captured in a physical model of the analyzed system. \\ \\
-Given the physical model a database should be possible to deploy straightforwardly. \\
+Once the decision is made and the usefulness of a database for our business is proved, there may be still a long way until everything runs as expected and we can make use of all the advantages that data storage brings.
 
-\par 
-A \definition{diagram} is a graphical visualization of a data model. \\
-\par
-A \definition{data modeling tool} is a software that allows a database designer to create data models. End user may use the tools for interactive previewing of the models' diagrams. \\
+The database design phase comes in place then. By the nature of the problem, a top-down approach to the process is usually followed since at the start there is an enterprise knows what real life aspects need to be captured in a database. To convert this idea into a working solution, the company would hire a database designer. \\ \\
+A discussion between an expert in the business domain where the enterprise operates and a database professional follows, in order to identify and collect requirements for the future system.
+In that moment data modeling comes into play. 
+Instead of a transcript of the conversation, better solution is to translate the debate into more intuitive and standardized piece of documentation, into a conceptual data model.
+Once the initial model is created the next steps are going more and more toward an final implementation of the database. After, a database designer works on development of a logical model and the most high level concepts are transformed into the one that is combining high level perspective with more technical aspects, but the description of them remain independent of a database type. \\ \\
+Finally, the organization of the database is pointed out and captured in a physical model of the analyzed system, from this point we have a solid documentation and it is straightforward to finally deploy a database that is described in the low-level model as is has one-to-one mapping with implementation itself. \\ \\
 
-\par
-\definition{Data lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
-The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
-
-\par
 The process of development and deployment of a database consists of multiple stages as we have seen. At the beginning there is a high level view of why the database is needed and what purpose will it serve. Hopefully, in some time the result is that the data described in the initial step are stored physically at some server. 
-This way the data can be accessed and processed. 
-What we want to achieve in this work is to make use of the individual steps taken during the design process, and make operations on data as transparent and traceable as possible even for business users that don't have a technical background.
+This way the data can be accessed and processed.
+
+But that is just the beginning. The importance of a database for an enterprise is not in how it is designed. What does really matter is that big companies have plenty of business processes managing contents of storage via scripts in an automated way. 
+
+For example travel companies offering airplane tickets commonly increase price when there is not many spaces left for a trip. 
+Thus when a customer buys a ticket, there is a logic that computes how the price of the remaining tickets should be raised and update the records in database representing the not taken tickets accordingly, so the valid information is shown to customers.
+The logic takes places thanks to by SQL queries applied on a database.
+As the amount of business processes grows, the ability to justify correctness of data decreases. 
+Also once an error in data is found in such a big ecosystem, it may be very unpleasant to trace it as data are affected by possibly huge number of sources and transformations hidden in scripts.
+
+Data lineage is the answer for the struggles with being overwhelmed by complexity of a big data solution. It brings an ease to seeing what and how is affecting data stored in databases.
+
+The lineage of data shows database tables and transformations used for either writing or reading data from tables. It is really helpful, however not for everyone. 
+We outlined that there are multiple perspectives on a database through data models, and every perspective has a different audience eg. the conceptual is for business people while the physical one is read by database engineers.
+But when it comes to data lineage, it only displays the level of abstraction that is understood by database professionals, while people with not that good technical background that would want to make decisions based on how data flows in their system are not having an easy time trying to figure out what is going on in such data lineage.
+That is why we want to bring the business data lineage, which is speaking the language of more enterprise people coping with data and making decisions related to them on daily basis. We assume  big companies approach database development responsibly, thus there exist a documentation of their systems in form of data models, we will try to reuse to bring the desired functionality.
+\TODO{GDPR use-case}
 
 \section{Goals}
 
@@ -78,4 +61,18 @@ What we want to achieve in this work is to make use of the individual steps take
 \end{itemize}
 
 \TODO{Introduction to each of the following chapters once the final organization is known}
+
+\section{Glossary}
+A \definition{database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in \TODO{literature instead Fundamentals of Database Systems} \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network. \\
+
+A \definition{data model} is a description of data, data relationships, data semantics, and consistency constraints. \label{DataModel} \\
+ 
+A \definition{database schema} defines how is the database described in a data model actually constructed, specifying types of fields from data model. Represents an instance of a data model. \\
+
+A \definition{diagram} is a graphical visualization of a data model. \\
+
+A \definition{data modeling tool} is a software that allows a database designer to create data models. End user may use the tools for interactive previewing of the models' diagrams. \\
+
+\definition{Data lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
+The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
 
