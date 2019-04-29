@@ -4,98 +4,96 @@
 \contentsline {chapter}{\numberline {2}On Database Background}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Databases}{7}{section.2.1}
 \contentsline {subsubsection}{Relational Databases}{7}{section*.2}
-\contentsline {subsubsection}{Properties}{7}{section*.3}
-\contentsline {subsubsection}{Non-Relational Databases}{8}{section*.4}
-\contentsline {subsubsection}{Means of Database Access}{8}{section*.5}
-\contentsline {paragraph}{APIs to DBMS}{9}{section*.6}
-\contentsline {section}{\numberline {2.2}Database Modeling}{9}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Data Model Perspectives}{10}{subsection.2.2.1}
-\contentsline {subsubsection}{Vertical Division}{10}{section*.7}
-\contentsline {subsubsection}{Horizontal Division}{11}{section*.8}
-\contentsline {subsubsection}{Relational Data Model}{11}{section*.9}
-\contentsline {subsubsection}{Entity-Relationship Data Model}{12}{section*.10}
-\contentsline {subsubsection}{Enhanced-Entity-Relationship Data Model}{12}{section*.11}
-\contentsline {subsection}{\numberline {2.2.2}Conceptual Data Model}{12}{subsection.2.2.2}
-\contentsline {subsubsection}{Characteristics}{12}{section*.12}
-\contentsline {subsection}{\numberline {2.2.3}Logical Data Model}{13}{subsection.2.2.3}
-\contentsline {subsubsection}{Characteristics}{13}{section*.13}
-\contentsline {subsection}{\numberline {2.2.4}Physical Data Model}{14}{subsection.2.2.4}
-\contentsline {subsubsection}{Characteristics}{14}{section*.14}
-\contentsline {subsection}{\numberline {2.2.5}Relations Between the Models}{15}{subsection.2.2.5}
-\contentsline {subsubsection}{Maps-to Relation}{15}{section*.15}
-\contentsline {section}{\numberline {2.3}Data Lineage}{16}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Manta Flow}{17}{subsection.2.3.1}
-\contentsline {subsubsection}{Supported Database Technologies}{18}{section*.16}
-\contentsline {subsection}{\numberline {2.3.2}Data Lineage in Modeling Tools}{18}{subsection.2.3.2}
-\contentsline {chapter}{\numberline {3}Modeling Tools}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}Construction of a Data Model}{19}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Modeling}{19}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Reverse Engineering}{19}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Generating}{19}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Importing}{20}{subsection.3.1.4}
-\contentsline {section}{\numberline {3.2}ER/Studio Data Architect}{20}{section.3.2}
-\contentsline {section}{\numberline {3.3}PowerDesigner}{20}{section.3.3}
-\contentsline {chapter}{\numberline {4}Analysis \& Design of the Solution}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Analysis of the Problem}{21}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}File Format}{21}{subsection.4.1.1}
-\contentsline {subsubsection}{ER/Studio}{21}{section*.17}
-\contentsline {subsubsection}{PowerDesigner}{22}{section*.18}
-\contentsline {subsection}{\numberline {4.1.2}Metadata to Collect from Data Models}{23}{subsection.4.1.2}
-\contentsline {subsubsection}{Conceptual \& Logical Data Model}{24}{section*.19}
-\contentsline {subsubsection}{ER/Studio}{24}{section*.20}
-\contentsline {subsubsection}{CDM}{24}{section*.21}
-\contentsline {subsubsection}{LDM}{24}{section*.22}
-\contentsline {subsubsection}{Properties We Will Not Extract}{24}{section*.23}
-\contentsline {subsubsection}{Properties We Will Not Extract}{25}{section*.24}
-\contentsline {subsubsection}{Objects We Will Not Extract}{26}{section*.25}
-\contentsline {subsubsection}{PowerDesigner}{26}{section*.26}
-\contentsline {subsubsection}{CDM \& LDM}{26}{section*.27}
+\contentsline {subsubsection}{Means of Database Access}{8}{section*.3}
+\contentsline {paragraph}{APIs to DBMS}{8}{section*.4}
+\contentsline {section}{\numberline {2.2}Database Modeling}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Data Model Perspectives}{9}{subsection.2.2.1}
+\contentsline {subsubsection}{Vertical Division}{9}{section*.5}
+\contentsline {subsubsection}{Horizontal Division}{11}{section*.6}
+\contentsline {subsubsection}{Relational Data Model}{11}{section*.7}
+\contentsline {subsubsection}{Entity-Relationship Data Model}{11}{section*.8}
+\contentsline {subsubsection}{Enhanced-Entity-Relationship Data Model}{11}{section*.9}
+\contentsline {subsection}{\numberline {2.2.2}Conceptual Data Model}{11}{subsection.2.2.2}
+\contentsline {subsubsection}{Characteristics}{11}{section*.10}
+\contentsline {subsection}{\numberline {2.2.3}Logical Data Model}{12}{subsection.2.2.3}
+\contentsline {subsubsection}{Characteristics}{12}{section*.11}
+\contentsline {subsection}{\numberline {2.2.4}Physical Data Model}{13}{subsection.2.2.4}
+\contentsline {subsubsection}{Characteristics}{13}{section*.12}
+\contentsline {subsection}{\numberline {2.2.5}Relations Between the Models}{14}{subsection.2.2.5}
+\contentsline {subsubsection}{Maps-to Relation}{15}{section*.13}
+\contentsline {section}{\numberline {2.3}Data Lineage}{15}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Manta Flow}{16}{subsection.2.3.1}
+\contentsline {subsubsection}{Supported Database Technologies}{17}{section*.14}
+\contentsline {subsection}{\numberline {2.3.2}Data Lineage in Modeling Tools}{17}{subsection.2.3.2}
+\contentsline {chapter}{\numberline {3}Modeling Tools}{18}{chapter.3}
+\contentsline {section}{\numberline {3.1}Construction of a Data Model}{18}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Modeling}{18}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Reverse Engineering}{18}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Generating}{18}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Importing}{19}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}ER/Studio Data Architect}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}PowerDesigner}{19}{section.3.3}
+\contentsline {chapter}{\numberline {4}Analysis \& Design of the Solution}{20}{chapter.4}
+\contentsline {section}{\numberline {4.1}Analysis of the Problem}{20}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}File Format}{20}{subsection.4.1.1}
+\contentsline {subsubsection}{ER/Studio}{20}{section*.15}
+\contentsline {subsubsection}{PowerDesigner}{21}{section*.16}
+\contentsline {subsection}{\numberline {4.1.2}Metadata to Collect from Data Models}{22}{subsection.4.1.2}
+\contentsline {subsubsection}{Conceptual \& Logical Data Model}{23}{section*.17}
+\contentsline {subsubsection}{ER/Studio}{23}{section*.18}
+\contentsline {subsubsection}{CDM}{23}{section*.19}
+\contentsline {subsubsection}{LDM}{23}{section*.20}
+\contentsline {subsubsection}{Properties We Will Not Extract}{23}{section*.21}
+\contentsline {subsubsection}{Properties We Will Not Extract}{24}{section*.22}
+\contentsline {subsubsection}{Objects We Will Not Extract}{25}{section*.23}
+\contentsline {subsubsection}{PowerDesigner}{25}{section*.24}
+\contentsline {subsubsection}{CDM \& LDM}{25}{section*.25}
+\contentsline {subsubsection}{Properties We Will Not Extract}{25}{section*.26}
+\contentsline {subsubsection}{Properties We Will Not Extract}{26}{section*.27}
 \contentsline {subsubsection}{Properties We Will Not Extract}{26}{section*.28}
-\contentsline {subsubsection}{Properties We Will Not Extract}{27}{section*.29}
-\contentsline {subsubsection}{Properties We Will Not Extract}{27}{section*.30}
-\contentsline {subsubsection}{Objects We Will Not Extract}{27}{section*.31}
-\contentsline {subsubsection}{Objects We Will Not Extract}{27}{section*.32}
-\contentsline {subsubsection}{Physical Data Model}{28}{section*.33}
-\contentsline {subsubsection}{ER/Studio}{28}{section*.34}
-\contentsline {subsubsection}{Properties We Will Not Extract}{28}{section*.35}
-\contentsline {subsubsection}{Properties We Will Not Extract}{29}{section*.36}
-\contentsline {subsubsection}{Objects We Will Not Extract}{29}{section*.37}
-\contentsline {subsubsection}{PowerDesigner}{29}{section*.38}
-\contentsline {subsubsection}{Properties We Will Not Extract}{30}{section*.39}
-\contentsline {subsubsection}{Properties We Will Not Extract}{30}{section*.40}
-\contentsline {subsubsection}{Objects We Will Not Extract}{31}{section*.41}
-\contentsline {subsection}{\numberline {4.1.3}Recreating of Modeled Objects}{31}{subsection.4.1.3}
-\contentsline {subsubsection}{ER/Studio}{32}{section*.42}
+\contentsline {subsubsection}{Objects We Will Not Extract}{26}{section*.29}
+\contentsline {subsubsection}{Objects We Will Not Extract}{26}{section*.30}
+\contentsline {subsubsection}{Physical Data Model}{27}{section*.31}
+\contentsline {subsubsection}{ER/Studio}{27}{section*.32}
+\contentsline {subsubsection}{Properties We Will Not Extract}{27}{section*.33}
+\contentsline {subsubsection}{Properties We Will Not Extract}{28}{section*.34}
+\contentsline {subsubsection}{Objects We Will Not Extract}{28}{section*.35}
+\contentsline {subsubsection}{PowerDesigner}{28}{section*.36}
+\contentsline {subsubsection}{Properties We Will Not Extract}{29}{section*.37}
+\contentsline {subsubsection}{Properties We Will Not Extract}{29}{section*.38}
+\contentsline {subsubsection}{Objects We Will Not Extract}{30}{section*.39}
+\contentsline {subsection}{\numberline {4.1.3}Recreating of Modeled Objects}{30}{subsection.4.1.3}
+\contentsline {subsubsection}{ER/Studio}{31}{section*.40}
+\contentsline {subsubsection}{PowerDesigner}{31}{section*.41}
+\contentsline {subsection}{\numberline {4.1.4}Maps-to Relation}{31}{subsection.4.1.4}
+\contentsline {subsubsection}{ER/Studio}{31}{section*.42}
 \contentsline {subsubsection}{PowerDesigner}{32}{section*.43}
-\contentsline {subsection}{\numberline {4.1.4}Maps-to Relation}{32}{subsection.4.1.4}
-\contentsline {subsubsection}{ER/Studio}{32}{section*.44}
-\contentsline {subsubsection}{PowerDesigner}{33}{section*.45}
-\contentsline {subsection}{\numberline {4.1.5}Interpolation}{35}{subsection.4.1.5}
-\contentsline {subsection}{\numberline {4.1.6}Database Connections}{35}{subsection.4.1.6}
-\contentsline {subsubsection}{ER/Studio}{36}{section*.46}
-\contentsline {subsubsection}{PowerDesigner}{36}{section*.47}
-\contentsline {subsection}{\numberline {4.1.7}Output Representation}{37}{subsection.4.1.7}
-\contentsline {section}{\numberline {4.2}Requirements/Desired Features}{38}{section.4.2}
-\contentsline {section}{\numberline {4.3}Survey of Existing Solutions}{39}{section.4.3}
-\contentsline {section}{\numberline {4.4}Architecture of the System}{40}{section.4.4}
-\contentsline {chapter}{\numberline {5}Implementation}{41}{chapter.5}
-\contentsline {section}{\numberline {5.1}ER/Studio}{41}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}File Reverse-Engineering Tool}{41}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {4.1.5}Interpolation}{34}{subsection.4.1.5}
+\contentsline {subsection}{\numberline {4.1.6}Database Connections}{34}{subsection.4.1.6}
+\contentsline {subsubsection}{ER/Studio}{35}{section*.44}
+\contentsline {subsubsection}{PowerDesigner}{35}{section*.45}
+\contentsline {subsection}{\numberline {4.1.7}Output Representation}{36}{subsection.4.1.7}
+\contentsline {section}{\numberline {4.2}Requirements/Desired Features}{37}{section.4.2}
+\contentsline {section}{\numberline {4.3}Survey of Existing Solutions}{38}{section.4.3}
+\contentsline {section}{\numberline {4.4}Architecture of the System}{39}{section.4.4}
+\contentsline {chapter}{\numberline {5}Implementation}{40}{chapter.5}
+\contentsline {section}{\numberline {5.1}ER/Studio}{40}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}File Reverse-Engineering Tool}{40}{subsection.5.1.1}
 \contentsline {subsection}{\numberline {5.1.2}Parser}{41}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Model}{41}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Resolver}{41}{subsection.5.1.4}
-\contentsline {subsection}{\numberline {5.1.5}Data Flow Generator}{41}{subsection.5.1.5}
-\contentsline {section}{\numberline {5.2}PowerDesigner}{41}{section.5.2}
-\contentsline {section}{\numberline {5.3}Extensibility}{41}{section.5.3}
-\contentsline {section}{\numberline {5.4}Technologies}{41}{section.5.4}
-\contentsline {section}{\numberline {5.5}Testing}{41}{section.5.5}
-\contentsline {chapter}{Conclusion}{42}{chapter*.48}
-\contentsline {chapter}{Bibliography}{43}{chapter*.49}
-\contentsline {chapter}{List of Figures}{44}{chapter*.50}
-\contentsline {chapter}{List of Tables}{45}{chapter*.51}
-\contentsline {chapter}{List of Abbreviations}{46}{chapter*.52}
-\contentsline {chapter}{\numberline {A}Attachments}{47}{appendix.A}
-\contentsline {section}{\numberline {A.1}Building}{47}{section.A.1}
-\contentsline {section}{\numberline {A.2}User Documentation}{47}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Tutorials}{47}{subsection.A.2.1}
-\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{47}{section.A.3}
+\contentsline {subsection}{\numberline {5.1.3}Model}{42}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Resolver}{42}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}Data Flow Generator}{42}{subsection.5.1.5}
+\contentsline {section}{\numberline {5.2}PowerDesigner}{42}{section.5.2}
+\contentsline {section}{\numberline {5.3}Extensibility}{42}{section.5.3}
+\contentsline {section}{\numberline {5.4}Technologies}{42}{section.5.4}
+\contentsline {section}{\numberline {5.5}Testing}{43}{section.5.5}
+\contentsline {chapter}{Conclusion}{44}{chapter*.46}
+\contentsline {chapter}{Bibliography}{45}{chapter*.47}
+\contentsline {chapter}{List of Figures}{46}{chapter*.48}
+\contentsline {chapter}{List of Tables}{47}{chapter*.49}
+\contentsline {chapter}{List of Abbreviations}{48}{chapter*.50}
+\contentsline {chapter}{\numberline {A}Attachments}{49}{appendix.A}
+\contentsline {section}{\numberline {A.1}Building}{49}{section.A.1}
+\contentsline {section}{\numberline {A.2}User Documentation}{49}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Tutorials}{49}{subsection.A.2.1}
+\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{49}{section.A.3}

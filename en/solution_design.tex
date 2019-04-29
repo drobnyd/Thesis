@@ -25,7 +25,8 @@ Then we will need to figure out how the models in maps-to relation refer to each
 Firstly, we will have a look at what is the output of the analyzed modeling tools, what information are stored there and how it is done.
 
 \subsubsection{ER/Studio}
-The modeling tools uses its custom file format. The file stores plain text and it is made up of many tables. A table in this context is a CSV (comma-separated values) structure but as there is not only one CSV table identifying name is also included. So by table we understand its name, definition of columns (or fields) and records. \TODO{escaping in CSV}
+\label{subsec:dm1_format}
+The modeling tools uses its custom file format. It uses .DM1 extension. The file stores plain text and it is made up of many tables. A table in this context is a CSV (comma-separated values) structure but as there is not only one CSV table identifying name is also included. So by table we understand its name, definition of columns (or fields) and records. \TODO{escaping in CSV}
 How more complex objects can be stored in files like this is not clear from the first sight and it required some work to get the idea behind it. \TODO{insert a table here} 
 An attentive reader may find these terms, that we used for describing the data structure, familiar since we already used them where introducing relational databases. And he would be true. When investigating these tables we can notice columns that are shared, meaning relation between the tables that have them in common. This is pretty much how primary and foreign key work in relational databases.
 Now we face the challenge of reverse-engineering the tables to rebuild the composite objects that are deconstructed and saved in the tables.
