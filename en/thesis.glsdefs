@@ -1,0 +1,150 @@
+\ifglsentryexists{er}{}%
+{%
+\gls@defglossaryentry{er}%
+{%
+name={ER},%
+sort={ER},%
+type={acronym},%
+first={Entity-Relationship\glsspace (ER)},%
+firstplural={Entity-Relationship\acrpluralsuffix \glsspace (ER\acrpluralsuffix )},%
+text={ER},%
+plural={ER\acrpluralsuffix },%
+description={Entity-Relationship},%
+descriptionplural={Entity-Relationship\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Entity-Relationship},%
+longplural={Entity-Relationships},%
+short={ER},%
+shortplural={ERs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{eer}{}%
+{%
+\gls@defglossaryentry{eer}%
+{%
+name={EER},%
+sort={EER},%
+type={acronym},%
+first={Enhanced-entity-Relationship\glsspace (EER)},%
+firstplural={Enhanced-entity-Relationship\acrpluralsuffix \glsspace (EER\acrpluralsuffix )},%
+text={EER},%
+plural={EER\acrpluralsuffix },%
+description={Enhanced-entity-Relationship},%
+descriptionplural={Enhanced-entity-Relationship\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Enhanced-entity-Relationship},%
+longplural={Enhanced-entity-Relationships},%
+short={EER},%
+shortplural={EERs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{cdm}{}%
+{%
+\gls@defglossaryentry{cdm}%
+{%
+name={CDM},%
+sort={CDM},%
+type={acronym},%
+first={Conceptual Data Model\glsspace (CDM)},%
+firstplural={Conceptual Data Model\acrpluralsuffix \glsspace (CDM\acrpluralsuffix )},%
+text={CDM},%
+plural={CDM\acrpluralsuffix },%
+description={Conceptual Data Model},%
+descriptionplural={Conceptual Data Model\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Conceptual Data Model},%
+longplural={Conceptual Data Models},%
+short={CDM},%
+shortplural={CDMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{ldm}{}%
+{%
+\gls@defglossaryentry{ldm}%
+{%
+name={LDM},%
+sort={LDM},%
+type={acronym},%
+first={Logical Data Model\glsspace (LDM)},%
+firstplural={Logical Data Model\acrpluralsuffix \glsspace (LDM\acrpluralsuffix )},%
+text={LDM},%
+plural={LDM\acrpluralsuffix },%
+description={Logical Data Model},%
+descriptionplural={Logical Data Model\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Logical Data Model},%
+longplural={Logical Data Models},%
+short={LDM},%
+shortplural={LDMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{pdm}{}%
+{%
+\gls@defglossaryentry{pdm}%
+{%
+name={PDM},%
+sort={PDM},%
+type={acronym},%
+first={Physical Data Model\glsspace (PDM)},%
+firstplural={Physical Data Model\acrpluralsuffix \glsspace (PDM\acrpluralsuffix )},%
+text={PDM},%
+plural={PDM\acrpluralsuffix },%
+description={Physical Data Model},%
+descriptionplural={Physical Data Model\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Physical Data Model},%
+longplural={Physical Data Models},%
+short={PDM},%
+shortplural={PDMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
