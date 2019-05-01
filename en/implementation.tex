@@ -124,9 +124,10 @@ The crucial objects and the important properties of theirs result from the analy
 
 The perspective of a raw file structure loaded to memory is represented by an interface \classname{ErStudioFile} where either all tables from file can be retrieved via \methodname{getAllCsvTables} or a single table by its name using the \methodname{getCsvTable} method.
 
-An ER/Studio solution - a set containing one logical data model and arbitrary number of physical models implements \classname{ErStudioSolution} interface. All the objects contained in the data models stored in such solution can be retrieved using the interface's methods. A solution is stored in one file, the relative name of this file is returned when called \methodname{getFileName}.
+An ER/Studio solution - a set containing one logical data model and arbitrary number of physical models implements \classname{ErStudioSolution} interface. All the objects contained in the data models stored in such solution can be retrieved using the interface's methods. A solution is defined in a file, the relative name of the file where the solution is an internal one is returned when called \methodname{getFileName}. \TODO{make more clear internal vs external}
 
-\TODO{ERStudioFileModel external and internal solutions}
+
+Since a .DM1 file is not restricted to storing a single solution, but may reference external models as well, thus there may be objects from multiple solutions saved in a file. The overall structure of a file is represented by \classname{ErStudioFileModel} that has a main solution - the internal one and possibly references external solutions.
 
 A base behavior of both logical and physical data models is defined in \classname{DataModel}.
 A data model has a name and contains owners. An instance fulfilling \classname{DataModel} interface must have property of type \classname{AbstractionLayer} set to either \methodname{Logical} or \methodname{Physical} just like every object that is contained in a model.
@@ -153,15 +154,30 @@ The composite one can be mapped to another \classname{CompositeDataObject} and m
 The purpose of the resolver unit is to actually create objects fulfilling the contracts specified by interfaces defined in the model.
 
 Typically, for each interface, we will create an implementation. In Java it is common to call the classes fulfilling an contract *Impl where * is a placeholder for the name of an interface. We stick to this naming convention. 
-The *Impl classes, in comparison to the interfaces from the model, need to dispose of methods for setting up and adding properties or substructures as the model's reading methods would not be very meaningful otherwise. These classes can be found in the imp package.
+The *Impl classes, in comparison to the interfaces from the model, need to dispose of methods for setting up and adding properties or substructures as the model's reading methods would not be very meaningful otherwise. These classes can be found in the imp package. \\
 
-We know what is expected from the classes and added the functionality helping to set up the objects, once we gathered required information. 
+We defined what is expected from the classes and added the functionality helping to set up the objects, once we gathered required information. 
 So the last missing piece of puzzle needed to create the data structures is how to gather the information.
 The logic taking care of collecting the needed data is hidden in the package builder.
-The skeleton of how an instance of \classname{ERStudioSolution} is created is prescribed in the \classname{AbstractDataObjectsBuilder}'s method \methodname{buildErStudioModel}.
-\TODO{ADD TO TEMPLATE CREATE SOLUTION STEP}
-The tree is build top-down, models in a solution are loaded, composite objects then and finally simple objects. Child types are appended to their parents just when created.
+The skeleton of how an instance of \classname{ErStudioSolution} is created is prescribed in the \classname{AbstractDataObjectsBuilder}'s method \methodname{buildErStudioModel} that follows the paradigm of the template method design pattern and defines the steps needed to take in order to construct an instance of \classname{ErStudioSolution} solution, no matter if it is of internal or external type.
+The template method enforces a tree of objects in a solution is build from the top down.
+The very first is to step is to create a root of such tree - an instance of \classname{ErStudioSolution} that is being build, then \classname{DataModel}s from the solution are loaded, \classname{Owner}s follow, \classname{CompositeObject}s after and finally \classname{SimpleObject}s. 
+Child instances are appended to their parents just when created.
+The abstract builder contains common methods for construction of objects. Those methods are not dependent on representation, only require a set of properties as input to be able to attach them to resulting objects to make them complete. The groups of properties needed to be collected about each type to proceed the construction are described by interfaces in the package modeledobjectproperties. 
 
+The specific way of gathering the information about objects to be reconstructed is tied with details of how the objects are saved in the file format. Concrete builders 	\classname{InternalDataObjectsBuilder} along with \classname{ExternalDataObjectsBuilder} provide implementation to the abstract methods.
+In the case of internal solution, information about objects are retrieved from CSV tables, where for each table there is a dedicated and references across the tables are resolved.
+On the other hand, in case of external solutions, they are fully represented in a single CSV table that stores XML structures describing these objects. The implementations of the placeholders in \classname{ExternalDataObjectsBuilder} uses a simple SAX XML parser to retrieve the desired data described in modeledobjectproperties.
+
+\classname{InternalDataObjectsBuilder} has one more responsibility and that is to create mappings between \classname{Mappable} objects in a solution with a help of \classname{InternalMapper}. 
+
+The  \classname{InternalMapper} class only has knowledge about the layout of a CSV table containing internal mappings, just like the \classname{ExternalMapper}, that we will need later, has about the definitions of external mappings. However the logic of putting objects to maps-to relation is coded in the \classname{AbstractMapper} class.
+It goes through a table which definition fulfills the interface \classname{MappingTable} and links pairs listed in the table by mapping, if their types are equivalent.
+
+\TODO{singletons - mappers and builders}
+
+
+To put it all together, \classname{ErStudioFileModelBuilder} creates the whole structure representing an input .DM1 file as instance of \classname{ErStudioFileModel}. It builds an internal solution, then external solutions are created and at the end resolving of mappings that lead across the solution using \classname{ExternalMapper} takes place.
 
 \subsection{Data Flow Generator}
 

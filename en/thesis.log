@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  1 MAY 2019 03:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  1 MAY 2019 19:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1166,27 +1166,45 @@ LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 65.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [41]
-Overfull \hbox (11.81749pt too wide) in paragraph at lines 131--133
+Overfull \hbox (11.81749pt too wide) in paragraph at lines 132--134
 []\OT1/lmr/m/n/12 A base be-hav-ior of both log-i-cal and phys-i-cal data mod-e
 ls is de-fined in \OT1/lmtt/m/n/12 DataModel\OT1/lmr/m/n/12 .|
  []
 
 [42]
-Overfull \hbox (28.48656pt too wide) in paragraph at lines 139--140
+Overfull \hbox (28.48656pt too wide) in paragraph at lines 140--141
 []\OT1/lmr/m/n/12 The ob-jects that can be mapped to an-other ob-ject im-ple-me
 nt in-ter-face \OT1/lmtt/m/n/12 Mappable<T>|
  []
 
 
-Overfull \hbox (41.78043pt too wide) in paragraph at lines 143--146
+Overfull \hbox (41.78043pt too wide) in paragraph at lines 144--147
 \OT1/lmtt/m/n/12 AbstractionLayer\OT1/lmr/m/n/12 . The com-pos-ite one can be m
 apped to an-other \OT1/lmtt/m/n/12 CompositeDataObject|
  []
 
-[43]) [44]
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--158
+
+ []
+
+[43]
+Overfull \hbox (37.25464pt too wide) in paragraph at lines 168--171
+\OT1/lmr/m/n/12 crete builders \OT1/lmtt/m/n/12 InternalDataObjectsBuilder \OT1
+/lmr/m/n/12 along with \OT1/lmtt/m/n/12 ExternalDataObjectsBuilder|
+ []
+
+
+Overfull \hbox (16.82996pt too wide) in paragraph at lines 172--173
+\OT1/lmr/m/n/12 ate map-pings be-tween \OT1/lmtt/m/n/12 Mappable \OT1/lmr/m/n/1
+2 ob-jects in a so-lu-tion with a help of \OT1/lmtt/m/n/12 InternalMapper\OT1/l
+mr/m/n/12 . |
+ []
+
+[44]) [45]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [45
+ (./epilog.tex) [46
 
 
 
@@ -1199,7 +1217,7 @@ Underfull \hbox (badness 1009) in paragraph at lines 52--55
 u-dar-shan.
  []
 
-)) [46
+)) [47
 
 
 
@@ -1207,25 +1225,25 @@ u-dar-shan.
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
- [47
+ [48
 
 
 ] (./thesis.lot)
 \tf@lot=\write9
 \openout9 = `thesis.lot'.
 
- [48
+ [49
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-[49
+[50
 
 ]
 Appendix A.
-[50
+[51
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 168.
@@ -1244,9 +1262,9 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 24009 strings out of 492649
- 408295 string characters out of 6129623
- 438108 words of memory out of 5000000
+ 24010 strings out of 492649
+ 408302 string characters out of 6129623
+ 438109 words of memory out of 5000000
  27217 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1264,9 +1282,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (54 pages, 776634 bytes).
+Output written on thesis.pdf (55 pages, 779921 bytes).
 PDF statistics:
- 767 PDF objects out of 1000 (max. 8388607)
- 199 named destinations out of 1000 (max. 500000)
+ 772 PDF objects out of 1000 (max. 8388607)
+ 200 named destinations out of 1000 (max. 500000)
  485 words of extra memory for PDF output out of 10000 (max. 10000000)
 
