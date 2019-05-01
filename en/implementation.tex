@@ -61,7 +61,8 @@ We know the structure we need to parse contains tables consisting of a name on a
 
 Putting it all together it seems to be easier to come with an own parser for .DM1 files that processes the files into a set of tables identified by their names. 
 
-To represent a single table we have the class CSVTable which contains its name, definition of columns, in other words names for each of its property\TODO{name of the class}, and finally records themselves - instances of CSVColumn which are contents of the table.
+\TODO{parser for RE vs for Connector}
+To represent a single table we have the class \classname{CSVTable} which contains its name, definition of columns, in other words names for each of its property\TODO{name of the class}, and finally records themselves - instances of \classname{CSVColumn} which are contents of the table.
 
 Getting a name of a table is an easy job as its just a single textual line. To resolve a record is a slightly more challenging task. We design an automaton that accepts well formed records of our CSV table.
 
@@ -113,14 +114,54 @@ Getting a name of a table is an easy job as its just a single textual line. To r
 
 \TODO{if malformed}
 
+The parser's interface is a single method \methodname{readFile} taking a file to process and returning pairs of table name and an instance of \classname{CSVTable}.
+
 \subsection{Model}
 
-The purpose of the model unit is to allow an access for reading to both a raw structure of a processed source file and a fully loaded hierarchy of objects we reconstructed from the file.
+The purpose of the model unit is to provide an access for reading to both a raw structure of a processed source file and a fully loaded hierarchy of objects we reconstructed from the file.
 
 The crucial objects and the important properties of theirs result from the analysis of ER/Studio data models \TODO{reference to the section}. Those are the ones the model is required to capture.
 
+The perspective of a raw file structure loaded to memory is represented by an interface \classname{ErStudioFile} where either all tables from file can be retrieved via \methodname{getAllCsvTables} or a single table by its name using the \methodname{getCsvTable} method.
+
+An ER/Studio solution - a set containing one logical data model and arbitrary number of physical models implements \classname{ErStudioSolution} interface. All the objects contained in the data models stored in such solution can be retrieved using the interface's methods. A solution is stored in one file, the relative name of this file is returned when called \methodname{getFileName}.
+
+\TODO{ERStudioFileModel external and internal solutions}
+
+A base behavior of both logical and physical data models is defined in \classname{DataModel}.
+A data model has a name and contains owners. An instance fulfilling \classname{DataModel} interface must have property of type \classname{AbstractionLayer} set to either \methodname{Logical} or \methodname{Physical} just like every object that is contained in a model.
+
+\classname{PhysicalDataModel} has an important addition, that it can tell the database platform the low-level model is designed for. In enum class \classname{Platform} all the database management systems ER/Studio supports are captured with an extra entry for an unknown DBMS.
+
+\classname{Owner} is either \methodname{Logical} or \methodname{Physical} according to what objects it\TODO{or he?} can own and what type of model it may belong to. 
+It has name and allows access to the objects owned by it.
+
+The objects that can be mapped to another object implement interface \classname{Mappable<T>} where the type parameter defines what is the kind of the mapped counterpart.
+
+Objects in a data model that can be described further by definition and note while having a name can fit into \classname{DataObject} interface. These can be either \classname{CompositeDataObject} or \classname{SimpleDataObject}.
+
+An interface for the composite ones describes what is expected from a table or an entity.
+They have the very same properties that is why a single class is enough to capture their structure. Which of the two it is is decided by \classname{AbstractionLayer}.
+The composite one can be mapped to another \classname{CompositeDataObject} and may contain simple objects.
+
+\classname{SimpleDataObject} is used by columns or attributes. Equivalently, layer of abstraction is crucial to determine whether the object fulfilling the interface can be stored in \classname{PhysicalDataModel} or \classname{LogicalDataModel}. It must be invariant, that the whole subtree of objects, beginning in a data model must have the same abstraction layer defined.
+ 
+
 \TODO{class diagram?}
 \subsection{Resolver}
+
+The purpose of the resolver unit is to actually create objects fulfilling the contracts specified by interfaces defined in the model.
+
+Typically, for each interface, we will create an implementation. In Java it is common to call the classes fulfilling an contract *Impl where * is a placeholder for the name of an interface. We stick to this naming convention. 
+The *Impl classes, in comparison to the interfaces from the model, need to dispose of methods for setting up and adding properties or substructures as the model's reading methods would not be very meaningful otherwise. These classes can be found in the imp package.
+
+We know what is expected from the classes and added the functionality helping to set up the objects, once we gathered required information. 
+So the last missing piece of puzzle needed to create the data structures is how to gather the information.
+The logic taking care of collecting the needed data is hidden in the package builder.
+The skeleton of how an instance of \classname{ERStudioSolution} is created is prescribed in the \classname{AbstractDataObjectsBuilder}'s method \methodname{buildErStudioModel}.
+\TODO{ADD TO TEMPLATE CREATE SOLUTION STEP}
+The tree is build top-down, models in a solution are loaded, composite objects then and finally simple objects. Child types are appended to their parents just when created.
+
 
 \subsection{Data Flow Generator}
 
