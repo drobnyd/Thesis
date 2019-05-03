@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  1 MAY 2019 19:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  3 MAY 2019 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1160,12 +1160,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
 
 
-]
+] [41]
 LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 65.
 
  (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [41]
+)
 Overfull \hbox (11.81749pt too wide) in paragraph at lines 132--134
 []\OT1/lmr/m/n/12 A base be-hav-ior of both log-i-cal and phys-i-cal data mod-e
 ls is de-fined in \OT1/lmtt/m/n/12 DataModel\OT1/lmr/m/n/12 .|
@@ -1201,10 +1201,34 @@ Overfull \hbox (16.82996pt too wide) in paragraph at lines 172--173
 mr/m/n/12 . |
  []
 
-[44]) [45]
+[44]
+Overfull \hbox (15.41522pt too wide) in paragraph at lines 198--203
+\OT1/lmr/m/n/12 De-tails about the tar-get database of the low-level data model
+ are kept in \OT1/lmtt/m/n/12 Connection\OT1/lmr/m/n/12 .|
+ []
+
+
+Overfull \hbox (46.26114pt too wide) in paragraph at lines 198--203
+\OT1/lmr/m/n/12 The API to database dic-tio-nar-ies cre-ated by Manta is pro-vi
+ded by \OT1/lmtt/m/n/12 DataflowQueryService\OT1/lmr/m/n/12 .|
+ []
+
+
+Overfull \hbox (33.6808pt too wide) in paragraph at lines 204--206
+\OT1/lmr/m/n/12 tools is to be able to or-ga-nize ex-tracted meta-data in such 
+a way that \OT1/lmtt/m/n/12 DatabaseConnector|
+ []
+
+
+Overfull \hbox (6.61418pt too wide) in paragraph at lines 211--215
+\OT1/lmr/m/n/12 must be im-ple-mented by two dif-fer-ent classes \OT1/lmtt/m/n/
+12 LogicalDataModelNodeCreatorImpl|
+ []
+
+[45]) [46]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [46
+ (./epilog.tex) [47
 
 
 
@@ -1217,7 +1241,7 @@ Underfull \hbox (badness 1009) in paragraph at lines 52--55
 u-dar-shan.
  []
 
-)) [47
+)) [48
 
 
 
@@ -1225,25 +1249,25 @@ u-dar-shan.
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
- [48
+ [49
 
 
 ] (./thesis.lot)
 \tf@lot=\write9
 \openout9 = `thesis.lot'.
 
- [49
+ [50
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-[50
+[51
 
 ]
 Appendix A.
-[51
+[52
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 168.
@@ -1262,8 +1286,8 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 24010 strings out of 492649
- 408302 string characters out of 6129623
+ 24011 strings out of 492649
+ 408309 string characters out of 6129623
  438109 words of memory out of 5000000
  27217 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
@@ -1282,9 +1306,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (55 pages, 779921 bytes).
+Output written on thesis.pdf (56 pages, 785750 bytes).
 PDF statistics:
- 772 PDF objects out of 1000 (max. 8388607)
- 200 named destinations out of 1000 (max. 500000)
+ 776 PDF objects out of 1000 (max. 8388607)
+ 201 named destinations out of 1000 (max. 500000)
  485 words of extra memory for PDF output out of 10000 (max. 10000000)
 

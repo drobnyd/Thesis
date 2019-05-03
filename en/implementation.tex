@@ -1,6 +1,6 @@
 \chapter{Implementation}
 
-
+\TODO{the classes and methods have JavaDoc for precise description of API and behavior}
 
 \section{ER/Studio}
 
@@ -179,15 +179,44 @@ It goes through a table which definition fulfills the interface \classname{Mappi
 
 To put it all together, \classname{ErStudioFileModelBuilder} creates the whole structure representing an input .DM1 file as instance of \classname{ErStudioFileModel}. It builds an internal solution, then external solutions are created and at the end resolving of mappings that lead across the solution using \classname{ExternalMapper} takes place.
 
+\TODO{class diagram}
+
 \subsection{Data Flow Generator}
+
+Having constructed the objects defined in the model unit, Metadata Extractor sends them to Data Flow Generator unit, where the model get transformed into an output graph and connects to Manta Flow to enrich the graph of ER/Studio objects by data lineage.
+
+Before describing the workflow of the generator unit, let us mention its layout.
+There is a scenario that executes independent tasks. A task is a routine that has an input and an output. In out case we will use a single task whose input will be a data structure described by the model unit and output a graph with extracted information.
+
+
+ Namely, \classname{ErStudioDataflowScenario} reads an input file, and executes the task - \classname{ErStudioDataflowTask}.
 
 \section{PowerDesigner}
 
 \section{Extensibility}
 
-\TODO{The common interface for obtaining database dictionary objects}
+For the sake of extracting metadata from modeling tools we developed a unit where a component for a specific tool meets manta flow.
+The artifact where the common bridging logic is stored is called manta-dataflow-generator-modeling-common.
+Physical data models need to be paired with corresponding connections to DBMS in order to correctly pair the same database objects that appear both in a physical model and in a database dictionary extracted by Manta Flow. This functionality is provided by implementations of interface \classname{DatabaseConnector}. Details about the target database of the low-level data model are kept in \classname{Connection}. The API to database dictionaries created by Manta is provided by \classname{DataflowQueryService}. 
+Having collected information of a physical object, either a column or a table, the query service tries to find it in the dictionaries using \methodname{createColumnNode} or \methodname{createTableNode}. 
+If the service succeeds, matched node from a dictionary is appended to the output graph, otherwise null is returned from a create method and our tools copes with the situation in such a way, that it creates a node that has no backing in a live database, marking the node's attribute source type to MODEL to make clear in the output, that it is an artificial node based only on a physical data model. It can be from two reasons - the database object does not exists or we provided inaccurate/incomplete data to identify it.
 
-\TODO{Description of the common structure of the solution - what to do when a programmer wants to write a connector for another modeling tool.}
+So the first general requirement for a general extractor from data modeling tools is to be able to organize extracted metadata in such a way that \classname{DatabaseConnector} may be called and ideally match the modeled objects with the extracted ones.
+This is a very important step as this pairing is the prerequisite for business data lineage creation. If the physical modeled object do not match the ones from database that take part in data lineage, there is no flow to be propagate to higher levels of abstraction via maps to edges and the result of interpolation will be an empty set of edges.
+
+Secondly, we have defined a common way of creating nodes representing objects extracted from data models of higher abstraction than the physical ones - conceptual and logical.
+We define a set of methods where each is responsible for creation of node representation of a type of object that may appear in the data models. Most commonly a modeling tool will support only subset of the types the node creator is able to construct. However that is not a problem as the hierarchy is not strict and it can be built to be compliant with concepts of a specific modeling tool. 
+For example it is not necessary to build an attribute under an entity node if a modeling tool does not allow such concept, just like an owner node is not necessary as there is no strict rule if the tools should support it or not.
+
+We have discussed the modeled objects on conceptual and logical level are described by ER or EER diagrams. 
+The important fact is that the possible kinds of objects will be the same in both models, that is why a single interface \classname{DataModelNodeCreator} for high-level node creation may be used.
+However it must be implemented by two different classes \classname{LogicalDataModelNodeCreatorImpl} and \classname{ConceptualDataModelNodeCreatorImpl}, so details about node's type can be specified, therefore the nodes will not mix between the layers.
+\classname{Resource} differentiates technologies, in our case it makes sure objects extracted from modeling tools are aggregated by what specific tool is their origin.
+
+To attach metadata about a node, such as its definition or a comment, object that is being transformed into node representation has to implement interface \classname{NodeMetadata}.
+The contract forces the implementers to expose the metadata to be attached to node representing them in the output in form of strings. 
+More precisely, the objects have to fill a \classname{Map<String, String>} data structure where a key is the name of a property. 
+These metadata are shown when presenting the output graph and further describe the extracted objects.
 
 \section{Technologies}
 
