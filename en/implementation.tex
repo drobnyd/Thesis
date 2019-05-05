@@ -146,6 +146,8 @@ They have the very same properties that is why a single class is enough to captu
 The composite one can be mapped to another \classname{CompositeDataObject} and may contain simple objects.
 
 \classname{SimpleDataObject} is used by columns or attributes. Equivalently, layer of abstraction is crucial to determine whether the object fulfilling the interface can be stored in \classname{PhysicalDataModel} or \classname{LogicalDataModel}. It must be invariant, that the whole subtree of objects, beginning in a data model must have the same abstraction layer defined.
+
+The reason to represent pairs of, at first sight, different concepts of tables-entities and columns-attributes in a single classes is based on how ER/Studio treats them internally. Given that columns and attributes are stored in a single CSV table and the distinction if such object is of one or another type is made only based on to which data model, physical or logical, it belongs, the two types have the very same set of possible attributes. This can be applied to composite objects as well. Even data models are treated similarly, only there is an additional attribute related to DBMS type in the case of physical models, while the logical ones do not need such information.
  
 
 \TODO{class diagram?}
@@ -165,6 +167,8 @@ The very first is to step is to create a root of such tree - an instance of \cla
 Child instances are appended to their parents just when created.
 The abstract builder contains common methods for construction of objects. Those methods are not dependent on representation, only require a set of properties as input to be able to attach them to resulting objects to make them complete. The groups of properties needed to be collected about each type to proceed the construction are described by interfaces in the package modeledobjectproperties. 
 
+\TODO{why like this in a single class only differentiated by layer - common properties}
+
 The specific way of gathering the information about objects to be reconstructed is tied with details of how the objects are saved in the file format. Concrete builders 	\classname{InternalDataObjectsBuilder} along with \classname{ExternalDataObjectsBuilder} provide implementation to the abstract methods.
 In the case of internal solution, information about objects are retrieved from CSV tables, where for each table there is a dedicated and references across the tables are resolved.
 On the other hand, in case of external solutions, they are fully represented in a single CSV table that stores XML structures describing these objects. The implementations of the placeholders in \classname{ExternalDataObjectsBuilder} uses a simple SAX XML parser to retrieve the desired data described in modeledobjectproperties.
@@ -179,7 +183,11 @@ It goes through a table which definition fulfills the interface \classname{Mappi
 
 To put it all together, \classname{ErStudioFileModelBuilder} creates the whole structure representing an input .DM1 file as instance of \classname{ErStudioFileModel}. It builds an internal solution, then external solutions are created and at the end resolving of mappings that lead across the solution using \classname{ExternalMapper} takes place.
 
-\TODO{class diagram}
+\TODO{class diagram?}
+
+\subsection{Reader}
+
+\classname{ErStudioDm1Reader} crawls through directory with input .DM1 files processing them calling the parser on each of the files. Parser's product is handed to resolver resulting in \classname{ErStudioFileModel} that is output of the unit.
 
 \subsection{Data Flow Generator}
 
@@ -188,10 +196,66 @@ Having constructed the objects defined in the model unit, Metadata Extractor sen
 Before describing the workflow of the generator unit, let us mention its layout.
 There is a scenario that executes independent tasks. A task is a routine that has an input and an output. In out case we will use a single task whose input will be a data structure described by the model unit and output a graph with extracted information.
 
+ Namely, \classname{ErStudioDataflowScenario} reads an input file, and executes the task - \classname{ErStudioDataflowTask}. 
+ 
+ The method which tasks must override and gets called is the \methodname{doExecute}. In this particular task it is needed to go through the whole hierarchy of the input data structure - \classname{ErStudioFileModel} unroll solutions - internal as well as external. \TODO{this is general}
 
- Namely, \classname{ErStudioDataflowScenario} reads an input file, and executes the task - \classname{ErStudioDataflowTask}.
+\TODO{A suitable \classname{Connection} corresponding to a physical data model is made of information from a data model and .ini file}
+
+\TODO{Once the node representation for all objects is created, it is the right moment to create mapping edges between them.}
+
 
 \section{PowerDesigner}
+
+\subsection{Parser}
+
+For parsing PowerDesigner data model files Manta's XML DOM reader is used.
+
+\subsection{Model}
+
+Let's start describing the main structure the model has to capture generally.
+In the case of PowerDesigner a model is saved in a single file. 
+Thus \classname{DataModel} has the name of the file where it is stored and its sub objects, then the hierarchy goes like this \classname{Schema} has \classname{CompositeObject}s which contain \classname{SimpleObject}.
+This basic skeleton of a tree structure is present in each of the three data models. What more, on logical and conceptual level, as they are represented by an EER diagram, an entity can inherit from another one, thus an interface \classname{Entity} introducing the concept of parent entity will be used by them. Each of actors may have some metadata providing further description and extends the interface of \classname{NamedObject}.
+These interfaces are generic and provide the common structure.
+For every model type there exists a package, where specific objects' contracts lies. These concrete interfaces on one hand takes over the common concepts. On the other hand may be easily extended if a new functionality, which is data model specific, is identified.
+
+\classname{Mappable} interface is present to be realized on instances of \classname{CompositeObject} or  \classname{SimpleObject}, however a target of a mapping is a globally unique id of an element, not another instance directly. Since by the nature of mappings in PowerDesigner the actual representation may be unreachable yet.
+
+\subsection{Resolver}
+
+The impl package contains the implementational counterpart to the model unit.
+Common concepts with no that do not take part in data models in reality and are present to minimize redundancy and provide way to handle similar objects, for example \classname{CompositeObject}, are implemented as abstract classes - their names are prefixed Abstract. The actual objects that are implemented via *Impl classes.
+
+The construction logic of a data model is concentrated in the build sub package.
+
+The API for creating a data structure representing a data model is simply defined by \classname{DataModelBuilder} on what the method \methodname{buildDataModel} may be called and the result is collected from \methodname{getResult} operation.
+
+However, there is a different strategy used for each of the data models based on type it is. So when processing a PowerDesigner file the program must determine the suitable implementation of \classname{DataModelBuilder} accordingly. 
+A factory template class \classname{BuilderFactory} is used to determine which implementation - \classname{PhysicalDataModelBuilder} or \classname{LogicalDataModelBuilder} or \classname{ConceptualDataModelBuilder} by the extension of the processed file.
+
+The outline how the builders work is proposed in the \classname{AbstractDataModelBuilder}. Also the functionality independent of type of a specific data model is written here, the way to do it is to look on objects from the perspective of abstract classes providing the general features.
+
+
+The implementations take an advantage of the fact that forming a tree like structure from an XML format is natural and straightforward, that is why for now we will omit a general point of view on a construction data model that would hide the convenience and context provided straightforwardly by DOM nodes. 
+Requests for specific DOM nodes in the builders are done using XPath, which allows querying fully loaded XML trees.
+
+\subsection{Reader}
+
+The reader unit formed by \classname{PowerDesignerXmlComponentReader} reads a directory containing output file of PowerDesigner that are at the same time inputs for Metadata Extractor - .pdm, .ldm or .cdm files and identifies related groups of them. Then proceeds one group after another, in parsing the XML files into a DOM document and passing the DOM trees to resolver that creates a corresponding set of \classname{DataModel} objects using resolver's \classname{DataModelBuilder}, which can be further passed to the data flow generator unit.
+ 
+Input directory containing file to process is the input for \classname{PowerDesignerXmlComponentReader}. The reader recursively discovers the directory and collects the file that will have to be resolved using the \methodname{collectFiles} method. When a data model file is found, its dependencies are checked using a \classname{SAXParser} and a simple handler \classname{TargetSAXHandler} created for the purpose of getting paths to related models from an XML. The found files, however must be in the input directory, so if it is not the case, the reader tries to resolve their paths and check if there is no file with matching sub path within the input directory. If it is a bidirectional edge between the files is created. 
+Once all the files from input are collected component creation takes place so the input set is split into smaller logically connected groups.
+
+Then when the main API method of a reader, the \methodname{read} method, is called, it returns one processed component - a set of related reconstructed \classname{DataModel}s. 
+That means the reading method is stateful and \methodname{canRead} checks if there are any component left to be returned.
+
+\subsection{Data Flow Generator}
+
+When translating a component of reconstructed data models, a suitable \classname{GraphBuilder} must be chosen based on the layer of abstraction for each data model using \classname{GraphBuilderFactory}.
+Then the tree of data model objects is traversed. When dealing with physical data model, \classname{PhysicalGraphBuilder} is used, underlying \classname{DatabaseConnector} searches for the modeled database objects. A suitable \classname{Connection} corresponding to a physical data model is made of information from a data model and .ini file, loading connection details from .dsn and .dcp files is not supported yet.
+On the other hand, physical and logical data models use the generic \classname{ModeledGraphBuilder} for creating nodes representing objects brought from data models of greater abstraction.
+The generator collects nodes that have mappings by their ids and once all the data models in the processed components are fully built, it means we can resolve the mapping as there are both ends of the MAPS\textunderscore TO type edge we need to create them. Then we simply look at to what ids are objects mapped, obtain an actual representation of these ids put them into the relation by creating the edge.
 
 \section{Extensibility}
 
@@ -221,10 +285,15 @@ These metadata are shown when presenting the output graph and further describe t
 \section{Technologies}
 
 \begin{itemize}
-	\item Maven
-	\item Java 8
-	\item Spring
+	\item Java 8 \\
+	To be able to integrate Metadata Extractor into the ecosystem of Manta Flow we better use Java as the APIs of the data lineage software are written in this programming language.
+	\item Maven 
+	\item Spring 
 	\item JUnit 4
 \end{itemize}
 
 \section{Testing}
+
+\TODO{TODO}
+
+\TODO

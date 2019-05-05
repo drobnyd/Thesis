@@ -549,7 +549,6 @@ The analysis forms a set of functional requirements or features we want Metadata
 	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed. \TODO{Analysis}
 	\item Design a data structure suitable for storage image of the modeled objects described in 1). \TODO{Model}
 	\item Determine how the file format can be parsed. \TODO{Parser}
-	\item \TODO{reader}
 	\item Construct the data structure. \TODO{Resolver}
 	\item Build a graphical representation of the data structure. \TODO{Data Flow Generator}
 	\item Plug the data model representation built in previous steps into Manta Flow and bring data lineage to conceptual and logical level. \TODO{Data Flow Generator}
@@ -577,7 +576,7 @@ The competitors can be divided into multiple categories:
 		IBM approaches to data lineage in such way that it only displays assets that should be relevant for a business user. In fact it is just a subset of technical lineage and what is shown is picked by a user \cite{IbmIgcBusinessLineage}.
 	\end{itemize}
 	\item Data Lineage Tools \\ 
-	\TODO{asg}
+		There seems to exist a solution by asg technologies company. 
 	
 	\item Modeling tools \\
 	Both of the analyzed tools, ER/Studio and PowerDesigner, have means to create something like data lineage models, or lineage can be specified by mappings in a single data model. The problem with this approach is that it is not based on an analysis of SQL code managing the database and the approach is not automated. Creating such models is exhaustive and error prone as a user has to define the flow all by himself. 
@@ -597,8 +596,10 @@ Then the most high-level view of the system's architecture is following:
 	On the other hand it allows reading access to the modeled objects we are interested in that were reconstructed in convenient fashion. \TODO{Independent of Manta}
 	\item Resolver \\ 
 	Is the part where the logic of construction of objects from a file is hidden and loading of the model\ref{model_data_structure} is done. \TODO{Independent of manta}
+	\item Reader \\
+	Puts together the model and resolver unit - creates a model from a parsed structure of a file using the resolver and hands the result to the data flow generator.
 	\item Data Flow Generator \\ 
-	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via DataflowQueryService and connections.
+	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via its API to extracted database objects and connections.
 	\item Manta Flow \\
 	The external part capable of crating data lineage on database objects.
 \end{itemize}

@@ -64,9 +64,9 @@ Surely, GDPR is a complex set of rules like this but data lineage can help great
 	\item Propagate data lineage acquired by analysis of how is database used and constructed to more abstract data models than is the physical one, to the logical and the conceptual models.
 \end{itemize}
 
-\TODO{Introduction to each of the following chapters once the final organization is known}
-
 \section{Glossary}
+Let us introduce some crucial terms used throughout the text.
+
 A \definition{database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in literature \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network. \\
 
 A \definition{data model} is a description of data, data relationships, data semantics, and consistency constraints. \label{DataModel} \\
@@ -79,4 +79,16 @@ A \definition{data modeling tool} is a software that allows a database designer 
 
 \definition{Data lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
 The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
+
+\section{Chapter overview}
+
+In the chapter On Database Background, we will go through the concepts fundamental for understanding the domain to which our tool contributes. The prerequisite are to understand databases, data modeling and data lineage.
+
+The chapter Modeling Tools describes more specifically what are the pieces of software used for creating data models capable of doing with.
+Also we will discuss the specific tools from which we will extract metadata.
+
+The fourth chapter is concerned about analyzing the aspects of modeling tool we will work for. Based on the analysis we identify requirements for our software and propose a high level architecture of solution that we compare to the already existing one.
+
+Lastly, the implementation chapter is discussing the resulting classes and their responsibilities which the final product is made of.
+
 

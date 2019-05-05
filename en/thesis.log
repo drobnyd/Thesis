@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  3 MAY 2019 23:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  5 MAY 2019 17:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -818,7 +818,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/logo-en.pdf): PDF inc
 lusion: found PDF version <1.5>, but at most version <1.4> allowed
-<../img/logo-en.pdf, id=229, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=249, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -996,72 +996,72 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--67
 [8] [9]
 
 LaTeX Warning: Reference `DataModelsByAbstraction' on page 10 undefined on inpu
-t line 98.
+t line 97.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--99
+Underfull \hbox (badness 10000) in paragraph at lines 95--98
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
+Underfull \hbox (badness 10000) in paragraph at lines 99--101
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 134--135
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--154
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 152--155
-
- []
-
-<../img/Conceptual_Model_PowerDesigner.png, id=412, 559.08875pt x 432.61626pt>
+<../img/Conceptual_Model_PowerDesigner.png, id=438, 559.08875pt x 432.61626pt>
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
-ut line 162.
+ut line 161.
 (pdftex.def)             Requested size: 284.52756pt x 220.16928pt.
-[12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
-}) has been already used, duplicate ignored
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.175 	\item D
-              ata types description is introduced (but in a way that is not ...
- <../img/Conceptual_Model_PowerDesigner.png>]
-<../img/Logical_Model_PowerDesigner.png, id=424, 630.355pt x 472.76625pt>
+l.176 \end{itemize}
+                    <../img/Conceptual_Model_PowerDesigner.png>]
+<../img/Logical_Model_PowerDesigner.png, id=450, 630.355pt x 472.76625pt>
 File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Logical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
-line 182.
+line 181.
 (pdftex.def)             Requested size: 284.52756pt x 213.39209pt.
  [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.201 
+l.200 
        <../img/Logical_Model_PowerDesigner.png>]
-<../img/Physical_Model_PowerDesigner.png, id=435, 662.475pt x 454.69875pt>
+<../img/Physical_Model_PowerDesigner.png, id=461, 662.475pt x 454.69875pt>
 File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Physical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
- line 204.
+ line 203.
 (pdftex.def)             Requested size: 284.52756pt x 195.28769pt.
  [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.228 
+l.227 
        <../img/Physical_Model_PowerDesigner.png>] [15] [16]) [17]
 \openout2 = `modeling_tools.aux'.
 
@@ -1184,51 +1184,94 @@ apped to an-other \OT1/lmtt/m/n/12 CompositeDataObject|
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--158
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
 
  []
 
 [43]
-Overfull \hbox (37.25464pt too wide) in paragraph at lines 168--171
+Overfull \hbox (37.25464pt too wide) in paragraph at lines 172--175
 \OT1/lmr/m/n/12 crete builders \OT1/lmtt/m/n/12 InternalDataObjectsBuilder \OT1
 /lmr/m/n/12 along with \OT1/lmtt/m/n/12 ExternalDataObjectsBuilder|
  []
 
 
-Overfull \hbox (16.82996pt too wide) in paragraph at lines 172--173
+Overfull \hbox (16.82996pt too wide) in paragraph at lines 176--177
 \OT1/lmr/m/n/12 ate map-pings be-tween \OT1/lmtt/m/n/12 Mappable \OT1/lmr/m/n/1
 2 ob-jects in a so-lu-tion with a help of \OT1/lmtt/m/n/12 InternalMapper\OT1/l
 mr/m/n/12 . |
  []
 
-[44]
-Overfull \hbox (15.41522pt too wide) in paragraph at lines 198--203
+[44] [45]
+Overfull \hbox (69.54318pt too wide) in paragraph at lines 230--232
+\OT1/lmtt/m/n/12 PhysicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 L
+ogicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 ConceptualDataModelB
+uilder|
+ []
+
+
+Overfull \hbox (20.44226pt too wide) in paragraph at lines 233--234
+[]\OT1/lmr/m/n/12 The out-line how the builders work is pro-posed in the \OT1/l
+mtt/m/n/12 AbstractDataModelBuilder\OT1/lmr/m/n/12 .|
+ []
+
+
+Overfull \hbox (81.61427pt too wide) in paragraph at lines 241--243
+[]\OT1/lmr/m/n/12 Input di-rec-tory con-tain-ing file to pro-cess is the in-put
+ for \OT1/lmtt/m/n/12 PowerDesignerXmlComponentReader\OT1/lmr/m/n/12 .|
+ []
+
+[46]
+Overfull \hbox (22.05997pt too wide) in paragraph at lines 249--253
+\OT1/lmr/m/n/12 When trans-lat-ing a com-po-nent of re-con-structed data mod-el
+s, a suit-able \OT1/lmtt/m/n/12 GraphBuilder|
+ []
+
+
+Overfull \hbox (27.55815pt too wide) in paragraph at lines 249--253
+\OT1/lmtt/m/n/12 DatabaseConnector \OT1/lmr/m/n/12 searches for the mod-eled da
+tabase ob-jects. A suit-able \OT1/lmtt/m/n/12 Connection|
+ []
+
+
+Overfull \hbox (15.41522pt too wide) in paragraph at lines 256--261
 \OT1/lmr/m/n/12 De-tails about the tar-get database of the low-level data model
  are kept in \OT1/lmtt/m/n/12 Connection\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (46.26114pt too wide) in paragraph at lines 198--203
+Overfull \hbox (46.26114pt too wide) in paragraph at lines 256--261
 \OT1/lmr/m/n/12 The API to database dic-tio-nar-ies cre-ated by Manta is pro-vi
 ded by \OT1/lmtt/m/n/12 DataflowQueryService\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (33.6808pt too wide) in paragraph at lines 204--206
+Overfull \hbox (33.6808pt too wide) in paragraph at lines 262--264
 \OT1/lmr/m/n/12 tools is to be able to or-ga-nize ex-tracted meta-data in such 
 a way that \OT1/lmtt/m/n/12 DatabaseConnector|
  []
 
-
-Overfull \hbox (6.61418pt too wide) in paragraph at lines 211--215
+[47]
+Overfull \hbox (6.61418pt too wide) in paragraph at lines 269--273
 \OT1/lmr/m/n/12 must be im-ple-mented by two dif-fer-ent classes \OT1/lmtt/m/n/
 12 LogicalDataModelNodeCreatorImpl|
  []
 
-[45]) [46]
+)
+Runaway argument?
+! File ended while scanning use of \TODO.
+<inserted text> 
+                \par 
+l.121 \include{implementation}
+                              
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+[48] [49]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [47
+ (./epilog.tex) [50
 
 
 
@@ -1241,7 +1284,7 @@ Underfull \hbox (badness 1009) in paragraph at lines 52--55
 u-dar-shan.
  []
 
-)) [48
+)) [51
 
 
 
@@ -1249,25 +1292,25 @@ u-dar-shan.
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
- [49
+ [52
 
 
 ] (./thesis.lot)
 \tf@lot=\write9
 \openout9 = `thesis.lot'.
 
- [50
+ [53
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-[51
+[54
 
 ]
 Appendix A.
-[52
+[55
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 168.
@@ -1277,19 +1320,25 @@ modeling_tools.aux) (./solution_design.aux) (./implementation.aux)
 (./epilog.aux) (./bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 168.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 168.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: B849BAB4955755529DC5F6B78542CEBF;7907.
 
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: 380B4327FCB41918223B16DC9C7ED535;8443
+(rerunfilecheck)             After:  4704C842656F8F3C769969CFD6BA7ED6;8581.
 
 LaTeX Warning: There were undefined references.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 24011 strings out of 492649
- 408309 string characters out of 6129623
- 438109 words of memory out of 5000000
- 27217 multiletter control sequences out of 15000+600000
+ 24024 strings out of 492649
+ 408504 string characters out of 6129623
+ 438112 words of memory out of 5000000
+ 27222 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,8n,70p,852b,1970s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1306,9 +1355,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (56 pages, 785750 bytes).
+Output written on thesis.pdf (59 pages, 798925 bytes).
 PDF statistics:
- 776 PDF objects out of 1000 (max. 8388607)
- 201 named destinations out of 1000 (max. 500000)
- 485 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 814 PDF objects out of 1000 (max. 8388607)
+ 209 named destinations out of 1000 (max. 500000)
+ 525 words of extra memory for PDF output out of 10000 (max. 10000000)
 
