@@ -3,10 +3,8 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: title.aux
 A level-1 auxiliary file: preface.aux
-A level-1 auxiliary file: databases.aux
-A level-1 auxiliary file: data_models.aux
+A level-1 auxiliary file: on_database_background.aux
 A level-1 auxiliary file: modeling_tools.aux
-A level-1 auxiliary file: data_lineage.aux
 A level-1 auxiliary file: solution_design.aux
 A level-1 auxiliary file: implementation.aux
 A level-1 auxiliary file: epilog.aux
@@ -17,88 +15,66 @@ Warning--entry type for "ANSIArchitecture75" isn't style-file defined
 --line 41 of file bibliography.bib
 Warning--entry type for "Facebook19" isn't style-file defined
 --line 51 of file bibliography.bib
-Warning--entry type for "Healthcare13" isn't style-file defined
---line 78 of file bibliography.bib
-Warning--entry type for "DatabaseEnginesStatistics19" isn't style-file defined
---line 83 of file bibliography.bib
-Warning--entry type for "NonRelationalDBs" isn't style-file defined
---line 88 of file bibliography.bib
-Warning--entry type for "DatabaseTypes" isn't style-file defined
---line 93 of file bibliography.bib
-Warning--entry type for "NoSQLDatabaseModeling" isn't style-file defined
---line 103 of file bibliography.bib
-Warning--entry type for "RelationalVsNonRelationalDatabases1" isn't style-file defined
---line 108 of file bibliography.bib
-Warning--entry type for "RelationalVsNonRelationalDatabases2" isn't style-file defined
---line 113 of file bibliography.bib
 Warning--entry type for "CollibraBusinessAssets" isn't style-file defined
---line 123 of file bibliography.bib
+--line 118 of file bibliography.bib
 Warning--entry type for "CollibraVisualization" isn't style-file defined
---line 127 of file bibliography.bib
+--line 123 of file bibliography.bib
 Warning--entry type for "InformaticaBusinessAssets" isn't style-file defined
---line 131 of file bibliography.bib
+--line 128 of file bibliography.bib
 Warning--entry type for "IbmIgcBusinessLineage" isn't style-file defined
---line 139 of file bibliography.bib
-Warning--entry type for "ConceptualModelExample" isn't style-file defined
+--line 138 of file bibliography.bib
+Warning--entry type for "PowerDesignerDocumentation" isn't style-file defined
 --line 143 of file bibliography.bib
-Warning--entry type for "LogicalModelExample" isn't style-file defined
---line 147 of file bibliography.bib
-Warning--entry type for "PhysicalModelExample" isn't style-file defined
---line 151 of file bibliography.bib
+I was expecting a `,' or a `}'---line 145 of file bibliography.bib
+ : 
+ : howpublished = {\url{https://help.sap.com/saphelp_pd1654_data/helpdata/en/c7/c304506e1b101483efbf3d87db9a8f/frameset.htm}}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--entry type for "RfcCSV" isn't style-file defined
+--line 148 of file bibliography.bib
 Warning--entry type for "RightOfAccess" isn't style-file defined
---line 155 of file bibliography.bib
+--line 153 of file bibliography.bib
 Warning--entry type for "AccessPathDefiniton" isn't style-file defined
---line 166 of file bibliography.bib
-Warning--all relevant fields are empty in RightOfAccess
-Warning--all relevant fields are empty in RelationalVsNonRelationalDatabases1
-Warning--all relevant fields are empty in RelationalVsNonRelationalDatabases2
-Warning--all relevant fields are empty in NoSQLDatabaseModeling
-Warning--all relevant fields are empty in ConceptualModelExample
-Warning--all relevant fields are empty in LogicalModelExample
-Warning--all relevant fields are empty in PhysicalModelExample
-Warning--all relevant fields are empty in CollibraBusinessAssets
-Warning--all relevant fields are empty in CollibraVisualization
-Warning--all relevant fields are empty in InformaticaBusinessAssets
-Warning--all relevant fields are empty in IbmIgcBusinessLineage
-You've used 22 entries,
+--line 165 of file bibliography.bib
+You've used 17 entries,
             1791 wiz_defined-function locations,
-            534 strings with 5581 characters,
-and the built_in function-call counts, 2186 in all, are:
-= -- 101
-> -- 51
+            536 strings with 6272 characters,
+and the built_in function-call counts, 1929 in all, are:
+= -- 145
+> -- 46
 < -- 0
-+ -- 31
++ -- 26
 - -- 9
-* -- 35
-:= -- 212
-add.period$ -- 32
-call.type$ -- 22
-change.case$ -- 9
+* -- 24
+:= -- 239
+add.period$ -- 35
+call.type$ -- 17
+change.case$ -- 14
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 126
-empty$ -- 391
+cite$ -- 17
+duplicate$ -- 101
+empty$ -- 301
 format.name$ -- 9
-if$ -- 534
+if$ -- 483
 int.to.chr$ -- 0
-int.to.str$ -- 22
+int.to.str$ -- 17
 missing$ -- 6
-newline$ -- 79
+newline$ -- 72
 num.names$ -- 6
-pop$ -- 117
+pop$ -- 98
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 169
+skip$ -- 91
 stack$ -- 0
 substring$ -- 0
-swap$ -- 22
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 11
+warning$ -- 0
 while$ -- 6
-width$ -- 24
-write$ -- 128
-(There were 29 warnings)
+width$ -- 19
+write$ -- 130
+(There was 1 error message)

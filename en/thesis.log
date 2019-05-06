@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  5 MAY 2019 17:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  6 MAY 2019 02:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -730,11 +730,27 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/03/03 v0.21.3 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2234.
+LaTeX Info: Redefining \cref on input line 2234.
+LaTeX Info: Redefining \Cref on input line 2234.
+LaTeX Info: Redefining \crefrange on input line 2234.
+LaTeX Info: Redefining \Crefrange on input line 2234.
+LaTeX Info: Redefining \cpageref on input line 2234.
+LaTeX Info: Redefining \Cpageref on input line 2234.
+LaTeX Info: Redefining \cpagerefrange on input line 2234.
+LaTeX Info: Redefining \Cpagerefrange on input line 2234.
+LaTeX Info: Redefining \labelcref on input line 2234.
+LaTeX Info: Redefining \labelcpageref on input line 2234.
+Package cleveref Info: `amsthm' support loaded on input line 2890.
+)
 \c@thm=\count139
 \c@defn=\count140
-) (./thesis.aux (./title.aux) (./preface.aux)
-(./on_database_background.aux) (./modeling_tools.aux) (./solution_design.aux)
-(./implementation.aux) (./epilog.aux) (./bibliography.aux))
+)
+(./thesis.aux (./title.aux) (./preface.aux) (./on_database_background.aux)
+(./modeling_tools.aux) (./solution_design.aux) (./implementation.aux)
+(./epilog.aux) (./bibliography.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 109.
@@ -818,7 +834,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/logo-en.pdf): PDF inc
 lusion: found PDF version <1.5>, but at most version <1.4> allowed
-<../img/logo-en.pdf, id=249, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=265, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -994,11 +1010,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 59--67
  []
 
 [8] [9]
-
-LaTeX Warning: Reference `DataModelsByAbstraction' on page 10 undefined on inpu
-t line 97.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 95--98
 
  []
@@ -1024,7 +1035,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 151--154
  []
 
 [11]
-<../img/Conceptual_Model_PowerDesigner.png, id=438, 559.08875pt x 432.61626pt>
+<../img/Conceptual_Model_PowerDesigner.png, id=457, 559.08875pt x 432.61626pt>
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
@@ -1037,7 +1048,7 @@ ut line 161.
                                                   \fi \fi 
 l.176 \end{itemize}
                     <../img/Conceptual_Model_PowerDesigner.png>]
-<../img/Logical_Model_PowerDesigner.png, id=450, 630.355pt x 472.76625pt>
+<../img/Logical_Model_PowerDesigner.png, id=469, 630.355pt x 472.76625pt>
 File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Logical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
@@ -1050,7 +1061,7 @@ line 181.
                                                   \fi \fi 
 l.200 
        <../img/Logical_Model_PowerDesigner.png>]
-<../img/Physical_Model_PowerDesigner.png, id=461, 662.475pt x 454.69875pt>
+<../img/Physical_Model_PowerDesigner.png, id=479, 662.475pt x 454.69875pt>
 File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Physical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
@@ -1078,7 +1089,12 @@ Chapter 3.
  (./solution_design.tex
 Chapter 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--12
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--19
 
  []
 
@@ -1086,63 +1102,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--12
 
 
 
-] [21] [22]
-Underfull \hbox (badness 10000) in paragraph at lines 107--109
+] [21] [22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 115--117
 
  []
 
-[23] [24] [25] [26] [27] [28] [29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 405--407
-
- []
-
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 408--409
+[24] [25] [26] [27] [28] [29] [30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 413--415
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 410--414
+Underfull \hbox (badness 10000) in paragraph at lines 416--417
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 420--422
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 423--425
+Underfull \hbox (badness 10000) in paragraph at lines 418--422
 
  []
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 430--442
+Underfull \hbox (badness 10000) in paragraph at lines 428--430
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 431--433
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--450
 
  []
 
 [33] [34]
-Underfull \hbox (badness 10000) in paragraph at lines 467--471
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 497--500
+Underfull \hbox (badness 10000) in paragraph at lines 475--479
 
  []
 
 [35]
-Underfull \hbox (badness 10000) in paragraph at lines 501--502
+Underfull \hbox (badness 10000) in paragraph at lines 505--508
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 524--525
+Underfull \hbox (badness 10000) in paragraph at lines 509--510
 
  []
 
 [36]
-Underfull \hbox (badness 10000) in paragraph at lines 544--545
+Underfull \hbox (badness 10000) in paragraph at lines 532--533
 
  []
 
@@ -1156,119 +1167,112 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
  []
 
-[40
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 28.
 
-
-
-] [41]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 65.
-
- (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Overfull \hbox (11.81749pt too wide) in paragraph at lines 132--134
+) [40
+
+
+
+] [41] [42pdfTeX warning (ext4): destination with the same identifier (name{fig
+ure.5.1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.136 
+      ]
+Overfull \hbox (11.81749pt too wide) in paragraph at lines 146--148
 []\OT1/lmr/m/n/12 A base be-hav-ior of both log-i-cal and phys-i-cal data mod-e
 ls is de-fined in \OT1/lmtt/m/n/12 DataModel\OT1/lmr/m/n/12 .|
  []
 
-[42]
-Overfull \hbox (28.48656pt too wide) in paragraph at lines 140--141
+
+Overfull \hbox (28.48656pt too wide) in paragraph at lines 154--155
 []\OT1/lmr/m/n/12 The ob-jects that can be mapped to an-other ob-ject im-ple-me
 nt in-ter-face \OT1/lmtt/m/n/12 Mappable<T>|
  []
 
 
-Overfull \hbox (41.78043pt too wide) in paragraph at lines 144--147
+Overfull \hbox (41.78043pt too wide) in paragraph at lines 158--161
 \OT1/lmtt/m/n/12 AbstractionLayer\OT1/lmr/m/n/12 . The com-pos-ite one can be m
 apped to an-other \OT1/lmtt/m/n/12 CompositeDataObject|
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--160
+[43]
+Underfull \hbox (badness 10000) in paragraph at lines 171--173
 
  []
 
-[43]
-Overfull \hbox (37.25464pt too wide) in paragraph at lines 172--175
+
+Overfull \hbox (37.25464pt too wide) in paragraph at lines 183--186
 \OT1/lmr/m/n/12 crete builders \OT1/lmtt/m/n/12 InternalDataObjectsBuilder \OT1
 /lmr/m/n/12 along with \OT1/lmtt/m/n/12 ExternalDataObjectsBuilder|
  []
 
-
-Overfull \hbox (16.82996pt too wide) in paragraph at lines 176--177
+[44]
+Overfull \hbox (16.82996pt too wide) in paragraph at lines 187--188
 \OT1/lmr/m/n/12 ate map-pings be-tween \OT1/lmtt/m/n/12 Mappable \OT1/lmr/m/n/1
 2 ob-jects in a so-lu-tion with a help of \OT1/lmtt/m/n/12 InternalMapper\OT1/l
 mr/m/n/12 . |
  []
 
-[44] [45]
-Overfull \hbox (69.54318pt too wide) in paragraph at lines 230--232
+[45]
+Overfull \hbox (69.54318pt too wide) in paragraph at lines 242--244
 \OT1/lmtt/m/n/12 PhysicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 L
 ogicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 ConceptualDataModelB
 uilder|
  []
 
 
-Overfull \hbox (20.44226pt too wide) in paragraph at lines 233--234
+Overfull \hbox (20.44226pt too wide) in paragraph at lines 245--246
 []\OT1/lmr/m/n/12 The out-line how the builders work is pro-posed in the \OT1/l
 mtt/m/n/12 AbstractDataModelBuilder\OT1/lmr/m/n/12 .|
  []
 
-
-Overfull \hbox (81.61427pt too wide) in paragraph at lines 241--243
+[46]
+Overfull \hbox (81.61427pt too wide) in paragraph at lines 255--257
 []\OT1/lmr/m/n/12 Input di-rec-tory con-tain-ing file to pro-cess is the in-put
  for \OT1/lmtt/m/n/12 PowerDesignerXmlComponentReader\OT1/lmr/m/n/12 .|
  []
 
-[46]
-Overfull \hbox (22.05997pt too wide) in paragraph at lines 249--253
+
+Overfull \hbox (22.05997pt too wide) in paragraph at lines 263--267
 \OT1/lmr/m/n/12 When trans-lat-ing a com-po-nent of re-con-structed data mod-el
 s, a suit-able \OT1/lmtt/m/n/12 GraphBuilder|
  []
 
 
-Overfull \hbox (27.55815pt too wide) in paragraph at lines 249--253
+Overfull \hbox (27.55815pt too wide) in paragraph at lines 263--267
 \OT1/lmtt/m/n/12 DatabaseConnector \OT1/lmr/m/n/12 searches for the mod-eled da
 tabase ob-jects. A suit-able \OT1/lmtt/m/n/12 Connection|
  []
 
-
-Overfull \hbox (15.41522pt too wide) in paragraph at lines 256--261
+[47]
+Overfull \hbox (15.41522pt too wide) in paragraph at lines 270--275
 \OT1/lmr/m/n/12 De-tails about the tar-get database of the low-level data model
  are kept in \OT1/lmtt/m/n/12 Connection\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (46.26114pt too wide) in paragraph at lines 256--261
+Overfull \hbox (46.26114pt too wide) in paragraph at lines 270--275
 \OT1/lmr/m/n/12 The API to database dic-tio-nar-ies cre-ated by Manta is pro-vi
 ded by \OT1/lmtt/m/n/12 DataflowQueryService\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (33.6808pt too wide) in paragraph at lines 262--264
+Overfull \hbox (33.6808pt too wide) in paragraph at lines 276--278
 \OT1/lmr/m/n/12 tools is to be able to or-ga-nize ex-tracted meta-data in such 
 a way that \OT1/lmtt/m/n/12 DatabaseConnector|
  []
 
-[47]
-Overfull \hbox (6.61418pt too wide) in paragraph at lines 269--273
+
+Overfull \hbox (6.61418pt too wide) in paragraph at lines 283--287
 \OT1/lmr/m/n/12 must be im-ple-mented by two dif-fer-ent classes \OT1/lmtt/m/n/
 12 LogicalDataModelNodeCreatorImpl|
  []
 
-)
-Runaway argument?
-! File ended while scanning use of \TODO.
-<inserted text> 
-                \par 
-l.121 \include{implementation}
-                              
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
-[48] [49]
+[48]) [49]
 \openout2 = `epilog.aux'.
 
  (./epilog.tex) [50
@@ -1279,9 +1283,56 @@ you'd better type `E' or `X' now and fix your file.
 \openout2 = `bibliography.aux'.
 
  (./bibliography.tex (./thesis.bbl
-Underfull \hbox (badness 1009) in paragraph at lines 52--55
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+[][]$\OT1/lmtt/m/n/12 https : / / www . ebayinc . com / stories / blogs / tech 
+/
+ []
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 44--47
 []\OT1/lmr/m/n/12 Abraham Sil-ber-schatz Pro-fes-sor, Henry F. Ko-rth, and S. S
 u-dar-shan.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
+[]\OT1/lmr/m/n/12 Bussiness As-sets.  []$\OT1/lmtt/m/n/12 https : / / universit
+y . collibra . com / knowledge /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--61
+\OT1/lmtt/m/n/12 collibra-[]body-[]of-[]knowledge / data-[]governance-[]operati
+ng-[]model /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
+[]\OT1/lmr/m/n/12 Lineage vs trace-abil-ity un-der-stand-ing the dif-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
+\OT1/lmr/m/n/12 fer-ences.  []$\OT1/lmtt/m/n/12 https : / / www . collibra . co
+m / blog /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--71
+[]\OT1/lmr/m/n/12 Business glos-sary.  []$\OT1/lmtt/m/n/12 https : / / www . in
+formatica . com / content /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--71
+\OT1/lmtt/m/n/12 dam / informatica-[]com / global / amer / us / collateral / da
+ta-[]sheet /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--76
+\OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ _ 11 . 3 . 0 / com . ibm . swg .
+ im . iis . mdwb . doc /
  []
 
 )) [51
@@ -1320,25 +1371,15 @@ modeling_tools.aux) (./solution_design.aux) (./implementation.aux)
 (./epilog.aux) (./bibliography.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 168.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 168.
-
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: 380B4327FCB41918223B16DC9C7ED535;8443
-(rerunfilecheck)             After:  4704C842656F8F3C769969CFD6BA7ED6;8581.
-
-LaTeX Warning: There were undefined references.
-
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: C871DD052DEB1EE5669A4AEDE5C5640C;8973.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 168.
  ) 
 Here is how much of TeX's memory you used:
- 24024 strings out of 492649
- 408504 string characters out of 6129623
- 438112 words of memory out of 5000000
- 27222 multiletter control sequences out of 15000+600000
+ 25497 strings out of 492649
+ 441241 string characters out of 6129623
+ 488420 words of memory out of 5000000
+ 28691 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,8n,70p,852b,1970s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1355,9 +1396,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (59 pages, 798925 bytes).
+Output written on thesis.pdf (59 pages, 813128 bytes).
 PDF statistics:
- 814 PDF objects out of 1000 (max. 8388607)
+ 853 PDF objects out of 1000 (max. 8388607)
  209 named destinations out of 1000 (max. 500000)
- 525 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 557 words of extra memory for PDF output out of 10000 (max. 10000000)
 

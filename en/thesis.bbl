@@ -7,9 +7,12 @@
 
 \bibitem{Healthcare13}
 {HealthCare.gov’s Heart Beats For NoSQL}.
+\newblock
+  \url{https://blogs.wsj.com/cio/2013/12/03/healthcare-govs-heart-beats-for-nosql/}.
 
 \bibitem{RightOfAccess}
-
+Right of {A}ccess.
+\newblock \url{https://gdpr-info.eu/issues/right-of-access/}.
 
 \bibitem{ElmasryNavathe15}
 Ramez Elmasri and Shamkant~B. Navathe.
@@ -18,21 +21,10 @@ Ramez Elmasri and Shamkant~B. Navathe.
 
 \bibitem{DatabaseEnginesStatistics19}
 {DB-Engines Ranking}.
-
-\bibitem{RelationalVsNonRelationalDatabases1}
-
-
-\bibitem{RelationalVsNonRelationalDatabases2}
-
-
-\bibitem{NonRelationalDBs}
-{What Is A Non Relational Database}.
-
-\bibitem{DatabaseTypes}
-{The Types of Modern Databases}.
+\newblock \url{https://db-engines.com/en/ranking}.
 
 \bibitem{NoSQLDatabaseModeling}
-
+\url{https://www.ebayinc.com/stories/blogs/tech/nosql-data-modeling/}.
 
 \bibitem{ANSIArchitecture75}
 SPARC-DBMS~Study Group.
@@ -59,25 +51,31 @@ E.~F. Codd.
   data banks.
 \newblock {\em {IBM} Research Report, San Jose, California}, {RJ599}, 1969.
 
-\bibitem{ConceptualModelExample}
-
-
-\bibitem{LogicalModelExample}
-
-
-\bibitem{PhysicalModelExample}
-
+\bibitem{PowerDesignerDocumentation}
+Sap powerdesigner documentation.
 
 \bibitem{CollibraBusinessAssets}
-
+{Bussiness Assets}.
+\newblock
+  \url{https://university.collibra.com/knowledge/collibra-body-of-knowledge/data-governance-operating-model/structural-concepts/asset-types/business-assets/}.
 
 \bibitem{CollibraVisualization}
-
+Lineage vs traceability understanding the differences.
+\newblock
+  \url{https://www.collibra.com/blog/lineage-vs-traceability-understanding-the-differences/}.
 
 \bibitem{InformaticaBusinessAssets}
-
+Business glossary.
+\newblock \url
+  {https://www.informatica.com/content/dam/informatica-com/global/amer/us/collateral/data-sheet/business-glossary_data-sheet_6922.pdf}.
 
 \bibitem{IbmIgcBusinessLineage}
+Data lineage and business lineage reports.
+\newblock
+  \url{https://www.ibm.com/support/knowledgecenter/en/SSZJPZ_11.3.0/com.ibm.swg.im.iis.mdwb.doc/topics/c_analysisReports.html}.
 
+\bibitem{RfcCSV}
+{Common Format and MIME Type for Comma-Separated Values (CSV) Files}.
+\newblock \url{https://tools.ietf.org/html/rfc4180}.
 
 \end{thebibliography}

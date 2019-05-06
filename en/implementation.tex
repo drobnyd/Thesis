@@ -1,6 +1,6 @@
 \chapter{Implementation}
 
-\TODO{the classes and methods have JavaDoc for precise description of API and behavior}
+Precise documentation of the program comes in form of JavaDoc as well. Here we will mention the most important actors concepts or approaches.
 
 \section{ER/Studio}
 
@@ -18,22 +18,22 @@ If we are able to generate a SQL code definition of the file format enriched wit
 
 Modeling tools commonly have the ability of reverse engineer a database, however they do it based on metadata from a deployed database where keys are defined. 
 If we just described tables in .DM1 file format by SQL creates, there is no tool that could effectively infer relations. That is why we need this reverse-engineering tool.
-As the development of such tool is not the focal point of the work, this will be not an out-box general solution for deducing keys for relational databases, but will provide a basic overview of .DM1 file organization. Also it is not a complete solution but is primarily aimed on the objects and properties we picked by analysis. \TODO{reference}
+As the development of such tool is not the focal point of the work, this will be not an out-box general solution for deducing keys for relational databases, but will provide a basic overview of .DM1 file organization. Also it is not a complete solution but is primarily aimed on the objects and properties we picked by analysis described above in \autoref{metadata_enumeration}.
 
-The decision what programming language should be used for the discussed fell to Java as the final Metadata Extractor was going to be written in the language and there are units we want to reuse in this tool as well as in further parts. Although there may be scripting languages that would make some operations, like joins on tables easier.
+The decision what programming language should be used for the discussed utility fell to Java as the final Metadata Extractor was going to be written in the language and there are units we want to reuse in this tool as well as in further parts. Although there may be scripting languages that would make some operations, like joins on tables easier.
 For example in order to go through the file format a parser is needed. Instead of writing it multiple times we will write it once in Java and use here just like in Metadata Extractor itself. \\
 
 The idea is to look at the tables from two views.
 
-The first one is to take into account only metadata which is represented by the class DependencyCreator. It treats column that looks like keys (eg. those which name ends with "ID", the policy is determined by isOnBlacklist method) as the same across all tables. 
+The first one is to take into account only metadata which is represented by the class \classname{DependencyCreator}. It treats column that looks like keys (eg. those which name ends with "ID", the policy is determined by \methodname{isOnBlacklist} method) as the same across all tables. 
 The main method here is createDependencies which pairs potential key columns and tables in what they are used.
-Then there is the class RelationFinderByTableDefinitions that allows querying over the structure found by DependecyCreator showing what tables are possibly related through a series of joins.
-Among other there is the general method getDependenciesWithPaths is showing a sequence of joins needed to do in order to put put together records from table a with those from table b.
+Then there is the class \classname{RelationFinderByTableDefinitions} that allows querying over the structure found by \classname{DependecyCreator} showing what tables are possibly related through a series of joins.
+Among other there is the general method \methodname{getDependenciesWithPaths} is showing a sequence of joins needed to do in order to put put together records from table a with those from table b.
 
 The second view takes into account the data stored in tables as well. 
 When analyzing what are relations between columns, we see a table as a collection of columns, where a column has a set of values. This way we can examine if columns with same names have similar contents.
 In contrast when getting records from a table we see a collection of rows.
-The RelationFinderByTableContents class is used for the further search for key columns.
+The \classname{RelationFinderByTableContents} class is used for the further search for key columns.
 
 It filters tables that without content, thus irrelevant.
 Has method for determining if a column can be considered a primary key of a table, that is when it contains only distinct ids.
@@ -42,10 +42,10 @@ In .DM1 file format there is a table Identity Value that explicitly pairs tables
 The class also inspects if the primary keys are defined in strict order or if there is some pattern key definitions follow.
 
 The classes above are used for being able to look from multiple perspectives and to comprehend the format.
-To put it all together and finally generate the desired output in form of a SQL definition of .DM1 tables in SQL with keys out of the analysis the class TablesToSQLConverter is used.
-The main method is writeMySQLSource that at first defines create table procedure for each table from ER/Studio source. 
-Then the phase of creating key constraints takes place. It operates on candidate columns that satisfy policies in DepedencyCreator to be key column and are present in at least one table so at least one join can be made using them.
-There is also space for defining manually the knowledge we gained by inspecting the format using RelationFinder* classes by inserting pairs table-primary keys.
+To put it all together and finally generate the desired output in form of a SQL definition of .DM1 tables in SQL with keys out of the analysis the class \classname{TablesToSQLConverter} is used.
+The main method is \methodname{writeMySQLSource} that at first defines create table procedure for each table from ER/Studio source. 
+Then the phase of creating key constraints takes place. It operates on candidate columns that satisfy policies in \classname{DepedencyCreator} to be key column and are present in at least one table so at least one join can be made using them.
+There is also space for defining manually the knowledge we gained by inspecting the format using \classname{RelationFinder*} classes by inserting pairs table-primary keys.
 So primary keys are defined from user-defined information, the information stored in Identity Value table and are inferred based on policies taking into account name of a column and name of the table it belongs to.
 If a column is set as a primary key in one table for each of the remaining ones that contain it, it is marked as a foreign identifier.
 In case there are columns that are candidates for being keys but no source table was assigned to them in previous steps one of the tables is chosen as the source, that may cause inaccuracies in the final result but the main message should not get lost.
@@ -55,21 +55,24 @@ In case there are columns that are candidates for being keys but no source table
 
 Existing CSV parsers are made to process a single CSV structure per file. There is no unified definition for the comma-separated-value files, but usually they do not allow naming CSV tables as present in .DM1 files.
 What is important to say about CSV record is that each entry is on a located on a separate line, fields in an entry are separated by a comma, the last record is followed by line break. A field may contain a comma or line break but must be enclosed by quotes. 
-If a double quote appears in a field, it must be in the enclosed section and the quote itself must be doubled. \TODO{https://tools.ietf.org/html/rfc4180} 
+If a double quote appears in a field, it must be in the enclosed section and the quote itself must be doubled. \cite{RfcCSV}
 
 We know the structure we need to parse contains tables consisting of a name on a single line, definition of columns and entries. Two tables are separated by a single empty line.
 
 Putting it all together it seems to be easier to come with an own parser for .DM1 files that processes the files into a set of tables identified by their names. 
 
-\TODO{parser for RE vs for Connector}
-To represent a single table we have the class \classname{CSVTable} which contains its name, definition of columns, in other words names for each of its property\TODO{name of the class}, and finally records themselves - instances of \classname{CSVColumn} which are contents of the table.
+To represent a single table we have the class \classname{CSVTable} which contains its name, definition of columns, in other words names for each of its properties \classname{CSVColumnDefinition}, and finally records themselves - instances of \classname{CSVColumn} which are contents of a table.
 
-Getting a name of a table is an easy job as its just a single textual line. To resolve a record is a slightly more challenging task. We design an automaton that accepts well formed records of our CSV table.
+However, the view on a table may vary due to use of a parser. In the reverse-engineering tool we inspect what values are stored in a column, examine the domain of these values etc. That is the case when a table contents is for us set of columns. Whereas, if we see a table as set of records, each record having properties based on columns of the table, from this perspective a table is a set of rows. The second case is needed when reading the contents instead of inspecting relations between tables and columns.
 
-\TODO{in I and F states a field is added to record}
-\TODO{alphabet}
-\TODO{NFA}
+Getting a name of a table is an easy job as its just a single textual line. To resolve a record is a slightly more challenging task. We designed an automaton that accepts well formed records of our CSV table.
 
+We will propose a non-deterministic finite automaton, even though it can be translated to a deterministic one, we consider DFA being more clear and descriptive in this situation.
+Set of states $Q = {I, Q, E, A, F}$
+Alphabet $\sigma$ is a set of chars that can appear in a string as that is what the automaton processes and lambda.
+Transitions are illustrated in the following figure.
+
+\begin{figure}[H]
 \begin{center}
 	\begin{tikzpicture}[scale=0.2]
 	\tikzstyle{every node}+=[inner sep=0pt]
@@ -81,23 +84,30 @@ Getting a name of a table is an easy job as its just a single textual line. To r
 	\draw [black] (21.1,-33.2) circle (3);
 	\draw (21.1,-33.2) node {$Q$};
 	\draw [black] (48.2,-33.2) circle (3);
-	\draw (48.2,-33.2) node {$V$};
+	\draw (48.2,-33.2) node {$A$};
 	\draw [black] (39.9,-45.7) circle (3);
 	\draw (39.9,-45.7) node {$E$};
+	\draw [black] (40.8,-15.4) -- (40.8,-18.4);
+	\fill [black] (40.8,-18.4) -- (41.3,-17.6) -- (40.3,-17.6);
+	\draw [black] (37.813,-21.495) arc (299.55605:11.55605:2.25);
+	\fill [black] (38.91,-19.09) -- (38.95,-18.14) -- (38.08,-18.64);
+	\draw (33.93,-17.59) node [left] {$Q\setminus\left\{",\backslash,\right\}$};
 	\draw [black] (43.6,-22.48) -- (68.7,-32.12);
 	\fill [black] (68.7,-32.12) -- (68.13,-31.37) -- (67.77,-32.3);
-	\draw (54.94,-27.83) node [below] {$newline$};
+	\draw (54.94,-27.83) node [below] {$\backslash n$};
 	\draw [black] (38.23,-22.94) -- (23.67,-31.66);
 	\fill [black] (23.67,-31.66) -- (24.62,-31.68) -- (24.1,-30.82);
 	\draw (30.04,-26.8) node [above] {$"$};
 	\draw [black] (18.622,-34.87) arc (-28.28273:-316.28273:2.25);
 	\fill [black] (18.27,-32.25) -- (17.8,-31.43) -- (17.33,-32.31);
+	\draw (13.73,-34.26) node [left] {$Q\setminus\left\{"\right\}$};
+	\draw (39.91,-33.56) node [left] {$Q\setminus\left\{,\right\}$};
 	\draw [black] (23.6,-34.86) -- (37.4,-44.04);
 	\fill [black] (37.4,-44.04) -- (37.01,-43.18) -- (36.46,-44.01);
 	\draw (29.59,-39.95) node [below] {$"$};
 	\draw [black] (42.69,-44.6) -- (68.71,-34.3);
 	\fill [black] (68.71,-34.3) -- (67.78,-34.13) -- (68.15,-35.06);
-	\draw (56.92,-39.97) node [below] {$newline$};
+	\draw (56.92,-39.97) node [below] {$\backslash n$};
 	\draw [black] (41.56,-43.2) -- (46.54,-35.7);
 	\fill [black] (46.54,-35.7) -- (45.68,-36.09) -- (46.51,-36.64);
 	\draw (44.66,-40.78) node [right] {$,$};
@@ -108,11 +118,15 @@ Getting a name of a table is an easy job as its just a single textual line. To r
 	\fill [black] (40.69,-24.4) -- (40.16,-25.18) -- (41.16,-25.22);
 	\draw [black] (46.61,-30.66) -- (42.39,-23.94);
 	\fill [black] (42.39,-23.94) -- (42.4,-24.88) -- (43.24,-24.35);
+	\fill [black] (46.61,-30.66) -- (46.6,-29.72) -- (45.76,-30.25);
 	\draw (45.13,-26.01) node [right] {$\lambda$};
+	\draw (43.87,-28.59) node [left] {$,$};
 	\end{tikzpicture}
 \end{center}
+\caption{Non deterministic finite automaton accepting a line of a CSV table in .DM1 file. In the state A and F, end of a CSV field is recognized and accepted.}
+\end{figure}
 
-\TODO{if malformed}
+When parsing a CSV record consisting of multiple fields not only we want to determine the end of a CSV entry but to collect the fields as well. That is what the, at first sight redundant, state A happens. Once the automaton gets to A, end of a field is indicated. Border of the last field of an entry is, however, recognized in the accepting state F.
 
 The parser's interface is a single method \methodname{readFile} taking a file to process and returning pairs of table name and an instance of \classname{CSVTable}.
 
@@ -120,21 +134,21 @@ The parser's interface is a single method \methodname{readFile} taking a file to
 
 The purpose of the model unit is to provide an access for reading to both a raw structure of a processed source file and a fully loaded hierarchy of objects we reconstructed from the file.
 
-The crucial objects and the important properties of theirs result from the analysis of ER/Studio data models \TODO{reference to the section}. Those are the ones the model is required to capture.
+The crucial objects and the important properties of theirs result from the analysis of ER/Studio data models listed in \autoref{metadata_enumeration}. Those are the ones the model is required to capture.
 
 The perspective of a raw file structure loaded to memory is represented by an interface \classname{ErStudioFile} where either all tables from file can be retrieved via \methodname{getAllCsvTables} or a single table by its name using the \methodname{getCsvTable} method.
 
-An ER/Studio solution - a set containing one logical data model and arbitrary number of physical models implements \classname{ErStudioSolution} interface. All the objects contained in the data models stored in such solution can be retrieved using the interface's methods. A solution is defined in a file, the relative name of the file where the solution is an internal one is returned when called \methodname{getFileName}. \TODO{make more clear internal vs external}
+An ER/Studio solution - a set containing one logical data model and arbitrary number of physical models implements \classname{ErStudioSolution} interface. All the objects contained in the data models stored in such solution can be retrieved using the interface's methods. A solution is defined in a file, the relative name of the file where the solution is an internal one is returned when called \methodname{getFileName}.
 
 
-Since a .DM1 file is not restricted to storing a single solution, but may reference external models as well, thus there may be objects from multiple solutions saved in a file. The overall structure of a file is represented by \classname{ErStudioFileModel} that has a main solution - the internal one and possibly references external solutions.
+Since a .DM1 file is not restricted to storing a single solution, but may reference external models as well, thus there may be objects from multiple solutions saved in a file. If name of the solution's origin file is identical with the name of .DM1 file from which it was loaded, it is an internal file. The overall structure of a file is represented by \classname{ErStudioFileModel} that has a main solution - the internal one and possibly references external solutions.
 
 A base behavior of both logical and physical data models is defined in \classname{DataModel}.
 A data model has a name and contains owners. An instance fulfilling \classname{DataModel} interface must have property of type \classname{AbstractionLayer} set to either \methodname{Logical} or \methodname{Physical} just like every object that is contained in a model.
 
 \classname{PhysicalDataModel} has an important addition, that it can tell the database platform the low-level model is designed for. In enum class \classname{Platform} all the database management systems ER/Studio supports are captured with an extra entry for an unknown DBMS.
 
-\classname{Owner} is either \methodname{Logical} or \methodname{Physical} according to what objects it\TODO{or he?} can own and what type of model it may belong to. 
+\classname{Owner} is either \methodname{Logical} or \methodname{Physical} according to what objects it can own and what type of model it may belong to. 
 It has name and allows access to the objects owned by it.
 
 The objects that can be mapped to another object implement interface \classname{Mappable<T>} where the type parameter defines what is the kind of the mapped counterpart.
@@ -149,8 +163,7 @@ The composite one can be mapped to another \classname{CompositeDataObject} and m
 
 The reason to represent pairs of, at first sight, different concepts of tables-entities and columns-attributes in a single classes is based on how ER/Studio treats them internally. Given that columns and attributes are stored in a single CSV table and the distinction if such object is of one or another type is made only based on to which data model, physical or logical, it belongs, the two types have the very same set of possible attributes. This can be applied to composite objects as well. Even data models are treated similarly, only there is an additional attribute related to DBMS type in the case of physical models, while the logical ones do not need such information.
  
-
-\TODO{class diagram?}
+\TODO{class diagrams?}
 \subsection{Resolver}
 
 The purpose of the resolver unit is to actually create objects fulfilling the contracts specified by interfaces defined in the model.
@@ -165,9 +178,7 @@ The skeleton of how an instance of \classname{ErStudioSolution} is created is pr
 The template method enforces a tree of objects in a solution is build from the top down.
 The very first is to step is to create a root of such tree - an instance of \classname{ErStudioSolution} that is being build, then \classname{DataModel}s from the solution are loaded, \classname{Owner}s follow, \classname{CompositeObject}s after and finally \classname{SimpleObject}s. 
 Child instances are appended to their parents just when created.
-The abstract builder contains common methods for construction of objects. Those methods are not dependent on representation, only require a set of properties as input to be able to attach them to resulting objects to make them complete. The groups of properties needed to be collected about each type to proceed the construction are described by interfaces in the package modeledobjectproperties. 
-
-\TODO{why like this in a single class only differentiated by layer - common properties}
+The abstract builder contains common methods for construction of objects. Those methods are not dependent on representation, only require a set of properties as input to be able to attach them to resulting objects to make them complete. The groups of properties needed to be collected about each type to proceed the construction are described by interfaces in the package modeledobjectproperties.
 
 The specific way of gathering the information about objects to be reconstructed is tied with details of how the objects are saved in the file format. Concrete builders 	\classname{InternalDataObjectsBuilder} along with \classname{ExternalDataObjectsBuilder} provide implementation to the abstract methods.
 In the case of internal solution, information about objects are retrieved from CSV tables, where for each table there is a dedicated and references across the tables are resolved.
@@ -177,9 +188,6 @@ On the other hand, in case of external solutions, they are fully represented in 
 
 The  \classname{InternalMapper} class only has knowledge about the layout of a CSV table containing internal mappings, just like the \classname{ExternalMapper}, that we will need later, has about the definitions of external mappings. However the logic of putting objects to maps-to relation is coded in the \classname{AbstractMapper} class.
 It goes through a table which definition fulfills the interface \classname{MappingTable} and links pairs listed in the table by mapping, if their types are equivalent.
-
-\TODO{singletons - mappers and builders}
-
 
 To put it all together, \classname{ErStudioFileModelBuilder} creates the whole structure representing an input .DM1 file as instance of \classname{ErStudioFileModel}. It builds an internal solution, then external solutions are created and at the end resolving of mappings that lead across the solution using \classname{ExternalMapper} takes place.
 
@@ -286,14 +294,28 @@ These metadata are shown when presenting the output graph and further describe t
 
 \begin{itemize}
 	\item Java 8 \\
-	To be able to integrate Metadata Extractor into the ecosystem of Manta Flow we better use Java as the APIs of the data lineage software are written in this programming language.
-	\item Maven 
-	\item Spring 
-	\item JUnit 4
+	To be able to integrate Metadata Extractor into the ecosystem of Manta Flow the best solution is to use Java as the APIs of the data lineage software are written in this programming language.
+	\item Maven \\ 
+	For dependency management, the most usual tool when programming in Java is used - Maven. In order to build the program, all the Manta Flow artifacts which Metadata Extractor depends on must be obtained successfully. However those artifacts are reachable only within Manta's private network.
+	\item Spring \\
+	For program configuration, inversion of control via Spring's XML files is used. Along with .properties, where variables used in the spring files may be (re)defined.
+	\item JUnit 4 \\ 
+	The standard for unit testing Java programs is the JUnit framework we use.
 \end{itemize}
 
 \section{Testing}
 
-\TODO{TODO}
+\subsection{ER/Studio}
 
-\TODO
+\subsubsection{Parser}
+
+\subsubsection{Resolver}
+
+\subsubsection{Data Flow Generator}
+
+\subsection{PowerDesigner}
+
+\subsubsection{Resolver}
+
+\subsubsection{Data Flow Generator}
+
