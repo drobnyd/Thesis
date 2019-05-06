@@ -6,5 +6,5 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Non deterministic finite automaton accepting a line of a CSV table in .DM1 file. In the state A and F, end of a CSV field is recognized and accepted.}}{42}{figure.5.1}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Non deterministic finite automaton accepting a line of a CSV table in .DM1 file. In the state A and F, end of a CSV field is recognized and accepted.}}{38}{figure.5.1}
 \addvspace {10\p@ }

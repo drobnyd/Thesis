@@ -67,9 +67,10 @@ However, the view on a table may vary due to use of a parser. In the reverse-eng
 
 Getting a name of a table is an easy job as its just a single textual line. To resolve a record is a slightly more challenging task. We designed an automaton that accepts well formed records of our CSV table.
 
-We will propose a non-deterministic finite automaton, even though it can be translated to a deterministic one, we consider DFA being more clear and descriptive in this situation.
-Set of states $Q = {I, Q, E, A, F}$
-Alphabet $\sigma$ is a set of chars that can appear in a string as that is what the automaton processes and lambda.
+We will propose a non-deterministic finite automaton, even though it can be translated to a deterministic one, we consider an NFA to be more clear and descriptive in this situation.
+Set of states is $Q = {I, Q, E, A, F}$.
+Alphabet $\sigma$ is a set of chars that can appear in a string, since that is what the automaton processes, and lambda.
+I is the initial state.
 Transitions are illustrated in the following figure.
 
 \begin{figure}[H]
@@ -191,7 +192,7 @@ It goes through a table which definition fulfills the interface \classname{Mappi
 
 To put it all together, \classname{ErStudioFileModelBuilder} creates the whole structure representing an input .DM1 file as instance of \classname{ErStudioFileModel}. It builds an internal solution, then external solutions are created and at the end resolving of mappings that lead across the solution using \classname{ExternalMapper} takes place.
 
-\TODO{class diagram?}
+\TODO{a class diagram?}
 
 \subsection{Reader}
 
@@ -206,11 +207,14 @@ There is a scenario that executes independent tasks. A task is a routine that ha
 
  Namely, \classname{ErStudioDataflowScenario} reads an input file, and executes the task - \classname{ErStudioDataflowTask}. 
  
- The method which tasks must override and gets called is the \methodname{doExecute}. In this particular task it is needed to go through the whole hierarchy of the input data structure - \classname{ErStudioFileModel} unroll solutions - internal as well as external. \TODO{this is general}
+ The method which tasks must override and gets called is the \methodname{doExecute}. In this particular task it is needed to go through the whole hierarchy of the input data structure - \classname{ErStudioFileModel} unroll solutions - internal as well as external.
 
-\TODO{A suitable \classname{Connection} corresponding to a physical data model is made of information from a data model and .ini file}
+A suitable \classname{Connection} corresponding to a physical data model is made of information from a data model and .ini file to be able to pair physical data model objects with those from database dictionaries.
 
-\TODO{Once the node representation for all objects is created, it is the right moment to create mapping edges between them.}
+Once assigned the connections to physical models, we can traverse the data models trees, creating nodes using \classname{DatabaseConnector} in the case of physical level, whereas when it comes to logical objects Metadata Extractor takes advantage of \classname{DataModelNodeCreator}.
+
+\TODO{Once the node representation for all objects is created, it is the right moment to create mapping edges between them.
+As we create the mappings symmetrically, the full information is captured on both levels. This way, we are able to create all the mapping edges by going through all objects from a single level of abstraction, no matter which level though.}
 
 
 \section{PowerDesigner}

@@ -10,6 +10,10 @@
 \newblock
   \url{https://blogs.wsj.com/cio/2013/12/03/healthcare-govs-heart-beats-for-nosql/}.
 
+\bibitem{BanksCaixa}
+{PostgreSQL in Mission-Critical Financial Systems}.
+\newblock \url{https://www.pgcon.org/2010/schedule/events/204.en.html}.
+
 \bibitem{RightOfAccess}
 Right of {A}ccess.
 \newblock \url{https://gdpr-info.eu/issues/right-of-access/}.

@@ -109,25 +109,8 @@ ER/Studio does not support conceptual data models.
 		Shows objects that are in maps-to relation with the entity. Those which were created by generating.
 		\item User-Defined Mappings \\
 		Shows objects that are in maps-to relation with the entity. These mapping are user defined. They can contain description of a relation, but we will not fetch the text as Manta Flow does not support attributes on mapping edges.
-		\item Owner
+		\item Owner \\
 		Owner is a concept equivalent to a schema - it is a container for logically related entities. The entity belongs to an owner.
-		\subsubsection{Properties We Will Not Extract}
-		\item \TODO{Permissions} \\
-		\TODO{By owner assigned to the entity permissions are realized.} \\
-		\item Keys \\
-		As we work exclusively with metadata we cannot enforce key constraints on the actual records in database, thus there is no need for them.
-		\item Relationships \\
-		Manta Flow does not support them.
-		\item Constraints \\
-		The same reason as with the keys above.
-		\item Naming Standards \\ 
-		The property is used when creating/generating data models but as we don't modify or add anything that would need to apply naming convention to, it is irrelevant for our case.
-		\item Data Lineage \\
-		We already mentioned that we want to create a real data lineage not just something that was drawn by user because it could have nothing to do with how the data actually flows.
-		\item Security Information \\
-		There would not be much of use if extracting security information since they are currently not supported in Manta Flow.
-		\item Attachment Bindings \\
-		\TODO{Manta Flow does not support attaching external pieces of information like ... to objects.}
 	\end{itemize}
 	\item Attribute
 	\begin{itemize}
@@ -136,21 +119,6 @@ ER/Studio does not support conceptual data models.
 		\item Notes
 		\item Where Used
 		\item User-Defined Mappings
-		\subsubsection{Properties We Will Not Extract}
-		\item Datatype
-		\item Default
-		\item Rule/Constraint
-		\item Reference Values
-		\item Naming Standards
-		\item Compare Options
-		\item Data Lineage
-		\item Security Information
-		\item Attachment Bindings
-		\item Data Movement Rules
-	\end{itemize}
-	\subsubsection{Objects We Will Not Extract}
-	\begin{itemize}
-		\item Relationships
 	\end{itemize}
 \end{itemize}
 
@@ -165,16 +133,12 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 	\item Data Item (CDM only) \\
 	A data item holds an elementary piece of information, which is given by some fact or a definition in a modeled system. It may or may not be present as a modeled object. Data items can be attached to entities to form their attributes. It is a datum that may seem relevant and is possible to capture at first but later may be not used as no entity needs it in the end.
 	\begin{itemize}
-		\item Name 
+		\item Name
 		\item Code 
 		\item Comment
+		\item Definition
+		\item Annotation
 		\item Keywords
-		\subsubsection{Properties We Will Not Extract}
-		\item Data type
-		\item Length
-		\item Precision
-		\item Domain
-		\item \TODO{Stereotype}
 	\end{itemize}
 	\item Entities
 	\begin{itemize}
@@ -182,47 +146,25 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Attributes
 		\item Code 
 		\item Comment
+		\item Definition
+		\item Annotation
 		\item Keywords
-		\item Parent Entity
-		\subsubsection{Properties We Will Not Extract}
-		\item Number
-		\item Generate
-		\item Identifiers
-		\item Rules
-		\item \TODO{Stereotype}
 	\end{itemize}
 	\item Attributes
 	\begin{itemize}
 		\item Name 
 		\item Code 
 		\item Comment
+		\item Definition
+		\item Annotation
 		\item Keywords
 		\item Parent Entity
-		\subsubsection{Properties We Will Not Extract}
-		\item Data type 
-		\item Length 
-		\item Precision
-		\item Domain
-		\item Primary Identifier
-		\item Displayed
-		\item Mandatory
-		\item Foreign identifier (LDM only)
-		\item Standard Checks
-		\item Additional Checks
-		\item Rules
-		\item \TODO{Stereotype}
 	\end{itemize}
 	\item Inheritances
-	\subsubsection{Objects We Will Not Extract}
 	\begin{itemize}
 		\item Parent Entity
 		\item Child Entity
 	\end{itemize}
-	\subsubsection{Objects We Will Not Extract}
-	\item Relationships
-	\item Identifiers
-	\item Associations and Association Links (CDM only)
-	\item Domains
 \end{itemize}
 
 \subsubsection{Physical Data Model}
@@ -231,7 +173,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 
 \begin{itemize}
 	\item Physical Model \\
-		\TODO{connection, type of data model}
+	\item Type of Data Model (DBMS technology)
 	\item Schema
 	 \begin{itemize}
 	 	\item Name
@@ -246,32 +188,6 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Note
 		\item Where Used
 		\item User-Defined Mappings
-		\subsubsection{Properties We Will Not Extract}
-		Technical properties, many of them are effective only on some specific technologies (Organization adjusts only behavior of Netazza tables). \TODO{describe every?}
-		\item Storage \\ 
-		Specifies storage option
-		\item Dimensions
-		\item Properties
-		\item DDL \\ 
-		Code to create the table.
-		\item Indexes
-		\item Foreign Keys
-		\item Partition Columns
-		\item Distribute Columns
-		\item Distribution
-		\item Organization
-		\item Partitions
-		\item Overflow
-		\item Constraints
-		\item Dependencies
-		\item Capacity Planning
-		\item Permissions
-		\item PreSQL \& Post SQL
-		\item Naming Standards
-		\item Compare Options
-		\item Data Lineage
-		\item Security Information
-		\item Attachment Bindings
 	\end{itemize}
 	\item Column
 	\begin{itemize}
@@ -280,22 +196,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Notes
 		\item Where Used
 		\item User-Defined Mappings
-		\subsubsection{Properties We Will Not Extract}
-		\item Datatype
-		\item Default
-		\item Reference Values
-		\item Naming Standards
-		\item Compare Options
-		\item LOB Storage
-		\item Data Lineage
-		\item Security Information
-		\item Attachment Bindings
-		\item Data Movement Rules
 	\end{itemize}
-	\subsubsection{Objects We Will Not Extract}
-		\begin{itemize}
-			\item View
-		\end{itemize}
 \end{itemize}
 
 \subsubsection{PowerDesigner}
@@ -307,67 +208,21 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Columns
 		\item Code 
 		\item Comment
+		\item Definition
+		\item Annotation
 		\item Keywords
 		\item Schema
-		\subsubsection{Properties We Will Not Extract}
-		\item Number
-		\item Generate
-		\item Dimensional type
-		\item Type
-		\item Indexes
-		\item Keys 
-		\item Triggers
-		\item Procedures
-		\item Check 
-		\item Physical Options
-		\item Preview
-		\item Lifecycle 
-		\item \TODO{Stereotype}
 	\end{itemize}
 	\item Columns
 	\begin{itemize}
 		\item Name 
 		\item Code 
 		\item Comment
+		\item Definition
+		\item Annotation
 		\item Keywords
 		\item Table
-		\subsubsection{Properties We Will Not Extract}
-		\item Data type 
-		\item Length 
-		\item Precision
-		\item Domain
-		\item Primary Key
-		\item Foreign Key
-		\item Sequence
-		\item Displayed
-		\item With default
-		\item Mandatory
-		\item Identity
-		\item Computed
-		\item Column fill parameters
-		\item Profile 
-		\item Computed Expression
-		\item Standard Checks
-		\item Additional Checks
-		\item Rules
-		\item \TODO{Stereotype}
 	\end{itemize}
-	\item \TODO{Users, Groups, and Roles}
-	\subsubsection{Objects We Will Not Extract}
-	\item Primary, Alternate, and Foreign Keys 
-	\item Indexes
-	\item Views
-	\item Triggers
-	\item Stored Procedures and Functions
-	\item Synonyms 
-	\item Defaults
-	\item Domains
-	\item Sequences 
-	\item Abstract Data Types
-	\item References
-	\item View References
-	\item Business Rules
-	\item Lifecycles
 \end{itemize}
 
 \subsection{Recreating of Modeled Objects}
