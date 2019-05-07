@@ -213,8 +213,9 @@ A suitable \classname{Connection} corresponding to a physical data model is made
 
 Once assigned the connections to physical models, we can traverse the data models trees, creating nodes using \classname{DatabaseConnector} in the case of physical level, whereas when it comes to logical objects Metadata Extractor takes advantage of \classname{DataModelNodeCreator}.
 
-\TODO{Once the node representation for all objects is created, it is the right moment to create mapping edges between them.
-As we create the mappings symmetrically, the full information is captured on both levels. This way, we are able to create all the mapping edges by going through all objects from a single level of abstraction, no matter which level though.}
+As the tool creates the mappings symmetrically, the full information is captured on both levels. This way, it is possible to create all the mapping edges by going through all objects from a single level of abstraction, no matter which level though as each mapping edge is contained in both of the levels.
+For the sake of simplicity, as there usually is less logical models generally a logical model contains fewer objects than a physical one, data flow generator goes through all the logical objects, creating their node representation and collects the attributes, that have to be linked to a column.
+Then physical objects are created as nodes and if the just constructed node has a mapping, MAPS\textunderscore TO edge is set between the mapped nodes.
 
 
 \section{PowerDesigner}
@@ -247,7 +248,6 @@ However, there is a different strategy used for each of the data models based on
 A factory template class \classname{BuilderFactory} is used to determine which implementation - \classname{PhysicalDataModelBuilder} or \classname{LogicalDataModelBuilder} or \classname{ConceptualDataModelBuilder} by the extension of the processed file.
 
 The outline how the builders work is proposed in the \classname{AbstractDataModelBuilder}. Also the functionality independent of type of a specific data model is written here, the way to do it is to look on objects from the perspective of abstract classes providing the general features.
-
 
 The implementations take an advantage of the fact that forming a tree like structure from an XML format is natural and straightforward, that is why for now we will omit a general point of view on a construction data model that would hide the convenience and context provided straightforwardly by DOM nodes. 
 Requests for specific DOM nodes in the builders are done using XPath, which allows querying fully loaded XML trees.

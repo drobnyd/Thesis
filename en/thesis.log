@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 02:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 03:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1222,15 +1222,15 @@ Overfull \hbox (16.82996pt too wide) in paragraph at lines 188--189
 mr/m/n/12 . |
  []
 
-[41]
-Overfull \hbox (69.54318pt too wide) in paragraph at lines 246--248
+[41] [42]
+Overfull \hbox (69.54318pt too wide) in paragraph at lines 247--249
 \OT1/lmtt/m/n/12 PhysicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 L
 ogicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 ConceptualDataModelB
 uilder|
  []
 
-[42]
-Overfull \hbox (20.44226pt too wide) in paragraph at lines 249--250
+
+Overfull \hbox (20.44226pt too wide) in paragraph at lines 250--251
 []\OT1/lmr/m/n/12 The out-line how the builders work is pro-posed in the \OT1/l
 mtt/m/n/12 AbstractDataModelBuilder\OT1/lmr/m/n/12 .|
  []
@@ -1271,13 +1271,13 @@ Overfull \hbox (33.6808pt too wide) in paragraph at lines 280--282
 a way that \OT1/lmtt/m/n/12 DatabaseConnector|
  []
 
-
+[44]
 Overfull \hbox (6.61418pt too wide) in paragraph at lines 287--291
 \OT1/lmr/m/n/12 must be im-ple-mented by two dif-fer-ent classes \OT1/lmtt/m/n/
 12 LogicalDataModelNodeCreatorImpl|
  []
 
-[44]) [45] [46]
+) [45] [46]
 \openout2 = `epilog.aux'.
 
  (./epilog.tex) [47
@@ -1411,7 +1411,7 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (64 pages, 823538 bytes).
+Output written on thesis.pdf (64 pages, 823878 bytes).
 PDF statistics:
  896 PDF objects out of 1000 (max. 8388607)
  224 named destinations out of 1000 (max. 500000)
