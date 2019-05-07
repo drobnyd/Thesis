@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 03:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 13:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1277,7 +1277,7 @@ Overfull \hbox (6.61418pt too wide) in paragraph at lines 287--291
 12 LogicalDataModelNodeCreatorImpl|
  []
 
-) [45] [46]
+[45]) [46]
 \openout2 = `epilog.aux'.
 
  (./epilog.tex) [47
@@ -1301,50 +1301,56 @@ u-dar-shan.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 62--65
+[]\OT1/lmr/m/n/12 ER/Studio Data Ar-chi-tect.  []$\OT1/lmtt/m/n/12 https : / / 
+www . idera . com /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--78
 []\OT1/lmr/m/n/12 Bussiness As-sets.  []$\OT1/lmtt/m/n/12 https : / / universit
 y . collibra . com / knowledge /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--65
+Underfull \hbox (badness 10000) in paragraph at lines 75--78
 \OT1/lmtt/m/n/12 collibra-[]body-[]of-[]knowledge / data-[]governance-[]operati
 ng-[]model /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--70
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 []\OT1/lmr/m/n/12 Lineage vs trace-abil-ity un-der-stand-ing the dif-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--70
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 \OT1/lmr/m/n/12 fer-ences.  []$\OT1/lmtt/m/n/12 https : / / www . collibra . co
 m / blog /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--75
+Underfull \hbox (badness 10000) in paragraph at lines 85--88
 []\OT1/lmr/m/n/12 Business glos-sary.  []$\OT1/lmtt/m/n/12 https : / / www . in
 formatica . com / content /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 72--75
+Underfull \hbox (badness 10000) in paragraph at lines 85--88
 \OT1/lmtt/m/n/12 dam / informatica-[]com / global / amer / us / collateral / da
 ta-[]sheet /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--80
-\OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ _ 11 . 3 . 0 / com . ibm . swg .
- im . iis . mdwb . doc /
  []
 
 [48
 
 
 
-])) [49] (./thesis.lof)
+]
+Underfull \hbox (badness 10000) in paragraph at lines 90--93
+\OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ _ 11 . 3 . 0 / com . ibm . swg .
+ im . iis . mdwb . doc /
+ []
+
+)) [49] (./thesis.lof)
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
@@ -1367,37 +1373,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--145
 ]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--195
+Underfull \hbox (badness 10000) in paragraph at lines 196--198
 
  []
 
 [53
 
 ] [54] [55] [56] [57] [58] [59] [60]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 459.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 459.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 462.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 462.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 459.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 459.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 462.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 462.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: C9ACF3A369A7D7F3429682A071AB8D10;9234.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 459.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 462.
  ) 
 Here is how much of TeX's memory you used:
- 25515 strings out of 492649
- 441430 string characters out of 6129623
- 491326 words of memory out of 5000000
- 28694 multiletter control sequences out of 15000+600000
+ 25527 strings out of 492649
+ 441713 string characters out of 6129623
+ 491327 words of memory out of 5000000
+ 28703 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,70p,852b,1988s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,8n,70p,852b,1990s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/loca
 l/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018
 /texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dis
@@ -1411,9 +1417,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (64 pages, 823878 bytes).
+Output written on thesis.pdf (64 pages, 827664 bytes).
 PDF statistics:
- 896 PDF objects out of 1000 (max. 8388607)
- 224 named destinations out of 1000 (max. 500000)
+ 906 PDF objects out of 1000 (max. 8388607)
+ 227 named destinations out of 1000 (max. 500000)
  565 words of extra memory for PDF output out of 10000 (max. 10000000)
 
