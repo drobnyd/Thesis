@@ -1,2 +1,11 @@
 \chapter*{Conclusion}
+We have developed a piece of software capable of extracting metadata from two data modeling tools - SAP PowerDesigner and ER/Studio Data Architect. To achieve this a thorough analysis was required to identify relevant features of the tools, as well as studying the way data models are represented in memory. 
+A framework bridging Manta Flow with objects extracted from data models was developed, therefore further support of another modeling tools may take advantage of it and can be aware of what contract to meet in order to create business lineage and to enrich the physical one.
+
+One of our aims was to explore possibilities of modeling data lineage in modeling tools.
+We went through it and described the important aspects of the lineage and compared it to the one that Manta Flow creates. 
+Initially, there was an idea, that if a tool allows the functionality, it would be nice to compare the actual lineage, physical or business, computed by Manta Flow and Metadata Extractor, with the modeled one. 
+However, the modeling tools we analyzed do not provide any API, that would allow us to correct or compare the flows specified in the tools. 
+An option would be to try to manually adjust the lineage, but this approach would be not easy and fragile at the same time.
+
 \addcontentsline{toc}{chapter}{Conclusion}
