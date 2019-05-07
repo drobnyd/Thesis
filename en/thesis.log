@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 13:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 14:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1372,33 +1372,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
 ]
 Appendix A.
+[53
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--198
+]
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
 
  []
 
-[53
-
-] [54] [55] [56] [57] [58] [59] [60]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 462.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 462.
+[54] [55] [56] [57] [58] [59] [60] [61]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 471.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 471.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 462.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 462.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 471.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 471.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: C9ACF3A369A7D7F3429682A071AB8D10;9234.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 462.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 471.
  ) 
 Here is how much of TeX's memory you used:
- 25527 strings out of 492649
- 441713 string characters out of 6129623
+ 25528 strings out of 492649
+ 441720 string characters out of 6129623
  491327 words of memory out of 5000000
  28703 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
@@ -1417,9 +1417,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (64 pages, 827664 bytes).
+Output written on thesis.pdf (65 pages, 829190 bytes).
 PDF statistics:
- 906 PDF objects out of 1000 (max. 8388607)
- 227 named destinations out of 1000 (max. 500000)
+ 910 PDF objects out of 1000 (max. 8388607)
+ 228 named destinations out of 1000 (max. 500000)
  565 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -161,9 +161,20 @@ PDM \tab Physical Data Model \\
 \section{Building}
 
 The build process is ensured through Maven with dependencies specified with its pom.xml files.
-However, in order to build Metadata Extractor "secret" dependencies owned by Manta 
+However, in order to build Metadata Extractor "secret" dependencies owned by MANTA are needed. Otherwise the project will not compile successfully. 
+Also in order to gain the whole functionality of our tool a context provided by Manta Flow's database extractors, post processing done on server, where the interpolation takes place, and visualization of data lineage which is also part of the server's functionality is needed. 
+There is a command line user interface putting all the parts together and must be backed by manta server with graph database that is running user interface as well. The crucial parts of Manta Flow though can not be built without having access to MANTA's code repository.
+
+Even with the access to the repository, MANTA is a proprietary software and running its products requires a valid license.
+
+\TODO{To demonstrate the functionality that is independent of other Manta Flow parts, we attach scripts doing metadata extraction from the modeling tools.
+Due to the licensing reasons it has only partial functionality consisting of extracting the physical and business objects with their metadata and visualizing them as a graph in an output file. 
+No data lineage though is going to be presented in the demo version.}
+
 
 \section{User Documentation}
+
+
 
 \subsection{Tutorials}
 
