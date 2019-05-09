@@ -58,6 +58,10 @@ E.~F. Codd.
 \bibitem{PowerDesignerDocumentation}
 Sap powerdesigner documentation.
 
+\bibitem{MantaExample}
+{MANTA + Teradata | Data Lineage Automation Solution}.
+\newblock \url{https://www.youtube.com/watch?v=jbVoMgXvJD4}.
+
 \bibitem{ErStudio}
 {ER/Studio Data Architect}.
 \newblock
@@ -90,6 +94,11 @@ Business glossary.
 Data lineage and business lineage reports.
 \newblock
   \url{https://www.ibm.com/support/knowledgecenter/en/SSZJPZ_11.3.0/com.ibm.swg.im.iis.mdwb.doc/topics/c_analysisReports.html}.
+
+\bibitem{AsgErStudio}
+{ERSTUDIOBUS Release Notes}.
+\newblock
+  \url{https://isp.asg.com/Rochade/ERStudio/V2.3x/ERSTUDIOBUS_237_001_Release%20Notes.pdf}.
 
 \bibitem{RfcCSV}
 {Common Format and MIME Type for Comma-Separated Values (CSV) Files}.

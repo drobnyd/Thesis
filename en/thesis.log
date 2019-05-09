@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  7 MAY 2019 14:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  9 MAY 2019 03:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,7 +834,7 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 6.
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/logo-en.pdf): PDF inc
 lusion: found PDF version <1.5>, but at most version <1.4> allowed
-<../img/logo-en.pdf, id=269, 506.4591pt x 156.49065pt>
+<../img/logo-en.pdf, id=261, 506.4591pt x 156.49065pt>
 File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
@@ -877,27 +877,50 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  <../img/logo-en.pdf>]
 Package hyperref Info: Option `pageanchor' set `true' on input line 55.
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 67.
- (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmr.fd
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 66.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 67.
-LaTeX Font Info:    Try loading font information for OML+lmr on input line 74.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 66.
 
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--70
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--72
+
+ []
+
+LaTeX Font Info:    Try loading font information for OML+lmr on input line 73.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmr.fd
 File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <12> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 74.
- [1
+(Font)              Font shape `OML/lmm/m/it' tried instead on input line 73.
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--92
+
+ []
+
+[1
 
 ] [2
 
 ] [3
 
-])
-(./thesis.toc [1
+]) (./thesis.toc [1
 
 
 
@@ -1025,65 +1048,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--134
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--154
+Underfull \hbox (badness 10000) in paragraph at lines 150--153
 
  []
 
 [11]
-<../img/Conceptual_Model_PowerDesigner.png, id=464, 559.08875pt x 432.61626pt>
+<../img/Conceptual_Model_PowerDesigner.png, id=454, 559.08875pt x 432.61626pt>
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
-ut line 161.
+ut line 160.
 (pdftex.def)             Requested size: 284.52756pt x 220.16928pt.
  [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.176 \end{itemize}
+l.175 \end{itemize}
                     <../img/Conceptual_Model_PowerDesigner.png>]
-<../img/Logical_Model_PowerDesigner.png, id=476, 630.355pt x 472.76625pt>
+<../img/Logical_Model_PowerDesigner.png, id=466, 630.355pt x 472.76625pt>
 File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Logical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
-line 181.
+line 180.
 (pdftex.def)             Requested size: 284.52756pt x 213.39209pt.
  [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.200 
+l.199 
        <../img/Logical_Model_PowerDesigner.png>]
-<../img/Physical_Model_PowerDesigner.png, id=486, 662.475pt x 454.69875pt>
+<../img/Physical_Model_PowerDesigner.png, id=476, 662.475pt x 454.69875pt>
 File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Physical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
- line 203.
+ line 202.
 (pdftex.def)             Requested size: 284.52756pt x 195.28769pt.
  [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.228 
-       <../img/Physical_Model_PowerDesigner.png>] [15] [16]) [17]
+l.227 
+       <../img/Physical_Model_PowerDesigner.png>] [15]
+<../img/DataLineageExample.png, id=493, 946.53625pt x 350.30875pt>
+File: ../img/DataLineageExample.png Graphic file (type png)
+<use ../img/DataLineageExample.png>
+Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 240.
+
+(pdftex.def)             Requested size: 398.33858pt x 147.42265pt.
+ [16pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.256 
+       <../img/DataLineageExample.png>]) [17] [18]
 \openout2 = `modeling_tools.aux'.
 
-
-(./modeling_tools.tex
+ (./modeling_tools.tex
 Chapter 3.
-[18
+[19
 
 
 
-]) [19]
+] [20]) [21]
 \openout2 = `solution_design.aux'.
 
  (./solution_design.tex
@@ -1098,189 +1133,286 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--19
 
  []
 
-[20
+[22
 
 
 
-] [21] [22] [23] [24]
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+]
+<../img/StringUsageTable.png, id=539, 1406.25375pt x 488.82625pt>
+File: ../img/StringUsageTable.png Graphic file (type png)
+<use ../img/StringUsageTable.png>
+Package pdftex.def Info: ../img/StringUsageTable.png  used on input line 41.
+(pdftex.def)             Requested size: 398.33858pt x 138.45915pt.
+ [23pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+1}) has been already used, duplicate ignored
 
- []
-
-[25] [26]
-Underfull \hbox (badness 10000) in paragraph at lines 268--270
-
- []
-
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 271--272
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 273--277
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.54 O
+      nce we understand the structure and can tell how the data we are seeki...
+ <../img/StringUsageTable.png>] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 283--285
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 286--288
+[25] [26] [27] [28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 281--283
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--305
+Underfull \hbox (badness 10000) in paragraph at lines 284--285
 
  []
 
-[28] [29]
-Underfull \hbox (badness 10000) in paragraph at lines 330--334
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--290
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--298
 
  []
 
 [30]
-Underfull \hbox (badness 10000) in paragraph at lines 360--363
+Underfull \hbox (badness 10000) in paragraph at lines 299--301
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--365
+Underfull \hbox (badness 10000) in paragraph at lines 307--319
 
  []
 
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 387--388
+[31] [32pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.4.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.371 
+      ]
+<../img/BusinessLineage.png, id=604, 1084.05pt x 208.52907pt>
+File: ../img/BusinessLineage.png Graphic file (type png)
+<use ../img/BusinessLineage.png>
+Package pdftex.def Info: ../img/BusinessLineage.png  used on input line 374.
+(pdftex.def)             Requested size: 398.33858pt x 76.62315pt.
+<../img/TechnicalLineage.png, id=605, 1073.51062pt x 381.67593pt>
+File: ../img/TechnicalLineage.png Graphic file (type png)
+<use ../img/TechnicalLineage.png>
+Package pdftex.def Info: ../img/TechnicalLineage.png  used on input line 379.
+(pdftex.def)             Requested size: 398.33858pt x 141.62555pt.
+ [33 <../img/BusinessLineage.png> <../img/TechnicalLineage.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 393--397
 
  []
 
-[32] [33] [34]
 
-LaTeX Warning: Reference `model_data_structure' on page 35 undefined on input l
-ine 454.
+Underfull \hbox (badness 10000) in paragraph at lines 421--424
 
-) [35]
+ []
+
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 425--426
+
+ []
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 446--447
+
+ []
+
+[36] [37]
+
+LaTeX Warning: Reference `model_data_structure' on page 38 undefined on input l
+ine 513.
+
+) [38]
 \openout2 = `implementation.aux'.
 
  (./implementation.tex
 Chapter 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--25
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 28.
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--16
+
+ []
+
+[39
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
+
+ []
+
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 38.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [36
-
-
-
-] [37] [38pdfTeX warning (ext4): destination with the same identifier (name{fig
-ure.5.1}) has been already used, duplicate ignored
+) [40] [41] [42pdfTeX warning (ext4): destination with the same identifier (nam
+e{figure.5.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.137 
-      ]
-Overfull \hbox (11.81749pt too wide) in paragraph at lines 147--149
+l.152 T
+       he parser's interface is a single method \methodname{readFile} taking...
+]
+Overfull \hbox (11.81749pt too wide) in paragraph at lines 166--168
 []\OT1/lmr/m/n/12 A base be-hav-ior of both log-i-cal and phys-i-cal data mod-e
 ls is de-fined in \OT1/lmtt/m/n/12 DataModel\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (28.48656pt too wide) in paragraph at lines 155--156
+Overfull \hbox (28.48656pt too wide) in paragraph at lines 174--175
 []\OT1/lmr/m/n/12 The ob-jects that can be mapped to an-other ob-ject im-ple-me
 nt in-ter-face \OT1/lmtt/m/n/12 Mappable<T>|
  []
 
 
-Overfull \hbox (41.78043pt too wide) in paragraph at lines 159--162
+Overfull \hbox (41.78043pt too wide) in paragraph at lines 178--181
 \OT1/lmtt/m/n/12 AbstractionLayer\OT1/lmr/m/n/12 . The com-pos-ite one can be m
 apped to an-other \OT1/lmtt/m/n/12 CompositeDataObject|
  []
 
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
 
+Overfull \hbox (3.99362pt too wide) in paragraph at lines 182--183
+[]\OT1/lmr/m/n/12 The \OT1/lmtt/m/n/12 SimpleDataObject \OT1/lmr/m/n/12 class i
+s used to rep-re-sent columns or at-tributes. Equiv-|
+ []
+
+[43]
+Overfull \hbox (23.85204pt too wide) in paragraph at lines 191--192
+[]\OT1/lmr/m/n/12 Outline of what the re-solver mod-ule does is that it via \OT
+1/lmtt/m/n/12 ErStudioFileModelBuilder|
  []
 
 
-Overfull \hbox (37.25464pt too wide) in paragraph at lines 184--187
+Overfull \hbox (63.21162pt too wide) in paragraph at lines 191--192
+\OT1/lmr/m/n/12 cre-ates the whole struc-ture rep-re-sent-ing an in-put .DM1 fi
+le as in-stance of \OT1/lmtt/m/n/12 ErStudioFileModel\OT1/lmr/m/n/12 .|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--195
+
+ []
+
+[44]
+Overfull \hbox (37.25464pt too wide) in paragraph at lines 205--208
 \OT1/lmr/m/n/12 crete builders \OT1/lmtt/m/n/12 InternalDataObjectsBuilder \OT1
 /lmr/m/n/12 along with \OT1/lmtt/m/n/12 ExternalDataObjectsBuilder|
  []
 
-[40]
-Overfull \hbox (16.82996pt too wide) in paragraph at lines 188--189
+
+Overfull \hbox (16.82996pt too wide) in paragraph at lines 209--210
 \OT1/lmr/m/n/12 ate map-pings be-tween \OT1/lmtt/m/n/12 Mappable \OT1/lmr/m/n/1
 2 ob-jects in a so-lu-tion with a help of \OT1/lmtt/m/n/12 InternalMapper\OT1/l
 mr/m/n/12 . |
  []
 
-[41] [42]
-Overfull \hbox (69.54318pt too wide) in paragraph at lines 247--249
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+
+ []
+
+
+Overfull \hbox (29.02678pt too wide) in paragraph at lines 220--221
+\OT1/lmr/m/n/12 the in-put folder. Parser's prod-uct is handed to re-solver re-
+sult-ing in \OT1/lmtt/m/n/12 ErStudioFileModel|
+ []
+
+[45] [46]
+Overfull \hbox (69.54318pt too wide) in paragraph at lines 271--273
 \OT1/lmtt/m/n/12 PhysicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 L
 ogicalDataModelBuilder \OT1/lmr/m/n/12 or \OT1/lmtt/m/n/12 ConceptualDataModelB
 uilder|
  []
 
 
-Overfull \hbox (20.44226pt too wide) in paragraph at lines 250--251
+Overfull \hbox (20.44226pt too wide) in paragraph at lines 274--275
 []\OT1/lmr/m/n/12 The out-line how the builders work is pro-posed in the \OT1/l
 mtt/m/n/12 AbstractDataModelBuilder\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (81.61427pt too wide) in paragraph at lines 259--261
+Overfull \hbox (81.61427pt too wide) in paragraph at lines 283--285
 []\OT1/lmr/m/n/12 Input di-rec-tory con-tain-ing file to pro-cess is the in-put
  for \OT1/lmtt/m/n/12 PowerDesignerXmlComponentReader\OT1/lmr/m/n/12 .|
  []
 
-
-Overfull \hbox (22.05997pt too wide) in paragraph at lines 267--271
+[47]
+Overfull \hbox (22.05997pt too wide) in paragraph at lines 291--295
 \OT1/lmr/m/n/12 When trans-lat-ing a com-po-nent of re-con-structed data mod-el
 s, a suit-able \OT1/lmtt/m/n/12 GraphBuilder|
  []
 
 
-Overfull \hbox (27.55815pt too wide) in paragraph at lines 267--271
+Overfull \hbox (27.55815pt too wide) in paragraph at lines 291--295
 \OT1/lmtt/m/n/12 DatabaseConnector \OT1/lmr/m/n/12 searches for the mod-eled da
 tabase ob-jects. A suit-able \OT1/lmtt/m/n/12 Connection|
  []
 
-[43]
-Overfull \hbox (15.41522pt too wide) in paragraph at lines 274--279
+
+Overfull \hbox (15.41522pt too wide) in paragraph at lines 298--303
 \OT1/lmr/m/n/12 De-tails about the tar-get database of the low-level data model
  are kept in \OT1/lmtt/m/n/12 Connection\OT1/lmr/m/n/12 .|
  []
 
 
-Overfull \hbox (46.26114pt too wide) in paragraph at lines 274--279
+Overfull \hbox (46.26114pt too wide) in paragraph at lines 298--303
 \OT1/lmr/m/n/12 The API to database dic-tio-nar-ies cre-ated by Manta is pro-vi
 ded by \OT1/lmtt/m/n/12 DataflowQueryService\OT1/lmr/m/n/12 .|
  []
 
-
-Overfull \hbox (33.6808pt too wide) in paragraph at lines 280--282
+[48]
+Overfull \hbox (33.6808pt too wide) in paragraph at lines 304--306
 \OT1/lmr/m/n/12 tools is to be able to or-ga-nize ex-tracted meta-data in such 
 a way that \OT1/lmtt/m/n/12 DatabaseConnector|
  []
 
-[44]
-Overfull \hbox (6.61418pt too wide) in paragraph at lines 287--291
+
+Overfull \hbox (6.61418pt too wide) in paragraph at lines 311--315
 \OT1/lmr/m/n/12 must be im-ple-mented by two dif-fer-ent classes \OT1/lmtt/m/n/
 12 LogicalDataModelNodeCreatorImpl|
  []
 
-[45]) [46]
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--320
+
+ []
+
+[49]
+Overfull \hbox (5.0358pt too wide) in paragraph at lines 328--335
+\OT1/lmr/m/n/12 com-mu-ni-ca-tion with Manta is done via \OT1/lmtt/m/n/12 Datab
+aseConnector \OT1/lmr/m/n/12 and \OT1/lmtt/m/n/12 Connection|
+ []
+
+[50]
+Overfull \hbox (27.18842pt too wide) in paragraph at lines 358--360
+\OT1/lmr/m/n/12 The cor-rect-ness of pars-ing pro-cess is checked by class \OT1
+/lmtt/m/n/12 ErStudioFileFormatParserTest|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--369
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 379--381
+
+ []
+
+[51]) [52]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [47
+ (./epilog.tex) [53
 
 
 
@@ -1300,110 +1432,131 @@ u-dar-shan.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--65
+Underfull \hbox (badness 10000) in paragraph at lines 66--69
 []\OT1/lmr/m/n/12 ER/Studio Data Ar-chi-tect.  []$\OT1/lmtt/m/n/12 https : / / 
 www . idera . com /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--78
+Underfull \hbox (badness 10000) in paragraph at lines 79--82
 []\OT1/lmr/m/n/12 Bussiness As-sets.  []$\OT1/lmtt/m/n/12 https : / / universit
 y . collibra . com / knowledge /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--78
+Underfull \hbox (badness 10000) in paragraph at lines 79--82
 \OT1/lmtt/m/n/12 collibra-[]body-[]of-[]knowledge / data-[]governance-[]operati
 ng-[]model /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--83
+Underfull \hbox (badness 10000) in paragraph at lines 84--87
 []\OT1/lmr/m/n/12 Lineage vs trace-abil-ity un-der-stand-ing the dif-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--83
+Underfull \hbox (badness 10000) in paragraph at lines 84--87
 \OT1/lmr/m/n/12 fer-ences.  []$\OT1/lmtt/m/n/12 https : / / www . collibra . co
 m / blog /
  []
 
+[54
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--88
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
 []\OT1/lmr/m/n/12 Business glos-sary.  []$\OT1/lmtt/m/n/12 https : / / www . in
 formatica . com / content /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--88
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
 \OT1/lmtt/m/n/12 dam / informatica-[]com / global / amer / us / collateral / da
 ta-[]sheet /
  []
 
-[48
 
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 90--93
+Underfull \hbox (badness 10000) in paragraph at lines 94--97
 \OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ _ 11 . 3 . 0 / com . ibm . swg .
  im . iis . mdwb . doc /
  []
 
-)) [49] (./thesis.lof)
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--102
+[]\OT1/lmr/m/n/12 ERSTUDIOBUS Re-lease Notes.  []$\OT1/lmtt/m/n/12 https : / / 
+isp . asg . com / Rochade /
+ []
+
+)) [55] (./thesis.lof)
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
- [50
+ [56
 
 
 ] (./thesis.lot)
 \tf@lot=\write9
 \openout9 = `thesis.lot'.
 
- [51
+ [57
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
-[52
+[58
 
 ]
 Appendix A.
-[53
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 205--207
+Underfull \hbox (badness 10000) in paragraph at lines 179--180
 
  []
 
-[54] [55] [56] [57] [58] [59] [60] [61]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 471.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 471.
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--186
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+[59
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 220--222
+
+ []
+
+[60] [61] [62] [63] [64] [65] [66] [67]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 486.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 486.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 471.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 471.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 486.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 486.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: C9ACF3A369A7D7F3429682A071AB8D10;9234.
+(rerunfilecheck)             Checksum: 342B83CF245E4F9752B9971A3551237D;9000.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 471.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 486.
  ) 
 Here is how much of TeX's memory you used:
- 25528 strings out of 492649
- 441720 string characters out of 6129623
- 491327 words of memory out of 5000000
- 28703 multiletter control sequences out of 15000+600000
+ 25579 strings out of 492649
+ 442765 string characters out of 6129623
+ 489350 words of memory out of 5000000
+ 28739 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,70p,852b,1990s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,8n,70p,852b,1992s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/loca
 l/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018
 /texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dis
@@ -1417,9 +1570,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (65 pages, 829190 bytes).
+Output written on thesis.pdf (71 pages, 1125879 bytes).
 PDF statistics:
- 910 PDF objects out of 1000 (max. 8388607)
- 228 named destinations out of 1000 (max. 500000)
- 565 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 951 PDF objects out of 1000 (max. 8388607)
+ 239 named destinations out of 1000 (max. 500000)
+ 569 words of extra memory for PDF output out of 10000 (max. 10000000)
 

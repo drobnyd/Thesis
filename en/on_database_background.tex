@@ -132,8 +132,7 @@ It was an opposition to the three major data models that were used - relational,
 
 An extended version of ER data model was introduced later - \definition{enhanced-entity-relationship (EER) data model}. The main change is that concept sub-classes and super-classes, known as inheritance or is-a relationship, between entities was brought. \\ 
 
-\TODO{conclusion}
-Conceptual and logical data models are usually represented by ER data models. 
+Generally, conceptual and logical data models are usually represented by ER data models. 
 The question is what specific data model type is used for physical models. 
 As the most low-level model type is tied directly with how a database is organized, physical models must obey the structure of database.
 
@@ -159,7 +158,7 @@ Having lectures captured in our data model, it is really fundamental to see what
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{../img/Conceptual_Model_PowerDesigner}
-	\caption{\TODO{Conceptual diagram}\cite{PowerDesignerDocumentation}}
+	\caption{Conceptual diagram\cite{PowerDesignerDocumentation}}
 \end{figure}
 
 \subsection{Logical Data Model}
@@ -172,14 +171,14 @@ Keeping its structure generic a logical model extends the objects described in a
 	\item Each entity has the primary key.
 	\item Foreign keys are expressed.
 	\item Data types description is introduced (but in a way that is not tied with any specific technology).
-	\item Normalized up to \TODO{third normal form}.
+	\item Normalized up to third normal form.
 \end{itemize}
 \definition{Entities}, \definition{attributes} and \definition{relationships} from a conceptual model are present on this layer as well. Relationships are not that abstract as before and keys that actually make relationship happen between entities are added as their attributes.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{../img/Logical_Model_PowerDesigner}
-	\caption{\TODO{Logical diagram}\cite{PowerDesignerDocumentation}}
+	\caption{Logical diagram\cite{PowerDesignerDocumentation}}
 \end{figure}
 
 \subsection{Physical Data Model}
@@ -201,7 +200,7 @@ Commonly schemas\footnote{Plural of the word schema is schemata but in literatur
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{../img/Physical_Model_PowerDesigner}
-	\caption{\TODO{Physical diagram}\cite{PowerDesignerDocumentation}}
+	\caption{Physical diagram\cite{PowerDesignerDocumentation}}
 \end{figure}
 
 \subsection{Relations Between the Models}
@@ -233,9 +232,14 @@ It should provide answers for questions where the data in given solution come fr
 Basically data lineage helps enterprises to gain deeper knowledge and understanding of what happens to data as it travels through various interconnected data pipelines\footnote{A pipeline is a set of elements manipulating and processing data where output of one element is input of another.} that the system consists of. Although we are focused on the subpart coping with databases, data lineage is a general concept where the sources and targets are not necessarily databases, data may come from, let's say, a user interface and ending in an output of a reporting software.
 This overview of the system, that data lineage provides, is crucial when taking decisions about the infrastructure since the understanding of the consequences should more clear. Also it makes much easier to find errors in systems, since they can be tracked down from where the undesired behavior came to the surface to where the affected data originates. Surely somewhere between these two points the malfunctioning part is and thanks to data lineage the domain of suspicious operations should be reduced and visible. 
 Therefore much time spent on solving issues should be saved.
-Data lineage is a discipline of \definition{business intelligence}. \TODO{define}
 
-To present data lineage a visual representation is most commonly used. Generally, we can think of the visualization as of a graph \TODO{explain graph elements}.
+To present data lineage a visual representation is most commonly used. Generally, we can think of the visualization as of a graph.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{../img/DataLineageExample}
+	\caption[Data Lineage Visualization]{Data lineage as it is visualized in Manta Flow user interface. The simple example illustrates how the TransactionFact database table is filled with data originating in five different tables via InternalData.sql transformation that inserts the data from sources to the target. The directed edges are leading from a data origin to destination.\cite{MantaExample}}
+\end{figure}
 
 Having a reference point of interest we can divide data lineage into three types by what it captures. \definition{Forward data lineage} inspects movement of data towards the destination, \definition{backward data lineage} creates picture of what happened to data when traveling to the point from the source and the last type, \definition{end-to-end data lineage} combines both approaches and shows the full flow of data from its source until the very end destination.
 
@@ -249,9 +253,6 @@ When we have these information describing all the records that can be stored in 
 
 The idea of data lineage construction is as follows. First precondition is to have access to all metadata related to the database under analysis to have a clear picture of objects stored there. 
 Then SQL queries that modify data are examined. They are stored in .sql files and usually a node is added for each of the files. We identify what tables and columns are the sources of input data for queries and where outputs of the operations are stored. Each input and output is represented by a graph node as well. Based on an analysis like this directed edges between the nodes we described are added to show dependencies. Inputs are connected with the query in such manner that every edges originates in of the input nodes and ends in the transformation node. Correspondingly, edges from query node to output nodes are made.
-
-\TODO{an oversimplified example where data lineage would not be much of use as its importance grows with system's complexity.}
-
 
 
 \subsection{Manta Flow}

@@ -34,7 +34,15 @@ Firstly, we need to identify what is the output of the analyzed modeling tools, 
 \subsubsection{ER/Studio}
 \label{subsec:dm1_format}
 The modeling tool uses its custom file format. It uses .DM1 extension. The file stores plain text and it is made up of many tables. A table in this context is a CSV (comma-separated values) structure but as there is not only one CSV table identifying name is also included. So by table we understand its name, definition of columns (or fields) and records.
-How more complex objects can be stored in files like this is not clear from the first sight and it required some work to get the idea behind it. \TODO{insert an image of a table here} 
+How more complex objects can be stored in files like this is not clear from the first sight and it required some work to get the idea behind it. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{../img/StringUsageTable}
+	\caption[CSV Table]{Example of a simple CSV table named StringUsage with five columns from a .DM1 file.}
+\end{figure}
+
+
 An attentive reader may find these terms, that we used for describing the data structure, familiar since we already used them where introducing relational databases. And he would be true. When investigating these tables we can notice columns that are shared, meaning relation between the tables that have them in common. This is pretty much how primary and foreign key work in relational databases.
 Now we face the challenge of reverse-engineering the tables to rebuild the composite objects that are deconstructed and saved in the tables.
 It would be quite exhausting to try to restore the relationships by hand, so we developed a little tool that helped us to get an overview of the format that will work on one hand with tables' metadata to find the intersecting columns as well as with the records to see whether there are similarities in data stored in different tables to uncover relations between them and the core concepts behind the file format.
@@ -77,6 +85,8 @@ On the other hand we will not pay attention to relationships in entity-relations
 The only relationship type from data models we will need to cope with is the inheritance relation. It is present in enhanced-entity-relationship models. The exception is made because if the is-a links are not captured, entities' structure are be not described completely and their attributes may be missing.
 Other categories of metadata we will not extract are the ones that describe some constraints on the actual records saved in database themselves. We will work exclusively with database metadata and don't have access to what is really saved there thus we cannot neither monitor nor enforce anything on the database entries. That is why likes of keys and data types defined in data models will not be in our domain of interest.
 
+The full list of metadata, including the ones we do not find useful to extract is listed in the appendix.
+
 \subsubsection{Conceptual \& Logical Data Model}
 
 Here we list objects that appear in both conceptual and logical data models, together with what additional information about them can be inserted by user.
@@ -89,28 +99,25 @@ ER/Studio does not support conceptual data models.
 
 \subsubsection{LDM}
 
-\TODO{justification of each of property or not? \& the item lists are too much}
-
 \begin{itemize}
 	\item Owner \\ 
 	Owner is a concept equivalent to a schema - it is a container for logically related entities. Every entity belongs to an owner.
 	\item Entity \\
-	An entity has the following properties
 	\begin{itemize}
 		\item Name \\ 
-		Identification of the entity.
+		Name of an entity.
 		\item Attributes \\ 
-		Attributes assigned to the entity.
+		Attributes assigned to an entity.
 		\item Definition \\
-		Further description of the entity. Plain text or RTF (rich text format).
+		Further description of an entity. Plain text or RTF (rich text format).
 		\item Note \\
-		Notes are used when a documentation about the entity is generated. Plain text or RTF.
+		Notes are used when a documentation about an entity is generated. Plain text or RTF.
 		\item Where Used \\
-		Shows objects that are in maps-to relation with the entity. Those which were created by generating.
+		Shows objects that are in maps-to relation with an entity. Those which were created by generating.
 		\item User-Defined Mappings \\
-		Shows objects that are in maps-to relation with the entity. These mapping are user defined. They can contain description of a relation, but we will not fetch the text as Manta Flow does not support attributes on mapping edges.
-		\item Owner \\
-		Owner is a concept equivalent to a schema - it is a container for logically related entities. The entity belongs to an owner.
+		Shows objects that are in maps-to relation with an entity. These mapping are user defined. They can contain description of a relation, but we will not fetch the text as Manta Flow does not support attributes on mapping edges.
+		\item Owner \\ 
+		Owner an entity belongs to.
 	\end{itemize}
 	\item Attribute
 	\begin{itemize}
@@ -134,11 +141,15 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 	A data item holds an elementary piece of information, which is given by some fact or a definition in a modeled system. It may or may not be present as a modeled object. Data items can be attached to entities to form their attributes. It is a datum that may seem relevant and is possible to capture at first but later may be not used as no entity needs it in the end.
 	\begin{itemize}
 		\item Name
-		\item Code 
-		\item Comment
-		\item Definition
+		\item Code
+		\item Comment \\
+		Plain text short description.
+		\item Definition \\
+		An RTF description of an object.
 		\item Annotation
+		A further RTF description.
 		\item Keywords
+		Set of significant words specifying object's domain.
 	\end{itemize}
 	\item Entities
 	\begin{itemize}
@@ -162,8 +173,10 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 	\end{itemize}
 	\item Inheritances
 	\begin{itemize}
-		\item Parent Entity
-		\item Child Entity
+		\item Parent Entity \\ 
+		Predecessor.
+		\item Child Entity \\ 
+		Inheriting entity that takes over attributes of the parent.
 	\end{itemize}
 \end{itemize}
 
@@ -172,8 +185,8 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 \subsubsection{ER/Studio}
 
 \begin{itemize}
-	\item Physical Model \\
-	\item Type of Data Model (DBMS technology)
+	\item Type of Data Model\\
+	Database management system that a model is aimed for.
 	\item Schema
 	 \begin{itemize}
 	 	\item Name
@@ -252,7 +265,7 @@ Also in this case creating our resulting tree structure top-down makes sense. As
 \subsection{Maps-to Relation}
 \label{maps_to_analysis}
 
-Once we identified objects across the data models it would be handy \TODO{further explanation} to know which ones are related even though they are not defined at the same level of abstraction.
+Once we identified objects across the data models, it is really useful to know which ones are related even though they are not defined at the same level of abstraction. It is important to keep the data models readable and to know what tables are implementing which high level concept.
 
 Our tool deals only with mappings of objects which are not at the same level of abstraction. 
 Some modeling tools allow mapping, for example, a logical entity to a logical but it is unclear what is the meaning of such construct, since we have relationships available for defining relationships like that. Possibly it could indicate that the objects are used identically as they are implemented by a single database table, but that is what data lineage describes precisely and will be brought by Metadata Extractor.
@@ -272,7 +285,7 @@ Our focus is on how mappings are saved in an ER/Studio solution. \\
 
 We will look at what is required to do in order to extract the mappings.
 Let's start with the seemingly easier case of mappings between objects inside the same solution. After some analysis we found a CSV table defining them named Where\textunderscore Used\textunderscore PD.
-In the table there are four crucial attributes namely \TODO{id\textunderscore A, id\textunderscore B,} Meta\textunderscore Table\textunderscore A, Meta\textunderscore Table\textunderscore B.
+In the table there are four crucial attributes, IDs of the mapped objects and their Meta table types.
 The first two attributes are foreign keys to tables where the mapped objects are defined. The second pair of columns defines a type of the object so that we know to which tables we should look for the keys that are referenced. The meta tables also allows us to check if the objects are actually compatible with each other. \\
 
 At the first sight solving the universal mappings may appear more difficult as it looks like we will need to search for object in different solution than the one that is analyzed and reconstruct them. But the way it is really solved in ER/Studio is much simpler. We don't need to go anywhere else as the external objects referenced by a mapping are saved in the solution as well. They are described briefly in a table called External\textunderscore Mapped\textunderscore Objects by XML structures.
@@ -286,14 +299,15 @@ So every mapping we take into account is an external one, using the terminology 
 Before we will go through how they are represented we must mention the way objects taking part in the relation are identified.
 Every standalone object in PowerDesigner has a unique identifier stored in its attribute named ObjectID. This sequence of characters (string) is used when referring to an object in the XML.\\
 
-When an object is created out of an existing one it is reflected in the structure of the object's definition. In such case an element History is present where all the ids of objects that made an impact on the objects creation are listed there \TODO{date as well}.
+When an object is created out of an existing one it is reflected in the structure of the object's definition. In such case an element History is present where all the ids of objects that made an impact on the objects creation are listed there.
 
-User defined mappings are stored as separate relations. A composite XML element describe one relation \TODO{the name}. The structure is formed by a pair of mapped entities/tables \TODO{may be empty} and if their underlying attributes/column are in maps-to relation as well they are contained as in children elements of the mapping element \TODO{name}.
+User defined mappings are stored separately. 
+An XML element describes one mapping relation. The structure is formed by a pair of mapped entities/tables and if their underlying attributes/column that are in maps-to relation as well.
 
 So we are reading a file where the mappings are defined but we are only able to reconstruct a single object in the relation out of two. 
 The only property of the second one known is its id. We will need to find the object corresponding to the id in the file where it is defined in order to gather all the required metadata about it.
 Thus in situation like this a data model file are somehow dependent on other(s).
-To learn about the needed files there is an XML element \TODO{Targets}.
+To learn about the needed files, there is an XML element describing targets of a model.
 When a model is generated from a file a dependency is created in both of the data model files, the one that was generated just like in the one that it was generated from. In other words, if we imagine an oriented graph where a file is a node and an edge leads from file $a$ to file $b$ $\iff$ $b$ is listed as a target file of $a$, then bidirectional edges are created when models are created by generation.
 Whereas when user-defined mapping is created from an object in a source model $a$ to an object in a target model $b$, only the $a \rightarrow b$ edge is created and the $b$ file has no knowledge about the mapping.
 We must solve how a resolution of the foreign objects will be done. As we have nothing but a target object's id, not even information what file does it from a naïve approach would be hugely inefficient. 
@@ -303,12 +317,50 @@ Surely we can improve this solution by collecting the ids and postponing the res
 If we went in a different direction and processed each of the model once, then stored all the objects that may be referred to and once all the data models on input are loaded, resolve mappings. Logic like this would decreased count of reconstructions and file openings to ideal amount but eventually, if number of inputted data models would be too big the size of memory claimed by Metadata Extractor could become unbearable.
 To achieve a solution that would have advantages of the both naïve approaches we need to split the set of input files into disjoint subsets that represent the smallest group of logically tied files. We will transform all of the unidirectional edges in the dependency graph described above into bidirectional and will find connected components, that will be our searched logical groups. Therefore we can make the resolution at the end as storage requirements for objects of such subset should be reasonable enough. Based on the assumption that the far most common use-case is having three data models - logical, conceptual and physical (or few physical ones). \\
 
+\begin{figure}[H]
+	\centering
+	\begin{center}
+		\begin{tikzpicture}[scale=0.2]
+		\tikzstyle{every node}+=[inner sep=0pt]
+		\draw [black] (7.9,-32.9) circle (3);
+		\draw (7.9,-32.9) node {$a.pdm$};
+		\draw [black] (21.1,-32.9) circle (3);
+		\draw (21.1,-32.9) node {$b.pdm$};
+		\draw [black] (14.5,-23.1) circle (3);
+		\draw (14.5,-23.1) node {$c.ldm$};
+		\draw [black] (14.5,-12.5) circle (3);
+		\draw (14.5,-12.5) node {$d.cdm$};
+		\draw [black] (56.2,-32.9) circle (3);
+		\draw (56.2,-32.9) node {$e.pdm$};
+		\draw [black] (56.2,-23.1) circle (3);
+		\draw (56.2,-23.1) node {$f.ldm$};
+		\draw [black] (45,-12.5) circle (3);
+		\draw (45,-12.5) node {$g.cdm$};
+		\draw [black] (32.5,-32.9) circle (3);
+		\draw (32.5,-32.9) node {$h.pdm$};
+		\draw [black] (39.6,-23.1) circle (3);
+		\draw (39.6,-23.1) node {$i.ldm$};
+		\draw [black] (9.58,-30.41) -- (12.82,-25.59);
+		\fill [black] (12.82,-25.59) -- (11.96,-25.97) -- (12.79,-26.53);
+		\draw [black] (16.18,-25.59) -- (19.42,-30.41);
+		\fill [black] (19.42,-30.41) -- (19.39,-29.47) -- (18.56,-30.03);
+		\draw [black] (14.5,-15.5) -- (14.5,-20.1);
+		\fill [black] (14.5,-20.1) -- (15,-19.3) -- (14,-19.3);
+		\draw [black] (56.2,-26.1) -- (56.2,-29.9);
+		\fill [black] (56.2,-29.9) -- (56.7,-29.1) -- (55.7,-29.1);
+		\draw [black] (56.2,-29.9) -- (56.2,-26.1);
+		\fill [black] (56.2,-26.1) -- (55.7,-26.9) -- (56.7,-26.9);
+		\end{tikzpicture}
+	\end{center}
+	\caption[PowerDesigner Components Example]{On the example we have four five  components made of PowerDesigner data models. If dependencies of data models are like this, a.pdm should get processed and resolved in one batch with b.pdm, c.ldm and d.cdm. Then f.ldm must be handled with e.pdm, while rest of the models are independent and form component of size one. }
+\end{figure}
+
 But there is one more matter remaining that may cause some problems. The basic scenario how a user will behave is that he will works with PowerDesigner data models in some directory, for example C:/PowerDesigner/Project/ and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
 This way, the paths pointing to targets of models became are not correct since they have no reason to be updated and still depend on the files in C:/PowerDesigner/Project/. We want to work only with the files that user explicitly marked as to process, those are only the ones that are present in the input directory. Also if this problem is not thought of, it may cause undesired and unexpected behavior. 
 For example we have file $a$ referring to $b$ in input but a change of external object in C:/PowerDesigner/Project/$b$ would have affect on $a$.
 So we will try to come up with a fallback for this situation and will try to deduce by the former path the one in input folder.
-As first, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one. \TODO{example} 
-If not we will assume similar structure of the both directories as well as that the names of files were not changed.
+As first, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one.
+If not we will assume similar structure of the both directories and that the names of files were not changed.
 
 \subsection{Business Lineage Creation}
 The ultimate goal of the work is to develop a tool capable of creating business\footnote{By business lineage we mean data lineage that is formed on a higher level on abstraction than on the physical level.} data lineage automatically.
@@ -317,8 +369,19 @@ Manta Flow primarily analyzes physical data flow but there is already implemente
 In our domain by \definition{interpolation} we mean the process of making data flow edges based on information given by lower layer.
 We must ensure the objects we collect in physical data models are correctly merged as described in \Cref{matching_physical_objects} to make the most of the interpolation.
 
-\TODO{an example showing table a to table b, table c to table d and a and c are mapped to entity A, b is mapped to B, d to D. Therefore A has flow to both B and D on upper layer.}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{../img/BusinessLineage}
+\end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{../img/TechnicalLineage}
+\end{figure}
+
+The two visualization of data lineage show the very same database system from two different perspectives. The business lineage hides transformations and speaks natural language, using concepts that appear in real world providing cleat motivation of the business process. 
+Whereas technical data lineage precisely illustrates what happens with data in a database management system.
+\TODO{where to put this, describe the mappings visually or verbally?}
 \subsection{Database Connections}
 
 Modeling tools usually can make connections to a databases. It is useful for multiple reasons. For example already familiar reverse-engineering would not be possible without this ability since metadata are fetched directly from a database in order to capture its most up-to-date state. Also one of the features of modeling tools is keeping data models and databases that are tied with them in sync, so basically there is a mechanism for comparing actual state of a database with a model. 
@@ -339,7 +402,7 @@ The details we use for identification of a database instance are the following:
 	\item Server Name
 	\item Schema Name
 	\item User Name
-\end{itemize} \TODO{is the list complete?}\\
+\end{itemize} 
 All the above can be stored in one property called \definition{connection string}.\\
 To this set of properties we will refer as a \definition{connection}. \\
 As each physical data model describes a single database (or its subset) we need exactly one connection for each processed physical model in order to achieve what we described just above.
@@ -351,9 +414,7 @@ Databases whose models are created in ER/Studio can be reached only by ODBC driv
 We cannot really work with that, so we will leave it up to a user to define connection parameters by hand.
 A .ini files \label{ini_connections}is used for that where sections are named by physical models that they correspond to and connection details are specified inside a section. 
 
-
-\TODO{we can get type}
-\TODO{describe somewhere the format precisely}
+The tool tries to get as much information as possible from an ER/Studio data model, however name of a database and server must be added manually by a user as the tool does not save these data.
 
 \subsubsection{PowerDesigner}
 
@@ -370,9 +431,7 @@ There are couple of properties common for both types, like description and user 
 Then the most important property of a JDBC .dcp file is JDBC connection URL - in other words connection string which should sufficiently define a connection.
 In case of native DBMS variant Server Name along with Database Name are crucial in order to identify a database we are connecting to by the setup.
 
-But there is a problem that is common for both of the approaches, namely that there is no link between the connection file and a model that is result of reverse-engineering of the connection. So we will need to create a workaround. \TODO{the workaround}
-
-One more solution, which is not native to PowerDesigner but is standard for Manta Flow, is to use auxiliary .ini just like in the ER/Studio case described in \Cref{ini_connections}.
+But there is a problem that is common for both of the approaches, namely that there is no link between the connection file and a model that is result of reverse-engineering of the connection. So we will stick with the same solution using auxiliary .ini files as in the case of ER/Studio which is also standard for Manta Flow \Cref{ini_connections}.
 
 \subsection{Output Representation}
 
@@ -426,7 +485,7 @@ The competitors can be divided into multiple categories:
 		IBM approaches to data lineage in such way that it only displays assets that should be relevant for a business user. In fact it is just a subset of technical lineage and what is shown is picked by a user \cite{IbmIgcBusinessLineage}.
 	\end{itemize}
 	\item Data Lineage Tools \\ 
-		A data lineage company asg technologies company seem to do something with modeling tools as they apparently dispose of connectors for some modeling software. However no appropriate documentation can be found and the latest update traceable on ER/Studio connector was made in early 2014. \TODO{links} %https://isp.asg.com/Rochade/ERStudio/V2.3x/ERSTUDIOBUS_237_001_Release%20Notes.pdf https://isp.asg.com/Rochade/ReleaseNotes_buses.aspx
+		A data lineage company asg technologies company seem to do something with modeling tools as they apparently dispose of connectors for some modeling software. However no appropriate documentation can be found and the latest update traceable on ER/Studio connector was made in early 2014. \cite{AsgErStudio}
 		The supported version of ER/Studio is 9.7, while the version 18.0 is out today.
 		Similarly with their PowerDesigner connector, it is not easy to find a documentation and even if something related is mentioned the information seem to be obsolete nowadays.
 	
@@ -445,9 +504,9 @@ Then the most high-level view of the system's architecture is following:
 \begin{itemize}
 	\item Model \footnote{There is a naming collision but here we don't refer to any data model but a data structure that reproduces objects stored somewhere, which one of these two possible meanings we use should be clear from context.}\\ 
 	Is a read-only description of a data model source. On one hand it reflects the raw structure of a file so no information is left out when compared to the source. 
-	On the other hand it allows reading access to the modeled objects we are interested in that were reconstructed in convenient fashion. \TODO{Independent of Manta}
+	On the other hand it allows reading access to the modeled objects we are interested in that were reconstructed in convenient fashion.
 	\item Resolver \\ 
-	Is the part where the logic of construction of objects from a file is hidden and loading of the model is done. \TODO{Independent of manta}
+	Is the part where the logic of construction of objects from a file is hidden and loading of the model is done. 
 	\item Reader \\
 	Puts together the model and resolver unit - creates a model from a parsed structure of a file using the resolver and hands the result to the data flow generator.
 	\item Data Flow Generator \\ 

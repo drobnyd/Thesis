@@ -16,7 +16,8 @@ The reason behind not allowing user to create a physical data model out of scrat
 
 \subsection{Reverse Engineering}
 Reverse engineering, or alternatively back engineering, is the process whose aim is to find out principles of how things are done or works in a system that is already running and try to gain deeper understanding of the system.
-Applied to our domain the reverse engineering approach to creation of a data model means that a CASE tool connects to a database and brings every object found to the physical model that is created. \TODO{relationships} The model is an exact image of the database and one-to-one mapping between the model and database should be secured.
+Applied to our domain the reverse engineering approach to creation of a data model means, that a CASE tool connects to a database and brings every object found to the physical model that is created. A database management systems usually can provide additional metadata on objects, for example about primary/foreign keys, thanks to what relationships between tables can be brought by reverse-engineering as well. 
+The model is an exact image of the database and one-to-one mapping between the model and database should be secured.
 
 \subsection{Generating}
 Given a data model on some level another one on different abstraction level can be derived from it. Modeling tools usually support translating objects to semantically equivalent ones either towards either greater smaller abstraction. Of course models created like this are not full-featured models but may be a better starting point for a database designer to takeover. For example when conceptual data model is arranged and logical model should be created based on it it is really helpful not to start from a scratch but to generate an outline of the logical one by generating from the conceptual. Then it may be reshaped into the desired condition more quickly. Generation sources and targets are in maps-to relationship implicitly.
