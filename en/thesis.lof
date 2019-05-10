@@ -7,9 +7,10 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Technical Lineage versus Business Lineage}}{18}{figure.2.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces CSV Table}}{25}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces PowerDesigner Components Example}}{34}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Metadata Extractor Software Architecture}}{40}{figure.4.3}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Table from .DM1 file}}{25}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Hierarchy of Objects in a Data Model}}{31}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces PowerDesigner Components Example}}{35}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Metadata Extractor Software Architecture}}{42}{figure.4.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces NFA Accepting a CSV Line}}{44}{figure.5.1}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces NFA Accepting a CSV Line}}{46}{figure.5.1}
 \addvspace {10\p@ }

@@ -1,112 +1,156 @@
 \chapter{Analysis \& Design of the Solution}
 \label{analysis_design}
 
-The purpose of Metadata Extractor is to obtain metadata from data models created using modeling tools ER/Studio and PowerDesigner. The solution will be able to connect to Manta Flow and to bring data lineage to objects that have greater extent of abstraction than the physical ones which are currently the only objects supported by Manta.
+The purpose of Metadata Extractor is to obtain metadata from data models that were created using modeling tools ER/Studio and PowerDesigner. 
+The solution will be able to interact with Manta Flow and bring business lineage on objects from physical and logical data models. 
+Currently, Manta Flow supports only automated creation of technical lineage.
 
-Here we describe how we proceeded when analyzing the solution and discuss crucial features of ER/Studio and PowerDesigner in detail, so we can identify what to focus on, when implementing the tool.\\
+Here we describe how we proceeded when analyzing the solution and discuss crucial features of ER/Studio and PowerDesigner in detail.
+Therefore, we can identify the important aspects of the tool that we will need to focus on, when finally implementing Metadata Extractor.\\
 
 In this chapter we seek answers for these questions:
 \begin{enumerate}
-	\item Identify what data models the modeling tools work with, what objects are contained in the data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage.
-	\item Find out what is the format of files that the tools save data models in. Together with how the data we assumed interesting in 1) can be reconstructed.
-	\item Determine how the file format can be parsed.
+	\item Identify what data models the modeling tools work with, what objects are contained in the supported data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage.
+	\item Find out how the data models are saved and how the interesting information from 1) can be reconstructed.
+	\item Determine how the file format in what data models are stored can be parsed.
 \end{enumerate}
 
 \section{Analysis of the Problem}
 
-We already presented that the modeling tools are capable of creating data models. The output files of the tools are going to be the input of Metadata Extractor, that uses them for reconstruction of the objects and information contained in the data models.
-In order to do so we needed to identify what objects the solution will look for in the files and how they are related to each other.
-In \Cref{chap:database_modeling} about database modeling we introduced the standard layout of every data model type. We will quickly review the basic skeleton of each model type once again. \\
+We already presented that the modeling tools are capable of creating data models. These models are saved into files. 
+The output files of the modeling tools are going to be the input of Metadata Extractor, that uses them for reconstruction of the objects and information contained in the data models.
+In order to come with logic of the reconstruction, we need to identify what objects are saved in the files produced by modeling tools, and how they are represented. 
+In \Cref{chap:database_modeling} about database modeling we introduced the standard layout of every data model type. We will quickly review their main objects. \\
 
-In conceptual data model is focused mainly on entities, which may have attributes. An entity may be related to other entities.
+\label{main_modeled_objects}
+Conceptual and logical data models consist of entities, which may have attributes.
+Physical data models are made of tables. A table is composed of columns may belong to a schema.
 
-On logical layer also entities with attributes can be found and the entities may have relationships.
+These are the fundamental metadata Metadata Extractor must load form the files. 
+Consequently, it must correctly load hierarchy of these objects as it is modeled. For example attributes must be assigned to entities correctly, etc.
 
-Physical data models are made of tables. A table belongs to a schema and is composed of columns.
-
-These are the objects we must find in the file formats to recreate the main object hierarchy.
-
-Then we will need to figure out how the models in maps-to relation refer to each other across levels of abstraction. For example how a logical model and a physical model, being the realization of the logical one, are tied together.
+Next, we will look at how to find the pairs of objects that are in maps-to relation, and how do they refer to each other across levels of abstraction.
+In example, how a logical attribute and a physical column, are tied together across data models.
 
 \subsection{File Format}
 
-Firstly, we need to identify what is the output of the analyzed modeling tools, to know which what is stored in a file produced, what information are stored there, to decide what is interesting to bring to data flow and what not, and how it is done, to be able to create a software automatically reconstructing the desired information.
+In this section we firstly discuss what is the output of the analyzed modeling tools. Then we look at the main principles of how and what information is stored in the given format. Knowing this Metadata Extractor we can find the required objects (mentioned in \Cref{main_modeled_objects}) serialized in a file.
 
 \subsubsection{ER/Studio}
 \label{subsec:dm1_format}
-The modeling tool uses its custom file format. It uses .DM1 extension. The file stores plain text and it is made up of many tables. A table in this context is a CSV (comma-separated values) structure but as there is not only one CSV table identifying name is also included. So by table we understand its name, definition of columns (or fields) and records.
-How more complex objects can be stored in files like this is not clear from the first sight and it required some work to get the idea behind it. 
+
+The ER/Studio modeling tool uses its custom file format. These files have the .DM1 extension. 
+In a single .DM1 file, related data models are stored. Let's call these models a solution. An \definition{ER/Studio solution} is set of data models, describing a problem on both logical and physical levels (the two layers are only that ER/Studio supports). 
+In a solution one logical model must be present whereas 0 to N physical ones supporting the logical model.
+We can imagine why ER/Studio behaves like this. The motivation may be, that once there is a problem (if there is no challenge, no data modeling is needed), must be described by a logical model. 
+Possibly user has worked out the way to solve it, and that is when physical models are present as well.
+Note that the actual storage may be distributed and the corresponding databases can be of different technologies, that is why more than one physical model is allowed in a single solution.
+
+.DM1 is a textual file format which is organized into many tables.
+Such table is a CSV (comma-separated values) structure with a modification, since the file format consists of many of these tables, (i) each table has a unique name which identifies it. 
+Next, (ii) a table contains a CSV row, which defines each column of the table. 
+Lastly, (iii) CSV rows are standing for records that are stored in a table. 
+To put it together, by a single table in .DM1 file we understand its name, column definitions and records (rows representing data stored in the table).
+At the first sight, it is not clear how complex objects can be stored in files that we just described. To get the idea behind it, we did some work that we are going to described in this section. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=14cm]{../img/StringUsageTable}
-	\caption[CSV Table]{Example of a simple CSV table named StringUsage with five columns from a .DM1 file.}
+	\caption[Table from .DM1 file]{Example of a simple CSV table from a .DM1 file. It is named StringUsage, is made of five columns and stores 13 records.}
 \end{figure}
 
 
-An attentive reader may find these terms, that we used for describing the data structure, familiar since we already used them where introducing relational databases. And he would be true. When investigating these tables we can notice columns that are shared, meaning relation between the tables that have them in common. This is pretty much how primary and foreign key work in relational databases.
-Now we face the challenge of reverse-engineering the tables to rebuild the composite objects that are deconstructed and saved in the tables.
-It would be quite exhausting to try to restore the relationships by hand, so we developed a little tool that helped us to get an overview of the format that will work on one hand with tables' metadata to find the intersecting columns as well as with the records to see whether there are similarities in data stored in different tables to uncover relations between them and the core concepts behind the file format.
-Further details and ideas related to the ER/Studio file reverse-engineering tool can be found in \Cref{subsec:dm1_tool}
+An attentive reader may find the terms we used for when describing a .DM1 table familiar. 
+As we already seen the terminology when introducing relational databases (see \Cref{relational_databases}). 
+When going through the tables, we can notice columns that have common names.
+That resembles primary and foreign key concepts used in relational databases, where a column is used to reference a record stored a different table. 
+The keys indicate relations between tables.
 
-Surely, when we want to load an arbitrary file a component that parses it will be needed. 
-We mentioned that the file of our interest is basically a sequence of CSV tables. The question was whether to reach out for an existing CSV parser or to develop a tailor made one. We took the second, option why and how we did so is described further in \Cref{subsec:dm1_parser}.
+It looks like this could be the answer for the question we proposed earlier - how complex objects can be stored in the simple tables. Each table stores a simple aspect of an object, but thanks to the relations, interconnected tables can linked together and compose from their data a more complicated object.
 
-Once we understand the structure and can tell how the data we are seeking for are stored we can reconstruct them.
-In one .DM1 file related data models are stored. Let's call these models a solution. An \definition{ER/Studio solution} is set of data models, describing a problem on both logical and physical levels (the two layers are only that ER/Studio supports). In a solution one logical model must be present whereas 0 to N physical ones are supporting it. 
-We can imagine why ER/Studio behaves like this. The motivation may be that once there is a problem (if there is no challenge, no data modeling is needed) it is obligatory described by a logical model. Possibly user has worked out the way to solve it, and that is when physical models are present as well. 
-Note that the actual storage may be distributed and the corresponding databases can be of different technologies, that is why more than one physical model is allowed in a single solution.
+To identify crucial relations, that Metadata Extractor needs to know, in order to be able to reconstruct composite objects such as entities, attributes, etc., from .DM1 files, we developed a little reverse-engineering utility, which helps us to get an overview of the links between the tables.
+Further details on how we proceeded when designing the utility can be found in \Cref{subsec:dm1_tool}. 
+
+In order to work with a .DM1 file programmatically, it is needed to load it into suitable data structures, that can be processed further. That is what a parser does. 
+Metadata Extractor, as well as the reverse-engineering utility need such parser.
+We mentioned the file format is basically a sequence of CSV tables. 
+The question was whether to reach out for an existing CSV parsing solution, or to develop a tailor made one.
+We took the second option, why and how we did so is described further in \Cref{subsec:dm1_parser}. \\
+
+To sum up, the reverse-engineering utility provides an insight into the logic of .DM1 files, so Metadata Extractor knows what data model objects are stored in the files and how the complex objects are deserialized there. The parser prepares an input file, thus Metadata Extractor can reconstruct the objects and their metadata stored in it.
 
 \subsubsection{PowerDesigner}
 
-In the case of PowerDesigner need to handle files with three types of extensions .pdm, .ldm and .cdm. They  stand for physical data model, logical data model and conceptual data model respectively.
-All of them are XML (Extensible Markup Language) based file formats.
-Actually, there is an alternative to the XML files which PowerDesigner also works with. Each of the models can be saved into a binary version instead as PowerDesigner can process them more quickly. However, we need a user to save his models as XML, only this way is supported currently by Metadata Extractor.
+PowerDesigner produces files storing data models with three types of extensions - .pdm, .ldm and .cdm.
+They stand for physical, logical and conceptual data model respectively.
 
-Since we have three different output file types from the modeling tool it is easy to see that the logic of how data models are saved varies from ER/Studio's approach. 
-While ER/Studio groups data models into solutions every model created in PowerDesigner is saved independently. Set of files that are currently opened in PowerDesigner form its state. Such state is called a workspace here and can be saved into a .sws file, but these files do not bring us any interesting information. The information captured stores only what files were at some time opened in the environment and does not tell anything about logical links between the captured files.
+While ER/Studio groups data models into solutions every model created in PowerDesigner is saved independently. 
+A set of files that are at the same time opened in PowerDesigner forms its state. 
+Such state is called a workspace and can be saved into a .sws file. However, the workspace files do not bring us anything interesting. 
+The information captured stores only what data models were at some time opened in user's interface and does not tell anything about logical links between the files.
 
-When parsing XML files there are basically two major ways we can face the problem.
+The data model files are XML (Extensible Markup Language) based file formats.
+Alternatively, PowerDesigner is also able to save its data models into a binary file. The advantage is that the binary files can be processed more quickly and are smaller in size than the XML counterparts. 
+However, we need a Metadata Extractor user to save his models as XMLs, that is the only this way currently supported.
 
-The first approach is SAX (Simple API for XML) that is an event-driven parser, which process an XML document sequentially by a single pass. By default the processing is state independent and handlers are triggered when an event occurs. It is a simple (for some cases may be even too simple) and lightweight parser.
+When parsing XML files there are two major ways how to do it. \\
 
-On the other hand we have a family of DOM (Document Object Model) parsers. They load an XML file into a full AST (Abstract Syntactic Tree) structure. This way of file processing is both more memory and time consuming but translates everything stored in the parsed file into data structure straightforwardly. Then we can conveniently work with the tree-like result structure where nodes represent parts of the processed document.
+The first approach is SAX (Simple API for XML), which is an event-driven parser that process an XML document sequentially by a single pass. 
+By default its processing is stateless and handlers are triggered when an event occurs. 
+It is a simple and lightweight XML parser. \\
 
-In the next section we describe what we want to retrieve from the PowerDesigner data model files. We will see that the objects and their properties are quite complex and composite using a DOM parser will be much more suitable and having the ability of doing XPath queries over a DOM document is nicer than having to store a context manually, what would be needed with SAX.
+On the other hand, we have a family of DOM (Document Object Model) parsers. 
+They load an XML file into a full AST (Abstract Syntactic Tree) structure. 
+This way of file processing more memory and time consuming, but translates everything stored in the input file into data structure straightforwardly. 
+Then it can be conveniently worked with the tree-like resulting structure, where nodes represent parts of the processed document. \\
+
+The great aspect of XML files is that they are human-readable and to figure out how the objects, Metadata Extractor is seeking for, are serialized in these files is not that difficult.
+In the next section we describe what objects and information Metadata Extractor has to retrieve from the PowerDesigner data model files. We will see that the objects and their properties are quite complex.
+Having a stateful parser would bring an advantage as the context of the XML elements matter, since, for example a definition, Metadata Extractor has to obtain, can be attached to an entity, an attribute and many other kinds of objects.
+Therefore, using a DOM parser is much more suitable and having the ability of doing XPath queries over a DOM document is nicer than having to store a context manually, what would be needed to do with SAX.
 
 \subsection{Metadata to Collect from Data Models}
 \label{metadata_enumeration}
 
-The main desired feature is to to bring data lineage to the conceptual and logical level. To do this, we had to identify which metadata to collect from models on these levels.
-The bare minimum is to be able to reconstruct high-level entities to have at least something to visualize data flow between, according to knowledge gained in later stages.
-But we will aim to bring as much information as possible and try to make use of every relevant (meta)datum saved by a modeling tool. 
-They are exhaustive pieces of software with many features and ability to capture plenty of aspects of modeled system, so we must determine what subset of the information will be extracted.
-In this section we discuss what specific types of objects can we obtain and what are means to describe these objects even further by some properties of theirs. 
-On the other hand we will not pay attention to relationships in entity-relationship model. This is given by nature of Manta Flow, it is not a modeling tool thus it does not work with them and links between objects are used solely to represent dependencies determined by data lineage.
-The only relationship type from data models we will need to cope with is the inheritance relation. It is present in enhanced-entity-relationship models. The exception is made because if the is-a links are not captured, entities' structure are be not described completely and their attributes may be missing.
-Other categories of metadata we will not extract are the ones that describe some constraints on the actual records saved in database themselves. We will work exclusively with database metadata and don't have access to what is really saved there thus we cannot neither monitor nor enforce anything on the database entries. That is why likes of keys and data types defined in data models will not be in our domain of interest.
+The main goal of Metadata Extractor is to bring business data lineage and to extract metadata for objects in both business data lineage and the technical one.
+To meet the goal, we have to identify what objects and which of their metadata to collect from data models on every level of abstraction.
 
-The full list of metadata, including the ones we do not find useful to extract is listed in the appendix.
+Metadata Extractor is aimed to bring information that is relevant to for data lineage and may be visualized when presenting a flow of data.
+Modeling tools are exhaustive pieces of software with many features, thus have the ability to capture plenty of aspects that a modeled system has.
+We determined types information, that can appear in data models of PowerDesigner and ER/Studio, makes sense to extract by analysis. Let us mention two important categories of metadata that we assume irrelevant to retrieve by Metadata Extractor.
+
+Firstly, we will not pay attention to relationships in the entity-relationship model. 
+This is given by the nature of Manta Flow. It is not a modeling tool, thus it does not work with relations and edges between objects are used solely to represent flow of data in a given system.
+The only relationship type from data models we will need to cope with is the inheritance relation, which is present in the enhanced-entity-relationship model. 
+The difference is that without capturing the is-a links, an entity may not be described completely and the attributes that are inherited may be missing.
+
+The second category of metadata that Metadata Extractor will ignore, are the ones that describe constraints on the actual data records saved in a database. 
+Metadata Extractor works, just like Manta Flow, exclusively with database's metadata and does not access the data really saved in a storage. 
+Thus, our solution neither can monitor nor enforce any constraint on the database entries. 
+That is why the metadata like keys or data types, which are also defined in data models, will not be in our domain of interest.
+
+In this section we list the specific types of objects we considered important for data lineage and what are the means to describe these objects even further by properties of theirs. 
+The full list of metadata, including the ones we do not find useful to extract, is listed in \Cref{full_list_metadata}.
 
 \subsubsection{Conceptual \& Logical Data Model}
 
-Here we list objects that appear in both conceptual and logical data models, together with what additional information about them can be inserted by user.
+Here we go through objects that appear in both conceptual and logical data models, together with what additional metadata can be attached to them.
 
 \subsubsection{ER/Studio}
 
 \subsubsection{CDM}
 
-ER/Studio does not support conceptual data models.
+ER/Studio Data Architect does not support conceptual data models.
 
 \subsubsection{LDM}
 
 \begin{itemize}
 	\item Owner \\ 
-	Owner is a concept equivalent to a schema - it is a container for logically related entities. Every entity belongs to an owner.
+	An owner is a concept equivalent to a schema - it is a container for logically related entities. Every entity belongs to an owner.
 	\item Entity \\
 	\begin{itemize}
 		\item Name \\ 
-		Name of an entity.
+		The name of an entity.
 		\item Attributes \\ 
 		Attributes assigned to an entity.
 		\item Definition \\
@@ -114,11 +158,11 @@ ER/Studio does not support conceptual data models.
 		\item Note \\
 		Notes are used when a documentation about an entity is generated. Plain text or RTF.
 		\item Where Used \\
-		Shows objects that are in maps-to relation with an entity. Those which were created by generating.
+		This property shows objects that are in maps-to relation with an entity. Those which were created by generating.
 		\item User-Defined Mappings \\
 		Shows objects that are in maps-to relation with an entity. These mapping are user defined. They can contain description of a relation, but we will not fetch the text as Manta Flow does not support attributes on mapping edges.
 		\item Owner \\ 
-		Owner an entity belongs to.
+		The owner an entity belongs to.
 	\end{itemize}
 	\item Attribute
 	\begin{itemize}
@@ -183,6 +227,8 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 
 \subsubsection{Physical Data Model}
 
+In this section we list objects from physical level and their possible metadata.
+
 \subsubsection{ER/Studio}
 
 \begin{itemize}
@@ -239,84 +285,131 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 	\end{itemize}
 \end{itemize}
 
-\subsection{Recreating of Modeled Objects}
+\subsection{Reconstruction of Data Model}
 
-We defined what are the objects and their properties that we will try to obtain from data models. 
-The objects live in the common environment of a data model, therefore they must be organized in some hierarchy.
- The above enumeration of the objects may help reader to see that the very basic layout of objects captured by a model is resembling a tree-like structure. The reason is that the basic skeleton of a data model goes like shown on the figure \TODO{figure}. A file can store one or more data models, the models may have several owners, each of them may own zero or more entities/tables which are comprised of none or multiple attributes/columns. 
- Surely further relations between the objects will come to play, like inheritances or mappings discussed later in the \Cref{maps_to_analysis}, making the diagram of actors in the system more complex.
+Earlier in \Cref{metadata_enumeration} we defined what are the objects and their properties that Metadata Extractor must obtain from data models.
+The objects living in the common environment of a data model, are related to each other into some kind of hierarchy.
+The listing of the objects with their characteristics, which Metadata Extractor will retrieve from data models, makes us realize, that the very basic layout of objects captured by a model resembles a tree-like structure.
+The reason is that the analysis implies a general skeleton of a data model that goes like shown in \Cref{DataModelHierarchy}. However, it is just a simplified view. For example, data models do not need to support the concept of owners/schemas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=14cm]{../img/DataModelHierarchy}
+	\caption[Hierarchy of Objects in a Data Model]{General hierarchy of objects in a data model. The UML diagram pictures a data model, that contains arbitrary number of owners (schemas respectively), they own 0 to N tables (entities resp.), while each entity consists of zero or more columns (attributes resp.). These objects can be seen as nodes of a tree, whereas their properties are attributes of the corresponding nodes.}
+	\label{DataModelHierarchy}
+\end{figure} 
+
+Surely further relations between the objects will come to play, like inheritances or mappings. They are going to be discussed later in the \Cref{maps_to_analysis}, making the diagram of objects in a data model more complex.
  
- These objects can be seen then as nodes of the tree, whereas their properties are attributes of the corresponding nodes.
- 
-Metadata Extractor will build the tree from top to bottom. Firstly, it reconstructs the root standing for a file, then link it to its children, data models, and so on and so forth.
+Metadata Extractor builds the tree from the top to the bottom. 
+In the next two subsections we will describe how the main objects from \Cref{DataModelHierarchy} can be reconstructed from the output files of ER/Studio, PowerDesigner respectively.
 
 \subsubsection{ER/Studio}
 
-In the case of ER/Studio, each type of the objects is defined in some table that defines its type as such table is used for storing all instance of the type. It has an id relative to its table used for identification among other realizations of the same type. Basically all links to other objects are done using foreign keys, the only necessity is to know from which tables the keys come from. 
-So if an object has a reference to its, if we stick with the tree terminology, parent we can get it by looking at what is the id being referenced and identifying the reconstructed object using this information and as we are descending down the tree the object is already loaded and we can plug the child in.
+In the case of ER/Studio, each type of the objects is defined in a single table. Such table stores all instances of the given type. 
+An instance is identified in a table uniquely by its ID among other realizations of the same type.
+Therefore, this ID is a primary key of a table. The relations from \Cref{DataModelHierarchy} are 
+done by these keys.
+An object has a reference to its, if we stick with the tree terminology, parent by storing parent's ID as a foreign key property of itself. 
+Object's textual properties like name or definition are saved in a table containing string entries. 
+Tables storing the records of the main objects therefore have also column with foreign keys to the string table. 
+So if Metadata Extractor proceeds by loading data models firstly, then descending down the tree, every time it is loading an object, its parent has already been constructed and the child can be simply plugged to the parent that the child references by a foreign key.
 
 \subsubsection{PowerDesigner}
 
-XML files form a tree structure by definition what makes storing hierarchy of objects with the same nature very much natural and straightforward. 
-This way a parent object of a child is simply its predecessor in layout of XML elements. 
-Other properties of an object are stored as child elements as well or attributes of the object's representation. 
-Also in this case creating our resulting tree structure top-down makes sense. As first, on our way from the XML root, build objects higher in the hierarchy and only if a parent is build we examine its children.
-
+XML files form a tree structure by definition. This fact makes storing a hierarchy of objects with the same nature suitable and straightforward. 
+This way a parent object of a child is simply its predecessor in the tree formed by XML elements of a file. 
+Properties of an object are stored as child XML elements.
+When Metadata Extractor creates the result, the top-down traversal of an XML tree is followed. 
+At first, on its way down from the XML root, it builds objects higher in the hierarchy and only if a parent is build, Extractor examines its children. 
+This way the context is clear and once, let's say an attribute, is created the program knows what is its parent entity trivially, as it must be the one that was created most recently.
 
 \subsection{Maps-to Relation}
 \label{maps_to_analysis}
 
-Once we identified objects across the data models, it is really useful to know which ones are related even though they are not defined at the same level of abstraction. It is important to keep the data models readable and to know what tables are implementing which high level concept.
+Once we identified possible objects across the data models, it is really useful to know which objects are related, even though they were not defined at the same level of abstraction. 
+It is important to keep the data models readable, and to keep track of what tables are implementing which high level concept.
 
 Our tool deals only with mappings of objects which are not at the same level of abstraction. 
-Some modeling tools allow mapping, for example, a logical entity to a logical but it is unclear what is the meaning of such construct, since we have relationships available for defining relationships like that. Possibly it could indicate that the objects are used identically as they are implemented by a single database table, but that is what data lineage describes precisely and will be brought by Metadata Extractor.
+Some modeling tools allow mapping, for example, a logical entity to a logical but it is unclear what is the meaning of such construct. 
+One explanation would be, that it expresses a relationship, but data modeling tools have other means available for defining relationships. 
+Possibly, it could indicate that the entities are used identically as they are implemented by a single database table, but that is what data lineage describes precisely and will be brought by Metadata Extractor.
 
-To be specific only the following mappings we will extract: 
+To be specific Metadata Extractor copes only with the following types mappings: 
 \begin{itemize}
 	\item An entity to a table or another entity. 
 	\item An attribute to a column or another attribute.
 \end{itemize}
+\label{allowed_mappings}
+
+Now we take a look how the mapping are realized in the chosen data modeling tools.
 
 \subsubsection{ER/Studio}
 
-We already listed two types of mapping relation that entities, tables, attributes and columns in ER/Studio can dispose of. 
-In fact their meaning is the same, the only difference is that the where used mappings are generated automatically and the user-defined are drawn by user. We assumed that all the objects in maps-to relation are in the very same solution but there is also an option to create a mapping to objects that are defined in different .DM1 files. It can be done using the Compare and Merge utility in ER/Studio whose functionality is to synchronize a model with another model/live database/SQL file. Among other operations that keep the pairs in sync there is the mapping creation option. We are interested in the first scenario where models may come from two solutions. The compared models' objects are listed side by side and mappings can be created between pairs of them. These mappings are referred to as universal. \\
+In \Cref{metadata_enumeration} we mentioned two types of mapping relations in ER/Studio for  entities, tables, attributes and columns.
+In fact, meaning of both types is the same. The only difference is that the where-used mappings are generated automatically, while the user-defined are drawn manually by a user. 
+We assumed that all the objects that can appear in maps-to relation are in the very same solution, but there is also an option to create a mapping to objects which are defined in different .DM1 files. It can be done using the Compare and Merge utility in ER/Studio, whose functionality is to synchronize a model with another model/live database/SQL file. 
+Among other operations that keep pairs in sync, there is the mapping creation option. 
+We are interested in the first scenario, where the two compared data models may originate even in two different solutions. 
+This, third, kind of maps-to relation is referred to as a universal mapping. \\
 
-Our focus is on how mappings are saved in an ER/Studio solution. \\ 
+Knowing all the possible types of the mapping relation, we will further focus on how they are saved in an ER/Studio .DM1 file and how can they be extracted. \\ 
 
-We will look at what is required to do in order to extract the mappings.
-Let's start with the seemingly easier case of mappings between objects inside the same solution. After some analysis we found a CSV table defining them named Where\textunderscore Used\textunderscore PD.
-In the table there are four crucial attributes, IDs of the mapped objects and their Meta table types.
-The first two attributes are foreign keys to tables where the mapped objects are defined. The second pair of columns defines a type of the object so that we know to which tables we should look for the keys that are referenced. The meta tables also allows us to check if the objects are actually compatible with each other. \\
+Let's start with the seemingly easier case of mappings between objects inside the same ER/Studio solution - where-used and user-defined. 
+After some analysis using the reverse-engineering tools (see \Cref{data_model_reverse_engineering}) we found the table that stores the mappings. It is named Where\textunderscore Used\textunderscore PD.
+In the table, there are four crucial attributes, IDs of the mapped objects and their Meta table types.
+The first two attributes are foreign keys to tables, where the mapped objects are defined. The second pair of columns defines a type of the object, so that Metadata Extractor knows to which tables it should look for the instances that are referenced by the foreign keys. 
+The Meta table types also allows us to check, if the objects are actually compatible with each other in the sense of how we constrained the allowed mappings in \Cref{allowed_mappings}. \\
 
-At the first sight solving the universal mappings may appear more difficult as it looks like we will need to search for object in different solution than the one that is analyzed and reconstruct them. But the way it is really solved in ER/Studio is much simpler. We don't need to go anywhere else as the external objects referenced by a mapping are saved in the solution as well. They are described briefly in a table called External\textunderscore Mapped\textunderscore Objects by XML structures.
-Also a table Universal\textunderscore Mappings using the same concepts as Where\textunderscore Used\textunderscore PD allows Metadata Extractor to reconstruct them easily.
+At the first sight, solving the universal mappings may appear more difficult. It looks like Metadata Extractor will need to search for object in different ER/Studio solutions and reconstruct the external objects. 
+But the way the universal mappings are realized in ER/Studio is much simpler. 
+Metadata Extractor does not need to open other files, as the external objects that are referenced by a universal mapping are stored in the analyzed .DM1 file. 
+They are described briefly in a table called External\textunderscore Mapped\textunderscore Objects by XML structures.
+Metadata Extractor uses SAX parser to load these objects, as the XML object description is simple.
+Finally, the table called Universal\textunderscore Mappings, where the all the mappings to external objects are defined, is using the same concepts as Where\textunderscore Used\textunderscore PD allowing Metadata Extractor to reconstruct them easily.
 
 \subsubsection{PowerDesigner}
 
-By the nature of how PowerDesigner saves every data model into a separate file to resolve mappings will be not as straightforward as in the case of ER/Studio.
-So every mapping we take into account is an external one, using the terminology introduced above. There is a further division into two categories. Similarly as in the first tool, the mappings may be either generated or user-defined. \\ 
+PowerDesigner saves every data model into a separate file. Therefore, to resolve mappings will be not as straightforward as in the case of ER/Studio, since every mapping of an object to another that is on a different abstraction layer leads across PowerDesigner files.
+Firstly, let's go through the possible types of mappings, then we will discuss how to resolve the relation efficiently.
 
-Before we will go through how they are represented we must mention the way objects taking part in the relation are identified.
-Every standalone object in PowerDesigner has a unique identifier stored in its attribute named ObjectID. This sequence of characters (string) is used when referring to an object in the XML.\\
+The mappings are divided into two categories. 
+Similarly as in the first tool, the mappings may be either generated or user-defined. \\ 
 
-When an object is created out of an existing one it is reflected in the structure of the object's definition. In such case an element History is present where all the ids of objects that made an impact on the objects creation are listed there.
 
-User defined mappings are stored separately. 
-An XML element describes one mapping relation. The structure is formed by a pair of mapped entities/tables and if their underlying attributes/column that are in maps-to relation as well.
+Before going through how the mappings are represented, we must mention the way objects taking part in the relation are identified.
+Every important objects in PowerDesigner has a unique identifier named ObjectID. This sequence of characters is used when referring to the object.\\
 
-So we are reading a file where the mappings are defined but we are only able to reconstruct a single object in the relation out of two. 
-The only property of the second one known is its id. We will need to find the object corresponding to the id in the file where it is defined in order to gather all the required metadata about it.
-Thus in situation like this a data model file are somehow dependent on other(s).
-To learn about the needed files, there is an XML element describing targets of a model.
-When a model is generated from a file a dependency is created in both of the data model files, the one that was generated just like in the one that it was generated from. In other words, if we imagine an oriented graph where a file is a node and an edge leads from file $a$ to file $b$ $\iff$ $b$ is listed as a target file of $a$, then bidirectional edges are created when models are created by generation.
-Whereas when user-defined mapping is created from an object in a source model $a$ to an object in a target model $b$, only the $a \rightarrow b$ edge is created and the $b$ file has no knowledge about the mapping.
-We must solve how a resolution of the foreign objects will be done. As we have nothing but a target object's id, not even information what file does it from a naïve approach would be hugely inefficient. 
-It would go search for every demanded id across all targets. 
-But that potentially leads to a great amount of file opens as well as having to reconstruct the same objects over and over, leading to a big time overhead.
-Surely we can improve this solution by collecting the ids and postponing the resolution to the and so when processing a single files its target would be opened only once and the reconstruction of the object would take place one time as well. But that is still expansive in terms of time.
-If we went in a different direction and processed each of the model once, then stored all the objects that may be referred to and once all the data models on input are loaded, resolve mappings. Logic like this would decreased count of reconstructions and file openings to ideal amount but eventually, if number of inputted data models would be too big the size of memory claimed by Metadata Extractor could become unbearable.
-To achieve a solution that would have advantages of the both naïve approaches we need to split the set of input files into disjoint subsets that represent the smallest group of logically tied files. We will transform all of the unidirectional edges in the dependency graph described above into bidirectional and will find connected components, that will be our searched logical groups. Therefore we can make the resolution at the end as storage requirements for objects of such subset should be reasonable enough. Based on the assumption that the far most common use-case is having three data models - logical, conceptual and physical (or few physical ones). \\
+When an object is created out of an existing one by generating, the resulting object has an XML element named History. The element contains holds all the IDs of objects that the final object was generated from.
+
+User defined mappings are represented by a composite XML element. 
+The element representing a single mapping consists of a pair of mapped entities/tables IDs. If sub objects of the pair are tied together by mapping as well, the XML element is a parent of further XML elements, which are specifying IDs of the underlying attributes/columns that are mapped to each other. \\
+
+However, knowing the types of mappings and how they are saved in the PowerDesigner files is not enough to reconstruct the relation. Let's imagine the following scenario.
+Metadata Extractor gets a file to process. It reconstructs objects stored in the file, then the program tries to resolve mappings, but one of the mapped objects is not accessible, as it is defined in a different file, than is the one Metadata Extractor is currently reading.
+Only the ID of the mapped counterpart is known. 
+In order to gather all the required metadata about the mapped object, Metadata Extractor needs to find it by its ID in the file where it is defined.
+Thus in a situation like this, data model file are dependent on others.
+In PowerDesigner's file format Metadata Extractor can find an XML element describing targets of the given model, to learn what are the files it depends on.
+
+When a model is generated from a file, such dependency is saved to both of the data model files, in the generation target as well as in the origin. 
+In other words, if we imagine an oriented graph, where a file is a node and an edge leads from a file $a$ to file $b$ $\iff$ $b$ is listed as a dependency of $a$, then bidirectional edge is created when models are generated.
+
+Whereas, when a user-defined mapping is created from an object in a source model $c$ to an object in a target model $d$, only the $c \rightarrow d$ edge is created, and $d$ has no knowledge about the mapping.
+Metadata Extractor must solve how a resolution of the external objects will be done. 
+As it has no further knowledge than the target object's ID, not even information what file does it come from, a naïve approach would be hugely inefficient. 
+The simple solution would search for every demanded ID across all targets of the processed model and once the ID is found, the objects gets reconstructed. 
+That potentially leads to a great amount of file openings. Also if an object is referenced from $n$ mappings, it would have to be reconstructed $n$ times while still processing a single data model, leading to a huge time overhead.
+Surely, this solution can be improved by collecting the external IDs and postponing the resolution to the end, once all the needed external objects are known. 
+So when processing a single file, each of its target would be opened only once and the reconstruction of the object would take place one time as well. But still, if an object is referenced from $n$ different models, it would be reconstructed $n + 1$ times, which definitely not ideal.
+
+If we went in a different direction and processed each of the model once, constructed all their objects, then stored all of them by their IDs and once all the data models that Metadata Extractor had to process are loaded, resolve mappings. 
+Advancing like this would decreased count of reconstructions and file openings to the ideal amount but eventually, if the number of inputted data models is big the size of memory claimed by Metadata Extractor could become unbearable.
+
+To achieve a solution that would have the advantages of both of the approaches, Metadata Extractor needs to split the set of input models into disjoint subsets, that represent the smallest group of logically tied files. 
+Metadata Extractor transforms all of the unidirectional edges in the dependency graph described above (and illustrated in \Cref{PDComponents}), into bidirectional and finds connected components. These components are the logical subsets. 
+Therefore the program can reconstruct objects from a single component and make the resolution at the end. That keeps the storage acquired by loaded objects low and at the same time objects are constructed only once, while files don't get opened multiple times. 
+We assume, that the far most common use-case is having components of size three with three data models - logical, conceptual and physical (or few physical ones). \\
 
 \begin{figure}[H]
 	\centering
@@ -353,35 +446,40 @@ To achieve a solution that would have advantages of the both naïve approaches w
 		\fill [black] (56.2,-26.1) -- (55.7,-26.9) -- (56.7,-26.9);
 		\end{tikzpicture}
 	\end{center}
-	\caption[PowerDesigner Components Example]{On the example we have four five  components made of PowerDesigner data models. If dependencies of data models are like this, a.pdm should get processed and resolved in one batch with b.pdm, c.ldm and d.cdm. Then f.ldm must be handled with e.pdm, while rest of the models are independent and form component of size one. }
+	\caption[PowerDesigner Components Example]{On the example we have four five  components made of PowerDesigner data models. If dependencies of data models are like this, a.pdm should get processed and resolved in one batch with b.pdm, c.ldm and d.cdm. Then f.ldm must be handled with e.pdm, while rest of the models are independent and form component of size one.}
+	\label{PDComponents}
 \end{figure}
 
-But there is one more matter remaining that may cause some problems. The basic scenario how a user will behave is that he will works with PowerDesigner data models in some directory, for example C:/PowerDesigner/Project/ and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
-This way, the paths pointing to targets of models became are not correct since they have no reason to be updated and still depend on the files in C:/PowerDesigner/Project/. We want to work only with the files that user explicitly marked as to process, those are only the ones that are present in the input directory. Also if this problem is not thought of, it may cause undesired and unexpected behavior. 
-For example we have file $a$ referring to $b$ in input but a change of external object in C:/PowerDesigner/Project/$b$ would have affect on $a$.
-So we will try to come up with a fallback for this situation and will try to deduce by the former path the one in input folder.
-As first, we will try the ideal scenario and check whether the target is in the input directory. If yes, we are done with this one.
-If not we will assume similar structure of the both directories and that the names of files were not changed.
+However, when dealing with the dependencies, there is one more trap remaining that may cause problems. The basic scenario how a user behaves when using Metadata Extractor is that he works with PowerDesigner data models in saved somewhere, for example in C:/PowerDesigner/Project/, and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
+This way, paths pointing to target models become incorrect, since the paths don't get updated until the moved files are not opened again. 
+So the models in input still depend on files in C:/PowerDesigner/Project/ which may be not existing anymore. Alternatively, if the paths remain incorrect there may happen a situation like this - we have a file $a$ referring to $b$ in, both of them in input, but a change of an object in C:/PowerDesigner/Project/$b$ affects $a$ that is using the changed object due to the described problem.
+Anyway, we want Metadata Extractor to work only with the files that a user explicitly marked as to process, those are the ones present in the input directory.
+So Metadata Extractor has to have a fallback for this situation and should try to find target files in input folder.
+The idea is to try the ideal scenario and check whether the target is in the input directory. If yes, the resolution is done.
+Otherwise the program assumes a similar structure of the former and input directory, as well as that names of data model files did not changed.
 
 \subsection{Business Lineage Creation}
-The ultimate goal of the work is to develop a tool capable of creating business\footnote{By business lineage we mean data lineage that is formed on a higher level on abstraction than on the physical level.} data lineage automatically.
-We decided to build the high level lineage based on the physical one since it provides the most precise foundation in terms of correctness as it captures the real data movement in a live database.
-Manta Flow primarily analyzes physical data flow but there is already implemented a functionality which can propagate the lineage to objects that are mapped to the physical objects taking part in it.
-In our domain by \definition{interpolation} we mean the process of making data flow edges based on information given by lower layer.
-We must ensure the objects we collect in physical data models are correctly merged as described in \Cref{matching_physical_objects} to make the most of the interpolation.
+
+One of the main goals of this work is to develop make Metadata Extractor capable of creating business\footnote{By business lineage we mean data lineage that is formed on a higher level on abstraction than on the physical level.} data lineage automatically.
+The way we chose to approach the problem is that Metadata Extractor builds the high-level lineage based on the technical one created by Manta Flow. 
+The physical lineage provides the most precise foundation possible. 
+It is directly aligned with how a live database system is really used and how data travels through it.
+Despite the fact that Manta Flow primarily focuses on analysis of physical data flow, there is an already implemented functionality, which can propagate lineage from physical objects via mapping edges to objects on higher levels of abstraction.
+The process of propagating the data flow acquired on physical level to logical or conceptual level is called \definition{interpolation}.
+The crucial part is to ensure that Metadata Extractor merges correctly physical modeled objects with their database counterparts that are used by Manta Flow.
 
 \subsection{Database Connections}
 
-Modeling tools usually can make connections to a databases. It is useful for multiple reasons. For example already familiar reverse-engineering would not be possible without this ability since metadata are fetched directly from a database in order to capture its most up-to-date state. Also one of the features of modeling tools is keeping data models and databases that are tied with them in sync, so basically there is a mechanism for comparing actual state of a database with a model. 
+Even though Metadata Extractor will not connect to databases directly, it needs to gain details of a database connections when working with physical models.
+Only then Metadata Extractor is able to know what specific database the extracted physical objects belong to. Firstly, we will go through why do we actually need the connections and then we will look at how in case of PowerDesigner and ER/Studio the connection can be made and obtained.
 
-Manta Flow also extracts metadata of databases for needs of data lineage creation. It is done via JDBC connections.
-
-What we will do is not accessing metastores \footnote{Shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - type of metadata and their organization varies greatly. Instead we will make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
+What we will do is not accessing metastores \footnote{Shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - types of metadata and their organization varies greatly. 
+Instead we will make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
 
 And why would we want to request another metadata when that is just what we are extracting from physical data models? \label{matching_physical_objects}
-Because we are interested in data lineage which it is created by Manta Flow based on the real metadata of physical objects that are present in database.
-The simple view is that at the moment when we ask for the objects from Manta Flow's metastore, the analysis of data flow has already taken part, thus there are data lineage edges leading between the objects. To bring together both features of Manta Flow and our tool, that brings more metadata and links to higher abstraction data models, we need to merge equivalent physical objects which come from the both sources - from Manta's extraction as well as from our tool. 
-So only if we are on the same page and we know what database at which server the modeled objects belong to we can ensure correct pairing of the objects and data lineage. \\
+Because we are interested in data lineage, which is created by Manta Flow based on the real metadata of physical objects that are present in a database.
+The simple view is that at the moment, when we ask for the objects from Manta Flow's metastore, the analysis of data flow has already taken part, thus there are data lineage edges between physical objects. To bring together both features of Manta Flow and Metadata Extractor, the program must merge equivalent physical objects which come from the both sources - from Manta's extraction and from our tool.
+Thus, only if Metadata Extractor is on the same page with Manta Flow - knows what specific database at what specific server the modeled objects belong to, the program can ensure correct pairing of the objects and data lineage. \\
 
 The details we use for identification of a database instance are the following:
 \begin{itemize}
@@ -392,8 +490,10 @@ The details we use for identification of a database instance are the following:
 	\item User Name
 \end{itemize} 
 All the above can be stored in one property called \definition{connection string}.\\
-To this set of properties we will refer as a \definition{connection}. \\
-As each physical data model describes a single database (or its subset) we need exactly one connection for each processed physical model in order to achieve what we described just above.
+To this set of the listed properties and a connection string we will refer as a \definition{connection}. \\
+Since each physical data model describes a single database (or its subset) we need exactly one connection for each processed physical model in order to achieve what we described just above.
+
+However, the identification of a database that a physical data model reflects cannot be found in the file storing the physical model, we have to inspect other possibilities for to obtaining the database details.
 
 \subsubsection{ER/Studio}
 
@@ -402,47 +502,49 @@ Databases whose models are created in ER/Studio can be reached only by ODBC driv
 We cannot really work with that, so we will leave it up to a user to define connection parameters by hand.
 A .ini files \label{ini_connections}is used for that where sections are named by physical models that they correspond to and connection details are specified inside a section. 
 
-The tool tries to get as much information as possible from an ER/Studio data model, however name of a database and server must be added manually by a user as the tool does not save these data.
+Metadata Extractor tries to get as much information as possible from an ER/Studio data model, however name of a database and server must be added manually by a user as the tool does not save these data.
 
 \subsubsection{PowerDesigner}
 
 In PowerDesigner a user has multiple options for connecting to a database to choose from. Either ODBC or JDBC connection may be used. 
-We would like to have the ability to find out what connections with what parameters were used for connecting to a database corresponding to a physical model. So a great help would be if there was a trace left after every each connection is made. We cannot enforce it but in PowerDesigner these traces can be created when connecting using .dsn or .dcp files.
-The tool has nice user environment for creating or using connections to a database where a user is guided through set up nicely and can test if he did set up everything correctly. \\
+The tool has a nice user environment for creating or using connections to a database where a user is guided through a set up and can test if he did set up everything correctly. 
+There are two options of how to connect to a database using the interface that may be helpful for Metadata Extractor, using .dsn and .dcp files.\\
 
-The .dsn files are definitions of ODBC connection containing parameters for an ODBC driver and stores all the interesting information we would like to have. The drawback of this file format is that it varies from a technology to technology. It has a structure of an .ini files but the properties representing the same concepts may be called differently. That means we would need to have a parser for each supported database engine. \\
+The .dsn files are definitions of ODBC connection containing parameters for an ODBC driver and stores all the interesting information we would like to have. 
+The drawback of this file format is that it varies from a database technology to database technology - the properties representing the same concepts may be called differently. That means we would need to have a parser for each supported database engine. \\
 
-On the other we have .dcp files. They can store information about native DBMS connection or about JDBC connection. 
-The nice fact about them is that they are not that flexible and once we know whether we deal with native or JDBC respectively we know what exact structure expect. 
-It is also a file consisting of property=value map.
+On the other hand there is possibility of connecting via .dcp files. They can store information about a native DBMS connection or about a JDBC connection. 
+The nice fact about them is that they are not that flexible and once we know whether we deal with a native or a JDBC connection respectively, the structure can be parsed easily. 
+The file consisting of property=value map.
 There are couple of properties common for both types, like description and user name.
-Then the most important property of a JDBC .dcp file is JDBC connection URL - in other words connection string which should sufficiently define a connection.
-In case of native DBMS variant Server Name along with Database Name are crucial in order to identify a database we are connecting to by the setup.
+Then the most important property of a JDBC .dcp file is the JDBC connection URL - in other words a connection string which sufficiently defines a connection.
+In case of the native DBMS variant, Server Name along with Database Name are crucial, in order to identify a database we are connecting to by the setup.
 
-But there is a problem that is common for both of the approaches, namely that there is no link between the connection file and a model that is result of reverse-engineering of the connection. So we will stick with the same solution using auxiliary .ini files as in the case of ER/Studio which is also standard for Manta Flow \Cref{ini_connections}.
+But there is a problem that is common for both of the approaches -  there is no link between the connection file and a model that corresponds to the connection. 
+So Metadata Extractor has to stick with the same solution as in the case of ER/Studio - to use auxiliary .ini files. \Cref{ini_connections}.
 
 \subsection{Output Representation}
 
-The output of Metadata Extractor will be a graph. Earlier we discussed what are going its nodes and edges stand for. The remaining part is how we will represent the output. We require a structure that is both convenient to work with programmatically as a data structure and able to be visually presented to a user of our tool.
-Also we must take into account that Metadata Extractor is going to be plugged into an already existing software environment. 
-Manta Flow is backed by a database storing graphs of data lineage. There is already an existing browser-based user interface using which the data flows can be shown and previewed interactively. Given that we would like to comply with the graph database and merge our graphs to the storage and having the ability to reuse the visualization for presentation of the outputs, the most natural solution is to stick with the very same representation of graph as Manta does.
-In the alternative scenario when we don't want to let Manta handle the output, there is a possibility of using a writer which produces an image of the output at local machine, in contrary of sending it to the Manta Server where the graph database is.
+The output of Metadata Extractor is a graph. Its nodes are the important extracted objects such as entity, attribute, etc. properties of the nodes will be the metadata acquired about the extracted objects. Edges of the output graph are of different types, they can either stand for mapping of the nodes of indicate flow of data between them. 
+The remaining part is how we will represent the output. We require a structure that is both convenient to work with programmatically as a data structure and able to be visually presented to a user of our tool.
+Also, we must take into account that Metadata Extractor is going to be plugged into an already existing software environment. 
+Manta Flow is backed by a database storing graphs of data lineage. There is already an existing browser-based user interface, using which the data flows can be shown and previewed interactively. 
+Given that we would like to comply with the graph database and merge our graphs to the storage, and having the ability to reuse the visualization for presentation of the outputs, the most natural solution is to stick with the very same representation of graph as Manta does.
+In the alternative scenario when we don't want to let Manta handle the output, there is a possibility of using a writer which produces an image, or a textual representation of the output at a local machine, in contrary to sending the output to the Manta Server where the graph database is located.
 
+\section{Desired Features}
 
-\section{Requirements/Desired Features}
-
-To summarize the analysis, the overall goal of the developed software is to collect metadata that will allow it recreate physical, logical and conceptual modeled objects with all attributes that may be interesting when shown in data lineage. \\ 
-
-The analysis forms a set of functional requirements or features we want Metadata Extractor to have.
+The analysis forms a set of functional requirements or features we expect Metadata Extractor to have:
 
 \begin{itemize}
-	\item Load objects from data models and reconstruct their hierarchy.
+	\item Load objects and their metadata from output of modeling tools and reconstruct hierarchy of the objects.
 	\begin{itemize}
 		\item ER/Studio: Logical data model \& physical data model.
 		\item PowerDesigner:  Conceptual data model, logical data model \& physical data model.
 	\end{itemize}
 	\item Resolve mappings leading between objects originating in different data models.
-	\item Match the loaded physical objects with their equivalents extracted by Manta Flow if possible, in order to bring in the physical data lineage they take part in.
+	\item For every physical data models, obtain connection details to the database counterpart.
+	\item Match the loaded physical objects with their equivalents extracted by Manta Flow if possible, in order to bring in the physical data lineage they take part in, so the business lineage can be interpolated.
 	\item Create a graph out of the loaded structure. \\
 	So that it can be further:
 	\begin{itemize}
@@ -455,7 +557,7 @@ The analysis forms a set of functional requirements or features we want Metadata
 \section{Survey of Existing Solutions}
 
 We are working on development of an automated solution that delivers business lineage.
-In order to justify that we are not reinventing a wheel let's have a look at the software can provide similar functionality as Metadata Extractor.
+In order to justify, that we are not reinventing a wheel let's have a look at the software can provide similar functionality as Metadata Extractor.
 
 The competitors can be divided into multiple categories:
 
@@ -486,9 +588,7 @@ To our knowledge none of the solutions disposes of the automated functionality w
 
 \section{Architecture of the System}
 
-Metadata Extractor consists of two major parts where the first one handles ER/Studio models and the second one processes PowerDesigner files.
-Further division of each of the parts is that they are split into four modules forming a system. 
-Then the most high-level view of the system's architecture is following:
+Metadata Extractor is able to process output files of two modeling tools - ER/Studio and PowerDesigner. For each tool Metadata Extractor has a separate part, both of them consists of four major components:
 \begin{itemize}
 	\item Model \footnote{There is a naming collision but here we don't refer to any data model but a data structure that reproduces objects stored somewhere, which one of these two possible meanings we use should be clear from context.}\\ 
 	Is a read-only description of a data model source. On one hand it reflects the raw structure of a file so no information is left out when compared to the source. 
@@ -502,13 +602,16 @@ Then the most high-level view of the system's architecture is following:
 	\item Data Flow Generator \\ 
 	Creates a graph representation out of output of the reader component using the modeling common module. 
 	\item Modeling Common \\
-	Common part for communicating with Manta Flow via its API to pair modeled objects with database objects extracted from live databases, based on a correct pairing interpolation is done. Also is responsible for creating node representation of objects that have no backing in the database dictionary of Manta.
+	The common part for communicating with Manta Flow via its API to pair modeled objects with database objects extracted from live databases, based on a correct pairing interpolation is done. Also is responsible for creating node representation of objects that have no backing in the database dictionary of Manta.
 	\item Manta Flow \\
 	The external part capable of extracting objects from databases, analyzing SQL scripts that are transforming those objects and creating data lineage based on the analysis.
 \end{itemize}
 
+The most important parts of which Metadata Extractor consists are shown in \Cref{SWArchitecture}.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=14cm]{../img/SWArchitecture}
-	\caption[Metadata Extractor Software Architecture]{High level view on software architecture of Metadata Extractor}
+	\caption[Metadata Extractor Software Architecture]{A high level view on software architecture of Metadata Extractor}
+	\label{SWArchitecture}
 \end{figure}
