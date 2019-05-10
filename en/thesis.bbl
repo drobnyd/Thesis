@@ -55,12 +55,15 @@ E.~F. Codd.
   data banks.
 \newblock {\em {IBM} Research Report, San Jose, California}, {RJ599}, 1969.
 
-\bibitem{PowerDesignerDocumentation}
-Sap powerdesigner documentation.
-
 \bibitem{MantaExample}
 {MANTA + Teradata | Data Lineage Automation Solution}.
 \newblock \url{https://www.youtube.com/watch?v=jbVoMgXvJD4}.
+
+\bibitem{CASETools}
+B.B. Agarwal.
+\newblock {\em Software Engineering And Testing: An Introduction (Computer
+  Science)}.
+\newblock Jones \& Bartlett Publishers, 2009.
 
 \bibitem{ErStudio}
 {ER/Studio Data Architect}.
@@ -103,5 +106,8 @@ Data lineage and business lineage reports.
 \bibitem{RfcCSV}
 {Common Format and MIME Type for Comma-Separated Values (CSV) Files}.
 \newblock \url{https://tools.ietf.org/html/rfc4180}.
+
+\bibitem{PowerDesignerDocumentation}
+Sap powerdesigner documentation.
 
 \end{thebibliography}

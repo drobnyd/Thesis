@@ -88,14 +88,13 @@ Dedication.
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-Data lineage is a way of showing how information flows through complicated systems. If the system is a database, tables and columns are visualized along with SQL transformations. However, this picture may be difficult to understand for people with weaker technical background, as database objects usually obey naming conventions and do not necessarily represent something tangible. To improve lineage comprehension we developed a software that on one hand brings further description of the database objects, as well as introduces a whole new perspective on data in a system by business lineage aimed for non-technical users. The additional metadata enriching data lineage are extracted from data modeling tools that are widely used in database design process. 
-The solution extends Manta Flow lineage tool, while taking advantage of its features at the same time. \\
-\TODO{mention PD \& ER/Studio or not?}
+Data lineage is a way of showing how information flows through complicated software systems. If the given system is a database, tables and columns are visualized along with SQL transformations of the stored data. However, this picture may be difficult to understand for people with weaker technical background, as database objects usually obey naming conventions and do not necessarily represent something tangible. To improve lineage comprehension, we developed a software called Metadata Extractor that on one hand brings further description of the database objects, as well as introduces a whole new perspective on data in a system through business lineage aimed for non-technical users. The additional metadata enriching data lineage are extracted from data modeling tools, such as ER/Studio and PowerDesigner, that are widely used in database design process. 
+The solution extends the Manta Flow lineage tool, while taking advantage of its features at the same time. \\
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
 \def\Keywords{%
-{Data Lineage} {Data Modeling} {Database Architecture}
+{Data Lineage}, {Data Modeling}, {Database Architecture}, {\TODO{Metadata}}
 }
 
 %% The hyperref package for clickable links in PDF and also for storing
@@ -159,6 +158,7 @@ PDM \tab Physical Data Model \\
 \chapter{Attachments}
 
 \section{Building}
+\label{build}
 
 The build process is ensured through Maven with dependencies specified with its pom.xml files.
 However, in order to build Metadata Extractor "secret" dependencies owned by MANTA are needed. Otherwise the project will not compile successfully. 
@@ -167,31 +167,33 @@ There is a command line user interface putting all the parts together and must b
 
 Even with the access to the repository, MANTA is a proprietary software and running its products requires a valid license.
 
-\TODO{To demonstrate the functionality that is independent of other Manta Flow parts, we attach scripts doing metadata extraction from the modeling tools.
-Due to the licensing reasons it has only partial functionality consisting of extracting the physical and business objects with their metadata and visualizing them as a graph in an output file. 
-No data lineage though is going to be presented in the demo version.}
+Thus only those jar files that are needed for running tests are attached. They cannot be rebuilt by a user.
 
 
 \section{User Documentation}
 
-\TODO{not valid anymore}
-
 To run Metadata Extractor the prerequisite is to have Java 8 on a computer. \\
 
-The cli has an aggregate input directory, further divided by technologies.
-Subdirectories erstudio and powerdesigner are located in input.  
-Both have the same following layout: 
-It contains systems, a system is logical group of modeling files to be processed.
-System consists of two items - one is containing the models from which metadata will get extracted and a .ini file where connection specifications to physical models are defined.  \TODO{describe .ini file or not as it won't have any effect on the demo.} \\
-
-For each system in input a property file specifying a name of the system folder to be processed must be present. \\ 
-
-To proceed the extraction user runs one of the executable files provided \TODO{TODO}.sh for Unix-like, \TODO{TODO}.bat for Windows machines respectively.
-
+As we mentioned in \Cref{build} with this work come attached only files needed to demonstrate functionality on tests due to licensing of Manta Flow product
 
 \subsection{Tutorials}
 
+\TODO{to include or not}
+
 \section{Cooperation with Manta Flow}
+
+In the case a user has access to Manta Flow server and command line interface (CLI) with corresponding licenses, the full functionality of Metadata Extractor can be manifested.
+
+The CLI has an aggregate input directory, further divided by technologies.
+Subdirectories erstudio and powerdesigner are located in input.  
+Both have the same following layout: 
+It contains systems, a system is logical group of modeling files to be processed.
+System consists of two items - one is containing the models from which metadata will get extracted and a .ini file where connection specifications to physical models are defined.
+
+The systems to be processed from input are specified by .properties file   /scenarios/etc. 
+For each system in input a property file specifying a name of the system folder to be processed must be present. \\ 
+
+To proceed the extraction user runs one of the executable files provided \textunderscore run.sh for Unix-like, \textunderscore run.bat for Windows machines respectively.
 
 \section{Full List of Modeling Tools Properties}
 
@@ -217,22 +219,14 @@ ER/Studio does not support conceptual data models.
 		\item User-Defined Mappings
 		\item Owner
 		\subsubsection{Properties We Will Not Extract}
-		\item Permissions \\
-		\TODO{By owner assigned to an entity permissions are realized.} \\
-		\item Keys \\
-		As we work exclusively with metadata we cannot enforce key constraints on the actual records in database, thus there is no need for them.
-		\item Relationships \\
-		Manta Flow does not support them.
-		\item Constraints \\
-		The same reason as with the keys above.
-		\item Naming Standards \\ 
-		The property is used when creating/generating data models but as we don't modify or add anything that would need to apply naming convention to, it is irrelevant for our case.
-		\item Data Lineage \\
-		We already mentioned that we want to create a real data lineage not just something that was drawn by user because it could have nothing to do with how the data actually flows.
-		\item Security Information \\
-		There would not be much of use if extracting security information since they are currently not supported in Manta Flow.
-		\item Attachment Bindings \\
-		\TODO{Manta Flow does not support attaching external pieces of information like ... to objects.}
+		\item Permissions 
+		\item Keys 
+		\item Relationships 
+		\item Constraints 
+		\item Naming Standards 
+		\item Data Lineage
+		\item Security Information
+		\item Attachment Bindings
 	\end{itemize}
 	\item Attribute
 	\begin{itemize}
@@ -355,13 +349,10 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Where Used
 		\item User-Defined Mappings
 		\subsubsection{Properties We Will Not Extract}
-		Technical properties, many of them are effective only on some specific technologies (Organization adjusts only behavior of Netazza tables). \TODO{describe every?}
-		\item Storage \\ 
-		Specifies storage option
+		\item Storage
 		\item Dimensions
 		\item Properties
-		\item DDL \\ 
-		Code to create the table.
+		\item DDL
 		\item Indexes
 		\item Foreign Keys
 		\item Partition Columns

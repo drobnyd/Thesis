@@ -1,4 +1,5 @@
 \chapter{Analysis \& Design of the Solution}
+\label{analysis_design}
 
 The purpose of Metadata Extractor is to obtain metadata from data models created using modeling tools ER/Studio and PowerDesigner. The solution will be able to connect to Manta Flow and to bring data lineage to objects that have greater extent of abstraction than the physical ones which are currently the only objects supported by Manta.
 
@@ -369,19 +370,6 @@ Manta Flow primarily analyzes physical data flow but there is already implemente
 In our domain by \definition{interpolation} we mean the process of making data flow edges based on information given by lower layer.
 We must ensure the objects we collect in physical data models are correctly merged as described in \Cref{matching_physical_objects} to make the most of the interpolation.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=14cm]{../img/BusinessLineage}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=14cm]{../img/TechnicalLineage}
-\end{figure}
-
-The two visualization of data lineage show the very same database system from two different perspectives. The business lineage hides transformations and speaks natural language, using concepts that appear in real world providing cleat motivation of the business process. 
-Whereas technical data lineage precisely illustrates what happens with data in a database management system.
-\TODO{where to put this, describe the mappings visually or verbally?}
 \subsection{Database Connections}
 
 Modeling tools usually can make connections to a databases. It is useful for multiple reasons. For example already familiar reverse-engineering would not be possible without this ability since metadata are fetched directly from a database in order to capture its most up-to-date state. Also one of the features of modeling tools is keeping data models and databases that are tied with them in sync, so basically there is a mechanism for comparing actual state of a database with a model. 
@@ -507,11 +495,20 @@ Then the most high-level view of the system's architecture is following:
 	On the other hand it allows reading access to the modeled objects we are interested in that were reconstructed in convenient fashion.
 	\item Resolver \\ 
 	Is the part where the logic of construction of objects from a file is hidden and loading of the model is done. 
+	\item Parser \\ 
+	Loads file to data structures that can be further worked with.
 	\item Reader \\
-	Puts together the model and resolver unit - creates a model from a parsed structure of a file using the resolver and hands the result to the data flow generator.
+	Puts together the model, parer and resolver unit - creates a model from a parsed structure of a file using the resolver and hands the result to the data flow generator.
 	\item Data Flow Generator \\ 
-	Creates a graph representation of a model \ref{model_data_structure}. Communicates with Manta Flow via its API to pair modeled objects with database objects extracted from live databases, based on a correct pairing interpolation is done.
+	Creates a graph representation out of output of the reader component using the modeling common module. 
+	\item Modeling Common \\
+	Common part for communicating with Manta Flow via its API to pair modeled objects with database objects extracted from live databases, based on a correct pairing interpolation is done. Also is responsible for creating node representation of objects that have no backing in the database dictionary of Manta.
 	\item Manta Flow \\
-	The external part capable of crating data lineage on database objects.
+	The external part capable of extracting objects from databases, analyzing SQL scripts that are transforming those objects and creating data lineage based on the analysis.
 \end{itemize}
-\TODO{A figure showing cooperation of the most important components }
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=14cm]{../img/SWArchitecture}
+	\caption[Metadata Extractor Software Architecture]{High level view on software architecture of Metadata Extractor}
+\end{figure}

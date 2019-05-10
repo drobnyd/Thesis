@@ -1,13 +1,15 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Conceptual diagram\cite {PowerDesignerDocumentation}}}{12}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Logical diagram\cite {PowerDesignerDocumentation}}}{13}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Physical diagram\cite {PowerDesignerDocumentation}}}{14}{figure.2.3}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Data Lineage Visualization}}{16}{figure.2.4}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Conceptual diagram\cite {PowerDesignerDocumentation}}}{13}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Logical diagram\cite {PowerDesignerDocumentation}s}}{14}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Physical diagram\cite {PowerDesignerDocumentation}}}{15}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Data Lineage Visualization}}{17}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Technical Lineage versus Business Lineage}}{18}{figure.2.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces CSV Table}}{23}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces PowerDesigner Components Example}}{32}{figure.4.2}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces CSV Table}}{25}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces PowerDesigner Components Example}}{34}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Metadata Extractor Software Architecture}}{40}{figure.4.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces NFA Accepting a CSV Line}}{42}{figure.5.1}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces NFA Accepting a CSV Line}}{44}{figure.5.1}
 \addvspace {10\p@ }
