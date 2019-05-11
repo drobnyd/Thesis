@@ -588,7 +588,7 @@ To our knowledge none of the solutions disposes of the automated functionality w
 
 \section{Architecture of the System}
 
-Metadata Extractor is able to process output files of two modeling tools - ER/Studio and PowerDesigner. For each tool Metadata Extractor has a separate part, both of them consists of four major components:
+Metadata Extractor is able to process output files of two modeling tools - ER/Studio and PowerDesigner. For each tool Metadata Extractor has a separate part, both of them consists of the following major components:
 \begin{itemize}
 	\item Model \footnote{There is a naming collision but here we don't refer to any data model but a data structure that reproduces objects stored somewhere, which one of these two possible meanings we use should be clear from context.}\\ 
 	Is a read-only description of a data model source. On one hand it reflects the raw structure of a file so no information is left out when compared to the source. 
@@ -600,7 +600,11 @@ Metadata Extractor is able to process output files of two modeling tools - ER/St
 	\item Reader \\
 	Puts together the model, parer and resolver unit - creates a model from a parsed structure of a file using the resolver and hands the result to the data flow generator.
 	\item Data Flow Generator \\ 
-	Creates a graph representation out of output of the reader component using the modeling common module. 
+	Creates a graph representation out of output of the reader component using the modeling common module.
+\end{itemize}
+
+The two modules are shared:
+\begin{itemize}
 	\item Modeling Common \\
 	The common part for communicating with Manta Flow via its API to pair modeled objects with database objects extracted from live databases, based on a correct pairing interpolation is done. Also is responsible for creating node representation of objects that have no backing in the database dictionary of Manta.
 	\item Manta Flow \\

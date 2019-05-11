@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  11 MAY 2019 01:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  11 MAY 2019 02:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1284,7 +1284,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 513--515
 <../img/SWArchitecture.pdf, id=705, 604.17719pt x 586.10968pt>
 File: ../img/SWArchitecture.pdf Graphic file (type pdf)
 <use ../img/SWArchitecture.pdf>
-Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 614.
+Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 618.
 (pdftex.def)             Requested size: 410.62302pt x 398.33858pt.
 ) [41] [42pdfTeX warning (ext4): destination with the same identifier (name{fig
 ure.4.4}) has been already used, duplicate ignored
@@ -1599,7 +1599,7 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (75 pages, 1194617 bytes).
+Output written on thesis.pdf (75 pages, 1194647 bytes).
 PDF statistics:
  1032 PDF objects out of 1200 (max. 8388607)
  250 named destinations out of 1000 (max. 500000)
