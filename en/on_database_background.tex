@@ -1,19 +1,19 @@
 \chapter{On Database Background}
 \label{on_database_background}
 
-In this chapter we will introduce terms and concepts that are help us understand the domain to which Metadata Extractor contributes. To understand requirements, design and need for the our software, a user must have some level of knowledge about databases and data lineage beforehand.
+In this chapter we will introduce terms and concepts that help us understand the domain to which Metadata Extractor contributes. To understand requirements, design and the need for our software, a user must have some level of knowledge about databases and data lineage beforehand.
 
 \section{Databases}
 
-A standalone database is not very useful, as it is only some physical storage that never changes. To take the full advantage of it users need some means to define, create, maintain and control access to the database. That is purpose of a software called \definition{database management system (DBMS)}.
+A standalone database is not very useful, as it is only some physical storage that never changes. To take the full advantage of it users need some means to define, create, maintain and control access to the database. That is the purpose of a software called \definition{database management system (DBMS)}.
 
 We already described why someone may want to use a database and roughly mentioned what are the pieces of data that may be saved there. 
 Now let's take a look at what are the differences between database implementations and what to take into account when comparing database technologies.
-That may be helpful when choosing the best suitable option for some specific data set to store or to see how storing of great amount of structured information can be approached.
+That may be helpful when choosing the best suitable option for some specific data set to store or to see how storing a great amount of structured information can be approached.
 
-The basic division of databases types is simple and binary - they are either relational or non-relational. There are database management systems built around both kinds providing the necessary functionality.
+The basic classification of databases types is simple and binary - they are either relational or non-relational. There are database management systems built around both kinds providing the necessary functionality.
 
-Here we define important terminology related databases.
+Here we define important database-related terminology.
 
 \subsubsection{Relational Databases}
 \label{relational_databases}
@@ -33,12 +33,12 @@ In this work we focus only on databases that are of the relational kind, even th
 The main reason behind this is the fact that NoSQL databases have a flexible schema or are schema-less (there is no point in determining a database schema when data types of attributes or keys are not defined), modeling of these databases is a quite new discipline. At the same time there is a variety of approaches to NoSQL modeling and none of them established as a standard.
 Also data models bringing a greater level of abstraction are not used in this field. \cite{NoSQLDatabaseModeling}
 
-The fact to consider is that once a database is of relational kind, it is more or less know what to expect from it. 
+The fact to consider is that once a database is of relational kind, it is more or less known what to expect from it. 
 The hierarchy of objects in these RDBMS has similar skeleton every time. 
 That means a tool that would extract metadata from relational data models is potentially more powerful, as it can be applied to more database technologies. 
 An equivalent tool aimed for some non-relational data model would be effective for a narrower set of technologies as No-SQL databases are divided further by the way they store data and the data models must reflect it.
 For example once Metadata Extractor can load PowerDesigner models, it directly supports Oracle, IBM DB2 etc.
-While if it was working with NoSQL data models it would not be that straightforward. Further questions must be asked, such as if a given data model reflects, let's say, a key-value store or a graph. database and approach them individually as the way data are organized in them is substantially different.
+While if it was working with NoSQL data models it would not be that straightforward. Further questions must be asked, such as if a given data model reflects, let's say, a key-value store or a graph database and approach them individually, as the way data is organized in them is substantially different.
 
 Lastly, despite the non-relational databases may be growing in numbers and became a serious alternative, as it suits some use-cases better, the relational ones still are, and in the near future will be, far more widely used.
 
@@ -57,7 +57,7 @@ A \definition{Connection String} is a textual information used to identify a dat
 
 Modeling is a crucial phase of the database design process.
 Developing a database is just like building a house. 
-Every one will agree that no construction work can go without solid design and documentation. 
+Everyone will agree that no construction work can go without solid design and documentation. 
 It would sound a bit strange to hire construction workers straight ahead and tell them that we need a house that has 5 rooms and some toilets, and expect a good result. Most probably, some kind of building would be produced at the end, but we will agree that expectations and requirements of the later inhabitant could not be met properly.
 Surely there are good reasons why the usual steps are followed strictly.
 Let us move on from this analogy to the database domain. \\
@@ -75,7 +75,7 @@ There are good reasons why modeling has its place in the database development pr
 	
 	\item Correctness.\\ Tracking whether high-level concepts were implemented and represented correctly in the end is made straightforward.
 	
-	\item Deeper understanding.\\ During the design process developers may learn a lot about properties of the data that they need or have, and will be stored. These information are crucial for choosing an appropriate type of database, whether to stick with a relational database, and if so which DBMS is the right one, or to better look for a non-relational database option.
+	\item Deeper understanding.\\ During the design process developers may learn a lot about properties of the data that they need or have, and will be stored. These information are crucial for choosing an appropriate type of database, whether to stick with a relational database, and if so, which DBMS is the right one, or to better look for a non-relational database option.
 \end{itemize}
 
 \subsection{Data Model Perspectives}
