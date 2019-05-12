@@ -450,7 +450,7 @@ We assume, that the far most common use-case is having components of size three 
 	\label{PDComponents}
 \end{figure}
 
-However, when dealing with the dependencies, there is one more trap remaining that may cause problems. The basic scenario how a user behaves when using Metadata Extractor is that he works with PowerDesigner data models in saved somewhere, for example in C:/PowerDesigner/Project/, and once he wants to let them analyze by Metadata Extractor he drags them to a different directory, that is used as input for our tool.
+However, when dealing with the dependencies, there is one more trap remaining that may cause problems. The basic scenario how a user behaves when using Metadata Extractor is that he works with PowerDesigner data models that are saved somewhere, for example in C:/PowerDesigner/Project/, and once he wants to let them analyze by Metadata Extractor, he drags them to a different directory, that is used as input for our tool.
 This way, paths pointing to target models become incorrect, since the paths don't get updated until the moved files are not opened again. 
 So the models in input still depend on files in C:/PowerDesigner/Project/ which may be not existing anymore. Alternatively, if the paths remain incorrect there may happen a situation like this - we have a file $a$ referring to $b$ in, both of them in input, but a change of an object in C:/PowerDesigner/Project/$b$ affects $a$ that is using the changed object due to the described problem.
 Anyway, we want Metadata Extractor to work only with the files that a user explicitly marked as to process, those are the ones present in the input directory.
@@ -499,7 +499,7 @@ However, the identification of a database that a physical data model reflects ca
 
 Databases whose models are created in ER/Studio can be reached only by ODBC drivers present in the used machine.
 
-We cannot really work with that, so we will leave it up to a user to define connection parameters by hand.
+Metadata Extractor is not able to reach these drivers generally, so we will leave it up to a user to define connection parameters by hand.
 A .ini files \label{ini_connections}is used for that where sections are named by physical models that they correspond to and connection details are specified inside a section. 
 
 Metadata Extractor tries to get as much information as possible from an ER/Studio data model, however name of a database and server must be added manually by a user as the tool does not save these data.

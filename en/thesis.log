@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  11 MAY 2019 02:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  12 MAY 2019 21:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1303,12 +1303,12 @@ rray>); ignored.
  (./implementation.tex
 Chapter 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
+Underfull \hbox (badness 10000) in paragraph at lines 4--6
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--17
+Underfull \hbox (badness 10000) in paragraph at lines 17--23
 
  []
 
@@ -1317,145 +1317,110 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--17
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 
  []
 
-[44] [45] [46pdfTeX warning (ext4): destination with the same identifier (name{
-figure.5.1}) has been already used, duplicate ignored
+[44] [45] [46] [47pdfTeX warning (ext4): destination with the same identifier (
+name{figure.5.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.153 T
-       he parser's interface is a single method \methodname{readFile} taking...
-] [47]
-Underfull \hbox (badness 10000) in paragraph at lines 192--193
-[]\OT1/lmr/m/n/12 Outline of what the re-solver mod-ule does is that it via
- []
-
-
-Underfull \hbox (badness 3547) in paragraph at lines 192--193
-\OT1/lmtt/m/n/12 ErStudioFileModelBuilder \OT1/lmr/m/n/12 cre-ates the whole st
-ruc-ture rep-re-sent-ing an
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 194--196
+l.196 
+      ] [48]
+Underfull \hbox (badness 10000) in paragraph at lines 228--231
+[]\OT1/lmr/m/n/12 Outline of what the re-solver mod-ule does is that us-ing the
 
  []
 
-[48]
-Underfull \hbox (badness 2698) in paragraph at lines 206--209
-\OT1/lmr/m/n/12 con-structed is tied with de-tails of how the ob-jects are save
-d in the
- []
 
-
-Underfull \hbox (badness 1442) in paragraph at lines 206--209
-\OT1/lmr/m/n/12 file for-mat. Con-crete builders \OT1/lmtt/m/n/12 InternalDataO
-bjectsBuilder \OT1/lmr/m/n/12 along with
- []
-
-
-Underfull \hbox (badness 1033) in paragraph at lines 210--211
-\OT1/lmr/m/n/12 cre-ate map-pings be-tween \OT1/lmtt/m/n/12 Mappable \OT1/lmr/m
-/n/12 ob-jects in a so-lu-tion with a help of
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 232--235
 
  []
 
-[49] [50]
-Underfull \hbox (badness 10000) in paragraph at lines 275--276
-[]\OT1/lmr/m/n/12 The out-line how the builders work is pro-posed in the
+
+Underfull \hbox (badness 3803) in paragraph at lines 239--247
+\OT1/lmr/m/n/12 is cre-ated is pre-scribed in the \OT1/lmtt/m/n/12 AbstractData
+ObjectsBuilder\OT1/lmr/m/n/12 's method
+ []
+
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+
+ []
+
+[50] [51]
+Underfull \hbox (badness 10000) in paragraph at lines 335--337
+[]\OT1/lmr/m/n/12 The out-line how the builder classes work is pro-posed in the
+
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 275--276
-\OT1/lmtt/m/n/12 AbstractDataModelBuilder\OT1/lmr/m/n/12 . Also the func-tion-a
-l-ity in-de-pen-dent of type
+Underfull \hbox (badness 1596) in paragraph at lines 335--337
+\OT1/lmtt/m/n/12 AbstractDataModelBuilder\OT1/lmr/m/n/12 . Also, the func-tion-
+al-ity in-de-pen-dent of the
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 284--286
-[]\OT1/lmr/m/n/12 Input di-rec-tory con-tain-ing file to pro-cess is the in-put
- for
- []
-
-[51]
-Underfull \hbox (badness 1348) in paragraph at lines 292--296
-\OT1/lmr/m/n/12 When trans-lat-ing a com-po-nent of re-con-structed data mod-el
-s, a suit-able
- []
-
-[52]
-Underfull \hbox (badness 7047) in paragraph at lines 312--316
+[52] [53]
+Underfull \hbox (badness 3769) in paragraph at lines 392--396
 []\OT1/lmr/m/n/12 We have dis-cussed the mod-eled ob-jects on con-cep-tual and 
-log-
+log-i-cal
  []
 
 
-Underfull \hbox (badness 7613) in paragraph at lines 312--316
-\OT1/lmr/m/n/12 i-cal level are de-scribed by ER or EER di-a-grams. The im-por-
-
+Underfull \hbox (badness 4036) in paragraph at lines 392--396
+\OT1/lmr/m/n/12 level are de-scribed by ER or EER di-a-grams. The im-por-tant f
+act
  []
 
 
-Underfull \hbox (badness 3158) in paragraph at lines 312--316
-\OT1/lmr/m/n/12 tant fact is that the pos-si-ble kinds of ob-jects will be the 
-same in
+Underfull \hbox (badness 2173) in paragraph at lines 392--396
+\OT1/lmr/m/n/12 is that the pos-si-ble kinds of ob-jects are go-ing to be very 
+sim-i-lar in
  []
 
 
-Underfull \hbox (badness 1895) in paragraph at lines 312--316
+Underfull \hbox (badness 1895) in paragraph at lines 392--396
 \OT1/lmr/m/n/12 both mod-els, that is why a sin-gle in-ter-face \OT1/lmtt/m/n/1
 2 DataModelNodeCreator \OT1/lmr/m/n/12 for
  []
 
 
-Underfull \hbox (badness 3547) in paragraph at lines 312--316
-\OT1/lmr/m/n/12 high-level node cre-ation may be used. How-ever it must be im-p
-le-
+Underfull \hbox (badness 2922) in paragraph at lines 392--396
+\OT1/lmr/m/n/12 high-level node cre-ation may be used. How-ever, it must be im-
+ple-
  []
 
 
-Underfull \hbox (badness 2538) in paragraph at lines 312--316
+Underfull \hbox (badness 2538) in paragraph at lines 392--396
 \OT1/lmr/m/n/12 mented by two dif-fer-ent classes \OT1/lmtt/m/n/12 LogicalDataM
 odelNodeCreatorImpl \OT1/lmr/m/n/12 and
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--321
+[54]
+Underfull \hbox (badness 10000) in paragraph at lines 397--401
 
  []
 
-[53] [54]
-Underfull \hbox (badness 10000) in paragraph at lines 359--361
+[55]
+Underfull \hbox (badness 10000) in paragraph at lines 440--442
 \OT1/lmr/m/n/12 The cor-rect-ness of pars-ing pro-cess is checked by class
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 359--361
-\OT1/lmtt/m/n/12 ErStudioFileFormatParserTest \OT1/lmr/m/n/12 which is con-trol
--ling how many CSV ta-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 364--369
+Underfull \hbox (badness 10000) in paragraph at lines 445--450
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 376--378
+[56]
+Underfull \hbox (badness 10000) in paragraph at lines 457--459
 
  []
 
-[55]) [56]
+) [57]
 \openout2 = `epilog.aux'.
 
- (./epilog.tex) [57
+ (./epilog.tex) [58
 
 
 
@@ -1503,7 +1468,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 87--90
 m / blog /
  []
 
-[58
+[59
 
 
 
@@ -1531,25 +1496,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 102--105
 isp . asg . com / Rochade /
  []
 
-)) [59] (./thesis.lof)
+)) [60] (./thesis.lof)
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
- [60
+ [61
 
 
 ] (./thesis.lot)
 \tf@lot=\write9
 \openout9 = `thesis.lot'.
 
- [61
+ [62
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
-[62
+[63
 
 ]
 Appendix A.
@@ -1563,9 +1528,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 194--196
 
  []
 
-[63
+[64
 
-] [64] [65] [66] [67] [68] [69] [70] [71]
+] [65] [66] [67] [68] [69] [70] [71] [72]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 479.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 479.
  (./thesis.aux (./title.aux)
@@ -1575,14 +1540,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 479.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 479.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 479.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9938DB70B01D92B97CC2A7C6D0E79162;8872.
+(rerunfilecheck)             Checksum: 3B39BFD5C8CC62A78FF4BFD9970E6DB6;8971.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 479.
  ) 
 Here is how much of TeX's memory you used:
- 25638 strings out of 492649
- 443947 string characters out of 6129623
- 489441 words of memory out of 5000000
- 28785 multiletter control sequences out of 15000+600000
+ 25641 strings out of 492649
+ 443993 string characters out of 6129623
+ 489442 words of memory out of 5000000
+ 28787 multiletter control sequences out of 15000+600000
  82187 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,8n,70p,877b,1982s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1599,9 +1564,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (75 pages, 1194651 bytes).
+Output written on thesis.pdf (76 pages, 1200352 bytes).
 PDF statistics:
- 1032 PDF objects out of 1200 (max. 8388607)
- 250 named destinations out of 1000 (max. 500000)
+ 1041 PDF objects out of 1200 (max. 8388607)
+ 251 named destinations out of 1000 (max. 500000)
  579 words of extra memory for PDF output out of 10000 (max. 10000000)
 
