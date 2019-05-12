@@ -412,6 +412,13 @@ To create a guideline what to do when implementing a metadata extraction from a 
 	However there is no strict skeleton for this process as the approaches to how modeling tool realizes mapping across data models may be substantially different, as we have seen in case of PowerDesigner and ER/Studio.
 \end{enumerate} 
 
+\section{Error Handling}
+
+We require Metadata Extractor to be as stable and as robust as possible. 
+When an unexpected event occurs, the program should not fail on an exception and stop computing. Metadata Extractor should ideally print a message describing the given event to log using the SLF4J logger with level \methodname{error} or \methodname{warn} depending on the severity. 
+
+If there is something wrong in a data model definition, for example a part of an XML subtree describing one PowerDesigner table is malformed a partial information about the table should be present, if possible. If not the table will be skipped. One way or another, it should not affect any other table in the given file.
+
 \section{Technologies}
 
 The quality of programmer's toolbox may have a huge influence on his productivity when developing a more complex piece of software.
@@ -441,11 +448,11 @@ Also every CSVs should be valid in the way that each row in a table must have th
 
 Testing output of the reader module shows a lot about the resolver's correctness, since the logic of reader is actually provided by this module. 
 By the nature of reader, that it connects resolver and parser, these tests rely on the fact that parser works correctly and we assume this is true as far as the parser module tests are passing.
-The goal of the reader tests is to find out whether all objects from data models were successfully and correctly loaded into data structures described by the model component.
+The goal of the reader tests is to find out whether all objects from input data models were successfully and correctly loaded into data structures described by the model component.
 In case of ER/Studio, the testing compares expected statistics about data models such as number of physical models in a solution, entity count of logical model, etc. with the amount of objects that were loaded actually by reader.
 Secondly, some specific objects from hierarchy of a data model that is on input are picked and checked if they were loaded accordingly. Tests check metadata of those objects and mappings with another objects as well. \\ 
 
-PowerDesigner must create components correctly, so a test for checking if number of components is correct is present .
+PowerDesigner must create components correctly, so a test for checking if number of components is correct is present.
 The main reader test consists of reading file by file, thus size of a component is one every time (the components creation correctness is ensured the previous test).
 The expected values and objects are loaded from JSON sources file where they are stored in a deserialized form.
 
@@ -457,7 +464,4 @@ The skeleton is similar for both modeling tools. \\
 \classname{*GraphBuilderTest} classes are testing independently drawing of each of the layers. The graph created by the \classname{*GraphBuilder} classes can be saved as a .txt file describing the graph. 
 For each test we have an expected output of how a correct output graph should look like. The two files are compared, if they are same the behavior of the output building process is correct.
 
-The previous test checked the representation of the layers independently, in \classname{*DataflowTaskTest} all layers from a solution, or from a component when talking about PowerDesigner, are constructed with mapping edges leading between them. Outputting graph is also serialized to a textual file. Next, mapping edges are filtered from the file and compared with expected set of maps\textunderscore to edges. 
-
-
-
+The previous test checked the representation of the layers independently, in \classname{*DataflowTaskTest} all layers from a solution, or from a component, when talking about PowerDesigner, are constructed with mapping edges leading between them. Outputting graph is also serialized to a textual file. Next, mapping edges are filtered from the file and compared with expected set of maps\textunderscore to edges. 
