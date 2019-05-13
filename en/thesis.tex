@@ -175,7 +175,10 @@ Thus only those jar files that are needed for running tests are attached. They c
 
 To run Metadata Extractor the prerequisite is to have Java 8 on a computer. \\
 
-As we mentioned in \Cref{build} with this work come attached only files needed to demonstrate functionality on tests due to licensing of Manta Flow product
+As we mentioned in \Cref{build} with this work come attached only files needed to demonstrate functionality on tests due to licensing of Manta Flow product.\\ 
+
+To run these tests, a user needs to have Apache Maven installed on his computer. \\ 
+Then he runs "mvn test" command from the directory containing the top level aggregating pom.xml.
 
 \subsection{Tutorials}
 
@@ -211,8 +214,8 @@ ER/Studio does not support conceptual data models.
 \subsubsection{LDM}
 
 \begin{itemize}
-	\item Owner
-	\item Entity 
+	\item \entityname{Owner}
+	\item \entityname{Entity}
 	\begin{itemize}
 		\item Name 
 		\item Attributes 
@@ -231,7 +234,7 @@ ER/Studio does not support conceptual data models.
 		\item Security Information
 		\item Attachment Bindings
 	\end{itemize}
-	\item Attribute
+	\item \entityname{Attribute}
 	\begin{itemize}
 		\item Name
 		\item Definition
@@ -252,7 +255,7 @@ ER/Studio does not support conceptual data models.
 	\end{itemize}
 	\subsubsection{Objects We Will Not Extract}
 	\begin{itemize}
-		\item Relationships
+		\item \entityname{Relationship}
 	\end{itemize}
 \end{itemize}
 
@@ -264,7 +267,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 \subsubsection{CDM \& LDM}
 
 \begin{itemize}
-	\item Data Item (CDM only)
+	\item \entityname{Data Item} (CDM only)
 	\begin{itemize}
 		\item Name
 		\item Code 
@@ -279,7 +282,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Domain
 		\item Stereotype
 	\end{itemize}
-	\item Entities
+	\item \entityname{Entity}
 	\begin{itemize}
 		\item Name 
 		\item Attributes
@@ -296,7 +299,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Rules
 		\item Stereotype
 	\end{itemize}
-	\item Attributes
+	\item \entityname{Attribute}
 	\begin{itemize}
 		\item Name 
 		\item Code 
@@ -319,16 +322,16 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Rules
 		\item Stereotype
 	\end{itemize}
-	\item Inheritances
+	\item \entityname{Inheritance}
 	\begin{itemize}
 		\item Parent Entity
 		\item Child Entity
 	\end{itemize}
 	\subsubsection{Objects We Will Not Extract}
-	\item Relationships
-	\item Identifiers
-	\item Associations and Association Links (CDM only)
-	\item Domains
+	\item \entityname{Relationship}
+	\item \entityname{Identifier}
+	\item \entityname{Association and Association Link} (CDM only)
+	\item \entityname{Domain}
 \end{itemize}
 
 \subsubsection{Physical Data Model}
@@ -337,12 +340,12 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 
 \begin{itemize}
 	\item Type of Data Model (DBMS technology)
-	\item Schema
+	\item \entityname{Schema}
 	\begin{itemize}
 		\item Name
 		\item Tables
 	\end{itemize}
-	\item Table
+	\item \entityname{Table}
 	\begin{itemize}
 		\item Name
 		\item Columns
@@ -375,7 +378,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Security Information
 		\item Attachment Bindings
 	\end{itemize}
-	\item Column
+	\item \entityname{Column}
 	\begin{itemize}
 		\item Name
 		\item Definition
@@ -396,14 +399,14 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 	\end{itemize}
 	\subsubsection{Objects We Will Not Extract}
 	\begin{itemize}
-		\item View
+		\item \entityname{View}
 	\end{itemize}
 \end{itemize}
 
 \subsubsection{PowerDesigner}
 
 \begin{itemize}
-	\item Tables
+	\item \entityname{Table}
 	\begin{itemize}
 		\item Name 
 		\item Columns
@@ -428,7 +431,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Lifecycle 
 		\item Stereotype
 	\end{itemize}
-	\item Columns
+	\item \entityname{Column}
 	\begin{itemize}
 		\item Name 
 		\item Code 
@@ -458,7 +461,7 @@ Conceptual and logical data models in PowerDesigner have so much in common that 
 		\item Rules
 		\item Stereotype
 	\end{itemize}
-	\item Users, Groups, and Roles
+	\item \entityname{User, Group, and Role}
 	\subsubsection{Objects We Will Not Extract}
 	\item Primary, Alternate, and Foreign Keys 
 	\item Indexes

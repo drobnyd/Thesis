@@ -2,7 +2,7 @@
 \label{implementation}
 
 In this chapter we will describe the most important classes of Metadata Extractor and will explain their main responsibilities. The software consists of main three parts which will be discussed - ER/Studio module, PowerDesigner component and Modeling Common, which is the shared part. 
-The common module is a general artifact, that is designed to be helpful when designing a metadata extracting tool from an arbitrary modeling tool and the tool is aimed to be integrated into ecosystem of Manta Flow. \\
+The common module is a general artifact that is designed to be helpful when designing a metadata extracting tool from an arbitrary modeling tool and the tool is aimed to be integrated into ecosystem of Manta Flow. \\
 
 We will go through classes and methods from the source code of Metadata Extractor from a higher perspective. 
 Even though not every class, interface, and method is described in the chapter, a detailed programmer's documentation containing these information is attached in the form of JavaDoc.
@@ -37,14 +37,14 @@ To define a SQL create statement for the tables of ER/Studio's file format is st
 
 On the other hand, deciding which column of a table is primary, which columns are foreign keys and to what primary column every foreign key refers to, is a more complicated task.
 We need to take the reverse-engineering process one step further - to be able to infer keys from tables.
-Modeling tools have the ability to obtain relationships between tables in a reverse-engineered relational database, however the knowledge is based on metadata defining those keys. Databases can store such metadata, but plain SQL create statements, that our RE tool produces, do not provide any additional information like that.
+Modeling tools have the ability to obtain relationships between tables in a reverse-engineered relational database, however the knowledge is based on metadata defining those keys. Databases can store such metadata, but plain SQL create statements that our RE tool produces, do not provide any additional information like that.
 What we need is an utility inferring relations between tables based solely on column names or/and content of database tables. However, we have not found any suitable already existing solution.
 In this situation we have no better option than to enrich our reverse-engineering tool of this ability.
 Output of the RE utility, therefore, needs to be a SQL script containing definitions of tables, columns and key constraint.
 
 As the development of this utility is not the focal point of this work, the RE tool is not going to be an out-of-the-box general solution for deducing keys of relational databases and it is primarily concerned with the objects and properties picked by the analysis in \Cref{metadata_enumeration}. Even though, it should provide us the needed overview of .DM1 files organization.
 
-We must decide what programming language will be used to create the reverse-engineering utility. Although there may be scripting languages, that would make some operations, like joins on tables, easier, we decided to use Java. Metadata Extractor itself is written in it and there is an important module - parser, that the column deducing utility and Extractor, require. By developing both in Java it is possible to reuse the parser component. \\
+We must decide what programming language will be used to create the reverse-engineering utility. Although there may be scripting languages that would make some operations, like joins on tables, easier, we decided to use Java. Metadata Extractor itself is written in it and there is an important module - parser, that the column deducing utility and Extractor, require. By developing both in Java it is possible to reuse the parser component. \\
 
 Let's now describe the workflow of RE tool.
 
@@ -68,7 +68,7 @@ This way, the RE tool examines if columns with same names have corresponding con
 The class has a method determining if a column can be considered the primary key of a table. 
 That is true only if such column contains solely distinct values, as a primary key must be completely unique in a table.
 The relation finder also has a method finding out if a column can possibly be storing foreign keys. The idea is that if the column A contains foreign keys referring to primary keys specified in the column B, each entry of A must be present in B, thus A must be subset of B.
-What more, in .DM1 file format is a table \classname{Identity Value}, that explicitly pairs tables with their primary key columns. 
+What more, in .DM1 file format is a table \erstudiotable{Identity\textunderscore Value} that explicitly pairs tables with their primary key columns. 
 The reverse-engineering tool takes advantage of this information as well.
 The finder class also inspects if the primary keys are defined in some predefined order or if there is some similar pattern how primary keys are listed in a .DM1 table.
 
@@ -77,10 +77,10 @@ To put it all together and to finally generate the desired output in form of a S
 Its crucial method is \methodname{writeMySQLSource}. 
 At the beginning it defines a SQL create statement for each table from ER/Studio source file. 
 Then takes place the phase of creating key constraints. 
-It works with candidate columns, that satisfy policies in \classname{DepedencyCreator} to contain keys.
+It works with candidate columns that satisfy policies in \classname{DepedencyCreator} to contain keys.
 Also these columns must be present in at least one table, so one or more joins can be made using the keys the columns store.
 The converter class also provides space for manual definition of pairs table and its primary key that were identified by inspecting the file format using \classname{RelationFinder*} classes.
-Then the resolving of keys goes like this: at first place, primary keys defined by user are set, then the information stored in \classname{Identity Value} table is used. Lastly, the key inference based on policies taking into account column names takes place. 
+Then the resolving of keys goes like this: at first place, primary keys defined by user are set, then the information stored in \erstudiotable{Identity\textunderscore Value} table is used. Lastly, the key inference based on policies taking into account column names takes place. 
 For example, if a column is called tableA\textunderscore id it is very likely it stores primary keys, if it comes from table called tableA.
 If a column is set as a primary key storage in one table, for each of the remaining tables that contain a column with the same name, the column is marked as a foreign key referring to the first table.
 In the case that there are columns, which were chosen as candidates for key containers, but no constraint was assigned to them in previous steps, it goes as follows. One table of those which contain the given column is marked as the source primary keys and we assume in the rest foreign keys originate. The last approach may cause slight inaccuracies in the final result, but the main message should not get lost.
@@ -92,7 +92,7 @@ We already discussed in \Cref{subsec:dm1_format} that the files storing objects 
 In order to be able to further process the data saved in the file format, programs need to load the contents of those tables into corresponding data structures. That is what parsers are for.
 
 Already existing CSV parsers are made to process a single CSV table per file. There is no unified definition for the comma-separated-value files, but usually they do not allow naming CSV tables as present in .DM1 files.
-What is important to say about CSVs is, that each it consists of entries. 
+What is important to say about CSVs is that each it consists of entries. 
 An entry is located on a separate line and consists of fields and the last record is followed by line break. 
 Fields in an entry are separated by a comma.
 A field may contain a comma or line break, then it must be enclosed in double quotes.
@@ -196,7 +196,7 @@ The overall structure of a file is represented by \classname{ErStudioFileModel} 
 
 A base behavior of both logical and physical data models is defined in \classname{DataModel}.
 A data model has a name and contains owners. An instance fulfilling \classname{DataModel} interface must have property of type \classname{AbstractionLayer} set to either \methodname{Logical} or \methodname{Physical} just like every underlying object in a model.
-It must be invariant, that the whole subtree of objects, beginning in a data model must have the same abstraction layer defined.
+It must be invariant that the whole subtree of objects, beginning in a data model must have the same abstraction layer defined.
 
 \classname{PhysicalDataModel} has an additional feature - it can tell the database platform it is designed for. 
 In the enum class \classname{Platform} all the database management systems ER/Studio supports are captured with an extra entry for an unknown DBMS.
@@ -283,7 +283,7 @@ Once the connections are assigned to physical models, Metadata Extractor travers
 The only item left is to create mapping edges for the corresponding nodes.
 Metadata Extractor creates the mappings symmetrically when resolving, the full information is captured on both levels. 
 This way, it is possible to create all the mapping edges by going through all objects from a single level of abstraction, no matter which level as each mapping edge is contained in both of the levels.
-Thus, data flow generator goes through all the logical objects, creating their node representation and collects the attributes, that have to be linked to a column.
+Thus, data flow generator goes through all the logical objects, creating their node representation and collects the attributes that have to be linked to a column.
 Then when a node representation of physical objects is created, Metadata Extractor checks if the just constructed node has a mapping, a MAPS\textunderscore TO edge is set between the logical and physical node.
 
 \section{PowerDesigner}
@@ -332,7 +332,7 @@ The class \classname{BuilderFactory} is used to choose the correct builder via i
 The outline how the builder classes work is proposed in the \classname{AbstractDataModelBuilder}. 
 Also, the functionality independent of the type of a specific data model is written here, the way to do it is to look on objects from the perspective of abstract classes that are providing the general features needed for the process of data model creation.
 
-The specific implementations take an advantage of the fact, that forming a tree like structure from an XML format is natural and straightforward. That is why, for now we, Metadata Extractor omits a general view on a construction of data model. Ignoring the convenient structure of XML tree would hide the context provided straightforwardly by DOM nodes. 
+The specific implementations take an advantage of the fact that forming a tree like structure from an XML format is natural and straightforward. That is why, for now we, Metadata Extractor omits a general view on a construction of data model. Ignoring the convenient structure of XML tree would hide the context provided straightforwardly by DOM nodes. 
 Requests for specific DOM nodes during the process of object creation are done using XPath queries on the fully loaded XML document.
 
 \subsection{Reader}
@@ -408,7 +408,7 @@ To create a guideline what to do when implementing a metadata extraction from a 
 	The communication with Manta is done via \classname{DatabaseConnector} and \classname{Connection} that is assigned to a physical model.
 	Logical and physical modeled objects are transformed to node representation using corresponding implementation of \classname{DataModelNodeCreator} - logical and physical respectively.
 	Once the nodes are created out of the extracted objects, resolving of mappings between the layers takes place.
-	Linking correctly physical nodes, that were paired with the ones from database dictionary, with higher level nodes is crucial to bring business lineage. 
+	Linking correctly physical nodes that were paired with the ones from database dictionary, with higher level nodes is crucial to bring business lineage. 
 	However there is no strict skeleton for this process as the approaches to how modeling tool realizes mapping across data models may be substantially different, as we have seen in case of PowerDesigner and ER/Studio.
 \end{enumerate} 
 
@@ -447,7 +447,7 @@ Also every CSVs should be valid in the way that each row in a table must have th
 \subsubsection{Reader \& Resolver}
 
 Testing output of the reader module shows a lot about the resolver's correctness, since the logic of reader is actually provided by this module. 
-By the nature of reader, that it connects resolver and parser, these tests rely on the fact that parser works correctly and we assume this is true as far as the parser module tests are passing.
+By the nature of reader, it connects resolver and parser, these tests rely on the fact that parser works correctly and we assume this is true as far as the parser module tests are passing.
 The goal of the reader tests is to find out whether all objects from input data models were successfully and correctly loaded into data structures described by the model component.
 In case of ER/Studio, the testing compares expected statistics about data models such as number of physical models in a solution, entity count of logical model, etc. with the amount of objects that were loaded actually by reader.
 Secondly, some specific objects from hierarchy of a data model that is on input are picked and checked if they were loaded accordingly. Tests check metadata of those objects and mappings with another objects as well. \\ 
