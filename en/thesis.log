@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  13 MAY 2019 11:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  13 MAY 2019 11:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1205,7 +1205,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 102--106
 <../img/DataModelHierarchy.pdf, id=621, 619.35388pt x 45.2892pt>
 File: ../img/DataModelHierarchy.pdf Graphic file (type pdf)
 <use ../img/DataModelHierarchy.pdf>
-Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 281.
+Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 285.
 
 (pdftex.def)             Requested size: 398.33858pt x 29.12802pt.
  [31pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
@@ -1213,29 +1213,24 @@ Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 281.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.301 
+l.305 
        <../img/DataModelHierarchy.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/DataModelHierarchy.pd
 f): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', typ
 e <array>); ignored.
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 333--339
+Underfull \hbox (badness 10000) in paragraph at lines 337--343
 
  []
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--347
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 360--362
+Underfull \hbox (badness 10000) in paragraph at lines 346--351
 
  []
 
@@ -1245,41 +1240,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 364--366
  []
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 369--371
+Underfull \hbox (badness 10000) in paragraph at lines 368--370
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 393--397
+Underfull \hbox (badness 10000) in paragraph at lines 373--375
 
  []
 
-[34] [35pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.4.3}) has been already used, duplicate ignored
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 397--401
+
+ []
+
+[35pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.444 
+l.448 
       ]
-Underfull \hbox (badness 10000) in paragraph at lines 463--467
+Underfull \hbox (badness 10000) in paragraph at lines 467--471
 
  []
 
 [36]
-Underfull \hbox (badness 10000) in paragraph at lines 493--496
+Underfull \hbox (badness 10000) in paragraph at lines 497--500
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 497--499
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 501--503
 
  []
 
-[37] [38] [39] [40]
+[38] [39] [40]
 <../img/SWArchitecture.pdf, id=711, 604.17719pt x 586.10968pt>
 File: ../img/SWArchitecture.pdf Graphic file (type pdf)
 <use ../img/SWArchitecture.pdf>
-Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 602.
+Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 606.
 (pdftex.def)             Requested size: 410.62302pt x 398.33858pt.
 ) [41] [42pdfTeX warning (ext4): destination with the same identifier (name{fig
 ure.4.4}) has been already used, duplicate ignored
@@ -1531,17 +1531,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 198--200
  []
 
 [65] [66] [67] [68] [69] [70] [71] [72]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 483.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 483.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 487.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 487.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 483.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 483.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 487.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 487.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 1F6FB1E136975326F8ADF3E0E93CEA74;9099.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 483.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 487.
  ) 
 Here is how much of TeX's memory you used:
  25646 strings out of 492649
@@ -1564,7 +1564,7 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (76 pages, 1204727 bytes).
+Output written on thesis.pdf (76 pages, 1204865 bytes).
 PDF statistics:
  1046 PDF objects out of 1200 (max. 8388607)
  252 named destinations out of 1000 (max. 500000)
