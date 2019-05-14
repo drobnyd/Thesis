@@ -1,19 +1,19 @@
 \chapter{Introduction}
 
 There is no business today that can live without being backed by a database to store and query its data.
-No matter what domain an enterprise is focused on, we can enumerate many reasons why a database storage helps a company to be more effective and why its deployment is a good idea.
+No matter what domain an enterprise is focused on, we can enumerate many reasons why database storage helps a company to be more effective and why its deployment is a good idea.
 Here we provide some examples of how databases are used through various business domains:
 
 \begin{itemize}
 	
 	\item Social Media \\
-	Every piece of information that has ever been published on social media, from photo through a reaction or comment to friendship establishment, was stored somewhere and that place is a database. Usually the database that a social platform uses does its job in the background. Nevertheless, there may occur events when the data storage reminds of its presence as it did on the most recent outage of Facebook \cite{Facebook19}.
+	Every piece of information that has ever been published on social media, from photo through a reaction or comment to friendship establishment, was stored somewhere and that place is a database. Usually, the database that a social platform uses does its job in the background. Nevertheless, there may occur events when the data storage reminds of its presence as it did on the most recent outage of Facebook \cite{Facebook19}.
 	
 	\item Healthcare \\
-	Easy accessibility of large amount of patient's data is a main reason to deploy a database in the doctor's office or within a healthcare organization \cite{Healthcare13}. High discretion is a requirement when managing data of such sensitiveness.
+	Easy accessibility of a large amount of patient's data is the main reason to deploy a database in the doctor's office or within a healthcare organization \cite{Healthcare13}. High discretion is a requirement when managing data of such sensitiveness.
 	
 	\item Finances \\
-	Databases take care of our money and transactions as well. The standards for coping with such huge amount of critically important data are set high, thus the processes related to, say ATM withdrawal, must be complex to guarantee reliability \cite{BanksCaixa}.
+	Databases take care of our money and transactions as well. The standards for coping with such a huge amount of critically important data are set high, thus the processes related to, say ATM withdrawal, must be complex to guarantee reliability \cite{BanksCaixa}.
 	
 	\item E-commerce \\
 	Every company that sells products online should use a database. The bare minimum is to store offered products themselves and keeping track of purchases that were done by users.
@@ -24,76 +24,76 @@ Once the decision to use a database is made and its usefulness for the business 
 The database design phase comes in place then. By the nature of the problem, a top-down approach to the process is usually followed since at the start there is an enterprise that knows what real life aspects need to be captured in a database. To convert this idea into a working solution, the company typically hires a database designer. \\
 
 Then follows a discussion between an expert in the business domain where the enterprise operates and a database professional, in order to identify and collect requirements for the future system.
-In that moment, data modeling comes into play. 
-Instead of a transcript of the conversation, a better solution is to translate the debate into more intuitive and standardized piece of documentation, that means into a conceptual data model.
-Once the initial model is created, the next steps are going more and more toward a final implementation of the database. After that, a database designer works on the development of a logical model and the most high level concepts are transformed into the ones that are combining high level perspective with more technical aspects, but the description of them remains independent of a concrete database. \\
+At that moment, data modeling comes into play. 
+Instead of a transcript of the conversation, a better solution is to translate the debate into a more intuitive and standardized piece of documentation, which means into a conceptual data model.
+Once the initial model is created, the next steps are going more and more toward the final implementation of the database. After that, a database designer works on the development of a logical model and the most high-level concepts are transformed into the ones that are combining high-level perspective with more technical aspects, but the description of them remains independent of a concrete database. \\
 
-Lastly, the organization of the database is pointed out and captured in a physical model of the analyzed system. From this point, a solid documentation is available and it is straightforward to finally deploy a database that is described in the low-level model as it has a one-to-one mapping with the implementation itself. \\ \\
+Lastly, the organization of the database is pointed out and captured in a physical model of the analyzed system. From this point, solid documentation is available and it is straightforward to finally deploy a database that is described in the low-level model as it has a one-to-one mapping with the implementation itself. \\ \\
 
-The process of development and deployment of a database consists of multiple stages, as we have seen. At the beginning, there is a high level view of why the database is needed and what purpose it will serve. Hopefully, in some time the result is that the data described in the initial step are stored physically at some server. 
+The process of development and deployment of a database consists of multiple stages, as we have seen. In the beginning, there is a high-level view of why the database is needed and what purpose it will serve. Hopefully, in some time the result is that the data described in the initial step are stored physically at some server. 
 This way the data can be accessed and processed.
 
 But that is just the beginning. The importance of a database for an enterprise is not in how it is designed. What does really matter is that big companies have plenty of business processes managing contents of storage via scripts in an automated way. 
 
-For example, travel companies offering airplane tickets commonly increase price when there is not many spaces left for a trip. 
-Thus, when a customer buys a ticket, there is a business logic that computes how the price of the remaining tickets should be raised and updates the records in database representing the not-yet-sold tickets accordingly, so that valid information is shown to customers.
-The logic takes places thanks to SQL queries applied on a database.
-As the amount of business processes grows, the ability to justify correctness of data decreases. 
+For example, travel companies offering airplane tickets commonly increase the price when there are not many spaces left for a trip. 
+Thus, when a customer buys a ticket, there is a business logic that computes how the price of the remaining tickets should be raised and updates the records in the database representing the not-yet-sold tickets accordingly, so that valid information is shown to customers.
+The logic takes place thanks to SQL queries applied to a database.
+As the amount of business processes grows, the ability to justify the correctness of data decreases. 
 Also once an error in data is found in such a big ecosystem, it may be very unpleasant to trace it as data are affected by a possibly huge number of sources and transformations hidden in scripts.
 
-Data lineage is the answer for the struggles with being overwhelmed by the complexity of a big data solution. It brings an ease to seeing what and how is affecting data stored in databases.
+Data lineage is the answer to the struggles with being overwhelmed by the complexity of a big data solution. It brings ease to seeing what and how is affecting data stored in databases.
 
 The lineage of data shows database tables and transformations used for either writing or reading data from tables.  It is really helpful, however not for everyone. 
-We outlined that there are multiple perspectives on a database through data models, and every perspective has a different audience. For example the conceptual is for business people while the physical one is read by database engineers.
-The problem with the existing data lineage solutions is, that they only display the level of abstraction understandable by database professionals. 
-At the same time, people with less profound technical background, that would want to make decisions based on how data flows in their systems are not having an easy time trying to figure out what is going on in such data lineage.
-That is why we want to bring the business data lineage, which is speaking the language of more enterprise people coping with data and making decisions related to them on daily basis. We assume big companies approach database development responsibly, thus there exists a documentation of their systems in form of data models. 
-We will reuse the models for creating the business perspective on movement of data in a system. 
+We outlined that there are multiple perspectives on a database through data models, and every perspective has a different audience. For example, the conceptual is for business people while the physical one is read by database engineers.
+The problem with the existing data lineage solutions is that they only display the level of abstraction understandable by database professionals. 
+At the same time, people with a less profound technical background that would want to make decisions based on how data flows in their systems are not having an easy time trying to figure out what is going on in such data lineage.
+That is why we want to bring the business data lineage, which is speaking the language of more enterprise people coping with data and making decisions related to them on a daily basis. We assume big companies approach database development responsibly, thus there exists documentation of their systems in the form of data models. 
+We reuse the models for creating a business perspective on the movement of data in a system. 
 Data models also store valuable metadata that can make data lineage, even the technical one, more readable and transparent.
-Even though the business lineage provides a summarized and simplified view of data flow, it has to be well aligned with physical flow of data so the high-level view does not drift away from the low-level situation.\\
+Even though the business lineage provides a summarized and simplified view of data flow, it has to be well aligned with physical flow of data, so the high-level view does not drift away from the low-level situation.\\
 
 Let us demonstrate the importance of data lineage on the regulation that every company that stores personal information about citizens of European Union faces - General Data Protection Regulation (known as GDPR).
 In order to comply with the regulation, a company must have a precise knowledge of what it does with data of its customers.  
-For example, GDPR enforces the Right of access \cite{RightOfAccess}, meaning any customer can access all data related to him the company stores upon request. With the help of data lineage, it is only needed to identify what are entry points for information about users. Then the map of data lineage does the rest and highlights where the data end as a consequence. To serve the user's request, the enterprise would just collect data from the identified sources without having to do an exhaustive and error prone analysis of internal processes.
+For example, GDPR enforces the Right of access \cite{RightOfAccess}, meaning any customer can access all data related to him the company stores upon request. With the help of data lineage, it is only needed to identify what are the entry points for information about users. Then the map of data lineage does the rest and highlights where the data end as a consequence. To serve the user's request, the enterprise would just collect data from the identified sources without having to do an exhaustive and error-prone analysis of internal processes.
 Surely, GDPR is a complex set of rules like this, but data lineage can help greatly with many aspects of the regulation. Although data lineage does not make a company automatically GDPR-compliant, it is a shortcut to get there. 
 
 \section{Goals}
 
-The overall goal was to create a piece of software, called Metadata Extractor, for augmenting data lineage by information obtained from data models. The software must support extraction of metadata from two modeling tools - PowerDesigner and ER/Studio. Another requirement was to be able to construct business lineage based on the extracted information.
-We will integrate Metadata Extractor into the ecosystem of Manta Flow, a software tool for creating and visualizing data lineage.
+The overall goal was to create a piece of software, called Metadata Extractor, for augmenting data lineage by information obtained from data models. The software must support the extraction of metadata from two modeling tools - PowerDesigner and ER/Studio. Another requirement was to be able to construct business lineage based on the extracted information.
+We integrate Metadata Extractor into the ecosystem of Manta Flow, a software tool for creating and visualizing data lineage.
 
 \begin{itemize}
 	\item Develop a component that extracts metadata from data models that were created using SAP PowerDesigner.
 	\item Develop a component that extracts metadata from data models that were created using ER/Studio.
 	\item Build business data lineage based on cooperation with the existing solution that is able to create technical lineage.
-	\item Provide a description for the general scenario of metadata extraction from a data modeling tool. Describe how the acquired information should be passed to Manta Flow, making Metadata Extractor easy to extend towards new modeling tools in future.
+	\item Provide a description for the general scenario of metadata extraction from a data modeling tool. Describe how the acquired information should be passed to Manta Flow, making Metadata Extractor easy to extend towards new modeling tools in the future.
 \end{itemize}
 
 \section{Glossary}
 Let us introduce some crucial terms used throughout the whole text.
 
-A \definition{database} is a collection of related data. By data, we mean known facts that can be computerized and that have implicit meaning as stated in literature \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via network. \\
+A \definition{database} is a collection of related data. By data, we mean known facts that can be computerized and that have the implicit meaning as stated in literature \cite{ElmasryNavathe15}. We will consider that a database stores data relevant to an enterprise at a host that can be accessed via a network. \\
 
 A \definition{data model} is a description of data, data relationships, data semantics, and consistency constraints. \label{DataModel} \\
- 
-A \definition{database schema} defines how is the database described in a data model actually constructed, specifying types of fields from data model. It represents an instance of a data model. \\
+
+A \definition{database schema} defines how is the database described in a data model actually constructed, specifying types of fields from the data model. It represents an instance of a data model. \\
 
 A \definition{diagram} is a graphical visualization of a data model. \\
 
 A \definition{data modeling tool} is a software that allows a database designer to create data models. End users may use the tools for interactive previewing of the models' diagrams. \\
 
 \definition{Data lineage} provides a picture of how data moves in some system across its components. It is a description of how data go from an origin through their transformations until they reach a destination. 
-The ability of seeing graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
+The ability to see graphically how data are used, what for, and what are the consequences of the usage in a system is a powerful tool for error tracing. \\
 
 \section{Outline}
 
-In \Cref{on_database_background}, On Database Background, we will go through the concepts fundamental for understanding the domain to which Metadata Extractor contributes. The prerequisites are to understand databases, data modeling and data lineage.
+In \Cref{on_database_background}, On Database Background, we will go through the concepts fundamental for understanding the domain to which Metadata Extractor contributes. The prerequisites are to understand databases, data modeling, and data lineage.
 
 \Cref{modeling_tools}, Modeling Tools, describes more specifically what are the programs used for creating data models capable of doing.
 Also, we will discuss the specific tools, with which Metadata Extractor works, in more detail.
 
-\Cref{analysis_design}, Analysis \& Design of the Solution, is concerned about analyzing the aspects of the two selected modeling tools, PowerDesigner and ER/Studio. 
-Based on the analysis, we identify requirements for our software and propose a high level architecture of Metadata Extractor. 
+\Cref{analysis_design}, Analysis \& Design of the Solution, is concerned about analyzing the aspects of the two selected modeling tools - PowerDesigner and ER/Studio. 
+Based on the analysis, we identify requirements for our software and propose a high-level architecture of Metadata Extractor. 
 We also preview in the chapter programs solving similar problems as we do.
 
 Lastly, \Cref{implementation}, Implementation, is discussing the resulting classes and their responsibilities which Metadata Extractor is made of.
