@@ -46,7 +46,7 @@ Lastly, despite the non-relational databases may be growing in numbers and becam
 
 Databases can be managed directly through database management systems by a user who is using a query language for accessing data. 
 However, third party or application programs also need to access the DBMS. 
-In our work two types of programs will be connecting to databases when fetching metadata - modeling tools when undergoing a reverse-engineering process and Manta Flow.
+In our work two types of programs are connecting to databases when fetching metadata - modeling tools when undergoing a reverse-engineering process and Manta Flow.
 The way applications uses databases is through an application programming interface (API) of a DBMS, which provides a set of methods to an application.
 When such API is called, it usually translates the request so that a specific target DBMS driver understands it and performs the desired action. \\
 
@@ -58,7 +58,7 @@ A \definition{Connection String} is a textual information used to identify a dat
 Modeling is a crucial phase of the database design process.
 Developing a database is just like building a house. 
 Everyone will agree that no construction work can go without solid design and documentation. 
-It would sound a bit strange to hire construction workers straight ahead and tell them that we need a house that has 5 rooms and some toilets, and expect a good result. Most probably, some kind of building would be produced at the end, but we will agree that expectations and requirements of the later inhabitant could not be met properly.
+It would sound a bit strange to hire construction workers straight ahead and tell them that we need a house that has 5 rooms and some toilets, and expect a good result. Most probably, some kind of building would be produced at the end, but it is clear that expectations and requirements of the later inhabitant could not be met properly.
 Surely there are good reasons why the usual steps are followed strictly.
 Let us move on from this analogy to the database domain. \\
 When deploying a database from scratch one may think of two short term advantages. Firstly, the time needed to have data stored somewhere would be much shorter and secondly the initial cost of the system could be lower. \\
@@ -80,7 +80,7 @@ There are good reasons why modeling has its place in the database development pr
 
 \subsection{Data Model Perspectives}
 
-In this section we will discuss data models from two basic perspectives. 
+In this section we discuss data models from two basic perspectives. 
 The vertical division talks about on what levels of abstraction data models can be designed. 
 While when looking on data model types horizontally, we deal with specific types of data organization that are used on each of the vertical levels.
 
@@ -121,7 +121,7 @@ The categorization of data models have undergone some modifications, as for exam
 
 \subsubsection{Horizontal Division}
 
-We will introduce three specific types of data organization that are widely used nowadays - relational, entity-relationship and enhanced-entity-relationship data models.
+We introduce three specific types of data organization that are widely used nowadays - relational, entity-relationship and enhanced-entity-relationship data models.
 
 \subsubsection{Relational Data Model}
 
@@ -140,9 +140,9 @@ An extended version of ER data model was introduced later - \definition{enhanced
 
 To put the two perspectives together - conceptual and logical data models are usually represented by ER data models.
 As the most low-level model type is tied directly with how a database is organized, physical models must obey the structure of a database. 
-Therefore, as we work with relational databases, we will assume physical data models to be of relational kind. \\
+Therefore, as we work with relational databases, we assume physical data models to be of relational kind. \\
 
-Now we will describe the standard three levels of data models in more detail.
+Now, we describe the standard three levels of data models in more detail.
 
 \subsection{Conceptual Data Model}
 
@@ -226,7 +226,7 @@ Objects in physical models should reflect the database organization, and at the 
 \subsection{Relations Between the Models}
 
 We described what the role of each of the layers in a database design process is.
-Now we will show that the data models are somehow connected vertically - across different abstraction levels. Let's see why are such connections extremely useful.
+Here we show that the data models are somehow connected vertically - across different abstraction levels. Let's see why are such connections extremely useful.
 
 When talking about vertical divisions, we should think about how database design can proceed.
 The basic approach is the \definition{top-down approach} to database modeling.
@@ -238,8 +238,8 @@ They start with "low-level" details such as symptoms and they're trying to build
 
 \subsubsection{Maps-to Relation}
 
-In order to see how concepts captured in data models are getting transformed across levels of abstraction, a relation that we will call \definition{maps-to} is used. The relation connects objects that are semantically equivalent in different data model types vertically.
-Sometimes even mapping between objects on the same abstraction layer are allowed, but we will not consider this, as it be mixes two different concepts together - data modeling with data lineage. To be more precise, what we mean by the semantically equivalent objects is, that we will assume maps-to edges leading solely between these types of modeled objects: 
+In order to see how concepts captured in data models are getting transformed across levels of abstraction, a relation that we call \definition{maps-to} is used. The relation connects objects that are semantically equivalent in different data model types vertically.
+Sometimes even mapping between objects on the same abstraction layer are allowed, but we will not consider this, as it be mixes two different concepts together - data modeling with data lineage. To be more precise, what we mean by the semantically equivalent objects is that we assume maps-to edges leading solely between these types of modeled objects: 
 \begin{itemize}
 	\item A data model can be mapped to another data model.
 	\item An entity can be mapped to another entity or a table.
@@ -255,7 +255,7 @@ Lastly, we consider the mapping relation to be symmetrical.
 \definition{Data lineage} brings a way of tracking data from its origin throughout its whole life cycle, taking into account every process that manipulates the data until it reaches its final destination. 
 It is like telling the story of a piece of data, including where does it come from, what transformation it undergoes, and how it interacts with other data.
 It should provide answers for questions such as where the data in a given solution come from, whether it can be trusted or not, how it gets from point A to point B, and how the data changes over time in the analyzed system.
-Basically, data lineage helps enterprises to gain deeper knowledge and understanding of what happens to data as it travels through various interconnected data pipelines\footnote{A pipeline is a set of elements manipulating and processing data where output of one element is input of another.}, that the system consists of. Although we are focused specifically on databases, data lineage is a general concept, where data origins and targets are not necessarily databases. The data may come from, let's say, a user interface, where it is inserted directly by a customer, and end in an output of a reporting software.
+Basically, data lineage helps enterprises to gain deeper knowledge and understanding of what happens to data as it travels through various interconnected data pipelines\footnote{A pipeline is a set of elements manipulating and processing data where output of one element is input of another.} that the system consists of. Although we are focused specifically on databases, data lineage is a general concept, where data origins and targets are not necessarily databases. The data may come from, let's say, a user interface, where it is inserted directly by a customer, and end in an output of a reporting software.
 This overview of a system that data lineage provides is crucial when taking decisions about the infrastructure, since understanding the consequences of the actions should be more clear. Also it makes much easier to find errors in systems, since the bugs can be tracked down from where the undesired behavior came to the surface to where the affected data originates. 
 Certainly somewhere between these two points the malfunctioning part is, and, thanks to data lineage, the set of suspicious operations is reduced and visible. 
 Therefore, much time spent on solving issues should be saved.
@@ -285,7 +285,7 @@ Other differentiation of data lineage is the business one versus the technical o
 \end{figure}
 \TODO{describe the mappings visually or verbally?}
 
-Now we will focus on how data lineage can be created to describe lifespan of data, that are coming from or being saved to an SQL database.
+Now we will focus on how data lineage can be created to describe lifespan of data that are coming from or being saved to an SQL database.
 To analyze the flow of actual data, having access to quality metadata is fundamentally needed.
 \definition{Metadata} are the data describing other data. The metadata we will use when analyzing a database are include database name, names of tables, columns in tables, names of columns, procedures, data types, etc.
 When we have these information describing all the records that can be stored in the database, together with all SQL scripts which are used for management of the database, we can reliably determine how the data flows as the database is being used.
@@ -321,7 +321,7 @@ That means when physical models are aimed on one of the following database syste
 
 It is quite common that modeling tools provide some kind of view how data flow in the modeled diagrams, or they have data movement models where objects from data models take part. 
 However, this is not the way we will determine logical (or conceptual) data lineage.
-The reason why not to take into account this feature is, that it may be completely away from how the system really works and how the data move in it. 
+The reason why not to take into account this feature is that it may be completely away from how the system really works and how the data move in it. 
 This is because none of the modeling tools inspects live databases and scripts working with them, so the only way how a data lineage can be created in the tools is that a user draws the lineage graph by hand. 
 It may be useful at the time when the database is not yet implemented and there is a type of dependency relationship that cannot be captured other way. But once a database is running, the lineage may get misleading, as there is no way to enforce correctness of the data flows specified.
 That is why Manta Flow brings data lineage that corresponds to how a database is deployed and used in reality. Then, thanks to mapping relations, Metadata Extractor can propagate the lineage to more abstract objects concepts on the conceptual and logical level.

@@ -77,6 +77,8 @@ B.B. Agarwal.
 
 \bibitem{PowerDesignerFeatures}
 {PowerDesigner Main Features}.
+\newblock
+  \url{https://www.powerdesigner.biz/EN/powerdesigner/powerdesigner-features.html#InfoArchitecture}.
 
 \bibitem{CollibraBusinessAssets}
 {Bussiness Assets}.
@@ -108,6 +110,8 @@ Data lineage and business lineage reports.
 \newblock \url{https://tools.ietf.org/html/rfc4180}.
 
 \bibitem{PowerDesignerDocumentation}
-Sap powerdesigner documentation.
+{SAP PowerDesigner Documentation}.
+\newblock
+  \url{https://help.sap.com/saphelp_pd1654_data/helpdata/en/c7/c304506e1b101483efbf3d87db9a8f/frameset.htm}.
 
 \end{thebibliography}

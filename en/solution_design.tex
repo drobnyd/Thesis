@@ -6,9 +6,9 @@ The solution will be able to interact with Manta Flow and bring business lineage
 Currently, Manta Flow supports only automated creation of technical lineage.
 
 Here we describe how we proceeded when analyzing the solution and discuss crucial features of ER/Studio and PowerDesigner in detail.
-Therefore, we can identify the important aspects of the tool that we will need to focus on, when finally implementing Metadata Extractor.\\
+Therefore, we can identify the important aspects of the tool that we needed to focus on, when finally implementing Metadata Extractor.\\
 
-In this chapter we seek answers for these questions:
+In this chapter we provide answers for these questions:
 \begin{enumerate}
 	\item Identify what data models the modeling tools work with, what objects are contained in the supported data models, how they are organized and what metadata can be obtained that are relevant to be brought into data lineage.
 	\item Find out how the data models are saved and how the interesting information from 1) can be reconstructed.
@@ -19,7 +19,7 @@ In this chapter we seek answers for these questions:
 
 We already presented that the modeling tools are capable of creating data models. These models are saved into files. 
 The output files of the modeling tools are going to be the input of Metadata Extractor that uses them for reconstruction of the objects and information contained in the data models.
-In order to come with logic of the reconstruction, we need to identify what objects are saved in the files produced by modeling tools, and how they are represented. 
+In order to come with logic of the reconstruction, we needed to identify what objects are saved in the files produced by modeling tools, and how they are represented. 
 In \Cref{chap:database_modeling} about database modeling we introduced the standard layout of every data model type. We will quickly review their main objects. \\
 
 \label{main_modeled_objects}
@@ -29,7 +29,7 @@ Physical data models are made of tables. A table is composed of columns that may
 These are the fundamental metadata Metadata Extractor must load form the files. 
 Consequently, it must correctly load hierarchy of these objects as it is modeled. For example attributes must be assigned to entities correctly, etc.
 
-Next, we will look at how to find the pairs of objects that are in maps-to relation, and how do they refer to each other across levels of abstraction.
+Next, we look at how to find the pairs of objects that are in maps-to relation, and how do they refer to each other across levels of abstraction.
 In example, how a logical attribute and a physical column, are tied together across data models.
 
 \subsection{File Format}
@@ -44,7 +44,7 @@ In a single .DM1 file, related data models are stored. Let's call these models a
 In a solution one logical model must be present whereas 0 to N physical ones supporting the logical model.
 We can imagine why ER/Studio behaves like this. The motivation may be that once there is a problem (if there is no challenge, no data modeling is needed), must be described by a logical model. 
 Possibly user has worked out the way to solve it, and that is when physical models are present as well.
-Note that the actual storage may be distributed and the corresponding databases can be of different technologies, that is why more than one physical model is allowed in a single solution.
+Note that the actual storage may be distributed and the corresponding databases can be of different technologies that is why more than one physical model are allowed in a single solution.
 
 .DM1 is a textual file format which is organized into many tables.
 Such table is a CSV (comma-separated values) structure with a modification, since the file format consists of many of these tables, (i) each table has a unique name which identifies it. 
@@ -119,9 +119,9 @@ Metadata Extractor is aimed to bring information that is relevant to for data li
 Modeling tools are exhaustive pieces of software with many features, thus have the ability to capture plenty of aspects that a modeled system has.
 We determined types information that can appear in data models of PowerDesigner and ER/Studio, makes sense to extract by analysis. Let us mention two important categories of metadata that we assume irrelevant to retrieve by Metadata Extractor.
 
-Firstly, we will not pay attention to relationships in the entity-relationship model. 
+Firstly, do not pay attention to relationships in the entity-relationship model. 
 This is given by the nature of Manta Flow. It is not a modeling tool, thus it does not work with relations and edges between objects are used solely to represent flow of data in a given system.
-The only relationship type from data models we will need to cope with is the inheritance relation, which is present in the enhanced-entity-relationship model. 
+The only relationship type from data models we need to cope with is the inheritance relation, which is present in the enhanced-entity-relationship model. 
 The difference is that without capturing the is-a links, an entity may not be described completely and the attributes that are inherited may be missing.
 
 The second category of metadata that Metadata Extractor will ignore, are the ones that describe constraints on the actual data records saved in a database. 
@@ -153,7 +153,7 @@ ER/Studio Data Architect does not support conceptual data models.
 		\item Definition: Further description of an entity. Plain text or RTF (rich text format).
 		\item Note: Notes are used when a documentation about an entity is generated. Plain text or RTF.
 		\item Where Used: This property shows objects that are in maps-to relation with an entity. Those which were created by generating.
-		\item User-Defined Mappings: Shows objects that are in maps-to relation with an entity. These mapping are user defined. They can contain description of a relation, but we will not fetch the text as Manta Flow does not support attributes on mapping edges.
+		\item User-Defined Mappings: Shows objects that are in maps-to relation with an entity. These mapping are user defined. They can contain description of a relation, but we do not fetch the text as Manta Flow does not support attributes on mapping edges.
 		\item Owner: The owner an entity belongs to.
 	\end{itemize}
 	\item \entityname{Attribute}
@@ -169,7 +169,7 @@ ER/Studio Data Architect does not support conceptual data models.
 
 \subsubsection{PowerDesigner}
 
-Conceptual and logical data models in PowerDesigner have so much in common that we will propose unified view on what may be stored in them. The properties/object that are specific for either of them are marked with information in brackets saying "CDM/LDM only".
+Conceptual and logical data models in PowerDesigner have so much in common that we propose a unified view on what may be stored in them. The properties/object that are specific for either of them are marked with information in brackets saying "CDM/LDM only".
 
 \subsubsection{CDM \& LDM}
 
@@ -290,7 +290,7 @@ The reason is that the analysis implies a general skeleton of a data model that 
 Surely further relations between the objects will come to play, like inheritances or mappings. They are going to be discussed later in the \Cref{maps_to_analysis}, making the diagram of objects in a data model more complex.
  
 Metadata Extractor builds the tree from the top to the bottom. 
-In the next two subsections we will describe how the main objects from \Cref{DataModelHierarchy} can be reconstructed from the output files of ER/Studio, PowerDesigner respectively.
+In the next two subsections we describe how the main objects from \Cref{DataModelHierarchy} can be reconstructed from the output files of ER/Studio, PowerDesigner respectively.
 
 \subsubsection{ER/Studio}
 
@@ -459,10 +459,10 @@ The crucial part is to ensure that Metadata Extractor merges correctly physical 
 \subsection{Database Connections}
 
 Even though Metadata Extractor will not connect to databases directly, it needs to gain details of a database connections when working with physical models.
-Only then Metadata Extractor is able to know what specific database the extracted physical objects belong to. Firstly, we will go through why do we actually need the connections and then we will look at how in case of PowerDesigner and ER/Studio the connection can be made and obtained.
+Only then Metadata Extractor is able to know what specific database the extracted physical objects belong to. Firstly, we answer the question why do we actually need the connections and then we will look at how in case of PowerDesigner and ER/Studio the connection can be made and obtained.
 
-What we will do is not accessing metastores \footnote{Shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - types of metadata and their organization varies greatly. 
-Instead we will make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
+What we do is not accessing metastores \footnote{Shortly for metadata storage} of databases. Getting metadata directly is not really straightforward as each database technology has its own specifics - types of metadata and their organization varies greatly. 
+Instead we make use of the fact that Manta does has connectors that do the job for us, stores the metadata in its own local database and has unified API for getting the metadata independently of database engine. 
 
 And why would we want to request another metadata when that is just what we are extracting from physical data models? \label{matching_physical_objects}
 Because we are interested in data lineage, which is created by Manta Flow based on the real metadata of physical objects that are present in a database.
@@ -478,7 +478,7 @@ The details we use for identification of a database instance are the following:
 	\item User Name
 \end{itemize} 
 All the above can be stored in one property called \definition{connection string}.\\
-To this set of the listed properties and a connection string we will refer as a \definition{connection}. \\
+To this set of the listed properties and a connection string we refer as a \definition{connection}. \\
 Since each physical data model describes a single database (or its subset) we need exactly one connection for each processed physical model in order to achieve what we described just above.
 
 However, the identification of a database that a physical data model reflects cannot be found in the file storing the physical model, we have to inspect other possibilities for to obtaining the database details.
@@ -514,7 +514,7 @@ So Metadata Extractor has to stick with the same solution as in the case of ER/S
 \subsection{Output Representation}
 
 The output of Metadata Extractor is a graph. Its nodes are the important extracted objects such as entity, attribute, etc. properties of the nodes will be the metadata acquired about the extracted objects. Edges of the output graph are of different types, they can either stand for mapping of the nodes of indicate flow of data between them. 
-The remaining part is how we will represent the output. We require a structure that is both convenient to work with programmatically as a data structure and able to be visually presented to a user of our tool.
+The remaining part is how Metadata Extractor represents its output. We require a structure that is both convenient to work with programmatically as a data structure and able to be visually presented to a user of our tool.
 Also, we must take into account that Metadata Extractor is going to be plugged into an already existing software environment. 
 Manta Flow is backed by a database storing graphs of data lineage. There is already an existing browser-based user interface, using which the data flows can be shown and previewed interactively. 
 Given that we would like to comply with the graph database and merge our graphs to the storage, and having the ability to reuse the visualization for presentation of the outputs, the most natural solution is to stick with the very same representation of graph as Manta does.

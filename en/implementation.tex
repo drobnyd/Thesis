@@ -4,7 +4,7 @@
 In this chapter we will describe the most important classes of Metadata Extractor and will explain their main responsibilities. The software consists of main three parts which will be discussed - ER/Studio module, PowerDesigner component and Modeling Common, which is the shared part. 
 The common module is a general artifact that is designed to be helpful when designing a metadata extracting tool from an arbitrary modeling tool and the tool is aimed to be integrated into ecosystem of Manta Flow. \\
 
-We will go through classes and methods from the source code of Metadata Extractor from a higher perspective. 
+We go through classes and methods from the source code of Metadata Extractor from a higher perspective. 
 Even though not every class, interface, and method is described in the chapter, a detailed programmer's documentation containing these information is attached in the form of JavaDoc.
 
 \section{ER/Studio}
@@ -25,7 +25,7 @@ Input for the reverse-engineering tool is an arbitrary .DM1 file, while output m
 We observed the analogy of the file format's storage logic with relational databases. 
 This type of databases can be represented understandably by a diagram.
 Thus, it would be nice, if the output of our utility would be such diagram capturing the organization of .DM1 files.
-However, creating a relational diagram directly from the reverse-engineering tool would be too complicated. But we will recall that for creation of relational diagrams modeling tools are used. The best solution would be to reuse this capability of theirs.
+However, creating a relational diagram directly from the reverse-engineering tool would be too complicated. But we may recall that for creation of relational diagrams modeling tools are used. The best solution would be to reuse this capability of theirs.
 Modeling tools usually have the ability to transform selected routines of SQL into visual representation.
 For example, based on the statement CREATE TABLE T a modeling tool can draw a box in diagram representing table T. 
 By means of SQL, table columns and key constraints can be defined as well.
@@ -36,15 +36,15 @@ Therefore, if the RE tool is able to generate a SQL create procedure for each of
 To define a SQL create statement for the tables of ER/Studio's file format is straightforward, once a .DM1 file is parsed. For parsing the tool uses the parser described in \Cref{subsec:dm1_parser}.
 
 On the other hand, deciding which column of a table is primary, which columns are foreign keys and to what primary column every foreign key refers to, is a more complicated task.
-We need to take the reverse-engineering process one step further - to be able to infer keys from tables.
+We needed to take the reverse-engineering process one step further - to be able to infer keys from tables.
 Modeling tools have the ability to obtain relationships between tables in a reverse-engineered relational database, however the knowledge is based on metadata defining those keys. Databases can store such metadata, but plain SQL create statements that our RE tool produces, do not provide any additional information like that.
-What we need is an utility inferring relations between tables based solely on column names or/and content of database tables. However, we have not found any suitable already existing solution.
-In this situation we have no better option than to enrich our reverse-engineering tool of this ability.
+What we needed was an utility inferring relations between tables based solely on column names or/and content of database tables. However, we have not found any suitable already existing solution.
+In this situation we had no better option than to enrich our reverse-engineering tool of this ability.
 Output of the RE utility, therefore, needs to be a SQL script containing definitions of tables, columns and key constraint.
 
 As the development of this utility is not the focal point of this work, the RE tool is not going to be an out-of-the-box general solution for deducing keys of relational databases and it is primarily concerned with the objects and properties picked by the analysis in \Cref{metadata_enumeration}. Even though, it should provide us the needed overview of .DM1 files organization.
 
-We must decide what programming language will be used to create the reverse-engineering utility. Although there may be scripting languages that would make some operations, like joins on tables, easier, we decided to use Java. Metadata Extractor itself is written in it and there is an important module - parser, that the column deducing utility and Extractor, require. By developing both in Java it is possible to reuse the parser component. \\
+We must decide what programming language will be used to create the reverse-engineering utility. Although there may be scripting languages that would make some operations, like joins on tables, easier, we decided to use Java. Metadata Extractor itself is written in it and there is an important module - parser that the column deducing utility and Extractor, require. By developing both in Java it is possible to reuse the parser component. \\
 
 Let's now describe the workflow of RE tool.
 
@@ -184,7 +184,7 @@ The parser's interface is a single method - \methodname{readFile}. It takes a fi
 
 The purpose of the model component is to provide a read access to both a raw structure of a processed source file and a fully loaded hierarchy of objects Metadata Extractor has reconstructed from a file.
 
-The crucial objects and the important properties of theirs which is the model required to capture result from the analysis of ER/Studio data models listed in \Cref{metadata_enumeration}. They are described by functionality that is expected from them, so the model component is a set of interfaces. Here we will describe them in more detail.
+The crucial objects and the important properties of theirs which is the model required to capture result from the analysis of ER/Studio data models listed in \Cref{metadata_enumeration}. They are described by functionality that is expected from them, so the model component is a set of interfaces. Here we describe them in more detail.
 
 The perspective of a raw file structure loaded to memory is represented by the interface \classname{ErStudioFile} where either all tables from file can be retrieved via \methodname{getAllCsvTables} or a single table by its name using the \methodname{getCsvTable} method.
 
@@ -210,7 +210,7 @@ Important objects in a data model that can be described further by definition an
 These can be either \classname{CompositeDataObject} or \classname{SimpleDataObject}.
 
 An interface for composite objects describes what features are expected from a table or an entity.
-The two types have the very same set of properties, that is why a single class is enough to capture of both. 
+The two types have the very same set of properties that is why a single class is enough to capture of both. 
 Which of the two kinds an instance represents is decided by its \classname{AbstractionLayer} attribute - the logical layer indicates an entity, the physical a table.
 A composite one can be mapped to another \classname{CompositeDataObject} and may contain simple objects.
 
@@ -228,7 +228,7 @@ Outline of what the resolver module does is that using the \classname{ErStudioFi
 It builds an internal solution, puts inner objects to maps-to relation, then loads external solutions and at the end resolves mappings that lead across solutions using \classname{ExternalMapper} takes place.
 The parser component provides an input for the resolver.
 
-Typically, for each model's interface, we will create an implementation. 
+Typically, for each model's interface we create an implementation. 
 In Java it is usual to call the classes fulfilling an contract \classname{*Impl} where * is a placeholder for the name of an interface. We stick to this naming convention. 
 The \classname{*Impl} classes, in contrast to the interfaces that are used to describe the model component, need to dispose of methods for setting up and adding properties or sub objects. These classes can be found in the "imp" package. \\
 
@@ -268,7 +268,7 @@ Each time the \methodname{read} method is called, it forwards the next file from
 Having constructed the objects defined in the model unit, Metadata Extractor sends them to the Data Flow Generator unit, where an instance of \classname{ErStudioSolution} gets transformed into an output graph. This component puts together functionality of Manta Flow with Metadata Extractor.
 
 Before describing the workflow of the generator unit, let us mention its layout.
-There is a scenario that executes independent tasks. A task is a routine that has an input and an output. In out case we will use a single task whose input will be a data structure described by the model unit and output a graph with extracted information.
+There is a scenario that executes independent tasks. A task is a routine that has an input and an output. In our case we use a single task, whose input is a data structure described by the model unit and output a graph with extracted information.
 
  Namely, \classname{ErStudioDataflowScenario} reads an input file, and executes the task - \classname{ErStudioDataflowTask}. 
  
@@ -375,7 +375,7 @@ Only with this knowledge Metadata Extractor can correctly pair the same database
 This functionality is provided by implementations of the interface \classname{DatabaseConnector}. Details about the target database of a physical data model are kept in \classname{Connection}. 
 The API to database dictionaries created by Manta is provided by \classname{DataflowQueryService}. 
 Having collected information of a physical object, either a column or a table, the query service tries to find the object in the dictionaries using \methodname{createColumnNode} or \methodname{createTableNode}. 
-If the service succeeds, matched node from a dictionary is appended to the output graph, otherwise null is returned from a create method and Metadata Extractor tools copes with the situation in such a way, that it creates a node that has no backing in a live database, marking the node's attribute source type to MODEL to make clear in the output, that it is an artificial node based only on a physical data model. 
+If the service succeeds, matched node from a dictionary is appended to the output graph, otherwise null is returned from a create method and Metadata Extractor tools copes with the situation in such a way that it creates a node that has no backing in a live database, marking the node's attribute source type to MODEL to make clear in the output, that it is an artificial node based only on a physical data model. 
 It can be from two reasons - the database object does not exists or we provided inaccurate/incomplete data to identify it.
 
 So the first requirement for a general extractor from data modeling tools is to be able to organize extracted metadata in such a way that \classname{DatabaseConnector} may be called and ideally matches the modeled objects with the extracted ones.
@@ -387,7 +387,7 @@ However, that is not a problem as the node hierarchy is not that strict and it c
 For example it is not necessary to build an attribute under an entity node if a modeling tool does not allow such concept, just like an owner node is not necessary, as there is no strict rule if the tools should support it or not.
 
 We have discussed the modeled objects on conceptual and logical level are described by ER or EER diagrams. 
-The important fact is that the possible kinds of objects are going to be very similar in both models, that is why a single interface \classname{DataModelNodeCreator} for high-level node creation may be used.
+The important fact is that the possible kinds of objects are going to be very similar in both models, that is why the single interface \classname{DataModelNodeCreator} for high-level node creation may be used.
 However, it must be implemented by two different classes \classname{LogicalDataModelNodeCreatorImpl} and \classname{ConceptualDataModelNodeCreatorImpl}, so details about node's type can be specified, therefore the nodes will not mix between the layers.
 \classname{Resource} differentiates technologies, in our case it makes sure objects extracted from modeling tools are aggregated by what specific tool is their origin.
 
@@ -437,7 +437,7 @@ The quality of programmer's toolbox may have a huge influence on his productivit
 \section{Testing}
 
 Automated unit tests validating the crucial parts of the implementation are a huge help to determine correctness of Metadata Extractor's logic. 
-We developed series that should tell in what shape is the program.
+We developed test suites that should tell in what shape is the program.
 
 \subsubsection{ER/Studio Parser}
 

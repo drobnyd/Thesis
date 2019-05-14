@@ -27,11 +27,6 @@ Warning--entry type for "BanksCaixa" isn't style-file defined
 --line 143 of file bibliography.bib
 Warning--entry type for "PowerDesignerDocumentation" isn't style-file defined
 --line 148 of file bibliography.bib
-I was expecting a `,' or a `}'---line 150 of file bibliography.bib
- : 
- : howpublished = {\url{https://help.sap.com/saphelp_pd1654_data/helpdata/en/c7/c304506e1b101483efbf3d87db9a8f/frameset.htm}}
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--entry type for "RfcCSV" isn't style-file defined
 --line 153 of file bibliography.bib
 Warning--entry type for "RightOfAccess" isn't style-file defined
@@ -50,16 +45,16 @@ Warning--entry type for "AccessPathDefiniton" isn't style-file defined
 --line 209 of file bibliography.bib
 You've used 24 entries,
             1791 wiz_defined-function locations,
-            564 strings with 7142 characters,
-and the built_in function-call counts, 2664 in all, are:
-= -- 202
+            566 strings with 7346 characters,
+and the built_in function-call counts, 2686 in all, are:
+= -- 208
 > -- 56
 < -- 0
 + -- 34
 - -- 10
 * -- 27
-:= -- 313
-add.period$ -- 49
+:= -- 319
+add.period$ -- 51
 call.type$ -- 24
 change.case$ -- 20
 chr.to.int$ -- 0
@@ -67,17 +62,17 @@ cite$ -- 24
 duplicate$ -- 141
 empty$ -- 428
 format.name$ -- 10
-if$ -- 677
+if$ -- 683
 int.to.chr$ -- 0
 int.to.str$ -- 24
 missing$ -- 8
-newline$ -- 100
+newline$ -- 102
 num.names$ -- 7
 pop$ -- 141
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 131
+skip$ -- 127
 stack$ -- 0
 substring$ -- 0
 swap$ -- 24
@@ -88,5 +83,5 @@ type$ -- 0
 warning$ -- 0
 while$ -- 7
 width$ -- 26
-write$ -- 180
-(There was 1 error message)
+write$ -- 184
+(There were 16 warnings)
