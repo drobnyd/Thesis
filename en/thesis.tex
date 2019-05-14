@@ -88,8 +88,8 @@ Dedication.
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
 \def\Abstract{%
-Data lineage is a way of showing how information flows through complicated software systems. If the given system is a database, tables and columns are visualized along with SQL transformations of the stored data. However, this picture may be difficult to understand for people with weaker technical background, as database objects usually obey naming conventions and do not necessarily represent something tangible. To improve lineage comprehension, we developed a software called Metadata Extractor that on one hand brings further description of the database objects, as well as introduces a whole new perspective on data in a system through business lineage aimed for non-technical users. The additional metadata enriching data lineage are extracted from data modeling tools, such as ER/Studio and PowerDesigner, that are widely used in database design process. 
-The solution extends the Manta Flow lineage tool, while taking advantage of its features at the same time. \\
+Data lineage is a way of showing how information flows through complicated software systems. If the given system is a database, tables and columns are visualized along with SQL transformations of the stored data. However, this picture may be difficult to understand for people with weaker technical background, as database objects usually obey naming conventions and do not necessarily represent something tangible. To improve lineage comprehension, we developed a software called Metadata Extractor that on one hand brings the further description of the database objects, as well as introduces a whole new perspective on data in a system through business lineage aimed for non-technical users. The additional metadata enriching data lineage is extracted from data modeling tools, such as ER/Studio and PowerDesigner, that are widely used in the database design process. 
+The solution extends the Manta Flow lineage tool while taking advantage of its features at the same time. \\
 }
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
@@ -161,40 +161,44 @@ PDM \tab Physical Data Model \\
 \section{Building}
 \label{build}
 
-The build process is ensured through Maven with dependencies specified with its pom.xml files.
-However, in order to build Metadata Extractor "secret" dependencies owned by MANTA are needed. Otherwise the project will not compile successfully. 
-Also in order to gain the whole functionality of our tool a context provided by Manta Flow's database extractors, post processing done on server, where the interpolation takes place, and visualization of data lineage which is also part of the server's functionality is needed. 
-There is a command line user interface putting all the parts together and must be backed by manta server with graph database that is running user interface as well. The crucial parts of Manta Flow though can not be built without having access to MANTA's code repository.
+The build process of Metadata Extractor is ensured through Maven with dependencies specified with its pom.xml files.
+However, in order to build Metadata Extractor "secret" dependencies owned by MANTA are needed. Otherwise, the project will not compile successfully. 
+Also in order to gain the whole functionality of our tool, a context provided by Manta Flow's database extractors and post-processing on Manta server, where the interpolation takes place, and visualization of data lineage which is also part of the server's functionality is needed. 
+There is a command line user interface putting all the parts together and must be backed by Manta server with a graph database that is running user interface as well. The crucial parts of Manta Flow though cannot be built without having access to MANTA's code repository.
 
-Even with the access to the repository, MANTA is a proprietary software and running its products requires a valid license.
+Even with access to the repository, Manta Flow is proprietary software and running its products requires a valid license.
 
 Thus only those jar files that are needed for running tests are attached. They cannot be rebuilt by a user.
+
+
+The reverse-engineering tool can be built using Maven.
+
 
 
 \section{User Documentation}
 
 To run Metadata Extractor the prerequisite is to have Java 8 on a computer. \\
-
 As we mentioned in \Cref{build} with this work come attached only files needed to demonstrate functionality on tests due to licensing of Manta Flow product.\\ 
+In order to run these tests, a user needs to have Apache Maven installed on his computer. \\ 
+Then he runs "mvn test" command from the directory containing the top-level aggregating pom.xml.
 
-To run these tests, a user needs to have Apache Maven installed on his computer. \\ 
-Then he runs "mvn test" command from the directory containing the top level aggregating pom.xml.
+The reverse-engineering 
 
 \section{Cooperation with Manta Flow}
 
-\TODO{include this or not, if so, finish it}
-In the case a user has access to Manta Flow server and command line interface (CLI) with corresponding licenses, the full functionality of Metadata Extractor can be manifested.
+In the case a user has access to running Manta Flow server and command line interface (CLI) with corresponding licenses, the full functionality of Metadata Extractor can be manifested.
 
-The CLI has an aggregate input directory, further divided by technologies.
-Subdirectories erstudio and powerdesigner are located in input.  
+The CLI has an aggregate input directory, which is further divided by technologies.
+Subdirectories "erstudio" and "powerdesigner" are located in the input folder.  
 Both have the same following layout: 
-It contains systems, a system is logical group of modeling files to be processed.
-System consists of two items - one is containing the models from which metadata will get extracted and a .ini file where connection specifications to physical models are defined.
+They contain input systems, such a system is a logical group of modeling files to be processed.
+A system consists of two items - one is a folder containing the models from which metadata will get extracted, the second one is a .ini file, where connection details paired with physical models are defined.
 
-The systems to be processed from input are specified by .properties file   /scenarios/etc. 
-For each system in input a property file specifying a name of the system folder to be processed must be present. \\ 
+Each system of models that has to be processed is specified by its .properties file in manta-flow-cli/scenarios/etc/erstudio, manta-flow-cli/scenarios/etc/powerdesigner respectively. 
+For each input system, a property file specifying the name of the system folder to be handled by Metadata Extractor must be present. Templates of such property files can be found at the locations. \\ 
 
-To proceed the extraction user runs one of the executable files provided \textunderscore run.sh for Unix-like, \textunderscore run.bat for Windows machines respectively.
+To proceed with the extraction, a user runs one of the executable files provided \textunderscore run.sh for Unix-like, \textunderscore run.bat for Windows machines respectively. In order to achieve the full functionality of Metadata Extractor, it is highly recommended to let analyze databases corresponding to captured in physical models by Manta Flow as well.
+
 
 \section{Full List of Modeling Tools Metadata}
 \label{full_list_metadata}

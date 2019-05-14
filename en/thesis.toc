@@ -6,13 +6,13 @@
 \contentsline {section}{\numberline {2.1}Databases}{7}{section.2.1}
 \contentsline {subsubsection}{Relational Databases}{7}{section*.2}
 \contentsline {subsubsection}{Means of Database Access}{8}{section*.3}
-\contentsline {section}{\numberline {2.2}Database Modeling}{8}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Data Model Perspectives}{9}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.2}Database Modeling}{9}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Data Model Perspectives}{10}{subsection.2.2.1}
 \contentsline {subsubsection}{Vertical Division}{10}{section*.4}
 \contentsline {subsubsection}{Horizontal Division}{11}{section*.5}
 \contentsline {subsubsection}{Relational Data Model}{11}{section*.6}
 \contentsline {subsubsection}{Entity-Relationship Data Model}{11}{section*.7}
-\contentsline {subsubsection}{Enhanced-Entity-Relationship Data Model}{11}{section*.8}
+\contentsline {subsubsection}{Enhanced-Entity-Relationship Data Model}{12}{section*.8}
 \contentsline {subsubsection}{Summary}{12}{section*.9}
 \contentsline {subsection}{\numberline {2.2.2}Conceptual Data Model}{12}{subsection.2.2.2}
 \contentsline {subsubsection}{The Main Characteristics Include}{12}{section*.10}
@@ -28,7 +28,7 @@
 \contentsline {section}{\numberline {2.3}Data Lineage}{16}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Manta Flow}{19}{subsection.2.3.1}
 \contentsline {subsubsection}{Supported Database Technologies}{19}{section*.17}
-\contentsline {subsection}{\numberline {2.3.2}Data Lineage in Modeling Tools}{19}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.2}Data Lineage in Modeling Tools}{20}{subsection.2.3.2}
 \contentsline {chapter}{\numberline {3}Modeling Tools}{21}{chapter.3}
 \contentsline {section}{\numberline {3.1}Construction of a Data Model}{21}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Modeling}{21}{subsection.3.1.1}
@@ -83,38 +83,38 @@
 \contentsline {section}{\numberline {5.3}Extensibility - Modeling Common}{54}{section.5.3}
 \contentsline {section}{\numberline {5.4}Error Handling}{56}{section.5.4}
 \contentsline {section}{\numberline {5.5}Technologies}{56}{section.5.5}
-\contentsline {section}{\numberline {5.6}Testing}{56}{section.5.6}
-\contentsline {subsubsection}{ER/Studio Parser}{56}{section*.35}
+\contentsline {section}{\numberline {5.6}Testing}{57}{section.5.6}
+\contentsline {subsubsection}{ER/Studio Parser}{57}{section*.35}
 \contentsline {subsubsection}{Reader \& Resolver}{57}{section*.36}
 \contentsline {subsubsection}{Data Flow Generator}{57}{section*.37}
-\contentsline {chapter}{Conclusion}{58}{chapter*.38}
-\contentsline {chapter}{Bibliography}{59}{chapter*.39}
-\contentsline {chapter}{List of Figures}{61}{chapter*.40}
-\contentsline {chapter}{List of Abbreviations}{62}{chapter*.41}
-\contentsline {chapter}{\numberline {A}Attachments}{63}{appendix.A}
-\contentsline {section}{\numberline {A.1}Building}{63}{section.A.1}
-\contentsline {section}{\numberline {A.2}User Documentation}{63}{section.A.2}
-\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{63}{section.A.3}
-\contentsline {section}{\numberline {A.4}Full List of Modeling Tools Metadata}{64}{section.A.4}
-\contentsline {subsubsection}{Conceptual \& Logical Data Model}{64}{section*.42}
-\contentsline {subsubsection}{ER/Studio}{64}{section*.43}
-\contentsline {subsubsection}{CDM}{64}{section*.44}
-\contentsline {subsubsection}{LDM}{64}{section*.45}
-\contentsline {subsubsection}{Properties We Will Not Extract}{64}{section*.46}
-\contentsline {subsubsection}{Properties We Will Not Extract}{65}{section*.47}
-\contentsline {subsubsection}{Objects We Will Not Extract}{65}{section*.48}
-\contentsline {subsubsection}{PowerDesigner}{65}{section*.49}
-\contentsline {subsubsection}{CDM \& LDM}{65}{section*.50}
-\contentsline {subsubsection}{Properties We Will Not Extract}{65}{section*.51}
-\contentsline {subsubsection}{Properties We Will Not Extract}{66}{section*.52}
-\contentsline {subsubsection}{Properties We Will Not Extract}{66}{section*.53}
-\contentsline {subsubsection}{Objects We Will Not Extract}{67}{section*.54}
-\contentsline {subsubsection}{Physical Data Model}{67}{section*.55}
-\contentsline {subsubsection}{ER/Studio}{67}{section*.56}
-\contentsline {subsubsection}{Properties We Will Not Extract}{67}{section*.57}
-\contentsline {subsubsection}{Properties We Will Not Extract}{68}{section*.58}
-\contentsline {subsubsection}{Objects We Will Not Extract}{69}{section*.59}
-\contentsline {subsubsection}{PowerDesigner}{69}{section*.60}
-\contentsline {subsubsection}{Properties We Will Not Extract}{69}{section*.61}
-\contentsline {subsubsection}{Properties We Will Not Extract}{70}{section*.62}
-\contentsline {subsubsection}{Objects We Will Not Extract}{70}{section*.63}
+\contentsline {chapter}{Conclusion}{59}{chapter*.38}
+\contentsline {chapter}{Bibliography}{60}{chapter*.39}
+\contentsline {chapter}{List of Figures}{62}{chapter*.40}
+\contentsline {chapter}{List of Abbreviations}{63}{chapter*.41}
+\contentsline {chapter}{\numberline {A}Attachments}{64}{appendix.A}
+\contentsline {section}{\numberline {A.1}Building}{64}{section.A.1}
+\contentsline {section}{\numberline {A.2}User Documentation}{64}{section.A.2}
+\contentsline {section}{\numberline {A.3}Cooperation with Manta Flow}{64}{section.A.3}
+\contentsline {section}{\numberline {A.4}Full List of Modeling Tools Metadata}{65}{section.A.4}
+\contentsline {subsubsection}{Conceptual \& Logical Data Model}{65}{section*.42}
+\contentsline {subsubsection}{ER/Studio}{65}{section*.43}
+\contentsline {subsubsection}{CDM}{65}{section*.44}
+\contentsline {subsubsection}{LDM}{65}{section*.45}
+\contentsline {subsubsection}{Properties We Will Not Extract}{65}{section*.46}
+\contentsline {subsubsection}{Properties We Will Not Extract}{66}{section*.47}
+\contentsline {subsubsection}{Objects We Will Not Extract}{66}{section*.48}
+\contentsline {subsubsection}{PowerDesigner}{66}{section*.49}
+\contentsline {subsubsection}{CDM \& LDM}{66}{section*.50}
+\contentsline {subsubsection}{Properties We Will Not Extract}{67}{section*.51}
+\contentsline {subsubsection}{Properties We Will Not Extract}{67}{section*.52}
+\contentsline {subsubsection}{Properties We Will Not Extract}{68}{section*.53}
+\contentsline {subsubsection}{Objects We Will Not Extract}{68}{section*.54}
+\contentsline {subsubsection}{Physical Data Model}{68}{section*.55}
+\contentsline {subsubsection}{ER/Studio}{68}{section*.56}
+\contentsline {subsubsection}{Properties We Will Not Extract}{69}{section*.57}
+\contentsline {subsubsection}{Properties We Will Not Extract}{70}{section*.58}
+\contentsline {subsubsection}{Objects We Will Not Extract}{70}{section*.59}
+\contentsline {subsubsection}{PowerDesigner}{70}{section*.60}
+\contentsline {subsubsection}{Properties We Will Not Extract}{70}{section*.61}
+\contentsline {subsubsection}{Properties We Will Not Extract}{71}{section*.62}
+\contentsline {subsubsection}{Objects We Will Not Extract}{72}{section*.63}
