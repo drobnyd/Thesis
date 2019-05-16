@@ -158,35 +158,39 @@ PDM \tab Physical Data Model \\
 \appendix
 \chapter{Attachments}
 
-\section{Building}
-\label{build}
-
-The build process of Metadata Extractor is ensured through Maven with dependencies specified with its pom.xml files.
-However, in order to build Metadata Extractor "secret" dependencies owned by MANTA are needed. Otherwise, the project will not compile successfully. 
-Also in order to gain the whole functionality of our tool, a context provided by Manta Flow's database extractors and post-processing on Manta server, where the interpolation takes place, and visualization of data lineage which is also part of the server's functionality is needed. 
-There is a command line user interface putting all the parts together and must be backed by Manta server with a graph database that is running user interface as well. The crucial parts of Manta Flow though cannot be built without having access to MANTA's code repository.
-
-Even with access to the repository, Manta Flow is proprietary software and running its products requires a valid license.
-
-Thus only those jar files that are needed for running tests are attached. They cannot be rebuilt by a user.
-
-
-The reverse-engineering tool can be built using Maven.
-
-
-
 \section{User Documentation}
 
-To run Metadata Extractor the prerequisite is to have Java 8 on a computer. \\
-As we mentioned in \Cref{build} with this work come attached only files needed to demonstrate functionality on tests due to licensing of Manta Flow product.\\ 
-In order to run these tests, a user needs to have Apache Maven installed on his computer. \\ 
-Then he runs "mvn test" command from the directory containing the top-level aggregating pom.xml.
+To run Metadata Extractor and RE tools the prerequisite is to have Java 8 on a computer. The project management process of our software is ensured by Apache Maven. \\
 
-The reverse-engineering 
+To build and consequently run the RE tool, the following is required:
+\begin{enumerate}
+	\item Navigate to the directory containing the dm1-reverse-engineering-tool.
+	\item Run the "mvn clean compile assembly:single" command producing the executable \TODO{dm1-reverse-engineering-tool-ja.jar} file.
+	\item To start execution on, for example, model.dm1 file (sample models can be found in resource folder) the .jar with "java -jar .jar model.dm1". SQL script called MetaModel.sql is produced.
+	\item Let modeling tool create a model out of the script.
+\end{enumerate}
+
+Metadata Extractor, in fact, consists of five artifacts: manta-connector-erstudio-aggregation, manta-dataflow-generator-erstudio-aggregation, manta-connector-powerdesigner-aggregation, manta-dataflow-generator-powerdesigner-aggregation, and manta-dataflow-generator-modeling-common. \\
+To build each of them, this must be done:
+\begin{enumerate}
+	\item Navigate to the top-level folder of an artifact.
+	\item Run the "mvn clean install".
+\end{enumerate}
+
+However, in order to build and run Metadata Extractor itself, inaccessible dependencies owned by MANTA are needed, they are stored at MANTA's private repository. Otherwise, the maven projects cannot be built successfully.
+Also, the functionality of Metadata Extractor is subject to Manta Flow. The data lineage tool is what interconnects the artifacts. 
+Not only between themselves, but also puts them together with other crucial parts of its ecosystem as database extractors, transformation analyzers, and post-processing on Manta server. 
+The interpolation and visualization of acquired data lineage are part of the server's functionality as well.
+That is the reason why a user is not able to run the install command successfully unless he has access to the maven repository of MANTA. \\
+
+We will not discuss running Metadata Extractor as Manta Flow is a proprietary software and its products require a valid license. 
+The command line interface which allows a user to run Metadata Extractor, as well as the rest of Manta Flow's features, is not attached to this work.
+
+Nevertheless, the source code of Metadata Extractor is fully accessible.
 
 \section{Cooperation with Manta Flow}
 
-In the case a user has access to running Manta Flow server and command line interface (CLI) with corresponding licenses, the full functionality of Metadata Extractor can be manifested.
+In the case a user has access to Manta Flow server and command line interface (CLI) with corresponding licenses, the full functionality of Metadata Extractor can be manifested.
 
 The CLI has an aggregate input directory, which is further divided by technologies.
 Subdirectories "erstudio" and "powerdesigner" are located in the input folder.  
@@ -195,9 +199,33 @@ They contain input systems, such a system is a logical group of modeling files t
 A system consists of two items - one is a folder containing the models from which metadata will get extracted, the second one is a .ini file, where connection details paired with physical models are defined.
 
 Each system of models that has to be processed is specified by its .properties file in manta-flow-cli/scenarios/etc/erstudio, manta-flow-cli/scenarios/etc/powerdesigner respectively. 
-For each input system, a property file specifying the name of the system folder to be handled by Metadata Extractor must be present. Templates of such property files can be found at the locations. \\ 
+For each input system, a .properties file specifying the name of the system folder to be handled by Metadata Extractor must be present. Templates of such property files can be found at the locations. \\ 
 
 To proceed with the extraction, a user runs one of the executable files provided \textunderscore run.sh for Unix-like, \textunderscore run.bat for Windows machines respectively. In order to achieve the full functionality of Metadata Extractor, it is highly recommended to let analyze databases corresponding to captured in physical models by Manta Flow as well.
+
+\begin{enumerate}
+	\item Create a system of files in input. Insert the files to process and .ini file with connections.
+	\item Create a .property file with name of the system folder, place it to scenario scenario directory of the corresponding technology.
+	\item Set up other features of Manta Flow (optional but recommended).
+	\item Execute \textunderscore run.sh, \textunderscore run.bat respectively.
+	\item Preview the extracted graph with computed data lineage.
+\end{enumerate}
+
+
+
+\section{Contents of the Attached CD}
+
+\dirtree{%
+	.1 root.
+	.2 readme.txt.
+	.2 impl.
+	.3 metadata-extractor.
+	.3 dm1-reverse-engineering-tool.
+	.4 meta-model.dm1.
+	.2 text.
+	.3 thesis.pdf.
+}
+
 
 
 \section{Full List of Modeling Tools Metadata}

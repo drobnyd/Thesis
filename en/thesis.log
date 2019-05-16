@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  14 MAY 2019 16:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 02:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -745,12 +745,33 @@ LaTeX Info: Redefining \labelcref on input line 2234.
 LaTeX Info: Redefining \labelcpageref on input line 2234.
 Package cleveref Info: `amsthm' support loaded on input line 2890.
 )
-\c@thm=\count139
-\c@defn=\count140
+(/usr/local/texlive/2018/texmf-dist/tex/generic/dirtree/dirtree.sty
+Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/dirtree/dirtree.tex
+`dirtree' v0.32, 2012/12/11 (jcc)
+\DT@offset=\dimen180
+\DT@width=\dimen181
+\DT@sep=\dimen182
+\DT@all=\dimen183
+\DT@rulewidth=\dimen184
+\DT@dotwidth=\dimen185
+\DTbaselineskip=\dimen186
+\DT@counti=\count139
+\DT@countii=\count140
+\DT@countiii=\count141
+\DT@countiv=\count142
+\DT@indent=\dimen187
+\DT@parskip=\dimen188
+\DT@baselineskip=\dimen189
 )
-(./thesis.aux (./title.aux) (./preface.aux) (./on_database_background.aux)
-(./modeling_tools.aux) (./solution_design.aux) (./implementation.aux)
-(./epilog.aux) (./bibliography.aux))
+File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
+)
+\c@thm=\count143
+\c@defn=\count144
+) (./thesis.aux (./title.aux) (./preface.aux) (./on_database_background.aux) (.
+/modeling_tools.aux) (./solution_design.aux) (./implementation.aux) (./epilog.a
+ux) (./bibliography.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
@@ -784,7 +805,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count141
+\c@section@level=\count145
 )
 LaTeX Info: Redefining \ref on input line 110.
 LaTeX Info: Redefining \pageref on input line 110.
@@ -797,16 +818,16 @@ LaTeX Info: Redefining \nameref on input line 110.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
-\scratchdimen=\dimen180
+\scratchcounter=\count146
+\scratchdimen=\dimen190
 \scratchbox=\box45
-\nofMPsegments=\count143
-\nofMParguments=\count144
+\nofMPsegments=\count147
+\nofMParguments=\count148
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count145
-\MPscratchDim=\dimen181
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
+\MPscratchCnt=\count149
+\MPscratchDim=\dimen191
+\MPnumerator=\count150
+\makeMPintoPDFobject=\count151
 \everyMPtoPDFconversion=\toks46
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -997,7 +1018,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--84
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--87
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--89
 
  []
 
@@ -1007,110 +1033,119 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--87
  (./on_database_background.tex
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--28
+Underfull \hbox (badness 10000) in paragraph at lines 19--27
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--28
+Underfull \hbox (badness 10000) in paragraph at lines 19--27
 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 29.
+(Font)              <10> on input line 28.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 29.
+(Font)              <7> on input line 28.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 29.
+(Font)              <5> on input line 28.
 [7
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 47--52
+Underfull \hbox (badness 10000) in paragraph at lines 46--50
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--66
+Underfull \hbox (badness 10000) in paragraph at lines 56--64
 
  []
 
-[8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 96--99
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 102--104
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--142
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 141--144
+Underfull \hbox (badness 10000) in paragraph at lines 147--150
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
-
- []
-
-<../img/Conceptual_Model_PowerDesigner.png, id=452, 559.08875pt x 432.61626pt>
+<../img/Conceptual_Model_PowerDesigner.png, id=453, 559.08875pt x 432.61626pt>
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
-ut line 170.
+ut line 167.
 (pdftex.def)             Requested size: 284.52756pt x 220.16928pt.
-[12] [13pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.2.1}) has been already used, duplicate ignored
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.189 	\item \definition
-                        {Relationships} are not that abstract as on the uppe...
- <../img/Conceptual_Model_PowerDesigner.png>]
-<../img/Logical_Model_PowerDesigner.png, id=475, 630.355pt x 472.76625pt>
-File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
-<use ../img/Logical_Model_PowerDesigner.png>
-Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
-line 196.
-(pdftex.def)             Requested size: 284.52756pt x 213.39209pt.
- [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
-2}) has been already used, duplicate ignored
+ []
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.214 	\subsubsection
-                     {Object Types} <../img/Logical_Model_PowerDesigner.png>]
-<../img/Physical_Model_PowerDesigner.png, id=485, 662.475pt x 454.69875pt>
-File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
-<use ../img/Physical_Model_PowerDesigner.png>
-Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
- line 222.
-(pdftex.def)             Requested size: 284.52756pt x 195.28769pt.
-
-[15pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.238 
+l.186 \end{itemize}
+                    <../img/Conceptual_Model_PowerDesigner.png>]
+<../img/Logical_Model_PowerDesigner.png, id=472, 630.355pt x 472.76625pt>
+File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
+<use ../img/Logical_Model_PowerDesigner.png>
+Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
+line 192.
+(pdftex.def)             Requested size: 284.52756pt x 213.39209pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--204
+
+ []
+
+[14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.211 	\item A
+               \definition{schema} is basically a container for tables that ...
+ <../img/Logical_Model_PowerDesigner.png>]
+<../img/Physical_Model_PowerDesigner.png, id=481, 662.475pt x 454.69875pt>
+File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
+<use ../img/Physical_Model_PowerDesigner.png>
+Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
+ line 217.
+(pdftex.def)             Requested size: 284.52756pt x 195.28769pt.
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.237 
        <../img/Physical_Model_PowerDesigner.png>] [16]
-<../img/DataLineageExample.png, id=502, 946.53625pt x 350.30875pt>
+<../img/DataLineageExample.png, id=498, 946.53625pt x 350.30875pt>
 File: ../img/DataLineageExample.png Graphic file (type png)
 <use ../img/DataLineageExample.png>
-Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 268.
+Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 270.
 
 (pdftex.def)             Requested size: 398.33858pt x 147.42265pt.
  [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
@@ -1118,35 +1153,39 @@ Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 268.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.277 
+l.279 
        <../img/DataLineageExample.png>]
-<../img/BusinessLineage.png, id=514, 1084.05pt x 208.52907pt>
+<../img/BusinessLineage.png, id=510, 1084.05pt x 208.52907pt>
 File: ../img/BusinessLineage.png Graphic file (type png)
 <use ../img/BusinessLineage.png>
-Package pdftex.def Info: ../img/BusinessLineage.png  used on input line 280.
+Package pdftex.def Info: ../img/BusinessLineage.png  used on input line 282.
 (pdftex.def)             Requested size: 398.33858pt x 76.62315pt.
-<../img/TechnicalLineage.png, id=515, 1073.51062pt x 381.67593pt>
+<../img/TechnicalLineage.png, id=511, 1073.51062pt x 381.67593pt>
 File: ../img/TechnicalLineage.png Graphic file (type png)
 <use ../img/TechnicalLineage.png>
-Package pdftex.def Info: ../img/TechnicalLineage.png  used on input line 281.
+Package pdftex.def Info: ../img/TechnicalLineage.png  used on input line 283.
 (pdftex.def)             Requested size: 398.33858pt x 141.62555pt.
  [18pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.295 
+l.301 
        <../img/BusinessLineage.png> <../img/TechnicalLineage.png>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 299
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 305
 .
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) [19] [20]
+)
+Underfull \hbox (badness 5403) in paragraph at lines 305--308
+\OT1/lmr/m/n/12 Manta Flow is a prod-uct of Czech startup com-pany MANTA (see
+ []
+
+) [19] [20]
 \openout2 = `modeling_tools.aux'.
 
-
-(./modeling_tools.tex
+ (./modeling_tools.tex
 Chapter 3.
 [21
 
@@ -1172,7 +1211,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--24
 
 
 ]
-<../img/StringUsageTable.png, id=567, 1406.25375pt x 488.82625pt>
+<../img/StringUsageTable.png, id=562, 1406.25375pt x 488.82625pt>
 File: ../img/StringUsageTable.png Graphic file (type png)
 <use ../img/StringUsageTable.png>
 Package pdftex.def Info: ../img/StringUsageTable.png  used on input line 58.
@@ -1204,7 +1243,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 102--106
  []
 
 [27] [28] [29] [30]
-<../img/DataModelHierarchy.pdf, id=612, 619.35388pt x 45.2892pt>
+<../img/DataModelHierarchy.pdf, id=607, 619.35388pt x 45.2892pt>
 File: ../img/DataModelHierarchy.pdf Graphic file (type pdf)
 <use ../img/DataModelHierarchy.pdf>
 Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 285.
@@ -1278,7 +1317,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 501--503
  []
 
 [38] [39] [40]
-<../img/SWArchitecture.pdf, id=702, 604.17719pt x 586.10968pt>
+<../img/SWArchitecture.pdf, id=697, 604.17719pt x 586.10968pt>
 File: ../img/SWArchitecture.pdf Graphic file (type pdf)
 <use ../img/SWArchitecture.pdf>
 Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 606.
@@ -1407,50 +1446,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 463--465
 \openout2 = `bibliography.aux'.
 
  (./bibliography.tex (./thesis.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-[][]$\OT1/lmtt/m/n/12 https : / / www . ebayinc . com / stories / blogs / tech 
-/
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+\OT1/lmtt/m/n/12 Instagram -[] running -[] following -[] EIGHT -[] HOUR -[] out
+age -[] affecting -[] users -[]
  []
 
 
-Underfull \hbox (badness 1009) in paragraph at lines 48--51
+Underfull \hbox (badness 1609) in paragraph at lines 10--14
+[]\OT1/lmr/m/n/12 HealthCare.gov's Heart Beats For NoSQL.  []$\OT1/lmtt/m/n/12 
+https : / / blogs\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 wsj\OML/lmm/m/it/12 :\OT1/l
+mtt/m/n/12 com /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--19
+[]\OT1/lmr/m/n/12 PostgreSQL in Mission-Critical Fi-nan-cial Sys-tems.  []$\OT1
+/lmtt/m/n/12 https :
+ []
+
+
+Underfull \hbox (badness 1009) in paragraph at lines 57--60
 []\OT1/lmr/m/n/12 Abraham Sil-ber-schatz Pro-fes-sor, Henry F. Ko-rth, and S. S
 u-dar-shan.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--72
-[]\OT1/lmr/m/n/12 ER/Studio Data Ar-chi-tect.  []$\OT1/lmtt/m/n/12 https : / / 
-www . idera . com /
- []
-
-
-Underfull \hbox (badness 1331) in paragraph at lines 79--82
+Underfull \hbox (badness 2608) in paragraph at lines 91--95
 []\OT1/lmr/m/n/12 PowerDesigner Main Fea-tures.  []$\OT1/lmtt/m/n/12 https : / 
-/ www . powerdesigner . biz / EN /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 84--87
-[]\OT1/lmr/m/n/12 Bussiness As-sets.  []$\OT1/lmtt/m/n/12 https : / / universit
-y . collibra . com / knowledge /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 84--87
-\OT1/lmtt/m/n/12 collibra-[]body-[]of-[]knowledge / data-[]governance-[]operati
-ng-[]model /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--92
-[]\OT1/lmr/m/n/12 Lineage vs trace-abil-ity un-der-stand-ing the dif-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--92
-\OT1/lmr/m/n/12 fer-ences.  []$\OT1/lmtt/m/n/12 https : / / www . collibra . co
-m / blog /
+/ www\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 powerdesigner\OML/lmm/m/it/12 :\OT1/lmt
+t/m/n/12 biz / EN /
  []
 
 [60
@@ -1458,33 +1482,69 @@ m / blog /
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
-[]\OT1/lmr/m/n/12 Business glos-sary.  []$\OT1/lmtt/m/n/12 https : / / www . in
-formatica . com / content /
+Underfull \hbox (badness 10000) in paragraph at lines 97--101
+[]\OT1/lmr/m/n/12 Bussiness As-sets.  []$\OT1/lmtt/m/n/12 https : / / universit
+y\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 collibra\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 
+com / knowledge /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
-\OT1/lmtt/m/n/12 dam / informatica-[]com / global / amer / us / collateral / da
-ta-[]sheet /
+Underfull \hbox (badness 10000) in paragraph at lines 97--101
+\OT1/lmtt/m/n/12 collibra -[] body -[] of -[] knowledge / data -[] governance -
+[] operating -[] model /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 99--102
-\OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ _ 11 . 3 . 0 / com . ibm . swg .
- im . iis . mdwb . doc /
+Underfull \hbox (badness 10000) in paragraph at lines 97--101
+\OT1/lmtt/m/n/12 structural -[] concepts / asset -[] types / business -[] asset
+s/$[]\OT1/lmr/m/n/12 .  Ac-cessed:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--107
-[]\OT1/lmr/m/n/12 ERSTUDIOBUS Re-lease Notes.  []$\OT1/lmtt/m/n/12 https : / / 
-isp . asg . com / Rochade /
+Underfull \hbox (badness 7064) in paragraph at lines 103--107
+[]\OT1/lmr/m/n/12 Lineage vs Trace-abil-ity Un-der-stand-ing the Dif-fer-ences.
+  []$\OT1/lmtt/m/n/12 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--116
-\OT1/lmtt/m/n/12 pd1654 _ data / helpdata / en / c7 / c304506e1b101483efbf3d87d
-b9a8f /
+Underfull \hbox (badness 10000) in paragraph at lines 103--107
+\OT1/lmtt/m/n/12 / / www\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 collibra\OML/lmm/m/i
+t/12 :\OT1/lmtt/m/n/12 com / blog / lineage -[] vs -[] traceability -[] underst
+anding -[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
+[]\OT1/lmr/m/n/12 Business glos-sary.  []$\OT1/lmtt/m/n/12 https : / / www\OML/
+lmm/m/it/12 :\OT1/lmtt/m/n/12 informatica\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 com
+ / content / dam /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
+\OT1/lmtt/m/n/12 informatica -[] com / global / amer / us / collateral / data -
+[] sheet / business -[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--119
+\OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ[]11\OML/lmm/m/it/12 :\OT1/lmtt/m
+/n/12 3\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 0 / com\OML/lmm/m/it/12 :\OT1/lmtt/m/
+n/12 ibm\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 swg\OML/lmm/m/it/12 :\OT1/lmtt/m/n/1
+2 im\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 iis\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 md
+wb\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 doc /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--136
+[]\OT1/lmr/m/n/12 SAP Pow-erDe-signer Doc-u-men-ta-tion.  []$\OT1/lmtt/m/n/12 h
+ttps : / /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--136
+\OT1/lmtt/m/n/12 help\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 sap\OML/lmm/m/it/12 :\O
+T1/lmtt/m/n/12 com / saphelp[]pd1654[]data / helpdata / en / c7 /
  []
 
 )) [61] (./thesis.lof)
@@ -1504,45 +1564,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--145
 ]
 Appendix A.
 
-Underfull \hbox (badness 3849) in paragraph at lines 197--199
-[]\OT1/lmr/m/n/12 Each sys-tem of mod-els that has to be pro-cessed is spec-i-f
-ied by
+Underfull \hbox (badness 10000) in paragraph at lines 163--164
+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--199
-\OT1/lmr/m/n/12 its .prop-er-ties file in manta-flow-cli/scenarios/etc/erstudio
-, manta-flow-
+Underfull \hbox (badness 4316) in paragraph at lines 173--176
+\OT1/lmr/m/n/12 erstudio-aggregation, manta-dataflow-generator-erstudio-aggrega
+tion, manta-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 197--199
+Underfull \hbox (badness 10000) in paragraph at lines 180--185
 
  []
 
 [64
 
-] [65] [66] [67] [68] [69] [70] [71] [72]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 487.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 487.
+]
+Underfull \hbox (badness 3849) in paragraph at lines 201--203
+[]\OT1/lmr/m/n/12 Each sys-tem of mod-els that has to be pro-cessed is spec-i-f
+ied by
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
+\OT1/lmr/m/n/12 its .prop-er-ties file in manta-flow-cli/scenarios/etc/erstudio
+, manta-flow-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--203
+
+ []
+
+[65] [66] [67] [68] [69] [70] [71] [72] [73]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 515.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 515.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 487.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 487.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 515.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 515.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 02980D6D09119B15A4B1761A8D9AB510;8870.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 487.
+(rerunfilecheck)             Checksum: 2868CC2349803FA42E960B1BD6F99BF4;8977.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 515.
  ) 
 Here is how much of TeX's memory you used:
- 25638 strings out of 492649
- 443961 string characters out of 6129623
- 489445 words of memory out of 5000000
- 28788 multiletter control sequences out of 15000+600000
- 82187 words of font info for 75 fonts, out of 8000000 for 9000
+ 25710 strings out of 492649
+ 444947 string characters out of 6129623
+ 489444 words of memory out of 5000000
+ 28844 multiletter control sequences out of 15000+600000
+ 82813 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,70p,884b,1982s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,8n,70p,884b,1976s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/loca
 l/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018
 /texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dis
@@ -1556,9 +1632,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (76 pages, 1207210 bytes).
+Output written on thesis.pdf (77 pages, 1211832 bytes).
 PDF statistics:
- 1042 PDF objects out of 1200 (max. 8388607)
- 250 named destinations out of 1000 (max. 500000)
+ 1058 PDF objects out of 1200 (max. 8388607)
+ 259 named destinations out of 1000 (max. 500000)
  571 words of extra memory for PDF output out of 10000 (max. 10000000)
 
