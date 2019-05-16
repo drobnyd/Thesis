@@ -80,6 +80,28 @@
 \def\StudyProgramme{Computer Science}
 \def\StudyBranch{Programming and Software Systems}
 
+% Czech-Slovak abstract
+
+% Název práce v jazyce práce (přesně podle zadání)
+\def\NazevPrace{Extrakce informací z modelovacích nástrojů pro databáze}
+
+% Název katedry nebo ústavu, kde byla práce oficiálně zadána
+% (dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF)
+\def\Katedra{Katedra distribuovaných a spolehlivých systémů}
+\def\KatedraEN{Department of Distributed and Dependable Systems}
+
+% Jedná se o katedru (department) nebo o ústav (institute)?
+\def\TypPracoviste{Katedra}
+\def\TypPracovisteEN{Department}
+
+% Vedoucí práce: Jméno a příjmení s~tituly
+\def\Vedouci{RNDr. Pavel Parízek, Ph.D.}
+
+% Pracoviště vedoucího (opět dle Organizační struktury MFF)
+\def\KatedraVedouciho{katedra}
+\def\KatedraVedoucihoEN{department}
+
+
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
@@ -94,7 +116,21 @@ The solution extends the Manta Flow lineage tool while taking advantage of its f
 
 % 3 to 5 keywords (recommended), each enclosed in curly braces
 \def\Keywords{%
-{Data Lineage}, {Data Modeling}, {Database Architecture}, {Metadata}
+	{Data Lineage} {Data Modeling} {Database Architecture} {Metadata}
+}
+
+
+
+% Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
+\def\Abstrakt{%
+	Data lineage je zobrazením toku informácií v komplikovaných systémoch. V prípade, že takýmto systémom je databáza, ukazuje tabuľky a stĺpce, spolu s SQL operáciami, ktoré modifikujú obsah dáta v nej uložené. Takýto pohľad však môže byť ťažko pochopiteľný pre ľudí, ktorí sú menej zbehlí v technickom prostredí, keďže databázové objekty väčšinou podliehajú menným konvenciám a častokrát reprezentujú implementačné detaily. Pre jednoduchšie pochopenie dátových tokov sme vypracovali softvér Metadata Extractor. Ten na jednej strane získava podrobný popis databázových objektov a zároveň prináša novú perspektívu na tok dát pomocou business lineage, ktorá je pochopiteľná pre širší okruh ľudí. Informácie potrebné na vytvorenie takejto funkcionality získavame z modelovacích nástrojov, akými sú napríklad ER/Studio a PowerDesigner, ktoré sa využívajú pri navrhovaní databáz.
+	Naše riešenie využíva a zároveň rozširuje Manta Flow, čo je softérový nástroj na výstavbu dátových tokov. \\
+}
+
+
+% 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
+\def\KlicovaSlova{%
+	{Dátové toky} {Dátové modelovanie} {Databázová architektúra} {Metadáta}
 }
 
 %% The hyperref package for clickable links in PDF and also for storing
@@ -138,7 +174,8 @@ The solution extends the Manta Flow lineage tool while taking advantage of its f
 \chapwithtoc{List of Abbreviations}
 
 ER \tab Entity-Relationship \\ 
-EER \tab Enhanced-entity-Relationship \\
+EER \tab Enhanced-Entity-Relationship \\
+RE \tab Reverse-Engineering \\
 CDM \tab Conceptual Data Model \\
 LDM \tab Logical Data Model \\
 PDM \tab Physical Data Model \\
@@ -164,8 +201,8 @@ To run Metadata Extractor and RE tools the prerequisite is to have Java 8 on a c
 
 To build and consequently run the RE tool, the following is required:
 \begin{enumerate}
-	\item Navigate to the directory containing the dm1-reverse-engineering-tool.
-	\item Run the "mvn clean compile assembly:single" command producing the executable \TODO{dm1-reverse-engineering-tool-ja.jar} file.
+	\item Navigate to the directory dm1-reverse-engineering-tool.
+	\item Run the "mvn clean compile assembly:single" command producing the executable dm1-reverse-engineering-tool-1.0-SNAPSHOT-jar-with-dependencies.jar file.
 	\item To start execution on, for example, model.dm1 file (sample models can be found in resource folder) the .jar with "java -jar .jar model.dm1". SQL script called MetaModel.sql is produced.
 	\item Let modeling tool create a model out of the script.
 \end{enumerate}

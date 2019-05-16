@@ -280,13 +280,12 @@ Another classification of data lineage is between business and technical lineage
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=14cm]{../img/BusinessLineage}
-	\includegraphics[width=14cm]{../img/TechnicalLineage}
-	\caption[Technical Lineage versus Business Lineage]{The two visualization of data lineage show the very same database system from two different perspectives. The business lineage hides transformations and speaks natural language, using concepts that appear in real world providing cleat motivation of the business process. 
-		Whereas technical data lineage precisely illustrates what happens with data in a database management system.}
+	\includegraphics[height=17cm]{../img/LogicalvsPhysicalLineage}
+	\caption[Technical Lineage versus Business Lineage]{The two visualization of data lineage show the very same database system from two different perspectives. The business lineage (blue) hides transformations and speaks natural language, using concepts that appear in real world providing cleat motivation of the business process.
+	Whereas technical data lineage (purple) precisely illustrates what happens with data in a database management system. Each of the business objects is mapped to its physical counterpart and the high-level flow fully corresponds to the low-level one. 
+	For example, table PARTY is equivalent to entity Customer. The lineage was created by Metadata Extractor in cooperation with Manta Flow.}
 	\label{BusinessVsTechnicalLineage}
 \end{figure}
-\TODO{describe the mappings visually or verbally?}
 
 Now we will focus on how data lineage can be computed to describe the lifespan of data that are coming from or being saved to an SQL database.
 To analyze the flow of actual data, having access to quality metadata is fundamentally needed.

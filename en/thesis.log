@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 15:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,8 +441,8 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-Package hyperref Info: Option `unicode' set `true' on input line 103.
-Package hyperref Info: Option `breaklinks' set `true' on input line 104.
+Package hyperref Info: Option `unicode' set `true' on input line 139.
+Package hyperref Info: Option `breaklinks' set `true' on input line 140.
 
 \@input{macros.aux}
 \openout2 = `macros.aux'.
@@ -774,30 +774,30 @@ File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
 ux) (./bibliography.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 110.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
+LaTeX Font Info:    ... okay on input line 146.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 146.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring OFF on input line 110.
+Package hyperref Info: Link coloring OFF on input line 146.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -807,9 +807,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count145
 )
-LaTeX Info: Redefining \ref on input line 110.
-LaTeX Info: Redefining \pageref on input line 110.
-LaTeX Info: Redefining \nameref on input line 110.
+LaTeX Info: Redefining \ref on input line 146.
+LaTeX Info: Redefining \pageref on input line 146.
+LaTeX Info: Redefining \nameref on input line 146.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write6
@@ -951,7 +951,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--135
 
 [3
 
-]) (./thesis.toc [1
+]
+Underfull \hbox (badness 1275) in paragraph at lines 155--157
+[]\OT1/lmr/m/n/12 Abstrakt: Data lin-eage je zo-brazen^^S^^Pm toku in-form^^Sac
+i^^S^^P v kom-p-liko-van^^Sych
+ []
+
+
+Underfull \hbox (badness 1147) in paragraph at lines 158--160
+[]\OT1/lmr/m/n/12 Kl^^S^^P^^Tcov^^Sa slova: D^^Satov^^Se toky D^^Satov^^Se mod-
+e-lo-vanie Datab^^Sazov^^Sa ar-chitekt^^Sura
+ []
+
+[4]) (./thesis.toc [1
 
 
 
@@ -1092,7 +1104,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 148--151
 
  []
 
-<../img/Conceptual_Model_PowerDesigner.png, id=453, 559.08875pt x 432.61626pt>
+<../img/Conceptual_Model_PowerDesigner.png, id=457, 559.08875pt x 432.61626pt>
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
@@ -1110,7 +1122,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 175--178
                                                   \fi \fi 
 l.187 \end{itemize}
                     <../img/Conceptual_Model_PowerDesigner.png>]
-<../img/Logical_Model_PowerDesigner.png, id=472, 630.355pt x 472.76625pt>
+<../img/Logical_Model_PowerDesigner.png, id=476, 630.355pt x 472.76625pt>
 File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Logical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
@@ -1129,7 +1141,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--205
 l.212 	\item A
                \definition{schema} is basically a container for tables that ...
  <../img/Logical_Model_PowerDesigner.png>]
-<../img/Physical_Model_PowerDesigner.png, id=481, 662.475pt x 454.69875pt>
+<../img/Physical_Model_PowerDesigner.png, id=486, 662.475pt x 454.69875pt>
 File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Physical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
@@ -1142,7 +1154,7 @@ Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
                                                   \fi \fi 
 l.238 
        <../img/Physical_Model_PowerDesigner.png>] [16]
-<../img/DataLineageExample.png, id=498, 946.53625pt x 350.30875pt>
+<../img/DataLineageExample.png, id=502, 946.53625pt x 350.30875pt>
 File: ../img/DataLineageExample.png Graphic file (type png)
 <use ../img/DataLineageExample.png>
 Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 271.
@@ -1155,34 +1167,30 @@ Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 271.
                                                   \fi \fi 
 l.280 
        <../img/DataLineageExample.png>]
-<../img/BusinessLineage.png, id=510, 1084.05pt x 208.52907pt>
-File: ../img/BusinessLineage.png Graphic file (type png)
-<use ../img/BusinessLineage.png>
-Package pdftex.def Info: ../img/BusinessLineage.png  used on input line 283.
-(pdftex.def)             Requested size: 398.33858pt x 76.62315pt.
-<../img/TechnicalLineage.png, id=511, 1073.51062pt x 381.67593pt>
-File: ../img/TechnicalLineage.png Graphic file (type png)
-<use ../img/TechnicalLineage.png>
-Package pdftex.def Info: ../img/TechnicalLineage.png  used on input line 284.
-(pdftex.def)             Requested size: 398.33858pt x 141.62555pt.
+<../img/LogicalvsPhysicalLineage.png, id=514, 843.90282pt x 2366.08969pt>
+File: ../img/LogicalvsPhysicalLineage.png Graphic file (type png)
+<use ../img/LogicalvsPhysicalLineage.png>
+Package pdftex.def Info: ../img/LogicalvsPhysicalLineage.png  used on input lin
+e 283.
+(pdftex.def)             Requested size: 172.51187pt x 483.69684pt.
  [18pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.302 
-       <../img/BusinessLineage.png> <../img/TechnicalLineage.png>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 306
+l.294 
+       <../img/LogicalvsPhysicalLineage.png>]
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 305
 .
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 5403) in paragraph at lines 306--309
+Underfull \hbox (badness 5403) in paragraph at lines 305--308
 \OT1/lmr/m/n/12 Manta Flow is a prod-uct of Czech startup com-pany MANTA (see
  []
 
-) [19] [20]
+[19]) [20]
 \openout2 = `modeling_tools.aux'.
 
  (./modeling_tools.tex
@@ -1211,7 +1219,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--24
 
 
 ]
-<../img/StringUsageTable.png, id=562, 1406.25375pt x 488.82625pt>
+<../img/StringUsageTable.png, id=564, 1406.25375pt x 488.82625pt>
 File: ../img/StringUsageTable.png Graphic file (type png)
 <use ../img/StringUsageTable.png>
 Package pdftex.def Info: ../img/StringUsageTable.png  used on input line 58.
@@ -1243,7 +1251,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 101--105
  []
 
 [27] [28] [29] [30]
-<../img/DataModelHierarchy.pdf, id=607, 619.35388pt x 45.2892pt>
+<../img/DataModelHierarchy.pdf, id=609, 619.35388pt x 45.2892pt>
 File: ../img/DataModelHierarchy.pdf Graphic file (type pdf)
 <use ../img/DataModelHierarchy.pdf>
 Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 284.
@@ -1317,7 +1325,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 499--501
  []
 
 [38] [39] [40]
-<../img/SWArchitecture.pdf, id=697, 604.17719pt x 586.10968pt>
+<../img/SWArchitecture.pdf, id=699, 604.17719pt x 586.10968pt>
 File: ../img/SWArchitecture.pdf Graphic file (type pdf)
 <use ../img/SWArchitecture.pdf>
 Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 604.
@@ -1327,7 +1335,7 @@ ure.4.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.122 \include{solution_design}
+l.158 \include{solution_design}
                                 <../img/SWArchitecture.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/SWArchitecture.pdf): 
@@ -1555,7 +1563,7 @@ T1/lmtt/m/n/12 com / saphelp[]pd1654[]data / helpdata / en / c7 /
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
 
  []
 
@@ -1564,61 +1572,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--145
 ]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 200--201
 
  []
 
 
-Underfull \hbox (badness 4316) in paragraph at lines 173--176
+Underfull \hbox (badness 5622) in paragraph at lines 205--206
+[]\OT1/lmr/m/n/12 Run the "mvn clean com-pile as-sem-bly:single" com-mand pro-d
+uc-
+ []
+
+
+Underfull \hbox (badness 4316) in paragraph at lines 210--213
 \OT1/lmr/m/n/12 erstudio-aggregation, manta-dataflow-generator-erstudio-aggrega
 tion, manta-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--185
+Underfull \hbox (badness 10000) in paragraph at lines 217--222
 
  []
 
 [64
 
 ]
-Underfull \hbox (badness 3849) in paragraph at lines 201--203
+Underfull \hbox (badness 3849) in paragraph at lines 238--240
 []\OT1/lmr/m/n/12 Each sys-tem of mod-els that has to be pro-cessed is spec-i-f
 ied by
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--203
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
 \OT1/lmr/m/n/12 its .prop-er-ties file in manta-flow-cli/scenarios/etc/erstudio
 , manta-flow-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--203
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
 
  []
 
 [65] [66] [67] [68] [69] [70] [71] [72] [73]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 515.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 515.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 552.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 552.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 515.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 515.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 552.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 552.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 2868CC2349803FA42E960B1BD6F99BF4;8977.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 515.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 552.
  ) 
 Here is how much of TeX's memory you used:
- 25712 strings out of 492649
- 444990 string characters out of 6129623
- 489445 words of memory out of 5000000
- 28846 multiletter control sequences out of 15000+600000
+ 25723 strings out of 492649
+ 445050 string characters out of 6129623
+ 490844 words of memory out of 5000000
+ 28857 multiletter control sequences out of 15000+600000
  82813 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,70p,884b,1976s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,8n,70p,971b,1976s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/loca
 l/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018
 /texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dis
@@ -1632,9 +1646,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (77 pages, 1213111 bytes).
+Output written on thesis.pdf (78 pages, 1301083 bytes).
 PDF statistics:
- 1059 PDF objects out of 1200 (max. 8388607)
- 259 named destinations out of 1000 (max. 500000)
- 571 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1061 PDF objects out of 1200 (max. 8388607)
+ 260 named destinations out of 1000 (max. 500000)
+ 566 words of extra memory for PDF output out of 10000 (max. 10000000)
 
