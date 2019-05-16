@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 03:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 15:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1058,37 +1058,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--50
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--64
+Underfull \hbox (badness 10000) in paragraph at lines 57--65
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 96--99
+Underfull \hbox (badness 10000) in paragraph at lines 97--100
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--102
+Underfull \hbox (badness 10000) in paragraph at lines 101--103
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--142
+Underfull \hbox (badness 10000) in paragraph at lines 140--143
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 147--150
+Underfull \hbox (badness 10000) in paragraph at lines 148--151
 
  []
 
@@ -1096,10 +1096,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 147--150
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
-ut line 167.
+ut line 168.
 (pdftex.def)             Requested size: 284.52756pt x 220.16928pt.
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 174--177
+Underfull \hbox (badness 10000) in paragraph at lines 175--178
 
  []
 
@@ -1108,16 +1108,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--177
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.186 \end{itemize}
+l.187 \end{itemize}
                     <../img/Conceptual_Model_PowerDesigner.png>]
 <../img/Logical_Model_PowerDesigner.png, id=472, 630.355pt x 472.76625pt>
 File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Logical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
-line 192.
+line 193.
 (pdftex.def)             Requested size: 284.52756pt x 213.39209pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--204
+Underfull \hbox (badness 10000) in paragraph at lines 202--205
 
  []
 
@@ -1126,26 +1126,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--204
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.211 	\item A
+l.212 	\item A
                \definition{schema} is basically a container for tables that ...
  <../img/Logical_Model_PowerDesigner.png>]
 <../img/Physical_Model_PowerDesigner.png, id=481, 662.475pt x 454.69875pt>
 File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Physical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
- line 217.
+ line 218.
 (pdftex.def)             Requested size: 284.52756pt x 195.28769pt.
  [15pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.237 
+l.238 
        <../img/Physical_Model_PowerDesigner.png>] [16]
 <../img/DataLineageExample.png, id=498, 946.53625pt x 350.30875pt>
 File: ../img/DataLineageExample.png Graphic file (type png)
 <use ../img/DataLineageExample.png>
-Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 270.
+Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 271.
 
 (pdftex.def)             Requested size: 398.33858pt x 147.42265pt.
  [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
@@ -1153,32 +1153,32 @@ Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 270.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.279 
+l.280 
        <../img/DataLineageExample.png>]
 <../img/BusinessLineage.png, id=510, 1084.05pt x 208.52907pt>
 File: ../img/BusinessLineage.png Graphic file (type png)
 <use ../img/BusinessLineage.png>
-Package pdftex.def Info: ../img/BusinessLineage.png  used on input line 282.
+Package pdftex.def Info: ../img/BusinessLineage.png  used on input line 283.
 (pdftex.def)             Requested size: 398.33858pt x 76.62315pt.
 <../img/TechnicalLineage.png, id=511, 1073.51062pt x 381.67593pt>
 File: ../img/TechnicalLineage.png Graphic file (type png)
 <use ../img/TechnicalLineage.png>
-Package pdftex.def Info: ../img/TechnicalLineage.png  used on input line 283.
+Package pdftex.def Info: ../img/TechnicalLineage.png  used on input line 284.
 (pdftex.def)             Requested size: 398.33858pt x 141.62555pt.
  [18pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.301 
+l.302 
        <../img/BusinessLineage.png> <../img/TechnicalLineage.png>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 305
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 306
 .
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 5403) in paragraph at lines 305--308
+Underfull \hbox (badness 5403) in paragraph at lines 306--309
 \OT1/lmr/m/n/12 Manta Flow is a prod-uct of Czech startup com-pany MANTA (see
  []
 
@@ -1221,24 +1221,24 @@ Package pdftex.def Info: ../img/StringUsageTable.png  used on input line 58.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.68 
+l.67 
       <../img/StringUsageTable.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 74--79
+Underfull \hbox (badness 10000) in paragraph at lines 73--78
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--97
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
+Underfull \hbox (badness 10000) in paragraph at lines 97--100
 
  []
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 102--106
+Underfull \hbox (badness 10000) in paragraph at lines 101--105
 
  []
 
@@ -1246,7 +1246,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 102--106
 <../img/DataModelHierarchy.pdf, id=607, 619.35388pt x 45.2892pt>
 File: ../img/DataModelHierarchy.pdf Graphic file (type pdf)
 <use ../img/DataModelHierarchy.pdf>
-Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 285.
+Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 284.
 
 (pdftex.def)             Requested size: 398.33858pt x 29.12802pt.
  [31pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
@@ -1254,44 +1254,44 @@ Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 285.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.305 
+l.304 
        <../img/DataModelHierarchy.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/DataModelHierarchy.pd
 f): PDF inclusion: invalid other resource which is no dict (key 'ProcSets', typ
 e <array>); ignored.
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 337--343
+Underfull \hbox (badness 10000) in paragraph at lines 336--342
 
  []
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 344--345
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--351
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 364--366
+Underfull \hbox (badness 10000) in paragraph at lines 345--350
 
  []
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 368--370
+Underfull \hbox (badness 10000) in paragraph at lines 363--365
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--375
+Underfull \hbox (badness 10000) in paragraph at lines 366--368
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 371--373
 
  []
 
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 397--401
+Underfull \hbox (badness 10000) in paragraph at lines 395--399
 
  []
 
@@ -1300,19 +1300,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 397--401
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.448 
-      ]
-Underfull \hbox (badness 10000) in paragraph at lines 467--471
+l.446 
+      ] [36]
+Underfull \hbox (badness 10000) in paragraph at lines 465--469
 
  []
 
-[36]
-Underfull \hbox (badness 10000) in paragraph at lines 497--500
+
+Underfull \hbox (badness 10000) in paragraph at lines 495--498
 
  []
 
 [37]
-Underfull \hbox (badness 10000) in paragraph at lines 501--503
+Underfull \hbox (badness 10000) in paragraph at lines 499--501
 
  []
 
@@ -1320,7 +1320,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 501--503
 <../img/SWArchitecture.pdf, id=697, 604.17719pt x 586.10968pt>
 File: ../img/SWArchitecture.pdf Graphic file (type pdf)
 <use ../img/SWArchitecture.pdf>
-Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 606.
+Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 604.
 (pdftex.def)             Requested size: 410.62302pt x 398.33858pt.
 ) [41] [42pdfTeX warning (ext4): destination with the same identifier (name{fig
 ure.4.4}) has been already used, duplicate ignored
@@ -1362,14 +1362,14 @@ name{figure.5.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.196 
+l.195 
       ] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 231--234
+Underfull \hbox (badness 10000) in paragraph at lines 230--233
 
  []
 
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 261--262
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
  []
 
@@ -1612,10 +1612,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 515.
  ) 
 Here is how much of TeX's memory you used:
- 25710 strings out of 492649
- 444947 string characters out of 6129623
- 489444 words of memory out of 5000000
- 28844 multiletter control sequences out of 15000+600000
+ 25712 strings out of 492649
+ 444990 string characters out of 6129623
+ 489445 words of memory out of 5000000
+ 28846 multiletter control sequences out of 15000+600000
  82813 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,8n,70p,884b,1976s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1632,9 +1632,9 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (77 pages, 1211923 bytes).
+Output written on thesis.pdf (77 pages, 1213111 bytes).
 PDF statistics:
- 1058 PDF objects out of 1200 (max. 8388607)
+ 1059 PDF objects out of 1200 (max. 8388607)
  259 named destinations out of 1000 (max. 500000)
  571 words of extra memory for PDF output out of 10000 (max. 10000000)
 

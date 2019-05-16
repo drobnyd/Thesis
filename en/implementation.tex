@@ -1,7 +1,7 @@
 \chapter{Implementation}
 \label{implementation}
 
-In this chapter, we will describe the most important classes of Metadata Extractor and will explain their main responsibilities. The software consists of the main three parts which will be discussed - ER/Studio module, PowerDesigner component and Modeling Common, which is the shared part. 
+In this chapter, we will describe the most important classes of Metadata Extractor and explain their main responsibilities. The software consists of the main three parts which will be discussed - ER/Studio module, PowerDesigner component and Modeling Common, which is the shared part. 
 The common module is a general artifact that is designed to be helpful when designing a metadata extracting tool from an arbitrary modeling tool and the tool is aimed to be integrated into the ecosystem of Manta Flow. \\
 
 We go through classes and methods from the source code of Metadata Extractor from a higher perspective. 
@@ -9,31 +9,31 @@ Even though not every class, interface, and method are described in the chapter,
 
 \section{ER/Studio}
 
-Now let us introduce the parts of Metadata Extractor implementation that are coping with data models product by ER/Studio Data Architect.
+Now let us introduce the parts of Metadata Extractor implementation that are coping with data models product of ER/Studio Data Architect.
 
 \subsection{File Reverse-Engineering Tool}
 \label{subsec:dm1_tool}
 
 In \Cref{subsec:dm1_format} we introduced the .DM1 file format, which is used for storing ER/Studio's outputs.
 The file format consists of CSV tables and its inner organization of data resembles a relational database.
-We need to decrypt the relations between the tables in .DM1 files, to be able to reconstruct objects stored in the files, as it is not easy to see, how structured information is stored in tables of the file format.
+We need to decrypt the relations between the tables in .DM1 files, to be able to reconstruct objects stored in the files. That is because it is not easy to see, how structured information is stored in tables of the file format.
 Relationships in this type of tabular data storage are realized via primary and foreign keys.
-The task is to find out what tables are being linked in the format, since it may uncover how complex objects are reconstructed to many interrelated tables.
+The task is to find out what tables are linked in the format, since it may uncover how complex objects are reconstructed to many interrelated tables.
 For this purpose, we developed a little reverse-engineering (RE) tool which should help us to gain the knowledge necessary for reconstruction needed information from the files. \\
 
 Input for the reverse-engineering tool is an arbitrary .DM1 file, while output must describe the logical layout of the file structure.
 We observed the analogy of the file format's storage logic with relational databases. 
-This type of database can be represented understandably by a diagram.
+These databases can be represented understandably by a diagram.
 Thus, it would be nice, if the output of our utility would be such a diagram capturing the organization of .DM1 files.
-However, creating a relational diagram directly from the reverse-engineering tool would be too complicated. But we may recall that for the creation of relational diagrams modeling tools are used. The best solution would be to reuse this capability of theirs.
+However, creating a relational diagram directly from the reverse-engineering tool would be too complicated. We may recall that for creation of relational diagrams modeling tools are used. The best solution would be to reuse this capability of theirs.
 Modeling tools usually have the ability to transform selected routines of SQL into a visual representation.
-For example, based on the statement CREATE TABLE T a modeling tool can draw a box in a diagram representing table T. 
+For example, based on the statement "CREATE TABLE T" a modeling tool can draw a box in a diagram representing table T. 
 By means of SQL, table columns and key constraints can be defined as well.
 If there is a foreign key column in table B, which is at the same time a primary one in table A, it forms a relationship between the two tables, A and B. This relation is showed graphically in a diagram produced by modeling tools.
 
-Therefore, if the RE tool is able to generate a SQL create procedure for each of the tables from ER/Studio's file format and then defines on the tables primary and foreign keys, modeling tools can transform such code into a visual representation of the analyzed file format.
+Therefore, if the RE tool is able to generate a SQL create procedure for each of the tables from ER/Studio's file format and to define primary and foreign keys on the tables afterwards, modeling tools can transform such code into a visual representation of the analyzed file format.
 
-To define a SQL create statement for the tables of ER/Studio's file format is straightforward, once a .DM1 file is parsed. For parsing the tool uses the parser described in \Cref{subsec:dm1_parser}.
+To define a SQL create statement for the tables of ER/Studio's file format is straightforward once a .DM1 file is parsed. For parsing, the tool uses the parser described in \Cref{subsec:dm1_parser}.
 
 On the other hand, deciding which column of a table is primary, which columns are foreign keys and to what primary column every foreign key refers to, is a more complicated task.
 We needed to take the reverse-engineering process one step further - to be able to infer keys from tables.
@@ -44,13 +44,11 @@ The output of the RE utility, therefore, needs to be a SQL script containing def
 
 As the development of this utility is not the focal point of this work, the RE tool is not going to be an out-of-the-box general solution for deducing keys of relational databases and it is primarily concerned with the objects and properties picked by the analysis in \Cref{metadata_enumeration}. Even though, it should provide us the needed overview of .DM1 files organization.
 
-We must decide what programming language will be used to create the reverse-engineering utility. Although there may be scripting languages that would make some operations, like joins on tables, easier, we decided to use Java. Metadata Extractor itself is written in it and there is an important module - parser that the column deducing utility and Extractor, require. By developing both in Java it is possible to reuse the parser component. \\
+We had to decide what programming language to use when creating the reverse-engineering utility. Although there may be scripting languages that would make some operations, like joins on tables, easier, we decided to use Java. Metadata Extractor itself is written in it and there is an important module - Parser that the column deducing utility and Extractor require. By developing both in Java it is possible to reuse the parser component. \\
 
-Let's now describe the workflow of the RE tool.
+Let us now describe the workflow of the RE tool.
 
-Firstly, an analyzed .DM1 file is parsed into a set of instances of the class \classname{CsvTable}.
-
-When trying to find out what columns are key constrained, the idea is to look at the loaded tables from two different views.
+To begin with, an analyzed .DM1 file is parsed into a set of instances of the class \classname{CsvTable}. When trying to find out what columns are key constrained, the idea is to look at the loaded tables from two different views.
 
 The first perspective is to take into account only metadata of tables. 
 This approach is represented by the class \classname{DependencyCreator}. 
@@ -60,7 +58,7 @@ Then the class \classname{RelationFinderByTableDefinitions} allows querying over
 Among others, there is a general method \methodname{getDependenciesWithPaths} showing the sequence of joins needed to do, in order to put together records from table A with those from table B.
 
 The second view takes into account data stored in tables as well. 
-When analyzing what are relations between tables, we consider a table a collection of columns. The \classname{CsvColumn} class represents a column, storing its name and a set of values from all records of a single table at the position of the given column.
+When analyzing what are relations between tables, we consider a table being a collection of columns. The \classname{CsvColumn} class represents a column, storing its name and a set of values from all records of a single table at the position of the given column.
 The \classname{RelationFinderByTableContents} class is used for this approach when further searching for key columns.
 This way, the RE tool examines if columns with the same names have corresponding contents.
 
@@ -73,17 +71,18 @@ The reverse-engineering tool takes advantage of this information as well.
 The finder class also inspects if the primary keys are defined in some predefined order or if there is some similar pattern of how primary keys are listed in a .DM1 table.
 
 The classes above allowed us to look from multiple perspectives at metadata and data of tables in the analyzed file format.
-To put it all together and to finally generate the desired output in the form of a SQL code defining .DM1 tables and their keys base on the analysis done, the class \classname{TablesToSQLConverter} is used.
+To put it all together, to finally generate the output in the form of SQL code defining .DM1 tables and their keys based on the analysis, the class \classname{TablesToSQLConverter} is used.
 Its crucial method is \methodname{writeMySQLSource}. 
 At the beginning it defines a SQL create statement for each table from an ER/Studio source file. 
 Then takes place the phase of creating key constraints. 
-It works with candidate columns that satisfy policies for key-containing columns defined in \classname{DepedencyCreator}.
+It works with candidate columns that satisfy policies for key-containing columns defined in the \classname{DepedencyCreator} class.
 Also, these columns must be present in at least one table, so one or more joins can be made using the keys the columns store.
 The converter class also provides space for a manual definition of pairs table and its primary key that were identified by inspecting the file format using \classname{RelationFinder*} classes.
-Then the resolving of keys goes like this: at first place, primary keys defined by the user are set, then the information stored in \erstudiotable{Identity\textunderscore Value} table is used. Lastly, the key inference based on policies taking into account column names takes place. 
+Then resolution of keys goes like this: at first place, primary keys defined by a user are set, then the information stored in \erstudiotable{Identity\textunderscore Value} table is used. Lastly, the key inference based on policies taking into account column names takes place. 
 For example, if a column is called tableA\textunderscore id, it is very likely that it stores primary keys if it comes from a table called tableA.
 If a column is set as primary key storage in one table, for each of the remaining tables that contain a column with the same name, the column is marked as a foreign key referring to the first table.
-In the case that there are columns, which were chosen as candidates for key containers, but no constraint was assigned to them in previous steps, it goes as follows. One table of those which contain the given column is marked as the source primary keys and we assume in the rest foreign keys originate. The last approach may cause slight inaccuracies in the final result, but the main message should not get lost.
+In the case that there are columns, which were chosen as candidates for being key containers, but no constraint was assigned to them in previous steps, it goes as follows. 
+One table which contain the given column is marked as the source of primary keys and the remaining are considered to store references to the chosen table. The last approach may cause slight inaccuracies in the final result, but the main message should not get lost.
 
 \subsection{Parser}
 \label{subsec:dm1_parser}
@@ -92,13 +91,13 @@ We already discussed in \Cref{subsec:dm1_format} that the files storing objects 
 In order to be able to further process the data saved in the file format, programs need to load the contents of those tables into corresponding data structures. That is what parsers are for.
 
 Already existing CSV parsers are made to process a single CSV table per file. There is no unified definition for the comma-separated-value files, but usually, they do not allow naming CSV tables as present in .DM1 files.
-What is important to say about CSVs is that each it consists of entries. 
+What is important to say about a CSV table is that it consists of entries. 
 Entry is located on a separate line and consists of fields and the last record is followed by a line break. 
 Fields in an entry are separated by a comma.
 A field may contain a comma or line break, then it must be enclosed in double quotes.
 If a double quote appears in a field, it must be in the enclosed section and the quote itself must be doubled \cite{RfcCSV}.
 
-What more, the structure we need to parse consists of CSV tables which have their name on a single line, definition of columns (a special entry that is the first entry in a table and its fields are names of columns), and entries. 
+What more, the structure we need to parse consists of many CSV tables. Each of them has its name, definition of columns (a special entry that is the first entry in a table and its fields are names of columns), and entries.
 Two tables are separated by a single empty line.
 
 Putting it all together, it seemed to be easier to develop our own parser for .DM1 files that processes the files into a set of tables identified by their names.
@@ -182,23 +181,23 @@ The parser's interface is a single method - \methodname{readFile}. It takes a fi
 
 \subsection{Model}
 
-The purpose of the model component is to provide read access to both a raw structure of a processed source file and a fully loaded hierarchy of objects Metadata Extractor has reconstructed from a file.
+The purpose of the Model component is to provide read access to both a raw structure of a processed source file and a fully loaded hierarchy of objects Metadata Extractor has reconstructed from a file.
 
-The crucial objects and the important properties of theirs which is the model required to capture results from the analysis of ER/Studio data models listed in \Cref{metadata_enumeration}. They are described by functionality that is expected from them, so the model component is a set of interfaces. Here we describe them in more detail.
+The crucial objects and the important properties of theirs which Model is required to capture result from the analysis of ER/Studio data models listed in \Cref{metadata_enumeration}. They are described by functionality that is expected from them, making Model a set of interfaces. Here we describe them in more detail.
 
 The perspective of a raw file structure loaded to memory is represented by the interface \classname{ErStudioFile}, where either all tables from a file can be retrieved via \methodname{getAllCsvTables} method or a single table may be obtained by its name using the \methodname{getCsvTable} method.
 
-An ER/Studio solution - a set containing one logical data model and an arbitrary number of physical models implements the \classname{ErStudioSolution} interface. All the objects contained in the data models stored in such a solution can be retrieved using the interface's methods. A solution is defined in a file, the relative name of the file where the solution is an internal one is returned when called \methodname{getFileName}.
+An ER/Studio solution - a set containing one logical data model and an arbitrary number of physical models, implements the \classname{ErStudioSolution} interface. All the objects contained in the data models of a solution can be retrieved using the interface's methods. A solution is defined in a file, the relative name of the file where the solution is an internal one is returned when called \methodname{getFileName}.
 
-Since a .DM1 file is not restricted to store solely objects from a single solution but may reference external models (objects that are originating in another solution) as well, thus there may be objects from multiple solutions saved in a file. Each object is assigned to a solution where it originates.
+A .DM1 file is not restricted to store solely objects from a single solution but may reference external models (objects that are originating in another solution) as well, thus there can be objects from multiple solutions saved in a file. Each object is assigned to a solution where it originates.
 If the name of the object's origin solution is identical with the name of .DM1 file from which it was loaded, it is an internal object, otherwise, we call it external. There is a single internal solution per .DM1 file. 
 The overall structure of a file is represented by a realization of the \classname{ErStudioFileModel} interface that consists of a single internal solution and the file may reference some external solutions.
 
 A base behavior of both logical and physical data models is defined in the \classname{DataModel} interface.
 A data model has a name and contains owners. An instance fulfilling \classname{DataModel} contract must have property of type \classname{AbstractionLayer} set to either \methodname{Logical} or \methodname{Physical} just like every underlying object in a model.
-It must be invariant that the whole subtree of objects, beginning in a data model must have the same abstraction layer defined.
+It must be invariant that the whole subtree of objects, a root is a data model, has defined the same abstraction layer.
 
-\classname{PhysicalDataModel} interface requires an additional feature - it can tell the database platform it is designed for. 
+\classname{PhysicalDataModel} interface requires an additional feature - its realization can tell the database platform it is designed for. 
 In the enum class \classname{Platform}, all the database management systems ER/Studio supports are captured with an extra entry for an unknown DBMS.
 
 Models are storing instances of complying with the \classname{Owner} interface. An owner is either logical or physical according to what objects it can own and what type of model it may belong to. 
@@ -222,26 +221,26 @@ Even data models are treated similarly, only there is the additional attribute r
 
 \subsection{Resolver}
 
-The resolver unit is here to provide the construction logic for building the objects which the model component describes.
+The Resolver unit is here to provide the construction logic for building the objects which the model component describes.
 
-Outline of what the resolver module does is that using an instance of the \classname{ErStudioFileModelBuilder} class it creates the whole structure representing an input .DM1 file as an object described by the \classname{ErStudioFileModel} interface. 
-It builds an internal solution, puts inner objects to maps-to relation, then loads external objects and at the end resolves mappings that lead across solutions using an instance of the \classname{ExternalMapper} class takes place.
-The parser component provides an input for the resolver.
+Outline of what the Resolver module does is that using an instance of the \classname{ErStudioFileModelBuilder} class it creates the whole structure representing an input .DM1 file as an object described by the \classname{ErStudioFileModel} interface. 
+It builds an internal solution, puts inner objects to maps-to relation, then loads external objects and at the end resolves mappings that lead across solutions using an instance of the \classname{ExternalMapper} class.
+Parser provides an input for Resolver.
 
-Typically, for each model's interface we create an implementation. 
+Typically, for each Model's interface we create an implementation. 
 In Java, it is usual to call the classes fulfilling a contract \classname{*Impl} where * is a placeholder for the name of an interface. We stick to this naming convention. 
-The \classname{*Impl} classes, in contrast to the interfaces that are used to describe the model component, need to dispose of methods for setting up and adding properties or sub-objects. These classes can be found in the "imp" package. \\
+The \classname{*Impl} classes, in contrast to the interfaces that are used to describe Model, need to dispose of methods for setting up and adding properties or sub-objects. These classes can be found in the "imp" package. \\
 
-We defined what is expected from the objects which Metadata Extractor has to collect and added the functionality to set up these objects.
+We defined what is expected from the objects collected by Metadata Extractor and added the functionality to set up these objects.
 So the last missing piece of the puzzle needed is to put together the gathered information to recompose the final objects and their metadata.
 
-The logic taking care of the objects reconstruction can be found in the resolver's package "build".
+The logic taking care of the objects reconstruction can be found in the Resolver's package "build".
 The skeleton of how an instance of \classname{ErStudioSolution} is created is prescribed by the method \methodname{buildErStudioModel} in the class \classname{AbstractDataObjectsBuilder}. The method follows the paradigm of the template method design pattern and defines the steps needed to take, in order to construct an instance of \classname{ErStudioSolution} solution, no matter if it is of the internal or external type.
 The template enforces a tree of objects in a solution that is built from the top to the bottom.
-The very first is to step is to create a root of such tree - an instance of \classname{ErStudioSolution} that is being built, then \classname{DataModel}s from the solution are loaded, underlying \classname{Owner}s follow, \classname{CompositeObject}s after, and finally \classname{SimpleObject}s. 
-Child instances are appended to their parents just after they are created.
+The very first step is to create a root of such tree - an instance of \classname{ErStudioSolution} that is being built, then \classname{DataModel} structures from the solution are loaded, underlying \classname{Owner} implementations follow, \classname{CompositeObject} realizations after, and finally \classname{SimpleObject} instances. 
+Child objects are attached to their parents just after they are created.
 The abstract builder contains common methods for the construction of the needed objects. 
-Those methods are not dependent on representation, they only require a set of properties on input, to build the resulting objects from. 
+Those methods are not dependent on representation, they only require a set of properties as the input, to build the resulting objects from. 
 The groups of properties needed to be collected about each type of complex object from a data model to proceed the construction are described by the interfaces in the package " modeledobjectproperties".
 
 The specific way of gathering information about objects to be reconstructed is tied with details of how the objects are saved. 
@@ -258,7 +257,7 @@ The mapping logic goes through a given CSV table, which definition fulfills the 
 
 \subsection{Reader}
 
-The reader component puts together the parser module with the resolver module and produces data structures described by the model component. \\
+The Reader component puts together the parser module with the resolver module and produces data structures described by the model component. \\
 
 An instance of the \classname{ErStudioDm1Reader} class crawls through a directory with input .DM1 files and processes them. 
 Each time the \methodname{read} method is called, it forwards the next file from the input folder to the parser. Result of the parser is handed to the resolver, which produces a result fulfilling the contract of \classname{ErStudioFileModel} and that is what the \methodname{read} methods returns.
@@ -278,13 +277,14 @@ It is crucial to identify what database an extracted physical data model corresp
 This is important for Metadata Extractor to be able to pair physical data model objects with those from database dictionaries. The correct pairings allow Manta to interpolate technical lineage on the logical layer, as well it brings extracted metadata to database objects in the technical lineage.
 A suitable realization of the \classname{Connection} class corresponding to a physical data model is made of information extracted from a data model - DBMS type and schema, the remaining details - database name, server entered by a user in a .ini file.
 
-Once the connections are assigned to physical models, Metadata Extractor traverses trees of data models, and creating nodes using a realization of the \classname{DatabaseConnector} interface in the case of physical level, whereas when it comes to logical objects, Metadata Extractor takes an advantage of an implementation of the \classname{DataModelNodeCreator} interface (both contracts and their default realizations are defined in the modeling common component described later \Cref{modeling_common}).
+Once the connections are assigned to physical models, Metadata Extractor traverses trees of data models, and creates nodes using a realization of the \classname{DatabaseConnector} interface in the case of physical level. 
+When it comes to logical objects, Metadata Extractor takes an advantage of an implementation of the \classname{DataModelNodeCreator} interface (both contracts and their default realizations are defined in the modeling common component described later \Cref{modeling_common}).
 
 The only item left is to create mapping edges for the corresponding nodes.
-Metadata Extractor creates the mappings symmetrically when resolving, the full information is captured on both levels. 
+Metadata Extractor creates the mappings symmetrically when resolving. It means the full information is captured on both interconnected levels. 
 This way, it is possible to create all the mapping edges by going through all objects from a single level of abstraction, no matter which level as each mapping edge is contained in both of the levels.
 Thus, Data Flow Generator goes through all the logical objects, creating their node representation and collects the attributes that have to be linked to a column.
-Then when a node representation of physical objects is created, Metadata Extractor checks if the just constructed node has a mapping, a MAPS\textunderscore TO edge is set between the logical and physical node.
+When a node representation of physical objects is takes place Metadata Extractor checks if the just constructed node has a mapping, a MAPS\textunderscore TO edge is set between the logical and physical node.
 
 \section{PowerDesigner}
 
@@ -292,15 +292,15 @@ Now we move on to describe the implementation of Metadata Extractor's components
 
 \subsection{Parser}
 
-To load data models that are the output of PowerDesigner and reconstruct objects they save, Metadata Extractor needs to parse them. The files are of XML type.
+To load data models that are the output of PowerDesigner and to reconstruct objects they save, Metadata Extractor needs to parse them. The files are of XML type.
 In the analysis section, we already discussed the possibilities when it comes to reading XML files. We concluded that the most suitable approach for us should be loading inputs to a DOM tree data structure.
-We did not try to reinvent a wheel, as there are many DOM parsing services that can be reused. 
+We did not try to reinvent the wheel, as there are many DOM parsing services that can be reused. 
 Given that in the ecosystem of Manta software there is present an internal artifact capable of transforming XML to DOM, Metadata Extractor will make use of it.
 
 \subsection{Model}
 
-The model component is the mean we use for the description of the main modeled objects that Metadata Extractor has to obtain
-Let's start describing these objects generally.
+The Model component is the mean we use for the description of the main modeled objects that Metadata Extractor has to obtain
+Let us start describing these objects generally.
 
 Thus the \classname{DataModel} interface requires the name of the file where it is stored and its children.
 Then the hierarchy of objects goes like this: a model has at least one realization of the \classname{Schema} interface, schemas store instances of the \classname{CompositeObject} interface, which contains implementations of the \classname{SimpleObject} contract.
@@ -312,11 +312,11 @@ These interfaces are generic and provide a common basis for corresponding specif
 For every model type, there exists a package, where those specific contracts of modeled objects lie. 
 The concrete interfaces, on one hand, take over the common concepts, while on the other hand may be easily extended, once a new functionality, which is specific for any abstraction level, is identified.
 
-\classname{Mappable} interface is present to capture objects that are in maps-to relation. It realized via instances of \classname{CompositeObject} or \classname{SimpleObject}, however a target of a mapping is a string every time - it is a globally unique id of the mapped counterpart, not another instance directly. That is because mappings in PowerDesigner leads across different files, thus an actual representation of the counterpart may be unreachable yet.
+\classname{Mappable} interface is present to capture objects that are in maps-to relation. It realized via instances of \classname{CompositeObject} or \classname{SimpleObject}, however a target of a mapping is a string every time - it is a globally unique ID of the mapped counterpart, not another instance directly. That is because mappings in PowerDesigner leads across different files, thus an actual representation of the counterpart may be unreachable yet.
 
 \subsection{Resolver}
 
-The resolver component provides means of creating objects, which are described in the model unit using data that DOM parser obtained from an input file. The output of the resolver is an instance of \classname{DataModel}.
+The Resolver component provides means of creating objects, which are described in Model using data that DOM parser obtained from an input file. The output of Resolver is an instance of \classname{DataModel}.
 
 Abstract classes, prefixed with \classname{Abstract*}, capturing common concepts are present to minimize code redundancy and to provide a unified way to handle similar objects, even though they do not represent any complete object of a data model. 
 The actual objects that have backing in data models are implemented via \classname{*Impl} classes.
@@ -337,7 +337,7 @@ Requests for specific DOM nodes during the process of object creation are done u
 
 \subsection{Reader}
 
-The reader component interconnects the resolver with the parser. Input for this component is a directory, where the reader searches for files containing saved data models. It collects a batch of files from the input directory, loads them using the two components, and sends the batch in the processed form of a set of \classname{DataModel}s to the Data Flow Generator unit.
+The Reader component interconnects the resolver with the parser. Input for this component is a directory, where the reader searches for files containing saved data models. It collects a batch of files from the input directory, loads them using the two components, and sends the batch in the processed form of a set of \classname{DataModel}s to the Data Flow Generator unit.
 
 Input directory containing PowerDesigner files to process is the input for the reader's most important class \classname{PowerDesignerXmlComponentReader}. 
 The reader recursively discovers the directory and collects the file that will have to be resolved using the \methodname{collectFiles} method. 
@@ -345,7 +345,7 @@ When a data model file is found, its dependencies are checked using a \classname
 The found dependent files, however, must be in the input directory, so if it is not the case, the reader tries to resolve their paths and check if there is no file with matching sub-path within the input directory. If it is a bidirectional edge between the files is created. 
 Once all the files from the input are collected, component creation takes place so the input set is split into smaller logically connected groups.
 
-Then when the main API method of a reader, the \methodname{read} method, is called, the parser and resolver start processing one component. Result of their work on a component a set of related reconstructed \classname{DataModel}s which is the return value from the read method. 
+When the main API method of a reader - \methodname{read} is called, the parser and resolver start processing one component. Result of their work is a set of related reconstructed \classname{DataModel}s which is the return value from the method. 
 That means the reading method is stateful and \methodname{canRead} checks if there are any component left to be returned.
 
 \subsection{Data Flow Generator}
@@ -356,33 +356,33 @@ When translating a set of reconstructed data models and their underlying objects
 Then the tree of data model objects is traversed.
 
 When dealing with a physical data model, an instance of \classname{PhysicalGraphBuilder} is used, underlying \classname{DatabaseConnector} searches for the modeled database objects. 
-A suitable \classname{Connection} realization corresponding to a physical data model is made of the information from a data model and .ini file, as loading connection details from .dsn and .dcp files is not supported yet. A user has to write to the .ini file type, server and name of a database for a physical data model, in order to identify the corresponding database successfully.
+A suitable \classname{Connection} realization corresponding to a physical data model is made of the information from a data model and .ini file, as loading connection details from .dsn and .dcp files is not supported yet. A user has to specify in the .ini file type, server and name of a database for a physical data model, in order to identify the corresponding database successfully.
 
 On the other hand, physical and logical data models use the generic \classname{ModeledGraphBuilder} class for creating nodes representing objects obtained from data models of higher abstraction.
 
-Lastly, during the phases of translation to nodes, Metadata Extractor collects by IDs the nodes that have some mapping.
+Lastly, during the phases of translation objects to nodes, Metadata Extractor collects by IDs the nodes that have a mapped counterpart.
 Once all the data models in the processed components are fully built, the generator can resolve the mapping, as both ends of the MAPS\textunderscore TO edge must be present. 
 Then Metadata Extractor simply looks at to what ids are objects mapped, obtain an actual representation of these ids put them into the relationship by creating the edge.
 
 \section{Extensibility - Modeling Common}
 \label{modeling_common}
 
-For the sake of extracting metadata from modeling tools, we developed a unit where a component for metadata extraction from an arbitrary modeling tool meets Manta Flow.
+For the sake of general information retrieval from modeling tools, we developed a unit where a component for metadata extraction from an arbitrary modeling tool meets Manta Flow.
 This module, where the common bridging logic is stored, we call modeling common.
 
 Physical data models need to be paired with corresponding connections to DBMS in order to identify the database they resemble. 
 Only with this knowledge, Metadata Extractor can correctly pair the same database objects that appear both in a physical model and in a database dictionary extracted by Manta Flow from a live database. 
-This functionality is provided by implementations of the interface \classname{DatabaseConnector}. Details about the target database of a physical data model are kept in \classname{Connection}. 
+This functionality is provided by implementations of the interface \classname{DatabaseConnector}. Details about the target database of a physical data model are kept in a realization of the \classname{Connection} contract.
 The API to database dictionaries created by Manta is provided by the \classname{DataflowQueryService} interface. 
 Having collected information of a physical object, either a column or a table, the query service tries to find the object in the dictionaries using \methodname{createColumnNode} or \methodname{createTableNode}. 
-If the service succeeds, matched node from a dictionary is appended to the output graph, otherwise null is returned from a create method and Metadata Extractor tool copes with the situation in such a way that it creates a node that has no backing in a live database, marking the node's attribute source type to MODEL to make clear in the output, that it is an artificial node based only on a physical data model. 
+If the service succeeds, matched node from a dictionary is appended to the output graph, otherwise null is returned from a \methodname{create*} method and Metadata Extractor tool copes with the situation in such a way that it constructs a node that has no backing in a live database, marking the node's attribute source type to MODEL to make clear in the output, that it is an artificial node based only on a physical data model. 
 It can be from two reasons - the database object does not exist or we provided inaccurate/incomplete data to identify it.
 
 So the first requirement for a general extractor from data modeling tools is to be able to organize extracted metadata in such a way that \classname{DatabaseConnector} may be called and ideally matches the modeled objects with the extracted ones.
 This is a very important step, as this pairing is the prerequisite for business data lineage creation. If the physical modeled objects do not match the ones from a database that take part in data lineage, there is no flow to be propagated to higher levels of abstraction via MAPS\textunderscore TO edges and the result of interpolation will be an empty set of edges.
 
 Secondly, we have defined a common way of creating nodes representing objects extracted from data models of higher abstraction than the physical ones - conceptual and logical.
-We define a set of methods, where each is responsible for the creation of node representation of a type of object that may appear in the data models. Most commonly, a modeling tool will support only a subset of the types the node creator is able to construct. 
+We define a set of methods, where each of them is responsible for the creation of node representation of a type of object that may appear in the data models. Most commonly, a modeling tool will support only a subset of the object types the node creator is able to construct. 
 However, that is not a problem as the node hierarchy is not that strict and it can be built to be compliant with the layout of a specific modeling tool. 
 For example, it is not necessary to build an attribute under an entity node if a modeling tool does not allow such a concept, just like an owner node is not necessary, as there is no strict rule if the tools should support it or not.
 
@@ -402,8 +402,8 @@ To create a guideline what to do when implementing a metadata extraction from a 
 	\item Define the crucial data model objects, relations between them, hierarchy and properties interesting enough to be captured in data lineage by read-only interfaces. That is the model component. 
 	The objects that will be represented as standalone nodes in data lineage visualization at the end have to implement the \classname{NodeMetadata} interface.
 	\item Depending where from the data models are obtained, this phase generally retrieves data models from storage. It may be by calling a web API to get data mode objects from a server, retrieving them from a database, or like in the case of Metadata Extractor, by parsing a file.
-	\item Resolving takes place once some representation of data models was obtained. This stage transforms the acquired structures into objects conforming the aspects described by the model module.
-	\item Data flow is generated from the output of the resolver. This module translates data structures describing modeled objects to graph nodes. 
+	\item Resolving takes place once a representation of data models was obtained. This stage transforms the acquired structures into objects conforming the aspects described by the model module.
+	\item Data flow is generated from the output of Resolver. This module translates data structures describing modeled objects to graph nodes. 
 	Database objects from physical data models are expected to match the ones in database dictionaries of Manta that were extracted directly from databases. 
 	The communication with Manta is done via \classname{DatabaseConnector} interface and a concrete \classname{Connection} that is assigned to a physical model.
 	Logical and physical modeled objects are transformed to node representation using the corresponding implementation of the \classname{DataModelNodeCreator} interface - logical and physical respectively.
@@ -418,7 +418,7 @@ We require Metadata Extractor to be as stable and as robust as possible.
 When an unexpected event occurs, the program should not fail on an exception and stop computing. Metadata Extractor should ideally print a message describing the given event to log using the SLF4J logger with level \methodname{error} or \methodname{warn} depending on the severity. 
 
 If there is something wrong in a data model definition, Metadata Extractor tries to get as much information as possible.
-For example, if a part of an XML tree describing one PowerDesigner table is malformed, partial information about the table should be extracted so the program tries to retrieve it. In case the table is damaged unrecoverably, it should be skipped and continue with the processing of other tables directly. 
+For example, if a part of an XML tree describing one PowerDesigner table is malformed, partial information about the table should be extracted so the program tries to retrieve it. In case the table is damaged irrecoverably, it should be skipped and continue with the processing of other tables directly. 
 One way or another, one wrong table must not affect any other table in the given file.
 
 \section{Technologies}
@@ -438,7 +438,7 @@ The quality of the programmer's toolbox may have a huge influence on his product
 
 \section{Testing}
 
-Automated unit tests validating the crucial parts of the implementation are a huge help to determine the correctness of Metadata Extractor's logic. 
+Automated unit tests validating the crucial parts of the implementation makes much easier to determine the correctness of Metadata Extractor's logic. 
 We developed test suites that should tell in what shape is the program.
 
 \subsubsection{ER/Studio Parser}
@@ -448,14 +448,14 @@ Also, every CSVs should be valid in the way that each row in a table must have t
 
 \subsubsection{Reader \& Resolver}
 
-The testing output of the reader module shows a lot about the resolver's correctness since the logic of the reader is actually provided by this module. 
-By the nature of the reader, it connects resolver and parser, these tests rely on the fact that parser works correctly and we assume this is true as far as the parser module tests are passing.
-The goal of the reader tests is to find out whether all objects from input data models were successfully and correctly loaded into data structures described by the model component.
+The testing output of the Reader module shows a lot about Resolver's correctness since the logic of the reader is actually provided by this module. 
+By the nature of Reader - it connects Resolver and Parser, these tests rely on the fact that parser works correctly and we assume this is true as far as the parser module tests are passing.
+The goal of Reader tests is to find out whether all objects from input data models were successfully and correctly loaded into data structures described by the model component.
 In the case of ER/Studio, the testing compares expected statistics about data models such as the number of physical models in a solution, entity count of the logical model, etc. with the number of objects that were loaded actually by the reader.
 Secondly, some specific objects from the hierarchy of a data model that is on input are picked and checked if they were loaded accordingly. Tests check metadata of those objects and mappings with other objects as well. \\ 
 
-PowerDesigner must create components correctly, so we have a test for checking if the number of components is correct.
-The main reader test consists of reading file by file, thus the size of a component is one every time (the components creation correctness is ensured the previous test).
+PowerDesigner must create components correctly, so we have a test for checking if the number of components is correct and if dependencies on files with obsolete path can be fixed.
+The main Reader test consists of reading file by file, thus the size of a component is one every time (the components creation correctness is ensured the previous test).
 The expected values and objects are loaded from JSON sources file where they are stored in a deserialized form.
 
 \subsubsection{Data Flow Generator}

@@ -54,11 +54,11 @@
 \contentsline {subsubsection}{PowerDesigner}{32}{section*.27}
 \contentsline {subsection}{\numberline {4.1.4}Maps-to Relation}{32}{subsection.4.1.4}
 \contentsline {subsubsection}{ER/Studio}{33}{section*.28}
-\contentsline {subsubsection}{PowerDesigner}{33}{section*.29}
+\contentsline {subsubsection}{PowerDesigner}{34}{section*.29}
 \contentsline {subsection}{\numberline {4.1.5}Business Lineage Creation}{36}{subsection.4.1.5}
 \contentsline {subsection}{\numberline {4.1.6}Database Connections}{36}{subsection.4.1.6}
 \contentsline {subsubsection}{ER/Studio}{37}{section*.30}
-\contentsline {subsubsection}{PowerDesigner}{37}{section*.31}
+\contentsline {subsubsection}{PowerDesigner}{38}{section*.31}
 \contentsline {subsection}{\numberline {4.1.7}Output Representation}{38}{subsection.4.1.7}
 \contentsline {section}{\numberline {4.2}Desired Features}{39}{section.4.2}
 \contentsline {section}{\numberline {4.3}Survey of Existing Solutions}{39}{section.4.3}
