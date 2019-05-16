@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 16:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 17:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,8 +441,8 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-Package hyperref Info: Option `unicode' set `true' on input line 139.
-Package hyperref Info: Option `breaklinks' set `true' on input line 140.
+Package hyperref Info: Option `unicode' set `true' on input line 141.
+Package hyperref Info: Option `breaklinks' set `true' on input line 142.
 
 \@input{macros.aux}
 \openout2 = `macros.aux'.
@@ -774,30 +774,30 @@ File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
 ux) (./bibliography.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 146.
-LaTeX Font Info:    ... okay on input line 146.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 146.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 148.
+LaTeX Font Info:    ... okay on input line 148.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 148.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring OFF on input line 146.
+Package hyperref Info: Link coloring OFF on input line 148.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -807,9 +807,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count145
 )
-LaTeX Info: Redefining \ref on input line 146.
-LaTeX Info: Redefining \pageref on input line 146.
-LaTeX Info: Redefining \nameref on input line 146.
+LaTeX Info: Redefining \ref on input line 148.
+LaTeX Info: Redefining \pageref on input line 148.
+LaTeX Info: Redefining \nameref on input line 148.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write6
@@ -942,7 +942,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--92
 
 [1
 
-] [2
+]
+
+! Package inputenc Error: Unicode character ́ (U+301)
+(inputenc)                not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.109 \Dedication
+                 
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[2
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 133--135
@@ -955,6 +969,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--135
 Underfull \hbox (badness 1275) in paragraph at lines 155--157
 []\OT1/lmr/m/n/12 Abstrakt: Data lin-eage je zo-brazen^^S^^Pm toku in-form^^Sac
 i^^S^^P v kom-p-liko-van^^Sych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--157
+
  []
 
 
@@ -1335,7 +1354,7 @@ ure.4.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.158 \include{solution_design}
+l.160 \include{solution_design}
                                 <../img/SWArchitecture.pdf
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ../img/SWArchitecture.pdf): 
@@ -1563,7 +1582,7 @@ T1/lmtt/m/n/12 com / saphelp[]pd1654[]data / helpdata / en / c7 /
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
  []
 
@@ -1572,64 +1591,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--182
 ]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--201
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
 
  []
 
 
-Underfull \hbox (badness 5622) in paragraph at lines 205--206
+Underfull \hbox (badness 5622) in paragraph at lines 207--208
 []\OT1/lmr/m/n/12 Run the "mvn clean com-pile as-sem-bly:single" com-mand pro-d
 uc-
  []
 
 
-Underfull \hbox (badness 4316) in paragraph at lines 210--213
+Underfull \hbox (badness 4316) in paragraph at lines 212--215
 \OT1/lmr/m/n/12 erstudio-aggregation, manta-dataflow-generator-erstudio-aggrega
 tion, manta-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 217--222
+Underfull \hbox (badness 10000) in paragraph at lines 219--224
 
  []
 
 [64
 
 ]
-Underfull \hbox (badness 3849) in paragraph at lines 238--240
+Underfull \hbox (badness 3849) in paragraph at lines 240--242
 []\OT1/lmr/m/n/12 Each sys-tem of mod-els that has to be pro-cessed is spec-i-f
 ied by
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--240
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
 \OT1/lmr/m/n/12 its .prop-er-ties file in manta-flow-cli/scenarios/etc/erstudio
 , manta-flow-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--240
+Underfull \hbox (badness 10000) in paragraph at lines 240--242
 
  []
 
 [65] [66] [67] [68] [69] [70] [71] [72] [73]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 552.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 552.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 552.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 552.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 554.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 554.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 2868CC2349803FA42E960B1BD6F99BF4;8977.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 552.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
  ) 
 Here is how much of TeX's memory you used:
- 25723 strings out of 492649
- 445050 string characters out of 6129623
- 490844 words of memory out of 5000000
- 28857 multiletter control sequences out of 15000+600000
+ 25724 strings out of 492649
+ 445055 string characters out of 6129623
+ 491192 words of memory out of 5000000
+ 28858 multiletter control sequences out of 15000+600000
  82813 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  59i,8n,70p,971b,1976s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1646,7 +1665,7 @@ e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
 type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
 ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
 10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (78 pages, 1301083 bytes).
+Output written on thesis.pdf (78 pages, 1301482 bytes).
 PDF statistics:
  1061 PDF objects out of 1200 (max. 8388607)
  260 named destinations out of 1000 (max. 500000)

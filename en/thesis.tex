@@ -105,7 +105,9 @@
 % An optional dedication: you can thank whomever you wish (your supervisor,
 % consultant, a person who lent the software, etc.)
 \def\Dedication{%
-Dedication.
+	I would like to express my gratitude to my supervisor, RNDr. Pavel Parízek, Ph.D., for his invaluable advice.\\
+	Also, I would like to thank Ing. Oldřich Nouza, Ph.D. and RNDr. Lukáš Hermann  for answering all my questions related to Manta Flow. \\
+	Last but not least my appreciation goes to all my relatives and friends that supported me throughout my studies.
 }
 
 % Abstract (recommended length around 80-200 words; this is not a copy of your thesis assignment!)
@@ -203,7 +205,7 @@ To build and consequently run the RE tool, the following is required:
 \begin{enumerate}
 	\item Navigate to the directory dm1-reverse-engineering-tool.
 	\item Run the "mvn clean compile assembly:single" command producing the executable dm1-reverse-engineering-tool-1.0-SNAPSHOT-jar-with-dependencies.jar file.
-	\item To start execution on, for example, model.dm1 file (sample models can be found in resource folder) the .jar with "java -jar .jar model.dm1". SQL script called MetaModel.sql is produced.
+	\item To start execution on, for example, model.dm1 file (sample models can be found in resource folder) the .jar with "java -jar dm1-reverse-engineering-tool-1.0-SNAPSHOT-jar-with-dependencies.jar model.dm1". A SQL script called MetaModel.sql is produced.
 	\item Let modeling tool create a model out of the script.
 \end{enumerate}
 
