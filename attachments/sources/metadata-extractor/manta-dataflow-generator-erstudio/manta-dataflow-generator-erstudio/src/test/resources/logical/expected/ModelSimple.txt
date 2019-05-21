@@ -1,0 +1,7 @@
+First Attribute [Logical Attribute] . Entity [Logical Entity] . NAMELESS [Logical Owner] . ModelSimple.DM1 [Logical Model File] . TestSystem [Logical System]
+Key [Logical Attribute] . Entity [Logical Entity] . NAMELESS [Logical Owner] . ModelSimple.DM1 [Logical Model File] . TestSystem [Logical System]
+Entity [Logical Entity] . NAMELESS [Logical Owner] . ModelSimple.DM1 [Logical Model File] . TestSystem [Logical System]
+ModelSimple.DM1 [Logical Model File] . TestSystem [Logical System]
+NAMELESS [Logical Owner] . ModelSimple.DM1 [Logical Model File] . TestSystem [Logical System]
+TestSystem [Logical System]
+Nodes: 6, edges: 0

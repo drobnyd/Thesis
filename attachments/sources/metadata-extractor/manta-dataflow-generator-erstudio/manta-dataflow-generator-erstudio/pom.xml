@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.profinit.manta</groupId>
+        <artifactId>manta-platform-parent-pom</artifactId>
+        <version>1.25-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+    <artifactId>manta-dataflow-generator-erstudio</artifactId>
+    <version>1.25-SNAPSHOT</version>
+    <name>Manta Dataflow Generator ER/Studio</name>
+    <description>Manta Dataflow Generator for ER/Studio</description>
+
+    <scm>
+        <url>
+            http://manta-cm/svn/manta/Source_Code/Internal/DataFlow/Generator/ERStudio/trunk/manta-dataflow-generator-erstudio
+        </url>
+        <connection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/DataFlow/Generator/ERStudio/trunk/manta-dataflow-generator-erstudio
+        </connection>
+        <developerConnection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/DataFlow/Generator/ERStudio/trunk/manta-dataflow-generator-erstudio
+        </developerConnection>
+    </scm>
+    <repositories>
+        <repository>
+            <id>manta-releases</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-releases</url>
+        </repository>
+        <repository>
+            <id>manta-snapshots</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-snapshots</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-platform-automation</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-model</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-model-utils</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-erstudio-model</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-common</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-common-query</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-erstudio</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-modeling-common</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Tests -->
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-commons-testutils</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-platform-logging-binding</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-teradata13</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-teradata13-dictionary-h2</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-teradata13</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-oracle</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-oracle</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-mssql</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-mssql</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-db2</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-db2</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-netezza</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-netezza</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-postgresql</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-postgresql</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-filter</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

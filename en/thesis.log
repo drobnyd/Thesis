@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  16 MAY 2019 17:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.3.4)  17 MAY 2019 15:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -767,11 +767,40 @@ Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 )
 File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
 )
-\c@thm=\count143
-\c@defn=\count144
-) (./thesis.aux (./title.aux) (./preface.aux) (./on_database_background.aux) (.
-/modeling_tools.aux) (./solution_design.aux) (./implementation.aux) (./epilog.a
-ux) (./bibliography.aux))
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2018/02/14 3.18 The Babel package
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2018/02/14 3.18 Babel switching mechanism
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2018/02/14 3.18 Babel common definitions
+\babel@savecnt=\count143
+\U@D=\dimen190
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@dirlevel=\count144
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+\c@thm=\count145
+\c@defn=\count146
+) (./thesis.aux
+(./title.aux) (./preface.aux) (./on_database_background.aux)
+(./modeling_tools.aux) (./solution_design.aux) (./implementation.aux)
+(./epilog.aux) (./bibliography.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
@@ -790,11 +819,10 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 148.
 LaTeX Font Info:    ... okay on input line 148.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 148.
 LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 148.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 148.
 
-
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box44
 Package hyperref Info: Link coloring OFF on input line 148.
@@ -805,7 +833,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count145
+\c@section@level=\count147
 )
 LaTeX Info: Redefining \ref on input line 148.
 LaTeX Info: Redefining \pageref on input line 148.
@@ -818,16 +846,16 @@ LaTeX Info: Redefining \nameref on input line 148.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count146
-\scratchdimen=\dimen190
+\scratchcounter=\count148
+\scratchdimen=\dimen191
 \scratchbox=\box45
-\nofMPsegments=\count147
-\nofMParguments=\count148
+\nofMPsegments=\count149
+\nofMParguments=\count150
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count149
-\MPscratchDim=\dimen191
-\MPnumerator=\count150
-\makeMPintoPDFobject=\count151
+\MPscratchCnt=\count151
+\MPscratchDim=\dimen192
+\MPnumerator=\count152
+\makeMPintoPDFobject=\count153
 \everyMPtoPDFconversion=\toks46
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -860,7 +888,12 @@ File: ../img/logo-en.pdf Graphic file (type pdf)
 <use ../img/logo-en.pdf>
 Package pdftex.def Info: ../img/logo-en.pdf  used on input line 9.
 (pdftex.def)             Requested size: 472.31573pt x 145.9455pt.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 30.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
 LaTeX Font Info:    Try loading font information for OML+lmm on input line 30.
+
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -903,12 +936,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 63--65
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 66.
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmr.fd
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 66.
 
 Underfull \hbox (badness 10000) in paragraph at lines 66--67
 
@@ -924,15 +951,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--72
 
  []
 
-LaTeX Font Info:    Try loading font information for OML+lmr on input line 73.
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmr.fd
-File: omllmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OML/lmr/m/n' in size <12> not available
-(Font)              Font shape `OML/lmm/m/it' tried instead on input line 73.
 
 Underfull \hbox (badness 1221) in paragraph at lines 73--92
-\OT1/lmr/m/n/12 THE AU-THORS OR COPY-RIGHT HOLD-ERS BE LI-ABLE FOR ANY
+\T1/lmr/m/n/12 THE AU-THORS OR COPY-RIGHT HOLD-ERS BE LI-ABLE FOR ANY
  []
 
 
@@ -942,21 +963,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--92
 
 [1
 
-]
-
-! Package inputenc Error: Unicode character ́ (U+301)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.109 \Dedication
-                 
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-[2
+] [2
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 133--135
@@ -966,20 +973,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--135
 [3
 
 ]
-Underfull \hbox (badness 1275) in paragraph at lines 155--157
-[]\OT1/lmr/m/n/12 Abstrakt: Data lin-eage je zo-brazen^^S^^Pm toku in-form^^Sac
-i^^S^^P v kom-p-liko-van^^Sych
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 155--157
 
- []
-
-
-Underfull \hbox (badness 1147) in paragraph at lines 158--160
-[]\OT1/lmr/m/n/12 Kl^^S^^P^^Tcov^^Sa slova: D^^Satov^^Se toky D^^Satov^^Se mod-
-e-lo-vanie Datab^^Sazov^^Sa ar-chitekt^^Sura
  []
 
 [4]) (./thesis.toc [1
@@ -995,6 +990,12 @@ e-lo-vanie Datab^^Sazov^^Sa ar-chitekt^^Sura
 
  (./preface.tex
 Chapter 1.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 9.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 9.
 
 Underfull \hbox (badness 10000) in paragraph at lines 24--25
 
@@ -1123,7 +1124,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 148--151
 
  []
 
-<../img/Conceptual_Model_PowerDesigner.png, id=457, 559.08875pt x 432.61626pt>
+<../img/Conceptual_Model_PowerDesigner.png, id=456, 559.08875pt x 432.61626pt>
 File: ../img/Conceptual_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Conceptual_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Conceptual_Model_PowerDesigner.png  used on inp
@@ -1141,7 +1142,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 175--178
                                                   \fi \fi 
 l.187 \end{itemize}
                     <../img/Conceptual_Model_PowerDesigner.png>]
-<../img/Logical_Model_PowerDesigner.png, id=476, 630.355pt x 472.76625pt>
+<../img/Logical_Model_PowerDesigner.png, id=475, 630.355pt x 472.76625pt>
 File: ../img/Logical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Logical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Logical_Model_PowerDesigner.png  used on input 
@@ -1160,7 +1161,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--205
 l.212 	\item A
                \definition{schema} is basically a container for tables that ...
  <../img/Logical_Model_PowerDesigner.png>]
-<../img/Physical_Model_PowerDesigner.png, id=486, 662.475pt x 454.69875pt>
+<../img/Physical_Model_PowerDesigner.png, id=485, 662.475pt x 454.69875pt>
 File: ../img/Physical_Model_PowerDesigner.png Graphic file (type png)
 <use ../img/Physical_Model_PowerDesigner.png>
 Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
@@ -1173,7 +1174,7 @@ Package pdftex.def Info: ../img/Physical_Model_PowerDesigner.png  used on input
                                                   \fi \fi 
 l.238 
        <../img/Physical_Model_PowerDesigner.png>] [16]
-<../img/DataLineageExample.png, id=502, 946.53625pt x 350.30875pt>
+<../img/DataLineageExample.png, id=501, 946.53625pt x 350.30875pt>
 File: ../img/DataLineageExample.png Graphic file (type png)
 <use ../img/DataLineageExample.png>
 Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 271.
@@ -1186,7 +1187,7 @@ Package pdftex.def Info: ../img/DataLineageExample.png  used on input line 271.
                                                   \fi \fi 
 l.280 
        <../img/DataLineageExample.png>]
-<../img/LogicalvsPhysicalLineage.png, id=514, 843.90282pt x 2366.08969pt>
+<../img/LogicalvsPhysicalLineage.png, id=513, 843.90282pt x 2366.08969pt>
 File: ../img/LogicalvsPhysicalLineage.png Graphic file (type png)
 <use ../img/LogicalvsPhysicalLineage.png>
 Package pdftex.def Info: ../img/LogicalvsPhysicalLineage.png  used on input lin
@@ -1199,14 +1200,14 @@ e 283.
                                                   \fi \fi 
 l.294 
        <../img/LogicalvsPhysicalLineage.png>]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 305
-.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 305.
 
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmtt.fd
-File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Underfull \hbox (badness 5403) in paragraph at lines 305--308
-\OT1/lmr/m/n/12 Manta Flow is a prod-uct of Czech startup com-pany MANTA (see
+\T1/lmr/m/n/12 Manta Flow is a prod-uct of Czech startup com-pany MANTA (see
  []
 
 [19]) [20]
@@ -1270,7 +1271,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 101--105
  []
 
 [27] [28] [29] [30]
-<../img/DataModelHierarchy.pdf, id=609, 619.35388pt x 45.2892pt>
+<../img/DataModelHierarchy.pdf, id=610, 619.35388pt x 45.2892pt>
 File: ../img/DataModelHierarchy.pdf Graphic file (type pdf)
 <use ../img/DataModelHierarchy.pdf>
 Package pdftex.def Info: ../img/DataModelHierarchy.pdf  used on input line 284.
@@ -1344,7 +1345,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 499--501
  []
 
 [38] [39] [40]
-<../img/SWArchitecture.pdf, id=699, 604.17719pt x 586.10968pt>
+<../img/SWArchitecture.pdf, id=700, 604.17719pt x 586.10968pt>
 File: ../img/SWArchitecture.pdf Graphic file (type pdf)
 <use ../img/SWArchitecture.pdf>
 Package pdftex.def Info: ../img/SWArchitecture.pdf  used on input line 604.
@@ -1402,43 +1403,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
 [50] [51] [52]
 Underfull \hbox (badness 10000) in paragraph at lines 358--360
-[]\OT1/lmr/m/n/12 When deal-ing with a phys-i-cal data model, an in-stance of
+[]\T1/lmr/m/n/12 When deal-ing with a phys-i-cal data model, an in-stance of
  []
 
 
 Underfull \hbox (badness 3668) in paragraph at lines 358--360
-\OT1/lmtt/m/n/12 PhysicalGraphBuilder \OT1/lmr/m/n/12 is used, un-der-ly-ing \O
-T1/lmtt/m/n/12 DatabaseConnector \OT1/lmr/m/n/12 searches
+\T1/lmtt/m/n/12 PhysicalGraphBuilder \T1/lmr/m/n/12 is used, un-der-ly-ing \T1/
+lmtt/m/n/12 DatabaseConnector \T1/lmr/m/n/12 searches
  []
 
 [53] [54]
 Underfull \hbox (badness 1596) in paragraph at lines 389--393
-[]\OT1/lmr/m/n/12 We have dis-cussed the mod-eled ob-jects on the con-cep-tual 
-and log-i-
+[]\T1/lmr/m/n/12 We have dis-cussed the mod-eled ob-jects on the con-cep-tual a
+nd log-i-
  []
 
 
 Underfull \hbox (badness 1472) in paragraph at lines 389--393
-\OT1/lmr/m/n/12 cal level are de-scribed by ER or EER di-a-grams. The im-por-ta
-nt fact
+\T1/lmr/m/n/12 cal level are de-scribed by ER or EER di-a-grams. The im-por-tan
+t fact
  []
 
 
 Underfull \hbox (badness 2173) in paragraph at lines 389--393
-\OT1/lmr/m/n/12 is that the pos-si-ble kinds of ob-jects are go-ing to be very 
-sim-i-lar in
+\T1/lmr/m/n/12 is that the pos-si-ble kinds of ob-jects are go-ing to be very s
+im-i-lar in
  []
 
 
 Underfull \hbox (badness 2922) in paragraph at lines 389--393
-\OT1/lmr/m/n/12 high-level node cre-ation may be used. How-ever, it must be im-
-ple-
+\T1/lmr/m/n/12 high-level node cre-ation may be used. How-ever, it must be im-p
+le-
  []
 
 
 Underfull \hbox (badness 2538) in paragraph at lines 389--393
-\OT1/lmr/m/n/12 mented by two dif-fer-ent classes \OT1/lmtt/m/n/12 LogicalDataM
-odelNodeCreatorImpl \OT1/lmr/m/n/12 and
+\T1/lmr/m/n/12 mented by two dif-fer-ent classes \T1/lmtt/m/n/12 LogicalDataMod
+elNodeCreatorImpl \T1/lmr/m/n/12 and
  []
 
 
@@ -1448,8 +1449,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 394--398
 
 [55] [56]
 Underfull \hbox (badness 10000) in paragraph at lines 446--448
-\OT1/lmr/m/n/12 The cor-rect-ness of the pars-ing pro-cess is checked by the cl
-ass
+\T1/lmr/m/n/12 The cor-rect-ness of the pars-ing pro-cess is checked by the cla
+ss
  []
 
 
@@ -1474,34 +1475,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 463--465
 
  (./bibliography.tex (./thesis.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 4--8
-\OT1/lmtt/m/n/12 Instagram -[] running -[] following -[] EIGHT -[] HOUR -[] out
-age -[] affecting -[] users -[]
+\T1/lmtt/m/n/12 Instagram -[] running -[] following -[] EIGHT -[] HOUR -[] outa
+ge -[] affecting -[] users -[]
  []
 
 
 Underfull \hbox (badness 1609) in paragraph at lines 10--14
-[]\OT1/lmr/m/n/12 HealthCare.gov's Heart Beats For NoSQL.  []$\OT1/lmtt/m/n/12 
-https : / / blogs\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 wsj\OML/lmm/m/it/12 :\OT1/l
-mtt/m/n/12 com /
+[]\T1/lmr/m/n/12 HealthCare.gov's Heart Beats For NoSQL.  []$\T1/lmtt/m/n/12 ht
+tps : / / blogs\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 wsj\OML/lmm/m/it/12 :\T1/lmtt/
+m/n/12 com /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--19
-[]\OT1/lmr/m/n/12 PostgreSQL in Mission-Critical Fi-nan-cial Sys-tems.  []$\OT1
-/lmtt/m/n/12 https :
+[]\T1/lmr/m/n/12 PostgreSQL in Mission-Critical Fi-nan-cial Sys-tems.  []$\T1/l
+mtt/m/n/12 https :
  []
 
 
 Underfull \hbox (badness 1009) in paragraph at lines 57--60
-[]\OT1/lmr/m/n/12 Abraham Sil-ber-schatz Pro-fes-sor, Henry F. Ko-rth, and S. S
-u-dar-shan.
+[]\T1/lmr/m/n/12 Abraham Sil-ber-schatz Pro-fes-sor, Henry F. Ko-rth, and S. Su
+-dar-shan.
  []
 
 
 Underfull \hbox (badness 2608) in paragraph at lines 91--95
-[]\OT1/lmr/m/n/12 PowerDesigner Main Fea-tures.  []$\OT1/lmtt/m/n/12 https : / 
-/ www\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 powerdesigner\OML/lmm/m/it/12 :\OT1/lmt
-t/m/n/12 biz / EN /
+[]\T1/lmr/m/n/12 PowerDesigner Main Fea-tures.  []$\T1/lmtt/m/n/12 https : / / 
+www\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 powerdesigner\OML/lmm/m/it/12 :\T1/lmtt/m/
+n/12 biz / EN /
  []
 
 [60
@@ -1510,68 +1511,68 @@ t/m/n/12 biz / EN /
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 97--101
-[]\OT1/lmr/m/n/12 Bussiness As-sets.  []$\OT1/lmtt/m/n/12 https : / / universit
-y\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 collibra\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 
-com / knowledge /
+[]\T1/lmr/m/n/12 Bussiness As-sets.  []$\T1/lmtt/m/n/12 https : / / university\
+OML/lmm/m/it/12 :\T1/lmtt/m/n/12 collibra\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 com 
+/ knowledge /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 97--101
-\OT1/lmtt/m/n/12 collibra -[] body -[] of -[] knowledge / data -[] governance -
-[] operating -[] model /
+\T1/lmtt/m/n/12 collibra -[] body -[] of -[] knowledge / data -[] governance -[
+] operating -[] model /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 97--101
-\OT1/lmtt/m/n/12 structural -[] concepts / asset -[] types / business -[] asset
-s/$[]\OT1/lmr/m/n/12 .  Ac-cessed:
+\T1/lmtt/m/n/12 structural -[] concepts / asset -[] types / business -[] assets
+/$[]\T1/lmr/m/n/12 .  Ac-cessed:
  []
 
 
 Underfull \hbox (badness 7064) in paragraph at lines 103--107
-[]\OT1/lmr/m/n/12 Lineage vs Trace-abil-ity Un-der-stand-ing the Dif-fer-ences.
-  []$\OT1/lmtt/m/n/12 https :
+[]\T1/lmr/m/n/12 Lineage vs Trace-abil-ity Un-der-stand-ing the Dif-fer-ences. 
+ []$\T1/lmtt/m/n/12 https :
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 103--107
-\OT1/lmtt/m/n/12 / / www\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 collibra\OML/lmm/m/i
-t/12 :\OT1/lmtt/m/n/12 com / blog / lineage -[] vs -[] traceability -[] underst
-anding -[]
+\T1/lmtt/m/n/12 / / www\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 collibra\OML/lmm/m/it/
+12 :\T1/lmtt/m/n/12 com / blog / lineage -[] vs -[] traceability -[] understand
+ing -[]
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 109--113
-[]\OT1/lmr/m/n/12 Business glos-sary.  []$\OT1/lmtt/m/n/12 https : / / www\OML/
-lmm/m/it/12 :\OT1/lmtt/m/n/12 informatica\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 com
- / content / dam /
+[]\T1/lmr/m/n/12 Business glos-sary.  []$\T1/lmtt/m/n/12 https : / / www\OML/lm
+m/m/it/12 :\T1/lmtt/m/n/12 informatica\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 com / c
+ontent / dam /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 109--113
-\OT1/lmtt/m/n/12 informatica -[] com / global / amer / us / collateral / data -
-[] sheet / business -[]
+\T1/lmtt/m/n/12 informatica -[] com / global / amer / us / collateral / data -[
+] sheet / business -[]
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 115--119
-\OT1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ[]11\OML/lmm/m/it/12 :\OT1/lmtt/m
-/n/12 3\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 0 / com\OML/lmm/m/it/12 :\OT1/lmtt/m/
-n/12 ibm\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 swg\OML/lmm/m/it/12 :\OT1/lmtt/m/n/1
-2 im\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 iis\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 md
-wb\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 doc /
+\T1/lmtt/m/n/12 knowledgecenter / en / SSZJPZ[]11\OML/lmm/m/it/12 :\T1/lmtt/m/n
+/12 3\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 0 / com\OML/lmm/m/it/12 :\T1/lmtt/m/n/12
+ ibm\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 swg\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 im\O
+ML/lmm/m/it/12 :\T1/lmtt/m/n/12 iis\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 mdwb\OML/l
+mm/m/it/12 :\T1/lmtt/m/n/12 doc /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 132--136
-[]\OT1/lmr/m/n/12 SAP Pow-erDe-signer Doc-u-men-ta-tion.  []$\OT1/lmtt/m/n/12 h
-ttps : / /
+[]\T1/lmr/m/n/12 SAP Pow-erDe-signer Doc-u-men-ta-tion.  []$\T1/lmtt/m/n/12 htt
+ps : / /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 132--136
-\OT1/lmtt/m/n/12 help\OML/lmm/m/it/12 :\OT1/lmtt/m/n/12 sap\OML/lmm/m/it/12 :\O
-T1/lmtt/m/n/12 com / saphelp[]pd1654[]data / helpdata / en / c7 /
+\T1/lmtt/m/n/12 help\OML/lmm/m/it/12 :\T1/lmtt/m/n/12 sap\OML/lmm/m/it/12 :\T1/
+lmtt/m/n/12 com / saphelp[]pd1654[]data / helpdata / en / c7 /
  []
 
 )) [61] (./thesis.lof)
@@ -1597,14 +1598,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--203
 
 
 Underfull \hbox (badness 5622) in paragraph at lines 207--208
-[]\OT1/lmr/m/n/12 Run the "mvn clean com-pile as-sem-bly:single" com-mand pro-d
-uc-
- []
-
-
-Underfull \hbox (badness 4316) in paragraph at lines 212--215
-\OT1/lmr/m/n/12 erstudio-aggregation, manta-dataflow-generator-erstudio-aggrega
-tion, manta-
+[]\T1/lmr/m/n/12 Run the ``mvn clean com-pile as-sem-bly:single`` com-mand pro-
+duc-
  []
 
 
@@ -1616,14 +1611,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 219--224
 
 ]
 Underfull \hbox (badness 3849) in paragraph at lines 240--242
-[]\OT1/lmr/m/n/12 Each sys-tem of mod-els that has to be pro-cessed is spec-i-f
-ied by
+[]\T1/lmr/m/n/12 Each sys-tem of mod-els that has to be pro-cessed is spec-i-fi
+ed by
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 240--242
-\OT1/lmr/m/n/12 its .prop-er-ties file in manta-flow-cli/scenarios/etc/erstudio
-, manta-flow-
+\T1/lmr/m/n/12 its .prop-er-ties file in manta-flow-cli/scenarios/etc/erstudio,
+ manta-flow-
  []
 
 
@@ -1632,42 +1627,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 240--242
  []
 
 [65] [66] [67] [68] [69] [70] [71] [72] [73]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 554.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 554.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 555.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 555.
  (./thesis.aux (./title.aux)
 (./preface.aux) (./on_database_background.aux) (./modeling_tools.aux)
 (./solution_design.aux) (./implementation.aux) (./epilog.aux)
 (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 554.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 554.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 555.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 555.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 2868CC2349803FA42E960B1BD6F99BF4;8977.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 554.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 555.
  ) 
 Here is how much of TeX's memory you used:
- 25724 strings out of 492649
- 445055 string characters out of 6129623
- 491192 words of memory out of 5000000
- 28858 multiletter control sequences out of 15000+600000
- 82813 words of font info for 77 fonts, out of 8000000 for 9000
+ 26244 strings out of 492649
+ 452488 string characters out of 6129623
+ 491409 words of memory out of 5000000
+ 29349 multiletter control sequences out of 15000+600000
+ 99076 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 59i,8n,70p,971b,1976s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/loca
-l/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2018
-/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2018/texmf-dis
-t/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/2018/texmf-dist/fonts/ty
-pe1/public/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
-/lm/lmmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10.
-pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/l
-ocal/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texliv
-e/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf
--dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/
-type1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
-ic/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy
-10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on thesis.pdf (78 pages, 1301482 bytes).
+ 59i,8n,70p,966b,1988s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
+texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
+18/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2018/texmf-dist/
+fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/2018/texmf-dist/fonts/type
+1/public/lm/lmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/l
+m/lmmi12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10.pf
+b></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/loc
+al/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/
+2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2018/texmf-d
+ist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/ty
+pe1/public/lm/lmri10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
+/lm/lmri12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy10
+.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on thesis.pdf (78 pages, 1303296 bytes).
 PDF statistics:
- 1061 PDF objects out of 1200 (max. 8388607)
+ 1064 PDF objects out of 1200 (max. 8388607)
  260 named destinations out of 1000 (max. 500000)
  566 words of extra memory for PDF output out of 10000 (max. 10000000)
 

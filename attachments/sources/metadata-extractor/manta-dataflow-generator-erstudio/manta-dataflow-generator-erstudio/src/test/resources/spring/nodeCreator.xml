@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 
+        Placeholder configuration:
+            filesystem.resource.name - name of the resource for file and directory nodes
+            filesystem.resource.type - type of the resource for file and directory nodes
+            filesystem.resource.description - description of the resource for file and directory nodes
+            filepath.lowercase - whether all file paths should be lowercased
+     -->
+
+    <bean id="fileSystemResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${filesystem.resource.name}"/>
+        <constructor-arg value="${filesystem.resource.type}"/>
+        <constructor-arg value="${filesystem.resource.description}"/>
+    </bean>
+
+    <bean id="nodeCreator" class="eu.profinit.manta.dataflow.generator.modelutils.NodeCreatorImpl">
+        <property name="fileSystemResource" ref="fileSystemResource"/>
+        <property name="lowerCaseFilePath" value="${filepath.lowercase}"/>
+    </bean>
+
+</beans>

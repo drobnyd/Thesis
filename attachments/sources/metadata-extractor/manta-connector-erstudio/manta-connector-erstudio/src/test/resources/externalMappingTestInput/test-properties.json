@@ -1,0 +1,26 @@
+{
+  "testArgs": [
+    {
+      "modelName": "Sample DDL (DB2 7.x for OS390) UniversalMapped.DM1",
+      "externalModels": [
+        {
+          "name": "e-Commerce Order Shopping Cart.dm1",
+          "logicalModelName": "Logical",
+          "physicalModelName": null
+        }
+      ]
+    },
+    {
+      "modelName": "e-Commerce Order Shopping Cart UniversalMapped.dm1",
+      "externalModels": [
+        {
+          "name": "Sample DDL (DB2 7.x for OS390).DM1",
+          "logicalModelName": null,
+          "physicalModelName": [
+            "DB2 7 OS390 Physical Model"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+eu.profinit.manta.connector.powerdesigner
+eu.profinit.manta.connector.powerdesigner.model
+eu.profinit.manta.connector.powerdesigner.model.conceptual
+eu.profinit.manta.connector.powerdesigner.model.logical
+eu.profinit.manta.connector.powerdesigner.model.physical
+eu.profinit.manta.connector.powerdesigner.resolver
+eu.profinit.manta.connector.powerdesigner.resolver.build
+eu.profinit.manta.connector.powerdesigner.resolver.build.desc
+eu.profinit.manta.connector.powerdesigner.resolver.impl
+eu.profinit.manta.connector.powerdesigner.resolver.impl.conceptual
+eu.profinit.manta.connector.powerdesigner.resolver.impl.logical
+eu.profinit.manta.connector.powerdesigner.resolver.impl.physical
+eu.profinit.manta.connector.powerdesigner.sax

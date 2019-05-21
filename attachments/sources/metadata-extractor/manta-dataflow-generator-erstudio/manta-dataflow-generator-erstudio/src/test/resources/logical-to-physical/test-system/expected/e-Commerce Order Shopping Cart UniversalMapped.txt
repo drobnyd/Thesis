@@ -1,0 +1,1 @@
+MAPS_TO	Next Stock Date [Logical Attribute] . Inventory Item [Logical Entity] . NAMELESS [Logical Owner] . e-Commerce Order Shopping Cart UniversalMapped.dm1 [Logical Model File] . Test System [Logical System]	->	CLNT_ACTVY_END_DT [Column] . SAMPLE_TABLE90 [Table] . DB2OWN99 [Schema] . DEFAULT_DATABASE [Database] . DEFAULT_INSTANCE [Server]

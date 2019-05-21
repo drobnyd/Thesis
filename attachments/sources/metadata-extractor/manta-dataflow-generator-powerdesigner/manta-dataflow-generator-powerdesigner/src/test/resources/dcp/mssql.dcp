@@ -1,0 +1,9 @@
+[ConnectionProfile]
+ConnectionType=JDBC
+Dbms=SNC SQL Native Client
+DisableBind=0
+Driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+JarFiles=sqljdbc.jar
+LogId=reader
+TrimSpaces=0
+URL=jdbc:sqlserver://192.168.0.16:1433;databaseName=manta

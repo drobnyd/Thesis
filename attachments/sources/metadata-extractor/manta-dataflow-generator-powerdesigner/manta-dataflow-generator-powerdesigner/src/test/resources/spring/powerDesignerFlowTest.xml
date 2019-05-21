@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="spring/powerDesignerFlowTest.properties"/>
+
+    <import resource="classpath:manta-dataflow-generator-powerdesigner/powerdesigner-flow.xml"/>
+
+    <!-- PowerDesigner Dataflow Query Service -->
+
+    <bean id="powerDesignerQueryService"
+          class="eu.profinit.manta.dataflow.generator.common.query.impl.DataflowQueryServiceImpl">
+        <property name="specificDataflowQueryServices">
+            <map>
+                <!-- TODO add some -->
+            </map>
+        </property>
+        <property name="genericDatasourceTypes">
+            <set>
+                <value>#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).ODBC.getId() }</value>
+                <value>#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).JDBC.getId() }</value>
+                <value>#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).UNKNOWN.getId() }</value>
+            </set>
+        </property>
+    </bean>
+
+</beans>

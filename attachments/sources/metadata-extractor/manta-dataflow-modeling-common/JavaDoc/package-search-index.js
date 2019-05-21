@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"eu.profinit.manta.dataflow.generator.modeling.common.connections"},{"l":"eu.profinit.manta.dataflow.generator.modeling.common.nodes"},{"l":"eu.profinit.manta.dataflow.generator.modeling.common.rtf"}]

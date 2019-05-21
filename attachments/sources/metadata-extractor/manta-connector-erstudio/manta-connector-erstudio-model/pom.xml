@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.profinit.manta</groupId>
+        <artifactId>manta-platform-parent-pom</artifactId>
+        <version>1.25-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+    <groupId>eu.profinit.manta</groupId>
+    <artifactId>manta-connector-erstudio-model</artifactId>
+    <version>1.25-SNAPSHOT</version>
+    <name>Manta Connector ER/Studio Model</name>
+    <description>Model for Manta ER/Studio Connector.</description>
+
+    <scm>
+        <url>http://manta-cm/svn/manta/Source_Code/Internal/Connector/ERStudio/trunk/manta-connector-erstudio-model
+        </url>
+        <connection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/Connector/ERStudio/trunk/manta-connector-erstudio-model
+        </connection>
+        <developerConnection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/Connector/ERStudio/trunk/manta-connector-erstudio-model
+        </developerConnection>
+    </scm>
+    <repositories>
+        <repository>
+            <id>manta-releases</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-releases</url>
+        </repository>
+        <repository>
+            <id>manta-snapshots</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-snapshots</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-modeling-common</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

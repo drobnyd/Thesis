@@ -1,0 +1,10 @@
+Attribute_1 [Logical Attribute] . Entity1 [Logical Entity] . NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+Attribute_1 [Logical Attribute] . Entity2 [Logical Entity] . NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+Attribute_2 [Logical Attribute] . Entity1 [Logical Entity] . NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+Attribute_2 [Logical Attribute] . Entity2 [Logical Entity] . NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+Entity1 [Logical Entity] . NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+Entity2 [Logical Entity] . NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+NAMELESS [Logical Owner] . Basic.DM1 [Logical Model File] . TestSystem [Logical System]
+TestSystem [Logical System]
+Nodes: 9, edges: 0

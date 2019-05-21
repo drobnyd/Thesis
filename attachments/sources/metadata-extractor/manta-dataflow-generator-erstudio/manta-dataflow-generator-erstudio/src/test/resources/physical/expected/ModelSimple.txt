@@ -1,0 +1,7 @@
+FIRST_ATTRIBUTE [Column] . ENTITY [Table] . schemaName [Schema] . databaseName [Database] . PhysicalSimple [Server]
+KEY [Column] . ENTITY [Table] . schemaName [Schema] . databaseName [Database] . PhysicalSimple [Server]
+databaseName [Database] . PhysicalSimple [Server]
+schemaName [Schema] . databaseName [Database] . PhysicalSimple [Server]
+PhysicalSimple [Server]
+ENTITY [Table] . schemaName [Schema] . databaseName [Database] . PhysicalSimple [Server]
+Nodes: 6, edges: 0

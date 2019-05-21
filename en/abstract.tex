@@ -8,11 +8,14 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{textcomp}
+\documentclass{article}
+\usepackage{lipsum}%% a garbage package you don't need except to create examples.
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 
 \begin{document}
 
 %% Do not forget to edit abstract.xmpdata.
-
-This is an example abstract.
+Data lineage is a way of showing how information flows through complicated software systems. If the given system is a database, tables and columns are visualized along with transformations of the stored data. However, this picture may be difficult to understand for people with weaker technical background, as database objects usually obey naming conventions and do not necessarily represent something tangible. To improve lineage comprehension, we developed a software called Metadata Extractor that on one hand brings the further description of the database objects, as well as introduces a whole new perspective on data in a system through business lineage aimed for non-technical users. The additional metadata enriching data lineage is extracted from data modeling tools, such as ER/Studio and PowerDesigner, that are widely used in the database design process. The solution extends the Manta Flow lineage tool while taking advantage of its features at the same time.
 
 \end{document}

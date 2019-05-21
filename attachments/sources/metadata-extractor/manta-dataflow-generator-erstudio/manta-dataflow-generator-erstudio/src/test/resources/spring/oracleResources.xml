@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="oracleDdlResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${oracle.ddl.resource.name}"/>
+        <constructor-arg value="${oracle.ddl.resource.type}"/>
+        <constructor-arg value="${oracle.ddl.resource.description}"/>
+    </bean>
+
+    <bean id="oracleScriptResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${oracle.script.resource.name}"/>
+        <constructor-arg value="${oracle.script.resource.type}"/>
+        <constructor-arg value="${oracle.script.resource.description}"/>
+    </bean>
+
+    <bean id="oracleDataResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${oracle.data.resource.name}"/>
+        <constructor-arg value="${oracle.data.resource.type}"/>
+        <constructor-arg value="${oracle.data.resource.description}"/>
+    </bean>
+
+</beans>

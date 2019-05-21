@@ -1,0 +1,736 @@
+{
+  "testArgs": [
+    {
+      "modelName": "OrangeMart.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 2,
+      "entityCount": 22,
+      "attributeCount": 107,
+      "tableCount": 48,
+      "columnCount": 227,
+      "entities": [
+        {
+          "name": "Approved_Product",
+          "definition": null,
+          "note": null,
+          "owner": "dbo",
+          "attributeCount": 15,
+          "mappingCount": 2,
+          "attributes": [
+            {
+              "name": "Approved_Product_ID",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Approval_ID",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "APPV_PRD",
+          "definition": null,
+          "note": null,
+          "owner": "dbo",
+          "physicalModelName": "DB2UDB Prototype",
+          "columnCount": 15,
+          "columns": [
+            {
+              "name": "APPROVED_PRODUCT_ID",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "APPROVAL_ID",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Approved_Product",
+          "tableName": "APPV_PRD",
+          "tableModelName": "DB2UDB Prototype"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Approved_Product",
+          "attributeName": "Approved_Product_ID",
+          "tableName": "APPV_PRD",
+          "tableModelName": "DB2UDB Prototype",
+          "columnName": "APPROVED_PRODUCT_ID"
+        },
+        {
+          "entityName": "Approved_Product",
+          "attributeName": "Approval_ID",
+          "tableName": "APPV_PRD",
+          "tableModelName": "DB2UDB Prototype",
+          "columnName": "APPROVAL_ID"
+        }
+      ]
+    },
+    {
+      "modelName": "Adventure Works.DM1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 2,
+      "entityCount": 69,
+      "attributeCount": 474,
+      "tableCount": 94,
+      "columnCount": 770,
+      "entities": [
+        {
+          "name": "Department",
+          "definition": "Lookup table containing the departments within the Adventure Works Cycles company.",
+          "note": null,
+          "owner": "HumanResources",
+          "attributeCount": 4,
+          "mappingCount": 1,
+          "attributes": [
+            {
+              "name": "DepartmentID",
+              "definition": "Primary key for Department records.",
+              "note": null
+            },
+            {
+              "name": "ModifiedDate",
+              "definition": "Date and time the record was last updated.",
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "Department",
+          "definition": "Lookup table containing the departments within the Adventure Works Cycles company.",
+          "note": null,
+          "owner": "HumanResources",
+          "physicalModelName": "Adventure Works",
+          "columnCount": 4,
+          "columns": [
+            {
+              "name": "DepartmentID",
+              "definition": "Primary key for Department records.",
+              "note": null
+            },
+            {
+              "name": "ModifiedDate",
+              "definition": "Date and time the record was last updated.",
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Department",
+          "tableName": "Department",
+          "tableModelName": "Adventure Works"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Department",
+          "tableName": "Department",
+          "tableModelName": "Adventure Works",
+          "attributeName": "DepartmentID",
+          "columnName": "DepartmentID"
+        },
+        {
+          "entityName": "Department",
+          "tableName": "Department",
+          "tableModelName": "Adventure Works",
+          "attributeName": "ModifiedDate",
+          "columnName": "ModifiedDate"
+        }
+      ]
+    },
+    {
+      "modelName": "Basic.DM1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 1,
+      "entityCount": 2,
+      "attributeCount": 4,
+      "tableCount": 3,
+      "columnCount": 7,
+      "entities": [
+        {
+          "name": "Entity1",
+          "definition": null,
+          "note": null,
+          "owner": null,
+          "attributeCount": 2,
+          "mappingCount": 1,
+          "attributes": [
+            {
+              "name": "Attribute_1",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Attribute_2",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "Entity1",
+          "definition": null,
+          "note": null,
+          "owner": null,
+          "physicalModelName": "BasicPhysical",
+          "columnCount": 2,
+          "columns": [
+            {
+              "name": "Attribute_1",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Attribute_2",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Entity1",
+          "tableName": "Entity1",
+          "tableModelName": "BasicPhysical"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Entity1",
+          "tableName": "Entity1",
+          "tableModelName": "BasicPhysical",
+          "attributeName": "Attribute_1",
+          "columnName": "Attribute_1"
+        },
+        {
+          "entityName": "Entity1",
+          "tableName": "Entity1",
+          "tableModelName": "BasicPhysical",
+          "attributeName": "Attribute_2",
+          "columnName": "Attribute_2"
+        }
+      ]
+    },
+    {
+      "modelName": "Demo.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 1,
+      "entityCount": 10,
+      "attributeCount": 50,
+      "tableCount": 10,
+      "columnCount": 50,
+      "entities": [
+        {
+          "name": "Item",
+          "definition": "Items listed in sales orders.  Product information can be found in table PRODUCT.  Sales order information can be found in table SALES_ORDER.",
+          "note": null,
+          "owner": "DEMO",
+          "attributeCount": 6,
+          "mappingCount": 0,
+          "attributes": [
+            {
+              "name": "Order ID",
+              "definition": "Unique 4 digit number assigned to all orders.  Number generated by sequence ORDER_ID.",
+              "note": null
+            },
+            {
+              "name": "Actual Price",
+              "definition": "Price to be paid by the customer in U.S. dollars.  The standard price is PRICE.STANDARD_PRICE, but in some instances, discounts are given to as low as PRICE.MINIMUM_PRICE.",
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": null,
+      "compositeObjectMappings": null,
+      "simpleObjectMappings": null
+    },
+    {
+      "modelName": "e-Commerce Order Shopping Cart.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 0,
+      "entityCount": 19,
+      "attributeCount": 137,
+      "tableCount": 0,
+      "columnCount": 0,
+      "entities": [
+        {
+          "name": "Product",
+          "definition": null,
+          "note": null,
+          "owner": null,
+          "attributeCount": 26,
+          "mappingCount": 0,
+          "attributes": [
+            {
+              "name": "Product Short Description",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Product Category Code",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": null,
+      "compositeObjectMappings": null,
+      "simpleObjectMappings": null
+    },
+    {
+      "modelName": "Emergency Admissions.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 1,
+      "entityCount": 15,
+      "attributeCount": 77,
+      "tableCount": 15,
+      "columnCount": 77,
+      "entities": [
+        {
+          "name": "Medication Dispensation Method",
+          "definition": null,
+          "note": null,
+          "owner": "ERADMIN",
+          "attributeCount": 2,
+          "mappingCount": 1,
+          "attributes": [
+            {
+              "name": "Medication Dispensation Method ID",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Medication Dispensation Description",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "MEDICATION_DISPM",
+          "definition": null,
+          "note": null,
+          "owner": "ERADMIN",
+          "physicalModelName": "Physical",
+          "columnCount": 2,
+          "columns": [
+            {
+              "name": "MEDICATION_DISPENSED_METHOD_ID",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "DESCRIPTION",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Medication Dispensation Method",
+          "tableName": "MEDICATION_DISPM",
+          "tableModelName": "Physical"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Medication Dispensation Method",
+          "tableName": "MEDICATION_DISPM",
+          "tableModelName": "Physical",
+          "attributeName": "Medication Dispensation Method ID",
+          "columnName": "MEDICATION_DISPENSED_METHOD_ID"
+        },
+        {
+          "entityName": "Medication Dispensation Method",
+          "tableName": "MEDICATION_DISPM",
+          "tableModelName": "Physical",
+          "attributeName": "Medication Dispensation Description",
+          "columnName": "DESCRIPTION"
+        }
+      ]
+    },
+    {
+      "modelName": "GIMDB.DM1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 2,
+      "entityCount": 10,
+      "attributeCount": 85,
+      "tableCount": 10,
+      "columnCount": 82,
+      "entities": [
+        {
+          "name": "Client",
+          "definition": "Client contains all the customers who have investments being managed by the compay.",
+          "note": null,
+          "owner": "GIM",
+          "attributeCount": 14,
+          "mappingCount": 2,
+          "attributes": [
+            {
+              "name": "Client Household Income",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Broker Id",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "CLIENT_FACT",
+          "definition": "Client contains all the customers who have investments being managed by the compay.",
+          "note": null,
+          "owner": "GIMDW",
+          "physicalModelName": "GIM_DW",
+          "columnCount": 21,
+          "columns": [
+            {
+              "name": "BROKER_ID",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Client",
+          "tableName": "CLIENT_FACT",
+          "tableModelName": "GIM_DW"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Client",
+          "tableName": "CLIENT_FACT",
+          "tableModelName": "GIM_DW",
+          "attributeName": "Broker Id",
+          "columnName": "BROKER_ID"
+        }
+      ]
+    },
+    {
+      "modelName": "ModelSimple.DM1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 1,
+      "entityCount": 1,
+      "attributeCount": 2,
+      "tableCount": 1,
+      "columnCount": 2,
+      "entities": [
+        {
+          "name": "Entity",
+          "definition": null,
+          "note": null,
+          "owner": null,
+          "attributeCount": 2,
+          "mappingCount": 1,
+          "attributes": [
+            {
+              "name": "Key",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "First Attribute",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "ENTITY",
+          "definition": null,
+          "note": null,
+          "owner": null,
+          "physicalModelName": "PhysicalSimple",
+          "columnCount": 2,
+          "columns": [
+            {
+              "name": "KEY",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "FIRST_ATTRIBUTE",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Entity",
+          "tableName": "ENTITY",
+          "tableModelName": "PhysicalSimple"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Entity",
+          "tableName": "ENTITY",
+          "tableModelName": "PhysicalSimple",
+          "attributeName": "Key",
+          "columnName": "KEY"
+        },
+        {
+          "entityName": "Entity",
+          "tableName": "ENTITY",
+          "tableModelName": "PhysicalSimple",
+          "attributeName": "First Attribute",
+          "columnName": "FIRST_ATTRIBUTE"
+        }
+      ]
+    },
+    {
+      "modelName": "Northwind.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 2,
+      "entityCount": 13,
+      "attributeCount": 88,
+      "tableCount": 26,
+      "columnCount": 179,
+      "entities": [
+        {
+          "name": "Suppliers",
+          "definition": null,
+          "note": null,
+          "owner": "dbo",
+          "attributeCount": 12,
+          "mappingCount": 1,
+          "attributes": [
+            {
+              "name": "CompanyName",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "HomePage",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "Suppliers",
+          "definition": null,
+          "note": null,
+          "owner": "dbo",
+          "physicalModelName": "Northwind Production (SQL Server 2000)",
+          "columnCount": 12,
+          "columns": [
+            {
+              "name": "CompanyName",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "HomePage",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "Suppliers",
+          "tableName": "Suppliers",
+          "tableModelName": "Northwind Production (SQL Server 2000)"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "Suppliers",
+          "tableName": "Suppliers",
+          "tableModelName": "Northwind Production (SQL Server 2000)",
+          "attributeName": "CompanyName",
+          "columnName": "CompanyName"
+        },
+        {
+          "entityName": "Suppliers",
+          "tableName": "Suppliers",
+          "tableModelName": "Northwind Production (SQL Server 2000)",
+          "attributeName": "HomePage",
+          "columnName": "HomePage"
+        }
+      ]
+    },
+    {
+      "modelName": "Orders.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 0,
+      "entityCount": 40,
+      "attributeCount": 279,
+      "tableCount": 0,
+      "columnCount": 0,
+      "entities": [
+        {
+          "name": "Bill of Materials",
+          "definition": "Intersection of Parts and Configurations",
+          "note": null,
+          "owner": null,
+          "attributeCount": 6,
+          "mappingCount": 0,
+          "attributes": [
+            {
+              "name": "Quantity",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "Product Configuration ID",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": null,
+      "compositeObjectMappings": null,
+      "simpleObjectMappings": null
+    },
+    {
+      "modelName": "Pubs.dm1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 1,
+      "entityCount": 11,
+      "attributeCount": 64,
+      "tableCount": 11,
+      "columnCount": 64,
+      "entities": [
+        {
+          "name": "Author",
+          "definition": "Person who writes Titles, such as books or articles.",
+          "note": null,
+          "owner": "dbo",
+          "attributeCount": 9,
+          "mappingCount": 0,
+          "attributes": [
+            {
+              "name": "Author ID",
+              "definition": "Technical key.",
+              "note": null
+            },
+            {
+              "name": "Last Name",
+              "definition": "Author's last name.",
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": null,
+      "compositeObjectMappings": null,
+      "simpleObjectMappings": null
+    },
+    {
+      "modelName": "Sample DDL (DB2 7.x for OS390).DM1",
+      "logicalModelName": "Logical",
+      "physicalModelCount": 1,
+      "entityCount": 65,
+      "attributeCount": 484,
+      "tableCount": 65,
+      "columnCount": 484,
+      "entities": [
+        {
+          "name": "FRMWK_ACTUL",
+          "definition": null,
+          "note": null,
+          "owner": "DB2OWN99",
+          "attributeCount": 8,
+          "mappingCount": 1,
+          "attributes": [
+            {
+              "name": "RQST_ID",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "DATA",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "name": "FRMWK_ACTUL",
+          "definition": null,
+          "note": null,
+          "owner": "DB2OWN99",
+          "physicalModelName": "DB2 7 OS390 Physical Model",
+          "columnCount": 8,
+          "columns": [
+            {
+              "name": "RQST_ID",
+              "definition": null,
+              "note": null
+            },
+            {
+              "name": "DATA",
+              "definition": null,
+              "note": null
+            }
+          ]
+        }
+      ],
+      "compositeObjectMappings": [
+        {
+          "entityName": "FRMWK_ACTUL",
+          "tableName": "FRMWK_ACTUL",
+          "tableModelName": "DB2 7 OS390 Physical Model"
+        }
+      ],
+      "simpleObjectMappings": [
+        {
+          "entityName": "FRMWK_ACTUL",
+          "tableName": "FRMWK_ACTUL",
+          "tableModelName": "DB2 7 OS390 Physical Model",
+          "attributeName": "RQST_ID",
+          "columnName": "RQST_ID"
+        },
+        {
+          "entityName": "FRMWK_ACTUL",
+          "tableName": "FRMWK_ACTUL",
+          "tableModelName": "DB2 7 OS390 Physical Model",
+          "attributeName": "DATA",
+          "columnName": "DATA"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="spring/erStudioFlowTest.properties"/>
+
+    <import resource="classpath:manta-dataflow-generator-erstudio/erstudio-flow.xml"/>
+
+    <import resource="oracleResources.xml"/>
+    <import resource="mssqlResources.xml"/>
+    <import resource="teradataResources.xml"/>
+    <import resource="netezzaResources.xml"/>
+    <import resource="db2Resources.xml"/>
+    <import resource="postgresqlResources.xml"/>
+
+    <import resource="classpath:manta-dataflow-generator-oracle/oracleBuiltinFunctionsConfig.xml"/>
+    <import resource="classpath:manta-dataflow-generator-mssql/mssqlBuiltinFunctionsConfig.xml"/>
+    <import resource="classpath:manta-dataflow-generator-netezza/netezzaBuiltinFunctionsConfig.xml"/>
+    <import resource="classpath:manta-dataflow-generator-db2/db2BuiltinFunctionsConfig.xml"/>
+    <import resource="classpath:manta-dataflow-generator-teradata13/teradataTask.xml"/>
+    <import resource="classpath:manta-dataflow-generator-postgresql/postgresqlBuiltinFunctionsConfig.xml"/>
+    <import resource="nodeCreator.xml"/>
+
+    <import resource="classpath:manta-dataflow-filter/db2FilterTask.xml"/>
+    <import resource="classpath:manta-dataflow-filter/mssqlFilterTask.xml"/>
+    <import resource="classpath:manta-dataflow-filter/netezzaFilterTask.xml"/>
+    <import resource="classpath:manta-dataflow-filter/oracleFilterTask.xml"/>
+    <import resource="classpath:manta-dataflow-filter/teradataFilterTask.xml"/>
+    <import resource="classpath:manta-dataflow-filter/postgresqlFilterTask.xml"/>
+
+    <bean id="oracleDictionaryMantaMapping"
+          class="eu.profinit.manta.connector.dictionary.oracle.OracleDictionaryMantaMapping">
+        <constructor-arg value="ora1;orcl;manta-dev1;1521;ora1;ora1.sql;;"/>
+    </bean>
+
+    <bean id="teradataDictionaryMantaMapping"
+          class="eu.profinit.manta.connector.teradata13.dictionary.mapping.TeradataDictionaryMantaMapping">
+        <constructor-arg value=""/>
+    </bean>
+
+    <bean id="db2DictionaryMantaMapping"
+          class="eu.profinit.manta.connector.db2.dictionary.mapping.Db2DictionaryMantaMapping">
+        <constructor-arg value=""/>
+    </bean>
+
+    <bean id="netezzaDictionaryMantaMapping"
+          class="eu.profinit.manta.connector.netezza.dictionary.mapping.NetezzaDictionaryMantaMapping">
+        <constructor-arg value=""/>
+    </bean>
+
+    <bean id="postgreSqlDictionaryMantaMapping"
+          class="eu.profinit.manta.connector.postgresql.dictionary.mapping.PostgresqlDictionaryMantaMapping">
+        <constructor-arg value="psql1;postgresql;manta-dev1;5432;;;"/>
+    </bean>
+
+    <!-- Er/Studio Datflow Query Service -->
+
+    <bean id="erStudioQueryService"
+          class="eu.profinit.manta.dataflow.generator.common.query.impl.DataflowQueryServiceImpl">
+        <property name="specificDataflowQueryServices">
+            <map>
+                <!-- TODO <entry key="#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).MSSQL.getId() }" value-ref="mssqlDataflowQueryService" />  -->
+                <entry key="#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).ORACLE.getId() }"
+                       value-ref="oracleDataflowQueryService"/>
+                <!--entry key="#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).TERADATA.getId() }" value-ref="teradataDataflowQueryService" /-->
+                <entry key="#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).NETEZZA.getId() }"
+                       value-ref="netezzaDataflowQueryService"/>
+                <entry key="#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).DB2.getId() }"
+                       value-ref="db2DataflowQueryService"/>
+                <entry key="#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).POSTGRESQL.getId() }"
+                       value-ref="postgreSqlDataflowQueryService"/>
+            </map>
+        </property>
+        <property name="genericDatasourceTypes">
+            <set>
+                <value>#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).ODBC.getId() }</value>
+                <value>#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).JDBC.getId() }</value>
+                <value>#{ T(eu.profinit.manta.connector.common.connections.ConnectionType).UNKNOWN.getId() }</value>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="oracleParserService" class="eu.profinit.manta.plsql.parser.service.ParserServiceImpl">
+        <property name="processWhiteSpace" value="false"/>
+    </bean>
+
+    <bean id="oracleReaderProvider" class="eu.profinit.manta.connector.oracle.OracleReaderProvider">
+        <property name="parserService" ref="oracleParserService"/>
+        <property name="contextDirectory" value="${oracle.dictionary.dir}"/>
+        <property name="dataDictionaryDaoFactory">
+            <bean class="eu.profinit.manta.connector.common.dictionary.dao.jdbc.H2DictionaryDaoFactory">
+                <property name="createMissing" value="false"/>
+            </bean>
+        </property>
+        <property name="dialect">
+            <bean class="eu.profinit.manta.connector.oracle.dictionary.dialect.OracleDialect"/>
+        </property>
+        <property name="dictionaryMappingService" ref="oracleDictionaryMantaMapping"/>
+    </bean>
+
+    <bean id="oracleDataflowQueryService"
+          class="eu.profinit.manta.dataflow.generator.oracle.query.OracleDataflowQueryService">
+        <property name="databaseResource" ref="oracleDataResource"/>
+        <property name="scriptResource" ref="oracleScriptResource"/>
+        <property name="builtinFunctionProcessor" ref="oracleBuiltinFunctionProcessor"/>
+        <property name="readerProvider" ref="oracleReaderProvider"/>
+        <property name="filterTask">
+            <bean parent="oracleFilterTaskStub"/>
+        </property>
+    </bean>
+
+    <bean id="teradataReaderProvider" class="eu.profinit.manta.connector.teradata13.TeradataReaderProvider">
+        <property name="contextDirectory" value="${teradata.dictionary.dir}"/>
+        <property name="dataDictionaryFactory">
+            <bean class="eu.profinit.manta.connector.teradata13.dictionary.h2.H2DictionaryFactory">
+                <property name="initialize" value="false"/>
+            </bean>
+        </property>
+        <property name="processWhiteSpace" value="false"/>
+        <property name="dictionaryMappingService" ref="teradataDictionaryMantaMapping"/>
+    </bean>
+
+    <bean id="teradataDataflowQueryService"
+          class="eu.profinit.manta.dataflow.generator.teradata13.query.TeradataDataflowQueryService">
+        <property name="databaseResource" ref="teradataDataResource"/>
+        <property name="scriptResource" ref="teradataScriptResource"/>
+        <property name="teradataTask">
+            <bean parent="teradataDataflowTaskStub"/>
+        </property>
+        <property name="readerProvider" ref="teradataReaderProvider"/>
+        <property name="filterTask">
+            <bean parent="teradataFilterTaskStub"/>
+        </property>
+    </bean>
+
+    <bean id="netezzaParserService" class="eu.profinit.manta.connector.netezza.resolver.service.ParserServiceImpl"
+          scope="prototype">
+        <property name="processWhiteSpace" value="false"/>
+    </bean>
+
+    <bean id="netezzaReaderProvider" class="eu.profinit.manta.connector.netezza.NetezzaReaderProvider">
+        <property name="parserService" ref="netezzaParserService"/>
+        <property name="contextDirectory" value="${netezza.dictionary.dir}"/>
+        <property name="dataDictionaryDaoFactory">
+            <bean class="eu.profinit.manta.connector.common.dictionary.dao.jdbc.H2DictionaryDaoFactory"
+                  scope="singleton">
+                <property name="createMissing" value="false"/>
+            </bean>
+        </property>
+        <property name="dialect">
+            <bean class="eu.profinit.manta.connector.netezza.dictionary.dialect.NetezzaDialect">
+                <constructor-arg>
+                    <value type="eu.profinit.manta.connector.netezza.model.NormalizationCase">UPPER_CASE</value>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="dictionaryMappingService" ref="netezzaDictionaryMantaMapping"/>
+    </bean>
+
+    <bean id="netezzaDataflowQueryService"
+          class="eu.profinit.manta.dataflow.generator.netezza.query.NetezzaDataflowQueryService">
+        <property name="databaseResource" ref="netezzaDataResource"/>
+        <property name="scriptResource" ref="netezzaScriptResource"/>
+        <property name="nodeCreator" ref="nodeCreator"/>
+        <property name="builtinFunctionProcessor" ref="netezzaBuiltinFunctionProcessor"/>
+        <property name="readerProvider" ref="netezzaReaderProvider"/>
+        <property name="filterTask">
+            <bean parent="netezzaFilterTaskStub"/>
+        </property>
+    </bean>
+
+    <bean id="db2ParserService" class="eu.profinit.manta.connector.db2.resolver.service.ParserServiceImpl"
+          scope="prototype">
+        <property name="processWhiteSpace" value="false"/>
+    </bean>
+
+    <bean id="db2ReaderProvider" class="eu.profinit.manta.connector.db2.Db2ReaderProvider">
+        <property name="parserService" ref="db2ParserService"/>
+        <property name="contextDirectory" value="${db2.dictionary.dir}"/>
+        <property name="dataDictionaryDaoFactory">
+            <bean class="eu.profinit.manta.connector.common.dictionary.dao.jdbc.H2DictionaryDaoFactory"
+                  scope="singleton">
+                <property name="createMissing" value="false"/>
+            </bean>
+        </property>
+        <property name="dialect">
+            <bean class="eu.profinit.manta.connector.db2.dictionary.dialect.Db2Dialect"/>
+        </property>
+        <property name="dictionaryMappingService" ref="db2DictionaryMantaMapping"/>
+    </bean>
+
+    <bean id="db2DataflowQueryService" class="eu.profinit.manta.dataflow.generator.db2.query.Db2DataflowQueryService">
+        <property name="databaseResource" ref="db2DataResource"/>
+        <property name="scriptResource" ref="db2ScriptResource"/>
+        <property name="builtinFunctionProcessor" ref="db2BuiltinFunctionProcessor"/>
+        <property name="readerProvider" ref="db2ReaderProvider"/>
+        <property name="filterTask">
+            <bean parent="db2FilterTaskStub"/>
+        </property>
+    </bean>
+
+    <bean id="postgreSqlParserService" class="eu.profinit.manta.connector.postgresql.resolver.service.ParserServiceImpl"
+          scope="prototype">
+        <property name="processWhiteSpace" value="false"/>
+    </bean>
+
+    <bean id="postgreSqlReaderProvider" class="eu.profinit.manta.connector.postgresql.PostgresqlReaderProvider">
+        <property name="parserService" ref="postgreSqlParserService"/>
+        <property name="contextDirectory" value="${postgresql.dictionary.dir}"/>
+        <property name="dataDictionaryDaoFactory">
+            <bean class="eu.profinit.manta.connector.common.dictionary.dao.jdbc.H2DictionaryDaoFactory"
+                  scope="singleton">
+                <property name="createMissing" value="false"/>
+            </bean>
+        </property>
+        <property name="dialect">
+            <bean class="eu.profinit.manta.connector.postgresql.dictionary.dialect.PostgresqlDialect"/>
+        </property>
+        <property name="dictionaryMappingService" ref="postgreSqlDictionaryMantaMapping"/>
+    </bean>
+
+    <bean id="postgreSqlDataflowQueryService"
+          class="eu.profinit.manta.dataflow.generator.postgresql.query.PostgresqlDataflowQueryService">
+        <property name="databaseResource" ref="postgresqlDataResource"/>
+        <property name="scriptResource" ref="postgresqlScriptResource"/>
+        <property name="nodeCreator" ref="nodeCreator"/>
+        <property name="builtinFunctionProcessor" ref="postgresqlBuiltinFunctionProcessor"/>
+        <property name="readerProvider" ref="postgreSqlReaderProvider"/>
+        <property name="filterTask">
+            <bean parent="postgresqlFilterTaskStub"/>
+        </property>
+    </bean>
+
+</beans>

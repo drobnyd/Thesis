@@ -1,0 +1,57 @@
+\chapter{Modeling Tools}
+\label{modeling_tools}
+
+The main feature of modeling tools is to capture metadata about data models that can be created using them and previewed. The tools use diagrams to present data models to their users.
+
+\section{Construction of a Data Model}
+
+Now we will take a look at how someone developing a database can actually create those models.
+In fact, a data model could be created by hand using only paper and pen. It would definitely bring some of the benefits described above, but to take the full advantage of modeling, we assume using \definition{computer-aided software engineering (CASE) tools}. The tools are here to help with the development of quality software \cite{CASETools}. 
+Here is an overview of different ways how a data model can be created using them.
+
+\subsection{Modeling}
+
+By modeling, we mean creating a data model via a user interface of CASE tools from scratch dragging and dropping data model objects around. 
+This way of creation is the most similar to the pen and paper method. A user builds a model manually by selecting what object should be created and bringing it to the particular model, then he provides details about the object, creates sub-objects or specifies relationships with different objects.
+Some tools do not allow creating an arbitrary model, but only the conceptual or logical models may be drawn like this. 
+The reason behind not allowing user to create a physical data model out of scratch is that a physical model should either (i) be the result of a design process and be based on a model with higher level of abstraction (see \Cref{generating}) and then adjusted, or (ii) should resemble a live database that can be transformed into the corresponding data model by reverse-engineering (see \Cref{data_model_reverse_engineering}).
+
+\subsection{Reverse Engineering}
+\label{data_model_reverse_engineering}
+Reverse engineering, or alternatively back engineering, is the process which aims to find out principles of how things are done or work in a system that is already running and try to gain a deeper understanding of the system.
+Applied to our domain, the reverse engineering approach to the creation of a data model means that a CASE tool connects to a database and brings every object found to the physical model that is created. A database management system usually can provide additional metadata on objects, for example about primary/foreign keys, thanks to what relationships between tables. If the modeling tool is smart enough to make use of it, can be brought by the reverse-engineering as well.
+Every model acquired by this process is an exact image of a database and a one-to-one mapping between the model and database should be secured.
+
+\subsection{Generating}
+\label{generating}
+From a data model, new models on different levels of abstraction can be derived from it. Modeling tools usually support translating objects to semantically equivalent ones towards either greater or smaller abstraction. Of course, models created like this are not full-featured but they are definitely a better starting point for database designers to take over. 
+For example, when a conceptual data model is arranged and a logical model should be created based on it, it is really helpful not to start from scratch. Instead, an outline of the logical model can be created by generation from a corresponding conceptual data model. 
+Then the result can be reshaped into the desired condition more quickly. 
+Generation sources and targets are in maps-to relation implicitly.
+
+\subsection{Importing}
+Finally, a CASE modeling tool may be able to import data models that were created using different modeling software and recreate the data models.
+
+\section{ER/Studio Data Architect}
+
+ER/Studio Data Architect is a data modeling and database architecture tool by IDERA, Inc. 
+The latest version is 18.0 \cite{ErStudio}.
+
+The tool is focused on building a business-driven data architecture providing an understandable interface for business users. It also improves data architecture standards by reducing redundancies, enforcing data consistency and quality.
+The tool also tries to provide a framework for visualizing data flows by data lineage diagrams. 
+
+ER/Studio supports creating logical and physical data models. The feature of forward and reverse-engineering may be applied on them. Tens of database platforms can be targeted by a physical model.
+
+Logical models implemented by entity-relationship data models, whereas physical models are of the relational type.
+
+The extension of the product, ER/Studio Data Architect Professional, comes with a model repository that makes collaborative development of data models easier. 
+
+\section{PowerDesigner}
+
+PowerDesigner is a software for data modeling owned by company SAP SE. The tool is well established and has been used by enterprises for 30 years, the current version is 16.6~\cite{PowerDesignerHistory}.
+
+PowerDesigner provides a range of various modeling techniques such as application UML modeling, business process description, enterprise architecture, data movements models. But what is most important for us, data modeling where conceptual, logical and physical data models are supported and the low-level models are compliant with more than 60 database management systems.
+Forward and reverse-engineering of the models can be applied.
+The first two levels are of extended-entity-relationship data models and the physical one is of relational data model~\cite{PowerDesignerFeatures}.
+
+The CASE tool allows sharing metadata across all the supported model types and disposes of enterprise repository solution, which makes cooperative modeling by multiple users easy, and has a version controlling ability.

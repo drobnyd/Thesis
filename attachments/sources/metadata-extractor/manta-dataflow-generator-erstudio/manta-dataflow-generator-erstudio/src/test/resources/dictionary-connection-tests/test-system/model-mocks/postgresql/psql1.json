@@ -1,0 +1,20 @@
+{
+  "schema": [
+    {
+      "name": "public",
+      "table": [
+        {
+          "name": "t1",
+          "column": [
+            {
+              "name": "column0"
+            },
+            {
+              "name": "column1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

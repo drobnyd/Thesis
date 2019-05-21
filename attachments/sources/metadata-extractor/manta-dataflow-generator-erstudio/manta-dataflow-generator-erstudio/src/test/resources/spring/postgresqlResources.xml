@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="postgresqlDdlResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${postgresql.ddl.resource.name}"/>
+        <constructor-arg value="${postgresql.ddl.resource.type}"/>
+        <constructor-arg value="${postgresql.ddl.resource.description}"/>
+    </bean>
+
+    <bean id="postgresqlScriptResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${postgresql.script.resource.name}"/>
+        <constructor-arg value="${postgresql.script.resource.type}"/>
+        <constructor-arg value="${postgresql.script.resource.description}"/>
+    </bean>
+
+    <bean id="postgresqlDataResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${postgresql.data.resource.name}"/>
+        <constructor-arg value="${postgresql.data.resource.type}"/>
+        <constructor-arg value="${postgresql.data.resource.description}"/>
+    </bean>
+
+</beans>

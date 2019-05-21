@@ -1,0 +1,13 @@
+eu.profinit.manta.connector.erstudio
+eu.profinit.manta.connector.erstudio.model
+eu.profinit.manta.connector.erstudio.model.builder
+eu.profinit.manta.connector.erstudio.model.builder.erstudiotypes
+eu.profinit.manta.connector.erstudio.model.builder.mapping
+eu.profinit.manta.connector.erstudio.model.builder.modeledobjectproperties
+eu.profinit.manta.connector.erstudio.model.builder.modeledobjectproperties.plain
+eu.profinit.manta.connector.erstudio.model.builder.modeledobjectproperties.xml
+eu.profinit.manta.connector.erstudio.model.csv
+eu.profinit.manta.connector.erstudio.model.impl
+eu.profinit.manta.connector.erstudio.model.impl.csv
+eu.profinit.manta.connector.erstudio.parser
+eu.profinit.manta.connector.erstudio.utils

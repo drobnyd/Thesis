@@ -1,0 +1,2 @@
+MAPS_TO	First Attribute [Logical Attribute] . Entity [Logical Entity] . NAMELESS [Logical Owner] . ModelSimple.DM1 [Logical Model File] . Test System [Logical System]	->	FIRST_ATTRIBUTE [Column] . ENTITY [Table] . CURRENT_USER [Schema] . DEFAULT_DATABASE [Database]
+MAPS_TO	Key [Logical Attribute] . Entity [Logical Entity] . NAMELESS [Logical Owner] . ModelSimple.DM1 [Logical Model File] . Test System [Logical System]	->	KEY [Column] . ENTITY [Table] . CURRENT_USER [Schema] . DEFAULT_DATABASE [Database]

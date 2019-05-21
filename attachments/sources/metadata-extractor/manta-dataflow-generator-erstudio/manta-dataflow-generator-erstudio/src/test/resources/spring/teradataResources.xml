@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="teradataDdlResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${teradata.ddl.resource.name}"/>
+        <constructor-arg value="${teradata.ddl.resource.type}"/>
+        <constructor-arg value="${teradata.ddl.resource.description}"/>
+    </bean>
+
+    <bean id="teradataScriptResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${teradata.script.resource.name}"/>
+        <constructor-arg value="${teradata.script.resource.type}"/>
+        <constructor-arg value="${teradata.script.resource.description}"/>
+    </bean>
+
+    <bean id="teradataDataResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${teradata.data.resource.name}"/>
+        <constructor-arg value="${teradata.data.resource.type}"/>
+        <constructor-arg value="${teradata.data.resource.description}"/>
+    </bean>
+
+    <bean id="teradataTptResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${teradata.tpt.resource.name}"/>
+        <constructor-arg value="${teradata.tpt.resource.type}"/>
+        <constructor-arg value="${teradata.tpt.resource.description}"/>
+    </bean>
+
+</beans>

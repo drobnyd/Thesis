@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"eu.profinit.manta.dataflow.generator.erstudio"},{"l":"eu.profinit.manta.dataflow.generator.erstudio.connections"},{"l":"eu.profinit.manta.dataflow.generator.erstudio.graph"}]

@@ -1,0 +1,13 @@
+Attribute_1 [Logical Attribute] . Entity_1 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Attribute_1 [Logical Attribute] . Entity_2 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Attribute_2 [Logical Attribute] . Entity_1 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Attribute_2 [Logical Attribute] . Entity_2 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Attribute_3 [Logical Attribute] . Entity_1 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Attribute_3 [Logical Attribute] . Entity_3 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Entity_1 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Entity_2 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Entity_3 [Logical Entity] . MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+MetadataModel [Logical Model] . MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+MetadataModel.ldm [Logical Model File] . Test System [Logical System]
+Test System [Logical System]
+Nodes: 12, edges: 0

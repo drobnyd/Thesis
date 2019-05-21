@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="powerDesignerDataflowTask"
+          class="eu.profinit.manta.dataflow.generator.powerdesigner.PowerDesignerDataflowTask">
+        <property name="conceptualNodeCreator" ref="conceptualNodeCreator"/>
+        <property name="logicalNodeCreator" ref="logicalNodeCreator"/>
+        <property name="graphBuilderFactory" ref="graphBuilderFactory"/>
+    </bean>
+
+    <bean id="databaseConnector"
+          class="eu.profinit.manta.dataflow.generator.modeling.common.connections.DatabaseConnectorImpl">
+        <property name="dataflowQueryService" ref="powerDesignerQueryService"/>
+        <property name="nodeCreator" ref="nodeCreator"/>
+    </bean>
+
+    <bean id="conceptualNodeCreator"
+          class="eu.profinit.manta.dataflow.generator.modeling.common.nodes.ConceptualNodeCreatorImpl">
+        <constructor-arg ref="conceptualPowerDesignerResource"/>
+    </bean>
+
+    <bean id="conceptualPowerDesignerResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg index="0" value="${powerdesigner.conceptual.resource.name}"/>
+        <constructor-arg index="1" value="${powerdesigner.conceptual.resource.type}"/>
+        <constructor-arg index="2" value="${powerdesigner.conceptual.resource.description}"/>
+        <constructor-arg index="3" ref="conceptualLayer"/>
+    </bean>
+
+    <bean id="conceptualLayer" class="eu.profinit.manta.dataflow.model.impl.LayerImpl">
+        <constructor-arg value="${powerdesigner.conceptual.layer.name}"/>
+        <constructor-arg value="${powerdesigner.conceptual.layer.name}"/>
+    </bean>
+
+    <bean id="logicalNodeCreator"
+          class="eu.profinit.manta.dataflow.generator.modeling.common.nodes.LogicalDataModelNodeCreatorImpl">
+        <constructor-arg ref="logicalPowerDesignerResource"/>
+    </bean>
+
+    <bean id="logicalPowerDesignerResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg index="0" value="${powerdesigner.logical.resource.name}"/>
+        <constructor-arg index="1" value="${powerdesigner.logical.resource.type}"/>
+        <constructor-arg index="2" value="${powerdesigner.logical.resource.description}"/>
+        <constructor-arg index="3" ref="logicalLayer"/>
+    </bean>
+
+    <bean id="logicalLayer" class="eu.profinit.manta.dataflow.model.impl.LayerImpl">
+        <constructor-arg value="${powerdesigner.logical.layer.name}"/>
+        <constructor-arg value="${powerdesigner.logical.layer.type}"/>
+    </bean>
+
+    <bean id="graphBuilderFactory" class="eu.profinit.manta.dataflow.generator.powerdesigner.graph.GraphBuilderFactory">
+        <property name="connectionResolver" ref="connectionResolver"/>
+        <property name="databaseConnector" ref="databaseConnector"/>
+        <property name="conceptualNodeCreator" ref="conceptualNodeCreator"/>
+        <property name="logicalNodeCreator" ref="logicalNodeCreator"/>
+        <property name="systemId" value="${powerdesigner.system.id}"/>
+    </bean>
+
+    <!-- specific query services must be added-->
+
+    <bean id="powerDesignerQueryService"
+          class="eu.profinit.manta.dataflow.generator.common.query.impl.DataflowQueryServiceImpl"/>
+
+    <bean id="nodeCreator" class="eu.profinit.manta.dataflow.generator.modelutils.NodeCreatorImpl">
+        <property name="fileSystemResource" ref="fileSystemResource"/>
+        <property name="lowerCaseFilePath" value="${filepath.lowercase}"/>
+    </bean>
+
+    <bean id="fileSystemResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${filesystem.resource.name}"/>
+        <constructor-arg value="${filesystem.resource.type}"/>
+        <constructor-arg value="${filesystem.resource.description}"/>
+    </bean>
+
+    <bean id="connectionResolver"
+          class="eu.profinit.manta.dataflow.generator.powerdesigner.graph.connections.ConnectionResolverImpl">
+        <property name="connectionsConfig" ref="connectionsConfig"/>
+    </bean>
+
+    <bean id="connectionsConfig" class="java.io.File">
+        <constructor-arg value="${powerdesigner.connections.ini}"/>
+    </bean>
+
+</beans>

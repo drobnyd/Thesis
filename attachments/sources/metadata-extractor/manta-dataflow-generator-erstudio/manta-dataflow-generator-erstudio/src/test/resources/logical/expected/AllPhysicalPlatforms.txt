@@ -1,0 +1,5 @@
+Entity1 [Logical Entity] . NAMELESS [Logical Owner] . AllPhysicalPlatforms.DM1 [Logical Model File] . TestSystem [Logical System]
+AllPhysicalPlatforms.DM1 [Logical Model File] . TestSystem [Logical System]
+NAMELESS [Logical Owner] . AllPhysicalPlatforms.DM1 [Logical Model File] . TestSystem [Logical System]
+TestSystem [Logical System]
+Nodes: 4, edges: 0

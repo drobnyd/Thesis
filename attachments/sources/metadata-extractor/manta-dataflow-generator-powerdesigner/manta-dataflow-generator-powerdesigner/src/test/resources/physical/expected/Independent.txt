@@ -1,0 +1,6 @@
+Column_1 [Column] . Table_1 [Table] . schemaName [Schema] . databaseName [Database] . Independent [Server]
+databaseName [Database] . Independent [Server]
+schemaName [Schema] . databaseName [Database] . Independent [Server]
+Independent [Server]
+Table_1 [Table] . schemaName [Schema] . databaseName [Database] . Independent [Server]
+Nodes: 5, edges: 0

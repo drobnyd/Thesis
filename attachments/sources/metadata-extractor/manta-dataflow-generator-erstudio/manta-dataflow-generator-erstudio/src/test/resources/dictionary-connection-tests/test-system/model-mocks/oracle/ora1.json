@@ -1,0 +1,37 @@
+{
+  "schema": [
+    {
+      "name": "ORA1.SQL",
+      "table": [
+        {
+          "name": "t1",
+          "column": [
+            {
+              "name": "a"
+            },
+            {
+              "name": "b"
+            },
+            {
+              "name": "c"
+            }
+          ]
+        },
+        {
+          "name": "t2",
+          "column": [
+            {
+              "name": "a"
+            },
+            {
+              "name": "b"
+            },
+            {
+              "name": "c"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

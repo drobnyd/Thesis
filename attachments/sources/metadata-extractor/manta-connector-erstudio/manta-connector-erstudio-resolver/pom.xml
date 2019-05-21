@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.profinit.manta</groupId>
+        <artifactId>manta-platform-parent-pom</artifactId>
+        <version>1.25-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+    <groupId>eu.profinit.manta</groupId>
+    <artifactId>manta-connector-erstudio-resolver</artifactId>
+    <version>1.25-SNAPSHOT</version>
+    <name>Manta Connector ER/Studio Resolver</name>
+    <description>Resolver for Manta ER/Studio Connector.</description>
+
+    <scm>
+        <url>http://manta-cm/svn/manta/Source_Code/Internal/Connector/ERStudio/trunk/manta-connector-erstudio-resolver
+        </url>
+        <connection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/Connector/ERStudio/trunk/manta-connector-erstudio-resolver
+        </connection>
+        <developerConnection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/Connector/ERStudio/trunk/manta-connector-erstudio-resolver
+        </developerConnection>
+    </scm>
+    <repositories>
+        <repository>
+            <id>manta-releases</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-releases</url>
+        </repository>
+        <repository>
+            <id>manta-snapshots</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-snapshots</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-erstudio-model</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-connector-common-testutils</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-modeling-common</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>

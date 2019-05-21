@@ -62,10 +62,8 @@
          <dc:publisher><rdf:Bag><rdf:li>Charles University</rdf:li></rdf:Bag></dc:publisher>
          
          
-         <dc:description><rdf:Alt><rdf:li xml:lang="x-default">Abstract of thesis</rdf:li></rdf:Alt></dc:description>
-         <dc:subject><rdf:Bag><rdf:li>keywords</rdf:li>
-     <rdf:li>more such</rdf:li>
-     <rdf:li>yet another</rdf:li></rdf:Bag></dc:subject>
+         
+         
       </rdf:Description> 
       <rdf:Description rdf:about="" xmlns:prism="http://prismstandard.org/namespaces/basic/2.2/"> 
          
@@ -90,17 +88,17 @@
       </rdf:Description> 
       <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> 
          <xmp:CreatorTool>LaTeX with hyperref package</xmp:CreatorTool> 
-         <xmp:ModifyDate>2019-05-16T17:46:36+02:00</xmp:ModifyDate> 
-         <xmp:CreateDate>2019-05-16T17:46:36+02:00</xmp:CreateDate> 
-         <xmp:MetadataDate>2019-05-16T17:46:36+02:00</xmp:MetadataDate> 
+         <xmp:ModifyDate>2019-05-20T23:28:48+02:00</xmp:ModifyDate> 
+         <xmp:CreateDate>2019-05-20T23:28:48+02:00</xmp:CreateDate> 
+         <xmp:MetadataDate>2019-05-20T23:28:48+02:00</xmp:MetadataDate> 
       </rdf:Description> 
       <rdf:Description rdf:about="" xmlns:xmpRights = "http://ns.adobe.com/xap/1.0/rights/"> 
          
       
       </rdf:Description> 
       <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"> 
-         <xmpMM:DocumentID>uuid:C8CFC28F-88E1-7995-E9AD-F6D12EAD346B</xmpMM:DocumentID> 
-         <xmpMM:InstanceID>uuid:FF4B38C4-719B-A7C4-3D37-927782C10AEF</xmpMM:InstanceID> 
+         <xmpMM:DocumentID>uuid:4339886F-1637-D7BD-C0DC-0388F78A3EFD</xmpMM:DocumentID> 
+         <xmpMM:InstanceID>uuid:DA1124D6-1E54-D777-75CE-E09AFBEFDCDA</xmpMM:InstanceID> 
       </rdf:Description> 
    </rdf:RDF> 
 </x:xmpmeta> 

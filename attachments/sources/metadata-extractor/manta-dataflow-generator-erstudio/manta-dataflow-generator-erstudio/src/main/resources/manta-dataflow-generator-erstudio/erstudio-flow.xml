@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="erStudioDataflowTask" class="eu.profinit.manta.dataflow.generator.erstudio.ErStudioDataflowTask">
+        <property name="resource" ref="erStudioResource"/>
+        <property name="connectionResolver" ref="connectionResolver"/>
+        <property name="databaseConnector" ref="databaseConnector"/>
+        <property name="systemId" value="${erstudio.system.id}"/>
+    </bean>
+
+    <bean id="erStudioResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${erstudio.resource.name}"/>
+        <constructor-arg value="${erstudio.resource.type}"/>
+        <constructor-arg value="${erstudio.resource.description}"/>
+        <constructor-arg ref="logicalLayer"/>
+    </bean>
+
+    <bean id="logicalLayer" class="eu.profinit.manta.dataflow.model.impl.LayerImpl">
+        <constructor-arg value="${erstudio.layer.name}"/>
+        <constructor-arg value="${erstudio.layer.type}"/>
+    </bean>
+
+    <bean id="connectionResolver"
+          class="eu.profinit.manta.dataflow.generator.erstudio.connections.ConnectionResolverImpl">
+        <property name="connectionsConfig" ref="connectionsConfig"/>
+    </bean>
+
+    <bean id="connectionsConfig" class="java.io.File">
+        <constructor-arg value="${erstudio.config.ini}"/>
+    </bean>
+
+    <bean id="databaseConnector"
+          class="eu.profinit.manta.dataflow.generator.modeling.common.connections.DatabaseConnectorImpl">
+        <property name="dataflowQueryService" ref="erStudioQueryService"/>
+        <property name="nodeCreator" ref="nodeCreator"/>
+    </bean>
+
+    <!-- specific query services must be added-->
+    <bean id="erStudioQueryService"
+          class="eu.profinit.manta.dataflow.generator.common.query.impl.DataflowQueryServiceImpl"/>
+
+    <bean id="nodeCreator" class="eu.profinit.manta.dataflow.generator.modelutils.NodeCreatorImpl">
+        <property name="fileSystemResource" ref="fileSystemResource"/>
+        <property name="lowerCaseFilePath" value="${filepath.lowercase}"/>
+    </bean>
+
+    <bean id="fileSystemResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${filesystem.resource.name}"/>
+        <constructor-arg value="${filesystem.resource.type}"/>
+        <constructor-arg value="${filesystem.resource.description}"/>
+    </bean>
+
+</beans>

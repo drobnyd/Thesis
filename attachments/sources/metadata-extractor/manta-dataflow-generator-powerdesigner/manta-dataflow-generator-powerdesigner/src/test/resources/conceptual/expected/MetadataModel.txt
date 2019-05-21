@@ -1,0 +1,13 @@
+Attribute_1 [Conceptual Attribute] . Entity_1 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Attribute_1 [Conceptual Attribute] . Entity_2 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Attribute_2 [Conceptual Attribute] . Entity_1 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Attribute_2 [Conceptual Attribute] . Entity_2 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Attribute_3 [Conceptual Attribute] . Entity_1 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Attribute_3 [Conceptual Attribute] . Entity_3 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Entity_1 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Entity_2 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Entity_3 [Conceptual Entity] . MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+MetadataModel [Conceptual Model] . MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+MetadataModel.cdm [Conceptual Model File] . Test System [Logical System]
+Test System [Logical System]
+Nodes: 12, edges: 0

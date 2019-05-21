@@ -1,0 +1,13 @@
+Attribute_1 [Column] . Entity_1 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Attribute_1 [Column] . Entity_2 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Attribute_2 [Column] . Entity_1 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Attribute_2 [Column] . Entity_2 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Attribute_3 [Column] . Entity_1 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Attribute_3 [Column] . Entity_3 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+databaseName [Database] . MetadataModel [Server]
+schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+MetadataModel [Server]
+Entity_1 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Entity_2 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Entity_3 [Table] . schemaName [Schema] . databaseName [Database] . MetadataModel [Server]
+Nodes: 12, edges: 0

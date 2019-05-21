@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="netezzaDdlResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${netezza.ddl.resource.name}"/>
+        <constructor-arg value="${netezza.ddl.resource.type}"/>
+        <constructor-arg value="${netezza.ddl.resource.description}"/>
+    </bean>
+
+    <bean id="netezzaScriptResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${netezza.script.resource.name}"/>
+        <constructor-arg value="${netezza.script.resource.type}"/>
+        <constructor-arg value="${netezza.script.resource.description}"/>
+    </bean>
+
+    <bean id="netezzaDataResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${netezza.data.resource.name}"/>
+        <constructor-arg value="${netezza.data.resource.type}"/>
+        <constructor-arg value="${netezza.data.resource.description}"/>
+    </bean>
+
+</beans>

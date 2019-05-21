@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>eu.profinit.manta</groupId>
+        <artifactId>manta-platform-parent-pom</artifactId>
+        <version>1.25-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+    <artifactId>manta-dataflow-generator-modeling-common</artifactId>
+    <version>1.25-SNAPSHOT</version>
+    <name>Manta Dataflow Generator Modeling Common</name>
+    <description>Manta Dataflow Generator Common for Modeling Tools.</description>
+
+    <scm>
+        <url>
+            http://manta-cm/svn/manta/Source_Code/Internal/DataFlow/Generator/PowerDesigner/trunk/manta-dataflow-generator-modeling-common
+        </url>
+        <connection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/DataFlow/Generator/PowerDesigner/trunk/manta-dataflow-generator-modeling-common
+        </connection>
+        <developerConnection>
+            scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/DataFlow/Generator/PowerDesigner/trunk/manta-dataflow-generator-modeling-common
+        </developerConnection>
+    </scm>
+    <repositories>
+        <repository>
+            <id>manta-releases</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-releases</url>
+        </repository>
+        <repository>
+            <id>manta-snapshots</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-snapshots</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-platform-automation</artifactId>
+            <version>1.25-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-model</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-model-utils</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-common</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.profinit.manta</groupId>
+            <artifactId>manta-dataflow-generator-common-query</artifactId>
+            <version>1.25-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.joniles</groupId>
+            <artifactId>rtfparserkit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>

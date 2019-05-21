@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.profinit.manta</groupId>
+    <artifactId>manta-connector-powerdesigner-aggregation</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>MANTA Connector PowerDesigner Aggregation</name>
+    <packaging>pom</packaging>
+    <scm>
+        <url>http://manta-cm/svn/manta/Source_Code/Internal/Connector/PowerDesigner/trunk</url>
+        <connection>scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/Connector/PowerDesigner/trunk</connection>
+        <developerConnection>scm:svn:http://manta-cm/svn/manta/Source_Code/Internal/Connector/PowerDesigner/trunk
+        </developerConnection>
+    </scm>
+    <modules>
+        <module>manta-connector-powerdesigner</module>
+        <module>manta-connector-powerdesigner-model</module>
+        <module>manta-connector-powerdesigner-resolver</module>
+    </modules>
+    <distributionManagement>
+        <repository>
+            <id>manta-releases</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>manta-snapshots</id>
+            <url>http://manta-cm/nexus/content/repositories/manta-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

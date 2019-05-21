@@ -1,0 +1,6 @@
+Attribute_1 [Conceptual Attribute] . Entity_1 [Conceptual Entity] . Independent [Conceptual Model] . Independent.cdm [Conceptual Model File] . Test System [Logical System]
+Entity_1 [Conceptual Entity] . Independent [Conceptual Model] . Independent.cdm [Conceptual Model File] . Test System [Logical System]
+Independent [Conceptual Model] . Independent.cdm [Conceptual Model File] . Test System [Logical System]
+Independent.cdm [Conceptual Model File] . Test System [Logical System]
+Test System [Logical System]
+Nodes: 5, edges: 0

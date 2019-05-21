@@ -1,0 +1,6 @@
+Attribute_1 [Logical Attribute] . Entity_1 [Logical Entity] . Independent [Logical Model] . Logical Data _1.ldm [Logical Model File] . Test System [Logical System]
+Entity_1 [Logical Entity] . Independent [Logical Model] . Logical Data _1.ldm [Logical Model File] . Test System [Logical System]
+Independent [Logical Model] . Logical Data _1.ldm [Logical Model File] . Test System [Logical System]
+Logical Data _1.ldm [Logical Model File] . Test System [Logical System]
+Test System [Logical System]
+Nodes: 5, edges: 0

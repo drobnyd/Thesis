@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mssqlDdlResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${mssql.ddl.resource.name}"/>
+        <constructor-arg value="${mssql.ddl.resource.type}"/>
+        <constructor-arg value="${mssql.ddl.resource.description}"/>
+    </bean>
+
+    <bean id="mssqlScriptResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${mssql.script.resource.name}"/>
+        <constructor-arg value="${mssql.script.resource.type}"/>
+        <constructor-arg value="${mssql.script.resource.description}"/>
+    </bean>
+
+    <bean id="mssqlDataResource" class="eu.profinit.manta.dataflow.model.impl.ResourceImpl">
+        <constructor-arg value="${mssql.data.resource.name}"/>
+        <constructor-arg value="${mssql.data.resource.type}"/>
+        <constructor-arg value="${mssql.data.resource.description}"/>
+    </bean>
+
+</beans>
